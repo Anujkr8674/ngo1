@@ -90,7 +90,7 @@ export default function About() {
       {/* Vision, Mission, Values */}
       <section className="px-6 md:px-12 py-24 bg-transparent">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="p-8 rounded-3xl bg-white/80 backdrop-blur-md shadow-premium border border-white flex flex-col gap-6">
+          <div className="p-8 rounded-3xl bg-white/80 backdrop-blur-md shadow-premium border border-white flex flex-col gap-6 hover:-translate-y-2 hover:border-primary transition-all duration-300 group">
             <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
               <Star className="w-6 h-6 text-foreground" />
             </div>
@@ -100,7 +100,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="p-8 rounded-3xl bg-white/80 backdrop-blur-md shadow-premium border border-white flex flex-col gap-6">
+          <div className="p-8 rounded-3xl bg-white/80 backdrop-blur-md shadow-premium border border-white flex flex-col gap-6 hover:-translate-y-2 hover:border-primary transition-all duration-300 group">
             <div className="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center">
               <Compass className="w-6 h-6 text-foreground" />
             </div>
@@ -110,7 +110,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="p-8 rounded-3xl bg-white/80 backdrop-blur-md shadow-premium border border-white flex flex-col gap-6">
+          <div className="p-8 rounded-3xl bg-white/80 backdrop-blur-md shadow-premium border border-white flex flex-col gap-6 hover:-translate-y-2 hover:border-primary transition-all duration-300 group">
             <div className="w-12 h-12 rounded-xl bg-accent/30 flex items-center justify-center">
               <ShieldAlert className="w-6 h-6 text-foreground" />
             </div>
@@ -130,17 +130,44 @@ export default function About() {
             <h3 className="font-display font-bold text-4xl text-foreground">Our Journey Timeline</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {milestones.map((m, i) => (
-              <div key={m.year} className="relative p-6 rounded-2xl bg-white shadow-premium border border-foreground/5 hover:-translate-y-2 transition-transform duration-300 flex flex-col gap-4">
-                <span className="text-xs font-semibold px-2.5 py-1 bg-secondary/20 rounded-full text-foreground w-fit flex items-center gap-1 font-sans">
-                  <Calendar className="w-3 h-3" />
-                  {m.year}
-                </span>
-                <h4 className="font-display font-bold text-lg text-foreground">{m.title}</h4>
-                <p className="text-xs text-foreground/70 leading-relaxed">{m.desc}</p>
-              </div>
-            ))}
+          <div className="relative max-w-5xl mx-auto w-full px-2 md:px-0">
+            {/* Center Line */}
+            <div className="absolute left-[28px] md:left-1/2 top-4 bottom-4 w-1.5 bg-foreground/15 transform md:-translate-x-1/2 rounded-full" />
+            
+            <div className="flex flex-col gap-12 md:gap-16">
+              {milestones.map((m, i) => {
+                const isLeft = i % 2 === 0;
+                return (
+                  <div key={m.year} className="relative flex flex-col md:flex-row items-center w-full">
+                    
+                    {/* Empty half for desktop to push card to the correct side */}
+                    <div className={`hidden md:block w-1/2 ${isLeft ? 'order-3' : 'order-1'}`} />
+                    
+                    {/* Step No / Dot in the Middle */}
+                    <div className="absolute left-7 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-secondary text-white shadow-[0_0_0_6px_var(--bg-white,white)] z-10 md:order-2">
+                      <span className="text-xs font-bold tracking-tight">{i + 1}</span>
+                    </div>
+
+                    {/* Card Content */}
+                    <div className={`w-full md:w-1/2 pl-16 md:pl-0 ${isLeft ? 'md:pr-16 order-1' : 'md:pl-16 order-3'} flex`}>
+                      <div className="w-full relative p-6 md:p-8 rounded-3xl bg-white shadow-premium border border-foreground/5 hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+                        
+                        {/* Little triangle pointer (hidden on mobile) */}
+                        <div className={`hidden md:block absolute top-1/2 transform -translate-y-1/2 w-4 h-4 bg-white border border-foreground/5 rotate-45 ${isLeft ? '-right-2 border-l-0 border-b-0' : '-left-2 border-r-0 border-t-0'}`} />
+                        
+                        <span className="text-xs font-bold px-3 py-1.5 bg-foreground/10 rounded-full text-foreground w-fit flex items-center gap-1.5 font-sans tracking-wider">
+                          <Calendar className="w-3.5 h-3.5" />
+                          {m.year}
+                        </span>
+                        <h4 className="font-display font-bold text-xl md:text-2xl text-foreground leading-snug">{m.title}</h4>
+                        <p className="text-sm text-foreground/75 leading-relaxed">{m.desc}</p>
+                      </div>
+                    </div>
+
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -180,7 +207,7 @@ export default function About() {
                 </div>
                 <div className="lg:col-span-8 flex flex-col gap-4">
                   <h4 className="font-display font-bold text-2xl md:text-3xl text-foreground">{founder.name}</h4>
-                  <span className="text-xs uppercase tracking-widest font-semibold text-secondary">{founder.role}</span>
+                  <span className="text-xs uppercase tracking-widest font-bold text-foreground/80 bg-foreground/5 px-3 py-1.5 rounded-full w-fit">{founder.role}</span>
                   <p className="text-sm md:text-base text-foreground/75 leading-relaxed">
                     {founder.description}
                   </p>

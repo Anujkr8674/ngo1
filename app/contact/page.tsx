@@ -151,8 +151,10 @@ export default function Contact() {
               
               <div className="flex flex-col gap-5 text-sm text-foreground/75 leading-relaxed">
                 <div className="flex items-start gap-4">
-                  <MapPin className="w-5 h-5 text-foreground/50 shrink-0 mt-1" />
-                  <span>
+                  <div className="w-10 h-10 rounded-full bg-gradient-soft-blue flex items-center justify-center shrink-0 shadow-soft">
+                    <MapPin className="w-5 h-5 text-foreground/80" />
+                  </div>
+                  <span className="pt-1.5">
                     <strong>LIVE 4 HELP FOUNDATION</strong><br />
                     C-504, Sea Show CGHS Ltd.<br />
                     Plot No. 14, Sector -19B, Dwarka,<br />
@@ -161,7 +163,9 @@ export default function Contact() {
                 </div>
                 
                 <div className="flex items-center gap-4">
-                  <Phone className="w-5 h-5 text-foreground/50 shrink-0" />
+                  <div className="w-10 h-10 rounded-full bg-gradient-soft-purple flex items-center justify-center shrink-0 shadow-soft">
+                    <Phone className="w-5 h-5 text-foreground/80" />
+                  </div>
                   <div className="flex flex-col">
                     <a href="tel:+919810745206" className="hover:text-foreground transition-colors font-medium">
                       +91-9810745206
@@ -173,20 +177,24 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <Mail className="w-5 h-5 text-foreground/50 shrink-0" />
+                  <div className="w-10 h-10 rounded-full bg-gradient-soft-yellow flex items-center justify-center shrink-0 shadow-soft">
+                    <Mail className="w-5 h-5 text-foreground/80" />
+                  </div>
                   <a href="mailto:live4help.org@gmail.com" className="hover:text-foreground transition-colors font-medium break-all">
                     live4help.org@gmail.com
                   </a>
                 </div>
 
                 <div className="flex items-center gap-4 border-t border-foreground/5 pt-4">
-                  <svg className="w-5 h-5 text-foreground/50 shrink-0 fill-current" viewBox="0 0 24 24">
-                    <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
-                  </svg>
+                  <div className="w-10 h-10 rounded-full bg-gradient-editorial flex items-center justify-center shrink-0 shadow-soft">
+                    <svg className="w-5 h-5 text-foreground/80 shrink-0 fill-current" viewBox="0 0 24 24">
+                      <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                    </svg>
+                  </div>
                   <a 
                     href="https://www.facebook.com/live4help.org/?ref=page_internal" 
                     target="_blank" rel="noopener noreferrer"
-                    className="text-xs font-semibold uppercase tracking-wider text-secondary hover:text-foreground transition-colors"
+                    className="text-xs font-semibold uppercase tracking-wider text-foreground/80 hover:text-foreground transition-colors"
                   >
                     View Facebook Profile
                   </a>

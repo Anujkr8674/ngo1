@@ -3,13 +3,13 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Heart, 
-  ArrowUpRight, 
-  GraduationCap, 
-  Leaf, 
-  HeartHandshake, 
-  Play, 
+import {
+  Heart,
+  ArrowUpRight,
+  GraduationCap,
+  Leaf,
+  HeartHandshake,
+  Play,
   X,
   Compass,
   ArrowRight,
@@ -21,9 +21,10 @@ import testimonialsData from "./data/testimonials.json";
 import blogsData from "./data/blogs.json";
 
 const carouselImages = [
-  "https://live4help.org/wp-content/uploads/2026/02/Students.png",
+
   "https://live4help.org/wp-content/uploads/2022/04/L4H-Medical-Camp-Photo-1.jpg",
-  "https://live4help.org/wp-content/uploads/2022/02/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg"
+  "https://live4help.org/wp-content/uploads/2022/02/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg",
+  "https://live4help.org/wp-content/uploads/2026/02/Students.png"
 ];
 
 export default function Home() {
@@ -88,9 +89,8 @@ export default function Home() {
           {carouselImages.map((src, index) => (
             <div
               key={src}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                index === currentSlide ? "opacity-100" : "opacity-0"
-              }`}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100" : "opacity-0"
+                }`}
             >
               <img
                 src={src}
@@ -164,9 +164,8 @@ export default function Home() {
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                index === currentSlide ? "w-8 bg-foreground" : "bg-foreground/30 hover:bg-foreground/50"
-              }`}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${index === currentSlide ? "w-8 bg-foreground" : "bg-foreground/30 hover:bg-foreground/50"
+                }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
@@ -298,8 +297,8 @@ export default function Home() {
                 <img referrerPolicy="no-referrer"
                   src={item.image}
                   alt={item.name}
-                  
-                  
+
+
                   className="w-full h-full object-cover absolute inset-0 object-cover group-hover:scale-105 transition-premium"
                 />
                 {/* Overlay gradient */}
@@ -356,8 +355,8 @@ export default function Home() {
                   <img referrerPolicy="no-referrer"
                     src={img.src}
                     alt={img.caption}
-                    
-                    
+
+
                     className="w-full h-full object-cover absolute inset-0 object-cover group-hover:scale-102 transition-premium"
                   />
                 </div>
@@ -431,8 +430,8 @@ export default function Home() {
                     <img referrerPolicy="no-referrer"
                       src={blog.images[0]}
                       alt={blog.title}
-                      
-                      
+
+
                       className="w-full h-full object-cover absolute inset-0 object-cover group-hover:scale-103 transition-premium"
                     />
                   </div>
@@ -443,7 +442,7 @@ export default function Home() {
                     <span>•</span>
                     <span>By {blog.author}</span>
                   </div>
-                  <h4 className="font-display font-bold text-xl text-foreground leading-snug group-hover:text-secondary transition-colors">
+                  <h4 className="font-display font-bold text-xl text-foreground leading-snug group-hover:text-blue-600 transition-colors">
                     {blog.title}
                   </h4>
                   <p className="text-sm text-foreground/70 leading-relaxed line-clamp-3">

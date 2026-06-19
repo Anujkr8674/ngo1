@@ -157,7 +157,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   )}
                   <div className="flex flex-col gap-2">
                     <span className="text-[10px] text-foreground/45 uppercase tracking-wider font-semibold">{post.date}</span>
-                    <h4 className="font-display font-bold text-lg text-foreground group-hover:text-secondary leading-snug transition-colors">
+                    <h4 className="font-display font-bold text-lg text-foreground group-hover:text-blue-600 leading-snug transition-colors">
                       {post.title}
                     </h4>
                   </div>

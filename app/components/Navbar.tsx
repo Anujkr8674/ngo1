@@ -37,39 +37,37 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-premium duration-500 ${
-          scrolled
-            ? "glass-nav py-3 shadow-soft"
-            : "bg-transparent py-5"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-premium duration-500 ${scrolled
+          ? "glass-nav py-3 shadow-soft"
+          : "bg-transparent py-5"
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center group">
-            <img 
-              src="https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg" 
-              alt="Live 4 Help Foundation Logo" 
+            <img
+              src="https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg"
+              alt="Live 4 Help Foundation Logo"
               className="h-12 w-auto object-contain"
             />
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-4 py-2 text-sm font-medium tracking-tight rounded-full transition-colors duration-300 ${
-                    isActive ? "text-foreground" : "text-foreground/75 hover:text-foreground hover:bg-foreground/5"
-                  }`}
+                  className={`relative px-2.5 xl:px-4 py-2 text-sm font-medium tracking-tight rounded-full transition-colors duration-300 ${isActive ? "text-foreground" : "text-foreground hover:bg-foreground/5"
+                    }`}
                 >
                   {link.label}
                   {isActive && (
                     <motion.span
                       layoutId="activeNavIndicator"
-                      className="absolute bottom-0.5 left-4 right-4 h-0.5 rounded-full bg-secondary"
+                      className="absolute bottom-0.5 left-4 right-4 h-0.5 rounded-full bg-foreground"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -79,7 +77,7 @@ export default function Navbar() {
           </nav>
 
           {/* Donate CTA button (Desktop) */}
-          <div className="hidden xl:flex items-center">
+          <div className="hidden lg:flex items-center">
             <Link href="/donate">
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -95,7 +93,7 @@ export default function Navbar() {
           {/* Mobile Hamburguer Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="xl:hidden p-2 rounded-full hover:bg-foreground/5 transition-colors text-foreground"
+            className="lg:hidden p-2 rounded-full hover:bg-foreground/5 transition-colors text-foreground"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -125,11 +123,10 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      className={`block px-4 py-3 text-lg font-display font-medium rounded-2xl transition-colors ${
-                        isActive
-                          ? "bg-secondary/20 text-foreground"
-                          : "text-foreground/85 hover:bg-foreground/5"
-                      }`}
+                      className={`block px-4 py-3 text-lg font-display font-medium rounded-2xl transition-colors ${isActive
+                        ? "bg-secondary/20 text-foreground"
+                        : "text-foreground/85 hover:bg-foreground/5"
+                        }`}
                     >
                       {link.label}
                     </Link>

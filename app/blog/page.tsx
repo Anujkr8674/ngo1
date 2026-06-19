@@ -21,8 +21,8 @@ export default function Blog() {
   // Filter logic
   const filteredBlogs = blogsData.filter(blog => {
     const matchesSearch = blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          blog.paragraphs.some(p => p.toLowerCase().includes(searchQuery.toLowerCase()));
-    
+      blog.paragraphs.some(p => p.toLowerCase().includes(searchQuery.toLowerCase()));
+
     let matchesCategory = true;
     if (activeCategory === "education") {
       matchesCategory = blog.slug.includes("education") || blog.slug.includes("student");
@@ -65,18 +65,7 @@ export default function Blog() {
             </p>
 
             {/* Search Bar */}
-            <div className="relative w-full max-w-lg mt-2 shadow-soft rounded-full overflow-hidden border border-foreground/5 bg-white">
-              <span className="absolute left-5 top-1/2 -translate-y-1/2 text-white/40">
-                <Search className="w-5 h-5" />
-              </span>
-              <input
-                type="text"
-                placeholder="Search articles and topics..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-6 py-4 text-sm font-sans focus:outline-none bg-transparent text-white"
-              />
-            </div>
+
           </div>
         </div>
       </section>
@@ -88,11 +77,10 @@ export default function Blog() {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer ${
-                activeCategory === cat.id
+              className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer ${activeCategory === cat.id
                   ? "bg-foreground text-background shadow-soft"
                   : "bg-white text-foreground/80 hover:text-foreground border border-foreground/5 shadow-soft hover:bg-foreground/5"
-              }`}
+                }`}
             >
               {cat.label}
             </button>
@@ -121,7 +109,7 @@ export default function Blog() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.05 }}
                     key={blog.slug}
-                    className="group flex flex-col justify-between p-6 rounded-3xl glass-panel shadow-soft border border-white/60 min-h-[500px] hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
+                    className="group flex flex-col justify-between p-6 rounded-3xl bg-white shadow-soft border border-foreground/5 min-h-[500px] hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                   >
                     <div className="flex flex-col gap-6">
                       {/* Image */}
@@ -130,8 +118,8 @@ export default function Blog() {
                           <img referrerPolicy="no-referrer"
                             src={blog.images[0]}
                             alt={blog.title}
-                            
-                            
+
+
                             className="w-full h-full object-cover absolute inset-0 object-cover group-hover:scale-103 transition-premium"
                           />
                         </div>
@@ -142,7 +130,7 @@ export default function Blog() {
                           <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{blog.date}</span>
                           <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" />{readTime} Min Read</span>
                         </div>
-                        <h2 className="font-display font-bold text-xl md:text-2xl text-foreground leading-snug group-hover:text-secondary transition-colors">
+                        <h2 className="font-display font-bold text-xl md:text-2xl text-foreground leading-snug group-hover:text-blue-600 transition-colors">
                           {blog.title}
                         </h2>
                         <p className="text-xs md:text-sm text-foreground/70 leading-relaxed line-clamp-3">
