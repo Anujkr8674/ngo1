@@ -77,30 +77,30 @@ export default function Volunteer() {
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#FCFCFA]/30" />
+          <div className="absolute inset-0 bg-[#FCFCFA]/10" />
         </div>
 
         {/* Floating Glassmorphism Hero Content Card */}
         <div className="max-w-4xl mx-auto w-full z-10 relative">
-          <div className="glass-panel bg-[#FCFCFA]/90 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
-            <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60 flex items-center gap-2 bg-secondary/10 px-4 py-1.5 rounded-full text-foreground/70 shadow-soft">
+          <div className="bg-black/40 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
+            <span className="text-xs uppercase tracking-widest font-semibold text-white/60 flex items-center gap-2 bg-secondary/10 px-4 py-1.5 rounded-full text-white/70 shadow-soft">
               <Sparkles className="w-4 h-4 text-secondary" />
               Join the Foundation
             </span>
-            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-foreground tracking-tight leading-none">
+            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
               Become Part of Us
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-foreground/75 leading-relaxed font-sans max-w-2xl">
+            <p className="text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
               Apply as a volunteer to dedicate your skills and time on-ground, or join as a permanent member to help sustain our operations.
             </p>
 
             {/* Role Selector Toggle */}
-            <div className="flex bg-white/60 p-1 rounded-2xl shadow-soft border border-foreground/5 mt-2 max-w-xs w-full mx-auto">
+            <div className="flex bg-white/60 p-1 rounded-2xl shadow-soft border border-foreground/5 mt-2 max-w-xs w-full mx-auto hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
               <button
                 type="button"
                 onClick={() => { setRole("volunteer"); setStep(1); setSubmitted(false); }}
                 className={`flex-1 py-2 text-xs font-semibold uppercase tracking-wider rounded-xl transition-premium cursor-pointer ${
-                  role === "volunteer" ? "bg-foreground text-background shadow-soft" : "text-foreground/60 hover:text-foreground"
+                  role === "volunteer" ? "bg-foreground text-background shadow-soft" : "text-white/60 hover:text-white"
                 }`}
               >
                 As Volunteer
@@ -109,7 +109,7 @@ export default function Volunteer() {
                 type="button"
                 onClick={() => { setRole("member"); setStep(1); setSubmitted(false); }}
                 className={`flex-1 py-2 text-xs font-semibold uppercase tracking-wider rounded-xl transition-premium cursor-pointer ${
-                  role === "member" ? "bg-foreground text-background shadow-soft" : "text-foreground/60 hover:text-foreground"
+                  role === "member" ? "bg-foreground text-background shadow-soft" : "text-white/60 hover:text-white"
                 }`}
               >
                 As Member
@@ -124,7 +124,7 @@ export default function Volunteer() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* Form Wizard Column */}
-          <div className="lg:col-span-8 p-8 md:p-12 rounded-[2.5rem] glass-panel border border-white/60 shadow-premium">
+          <div className="lg:col-span-8 p-8 md:p-12 rounded-[2.5rem] glass-panel border border-white/60 shadow-premium hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
             {submitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -139,7 +139,7 @@ export default function Volunteer() {
                   Thank you for submitting your application to join Live 4 Help Foundation. Our coordinator team will review your details and reach out to you within 3 business days.
                 </p>
                 {role === "member" && (
-                  <div className="p-6 rounded-2xl bg-primary/15 border border-primary/20 text-xs text-foreground/80 text-left max-w-md">
+                  <div className="p-6 rounded-2xl bg-primary/15 border border-primary/20 text-xs text-foreground/80 text-left max-w-md hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
                     <strong>Note:</strong> Membership activations are processed once bank NEFT receipts are reconciled by our treasury department.
                   </div>
                 )}
@@ -170,7 +170,7 @@ export default function Volunteer() {
                           required
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                           placeholder="Your Name"
                         />
                       </div>
@@ -180,7 +180,7 @@ export default function Volunteer() {
                           <select
                             value={formData.gender}
                             onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-                            className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                            className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                           >
                             <option>Male</option>
                             <option>Female</option>
@@ -194,7 +194,7 @@ export default function Volunteer() {
                             required
                             value={formData.dob}
                             onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
-                            className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                            className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                           />
                         </div>
                       </div>
@@ -205,7 +205,7 @@ export default function Volunteer() {
                           required
                           value={formData.mobile}
                           onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                           placeholder="Mobile Number"
                         />
                       </div>
@@ -216,7 +216,7 @@ export default function Volunteer() {
                           required
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                           placeholder="Email Address"
                         />
                       </div>
@@ -227,7 +227,7 @@ export default function Volunteer() {
                           required
                           value={formData.address}
                           onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                           placeholder="Street Address, Area"
                         />
                       </div>
@@ -238,7 +238,7 @@ export default function Volunteer() {
                           required
                           value={formData.state}
                           onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                           placeholder="Delhi, West Bengal, etc."
                         />
                       </div>
@@ -249,7 +249,7 @@ export default function Volunteer() {
                           required
                           value={formData.postalCode}
                           onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
-                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                           placeholder="PIN Code"
                         />
                       </div>
@@ -260,7 +260,7 @@ export default function Volunteer() {
                           required
                           value={formData.qualification}
                           onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
-                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                           placeholder="e.g. B.Tech, Master in CS"
                         />
                       </div>
@@ -270,7 +270,7 @@ export default function Volunteer() {
                           type="text"
                           value={formData.profession}
                           onChange={(e) => setFormData({ ...formData, profession: e.target.value })}
-                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                          className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                           placeholder="e.g. Engineer, Business head"
                         />
                       </div>
@@ -311,7 +311,7 @@ export default function Volunteer() {
                         type="text"
                         value={formData.language}
                         onChange={(e) => setFormData({ ...formData, language: e.target.value })}
-                        className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                        className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                         placeholder="e.g. English, Hindi, Bengali"
                       />
                     </div>
@@ -336,7 +336,7 @@ export default function Volunteer() {
                             required
                             value={formData.hoursPerWeek}
                             onChange={(e) => setFormData({ ...formData, hoursPerWeek: e.target.value })}
-                            className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                            className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                             placeholder="e.g. 4 hrs/week, weekends"
                           />
                         </div>
@@ -346,7 +346,7 @@ export default function Volunteer() {
                             value={formData.reason}
                             onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
                             rows={4}
-                            className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm font-sans"
+                            className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm font-sans hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                             placeholder="Write brief description..."
                           />
                         </div>
@@ -372,7 +372,7 @@ export default function Volunteer() {
                             <select
                               value={formData.membershipType}
                               onChange={(e) => setFormData({ ...formData, membershipType: e.target.value })}
-                              className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                              className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                             >
                               <option>Yearly (Rs 5,000)</option>
                               <option>Lifetime (Rs 25,000)</option>
@@ -383,7 +383,7 @@ export default function Volunteer() {
                             <select
                               value={formData.paymentMode}
                               onChange={(e) => setFormData({ ...formData, paymentMode: e.target.value })}
-                              className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                              className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                             >
                               <option>NEFT / Online Transfer</option>
                               <option>Cheque / DD</option>
@@ -397,7 +397,7 @@ export default function Volunteer() {
                               required
                               value={formData.transactionId}
                               onChange={(e) => setFormData({ ...formData, transactionId: e.target.value })}
-                              className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                              className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                               placeholder="Transaction Reference Number"
                             />
                           </div>
@@ -460,7 +460,7 @@ export default function Volunteer() {
           <div className="lg:col-span-4 flex flex-col gap-8">
             
             {/* Volunteers are priceless */}
-            <div className="p-8 rounded-3xl bg-gradient-soft-blue border border-white shadow-soft flex flex-col gap-4">
+            <div className="p-8 rounded-3xl bg-gradient-soft-blue border border-white shadow-soft flex flex-col gap-4 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
               <span className="w-8 h-8 rounded-xl bg-white flex items-center justify-center">
                 <Heart className="w-4 h-4 text-secondary fill-secondary/20" />
               </span>
@@ -473,7 +473,7 @@ export default function Volunteer() {
             </div>
 
             {/* Bank details card */}
-            <div className="p-8 rounded-3xl glass-panel border border-white shadow-soft flex flex-col gap-6">
+            <div className="p-8 rounded-3xl glass-panel border border-white shadow-soft flex flex-col gap-6 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
               <h4 className="font-display font-bold text-lg text-foreground flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-secondary" />
                 Bank Transfer Routing

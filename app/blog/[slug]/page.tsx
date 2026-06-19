@@ -41,28 +41,28 @@ export default async function BlogPostPage({ params }: PageProps) {
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-[#FCFCFA]/30" />
+            <div className="absolute inset-0 bg-[#FCFCFA]/10" />
           </div>
         )}
 
         {/* Floating Glassmorphism Hero Content Card */}
         <div className="max-w-4xl mx-auto w-full z-10 relative">
-          <div className="glass-panel bg-[#FCFCFA]/90 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
+          <div className="bg-black/40 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
             {/* Back Link */}
             <Link 
               href="/blog" 
-              className="inline-flex items-center gap-2 text-xs font-semibold text-foreground/60 hover:text-foreground mb-2 group bg-white/50 px-4 py-1.5 rounded-full shadow-soft"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-white/60 hover:text-white mb-2 group bg-white/50 px-4 py-1.5 rounded-full shadow-soft"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
               Back to journal
             </Link>
             
-            <div className="flex flex-wrap justify-center items-center gap-4 text-xs font-semibold tracking-wider text-foreground/50 uppercase">
+            <div className="flex flex-wrap justify-center items-center gap-4 text-xs font-semibold tracking-wider text-white/50 uppercase">
               <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-secondary" />{blog.date}</span>
               <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-secondary" />{readTime} Min Read</span>
               <span className="flex items-center gap-1"><User className="w-3.5 h-3.5 text-secondary" />By {blog.author}</span>
             </div>
-            <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-foreground tracking-tight leading-none max-w-3xl">
+            <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white tracking-tight leading-none max-w-3xl">
               {blog.title}
             </h1>
           </div>
@@ -104,7 +104,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
 
           {/* Sidebar / Sponsoring callout */}
-          <aside className="lg:col-span-4 p-8 rounded-3xl glass-panel border border-white/80 shadow-soft flex flex-col gap-6">
+          <aside className="lg:col-span-4 p-8 rounded-3xl glass-panel border border-white/80 shadow-soft flex flex-col gap-6 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
             <h4 className="font-display font-bold text-lg text-foreground">Sponsor this Work</h4>
             <p className="text-xs text-foreground/75 leading-relaxed">
               Help us expand campaigns like this. 100% of your contributions go directly into field logistics.
@@ -143,7 +143,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {related.map((post) => (
               <Link href={`/blog/${post.slug}`} key={post.slug} className="group">
-                <div className="flex flex-col gap-4 p-5 rounded-2xl glass-panel hover:shadow-soft border border-white transition-premium">
+                <div className="flex flex-col gap-4 p-5 rounded-2xl glass-panel border border-white hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
                   {post.images && post.images.length > 0 && (
                     <div className="aspect-[16/10] rounded-xl relative overflow-hidden bg-foreground/5">
                       <img referrerPolicy="no-referrer"

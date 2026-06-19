@@ -30,16 +30,16 @@ export default function About() {
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#FCFCFA]/30" />
+          <div className="absolute inset-0 bg-[#FCFCFA]/10" />
         </div>
 
         {/* Floating Glassmorphism Hero Content Card */}
         <div className="max-w-4xl mx-auto w-full z-10 relative">
-          <div className="glass-panel bg-[#FCFCFA]/90 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
+          <div className="bg-black/40 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/10 text-xs uppercase tracking-widest text-foreground/70 shadow-soft font-semibold"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/10 text-xs uppercase tracking-widest text-white/70 shadow-soft font-semibold"
             >
               <Award className="w-3.5 h-3.5 text-secondary" />
               Who We Are
@@ -48,7 +48,7 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-foreground tracking-tight leading-none"
+              className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none"
             >
               Redefining Community Support
             </motion.h1>
@@ -56,7 +56,7 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-sm sm:text-base md:text-lg text-foreground/75 leading-relaxed font-sans max-w-2xl"
+              className="text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl"
             >
               We are a registered non-profit organization dedicated to bridging the gap between individuals seeking help and patrons willing to extend their support.
             </motion.p>
@@ -90,7 +90,7 @@ export default function About() {
       {/* Vision, Mission, Values */}
       <section className="px-6 md:px-12 py-24 bg-transparent">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="p-8 rounded-3xl glass-panel shadow-soft border border-white/60 flex flex-col gap-6">
+          <div className="p-8 rounded-3xl bg-white/80 backdrop-blur-md shadow-premium border border-white flex flex-col gap-6">
             <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
               <Star className="w-6 h-6 text-foreground" />
             </div>
@@ -100,7 +100,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="p-8 rounded-3xl glass-panel shadow-soft border border-white/60 flex flex-col gap-6">
+          <div className="p-8 rounded-3xl bg-white/80 backdrop-blur-md shadow-premium border border-white flex flex-col gap-6">
             <div className="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center">
               <Compass className="w-6 h-6 text-foreground" />
             </div>
@@ -110,7 +110,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="p-8 rounded-3xl glass-panel shadow-soft border border-white/60 flex flex-col gap-6">
+          <div className="p-8 rounded-3xl bg-white/80 backdrop-blur-md shadow-premium border border-white flex flex-col gap-6">
             <div className="w-12 h-12 rounded-xl bg-accent/30 flex items-center justify-center">
               <ShieldAlert className="w-6 h-6 text-foreground" />
             </div>
@@ -132,7 +132,7 @@ export default function About() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {milestones.map((m, i) => (
-              <div key={m.year} className="relative p-6 rounded-2xl glass-panel border border-white/80 shadow-soft flex flex-col gap-4">
+              <div key={m.year} className="relative p-6 rounded-2xl bg-white shadow-premium border border-foreground/5 hover:-translate-y-2 transition-transform duration-300 flex flex-col gap-4">
                 <span className="text-xs font-semibold px-2.5 py-1 bg-secondary/20 rounded-full text-foreground w-fit flex items-center gap-1 font-sans">
                   <Calendar className="w-3 h-3" />
                   {m.year}
@@ -164,7 +164,7 @@ export default function About() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
                 key={founder.name}
-                className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 md:p-12 rounded-[2.5rem] glass-panel border border-white/60 shadow-soft ${
+                className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 md:p-12 rounded-[2.5rem] bg-white/80 backdrop-blur-md border border-white shadow-premium ${
                   index % 2 === 1 ? "lg:flex-row-reverse" : ""
                 }`}
               >
@@ -204,7 +204,7 @@ export default function About() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {advisors.map((adv) => (
-              <div key={adv.name} className="p-8 rounded-3xl glass-panel border border-white shadow-soft flex flex-col gap-6 hover:shadow-premium transition-premium">
+              <div key={adv.name} className="p-8 rounded-3xl bg-white/80 backdrop-blur-md border border-white shadow-soft flex flex-col gap-6 hover:shadow-premium hover:-translate-y-2 transition-all duration-300">
                 <div className="flex items-center gap-4">
                   <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 border border-white shadow-inner bg-foreground/5">
                     <img referrerPolicy="no-referrer"

@@ -102,19 +102,19 @@ export default function Initiatives() {
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#FCFCFA]/30" />
+          <div className="absolute inset-0 bg-[#FCFCFA]/10" />
         </div>
 
         {/* Floating Glassmorphism Hero Content Card */}
         <div className="max-w-4xl mx-auto w-full z-10 relative">
-          <div className="glass-panel bg-[#FCFCFA]/90 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
-            <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60 block bg-secondary/10 px-4 py-1.5 rounded-full text-foreground/70 shadow-soft">
+          <div className="bg-black/40 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
+            <span className="text-xs uppercase tracking-widest font-semibold text-white/60 block bg-secondary/10 px-4 py-1.5 rounded-full text-white/70 shadow-soft">
               NGO Operations
             </span>
-            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-foreground tracking-tight leading-none">
+            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
               Our Initiatives
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-foreground/75 leading-relaxed font-sans max-w-2xl">
+            <p className="text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
               From sponsoring individual classroom admissions to large-scale mangrove reforestation, explore our ongoing field initiatives.
             </p>
           </div>
@@ -122,7 +122,7 @@ export default function Initiatives() {
       </section>
 
       {/* Interactive Category Filter */}
-      <section className="px-6 md:px-12 mb-16">
+      <section className="px-6 md:px-12 mt-16 mb-16">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-3">
           {categories.map((cat) => (
             <button
@@ -156,7 +156,7 @@ export default function Initiatives() {
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4 }}
                   key={item.id}
-                  className="group flex flex-col justify-between p-6 rounded-[2rem] glass-panel border border-white/60 shadow-soft hover:shadow-premium transition-premium min-h-[520px]"
+                  className="group flex flex-col justify-between p-6 rounded-[2rem] glass-panel border border-white/60 shadow-soft min-h-[520px] hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                 >
                   <div className="flex flex-col gap-6">
                     {/* Featured Image */}

@@ -39,20 +39,20 @@ export default function Transparency() {
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#FCFCFA]/30" />
+          <div className="absolute inset-0 bg-[#FCFCFA]/10" />
         </div>
 
         {/* Floating Glassmorphism Hero Content Card */}
         <div className="max-w-4xl mx-auto w-full z-10 relative">
-          <div className="glass-panel bg-[#FCFCFA]/90 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
-            <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60 flex items-center gap-2 bg-secondary/10 px-4 py-1.5 rounded-full text-foreground/70 shadow-soft">
+          <div className="bg-black/40 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
+            <span className="text-xs uppercase tracking-widest font-semibold text-white/60 flex items-center gap-2 bg-secondary/10 px-4 py-1.5 rounded-full text-white/70 shadow-soft">
               <ShieldCheck className="w-4 h-4 text-secondary" />
               Public Audits & Governance
             </span>
-            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-foreground tracking-tight leading-none">
+            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
               Transparency & Compliance
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-foreground/75 leading-relaxed font-sans max-w-2xl">
+            <p className="text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
               We believe in absolute accountability. Explore our corporate certifications, tax exemptions, and audited operational balance sheets.
             </p>
           </div>
@@ -67,7 +67,7 @@ export default function Transparency() {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {certificates.map((cert) => (
-              <div key={cert.title} className="p-6 rounded-2xl glass-panel border border-white/80 shadow-soft flex flex-col justify-between min-h-[200px]">
+              <div key={cert.title} className="p-6 rounded-2xl glass-panel border border-white/80 shadow-soft flex flex-col justify-between min-h-[200px] hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
                 <div className="flex flex-col gap-3">
                   <div className="w-9 h-9 rounded-lg bg-primary/20 flex items-center justify-center">
                     <ShieldCheck className="w-5 h-5 text-foreground" />
@@ -93,7 +93,7 @@ export default function Transparency() {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {reports.map((doc) => (
-              <div key={doc.title} className="p-5 rounded-2xl glass-panel border border-white shadow-soft flex items-center justify-between gap-6 hover:shadow-premium transition-premium">
+              <div key={doc.title} className="p-5 rounded-2xl glass-panel border border-white shadow-soft flex items-center justify-between gap-6 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
                 <div className="flex items-center gap-4">
                   <div className="w-11 h-11 rounded-xl bg-secondary/15 flex items-center justify-center shrink-0">
                     <FileText className="w-5 h-5 text-foreground" />
@@ -103,7 +103,7 @@ export default function Transparency() {
                     <span className="text-[10px] text-foreground/50 uppercase tracking-widest mt-1 font-semibold">{doc.size} • {doc.type}</span>
                   </div>
                 </div>
-                <button className="p-3 rounded-full bg-white hover:bg-foreground/5 border border-foreground/5 text-foreground shadow-soft transition-premium shrink-0 cursor-pointer">
+                <button className="p-3 rounded-full bg-white hover:bg-foreground/5 border border-foreground/5 text-foreground shadow-soft shrink-0 cursor-pointer hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
                   <Download className="w-4 h-4" />
                 </button>
               </div>
@@ -131,7 +131,7 @@ export default function Transparency() {
               <div 
                 key={i}
                 onClick={() => setActiveImage(sheet.src)}
-                className="group flex flex-col gap-4 p-5 rounded-3xl glass-panel border border-white shadow-soft hover:shadow-premium transition-premium cursor-pointer"
+                className="group flex flex-col gap-4 p-5 rounded-3xl glass-panel border border-white shadow-soft cursor-pointer hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
               >
                 <div className="aspect-[4/5] rounded-2xl relative overflow-hidden bg-foreground/5 shadow-inner">
                   <img referrerPolicy="no-referrer"
@@ -165,7 +165,7 @@ export default function Transparency() {
           >
             <button
               onClick={() => setActiveImage(null)}
-              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
               aria-label="Close sheet"
             >
               <X className="w-6 h-6" />

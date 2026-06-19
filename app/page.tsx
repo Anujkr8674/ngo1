@@ -101,17 +101,17 @@ export default function Home() {
             </div>
           ))}
           {/* Light overlay to keep images sharp while blending with background */}
-          <div className="absolute inset-0 bg-[#FCFCFA]/35" />
+          <div className="absolute inset-0 bg-[#FCFCFA]/10" />
         </div>
 
         {/* Floating Glassmorphism Hero Content Card */}
         <div className="max-w-4xl mx-auto w-full z-10 relative">
-          <div className="glass-panel bg-[#FCFCFA]/90 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
+          <div className="bg-black/40 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="px-4 py-1.5 rounded-full bg-secondary/10 text-xs uppercase tracking-widest font-semibold flex items-center gap-2 text-foreground/80 shadow-soft"
+              className="px-4 py-1.5 rounded-full bg-secondary/10 text-xs uppercase tracking-widest font-semibold flex items-center gap-2 text-white/80 shadow-soft"
             >
               <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
               Registered MCA, Govt of India
@@ -121,7 +121,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="font-display font-bold text-3xl sm:text-5xl md:text-6xl tracking-tight leading-[1.1] text-foreground max-w-3xl"
+              className="font-display font-bold text-3xl sm:text-5xl md:text-6xl tracking-tight leading-[1.1] text-white max-w-3xl"
             >
               Live to Help,<br />
               Go Above and Beyond
@@ -131,7 +131,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-sm sm:text-base md:text-lg text-foreground/75 max-w-2xl leading-relaxed font-sans"
+              className="text-sm sm:text-base md:text-lg text-white/75 max-w-2xl leading-relaxed font-sans"
             >
               Empowering underprivileged children, supporting elderly care, restoration of coastal environment, and bringing healthcare access where it's needed most.
             </motion.p>
@@ -143,15 +143,15 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-4 mt-2"
             >
               <Link href="/donate">
-                <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-foreground bg-primary hover:bg-[#b8daff] transition-premium shadow-soft cursor-pointer">
-                  <Heart className="w-5 h-5 fill-foreground/10 text-foreground" />
+                <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-slate-900 bg-primary hover:bg-[#b8daff] transition-premium shadow-soft cursor-pointer">
+                  <Heart className="w-5 h-5 fill-slate-900/10 text-slate-900" />
                   Make an Impact
                 </button>
               </Link>
               <Link href="/volunteer">
-                <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-foreground bg-white hover:bg-foreground/5 border border-foreground/10 transition-premium shadow-soft cursor-pointer">
+                <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-slate-900 bg-white hover:bg-white/90 border border-transparent transition-premium shadow-soft cursor-pointer">
                   Join as Volunteer
-                  <ArrowRight className="w-4 h-4 text-foreground/60" />
+                  <ArrowRight className="w-4 h-4 text-slate-900/60" />
                 </button>
               </Link>
             </motion.div>
@@ -185,7 +185,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 key={stat.label}
-                className="flex flex-col gap-3 p-6 rounded-2xl glass-panel shadow-soft border border-white/50"
+                className="flex flex-col gap-3 p-6 rounded-2xl glass-panel shadow-soft border border-white/50 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
               >
                 <div className="text-4xl md:text-5xl font-display font-bold text-foreground">
                   <Counter end={stat.value} suffix={stat.suffix} />
@@ -234,7 +234,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 key={area.title}
-                className="group p-0 rounded-3xl glass-panel shadow-soft border border-white/60 flex flex-col justify-between min-h-[420px] hover:shadow-premium transition-premium overflow-hidden"
+                className="group p-0 rounded-3xl glass-panel shadow-soft border border-white/60 flex flex-col justify-between min-h-[420px] overflow-hidden hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-foreground/5 shadow-inner">
                   <img
@@ -351,7 +351,7 @@ export default function Home() {
               { src: "https://live4help.org/wp-content/uploads/2022/02/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg", caption: "Mangrove saplings restoration campaign, Sundarbans" },
               { src: "https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-3.jpg", caption: "Winter blanket and clothing distributions" }
             ].map((img, i) => (
-              <div key={i} className="group p-4 rounded-3xl glass-panel border border-white shadow-soft hover:shadow-premium transition-premium flex flex-col gap-3">
+              <div key={i} className="group p-4 rounded-3xl glass-panel border border-white shadow-soft flex flex-col gap-3 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
                 <div className="aspect-square rounded-2xl relative overflow-hidden bg-foreground/5 shadow-inner">
                   <img referrerPolicy="no-referrer"
                     src={img.src}
@@ -389,13 +389,13 @@ export default function Home() {
             </div>
           </div>
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="p-8 rounded-3xl bg-gradient-soft-blue border border-white flex flex-col gap-4 shadow-soft">
+            <div className="p-8 rounded-3xl bg-gradient-soft-blue border border-white flex flex-col gap-4 shadow-soft hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
               <h4 className="font-display font-bold text-xl text-foreground">M/s Erbe Medical India</h4>
               <p className="text-xs text-foreground/75 leading-relaxed">
                 Generously sponsored the Darjeeling Hills University Cancer Awareness session and rural Sundarbans diagnostic medical camps.
               </p>
             </div>
-            <div className="p-8 rounded-3xl bg-gradient-soft-purple border border-white flex flex-col gap-4 shadow-soft">
+            <div className="p-8 rounded-3xl bg-gradient-soft-purple border border-white flex flex-col gap-4 shadow-soft hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
               <h4 className="font-display font-bold text-xl text-foreground">M/s ABS Professional India</h4>
               <p className="text-xs text-foreground/75 leading-relaxed">
                 Generously supported the large-scale Mangrove Plantation restoration project in coastal Sundarbans to buffer climatic storms.
@@ -425,7 +425,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {blogsData.slice(0, 3).map((blog) => (
-              <article key={blog.slug} className="group flex flex-col gap-6 p-6 rounded-3xl glass-panel shadow-soft hover:shadow-premium transition-premium border border-white/60">
+              <article key={blog.slug} className="group flex flex-col gap-6 p-6 rounded-3xl glass-panel shadow-soft border border-white/60 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
                 {blog.images && blog.images.length > 0 && (
                   <div className="aspect-[4/3] rounded-2xl relative overflow-hidden bg-foreground/5 shadow-inner">
                     <img referrerPolicy="no-referrer"
@@ -462,7 +462,7 @@ export default function Home() {
 
       {/* CTA Sponosorship Grid */}
       <section className="py-24 px-6 md:px-12 bg-transparent">
-        <div className="max-w-7xl mx-auto p-12 md:p-20 rounded-[3rem] bg-gradient-editorial border border-white/80 shadow-premium grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto p-12 md:p-20 rounded-[3rem] bg-gradient-editorial border border-white/80 shadow-premium grid grid-cols-1 lg:grid-cols-2 gap-12 items-center hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
           <div className="flex flex-col gap-6">
             <span className="text-xs uppercase tracking-widest font-semibold text-foreground/70">Join Our Movement</span>
             <h3 className="font-display font-bold text-4xl md:text-5xl text-foreground tracking-tight leading-none">
@@ -498,7 +498,7 @@ export default function Home() {
           >
             <button
               onClick={() => setActiveVideo(null)}
-              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
               aria-label="Close video"
             >
               <X className="w-6 h-6" />

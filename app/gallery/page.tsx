@@ -35,20 +35,20 @@ export default function Gallery() {
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#FCFCFA]/30" />
+          <div className="absolute inset-0 bg-[#FCFCFA]/10" />
         </div>
 
         {/* Floating Glassmorphism Hero Content Card */}
         <div className="max-w-4xl mx-auto w-full z-10 relative">
-          <div className="glass-panel bg-[#FCFCFA]/90 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
-            <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60 flex items-center gap-2 bg-secondary/10 px-4 py-1.5 rounded-full text-foreground/70 shadow-soft">
+          <div className="bg-black/40 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
+            <span className="text-xs uppercase tracking-widest font-semibold text-white/60 flex items-center gap-2 bg-secondary/10 px-4 py-1.5 rounded-full text-white/70 shadow-soft">
               <ImageIcon className="w-4 h-4 text-secondary" />
               On-Ground Moments
             </span>
-            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-foreground tracking-tight leading-none">
+            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
               Photo Gallery
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-foreground/75 leading-relaxed font-sans max-w-2xl">
+            <p className="text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
               Visual glimpses capturing our diagnostic medical clinics, student support virtual/offline meetings, Sundarban mangrove plantings, and winter blanket distributions.
             </p>
           </div>
@@ -91,7 +91,7 @@ export default function Gallery() {
                   transition={{ duration: 0.4, delay: idx * 0.02 }}
                   key={item.src}
                   onClick={() => setActiveImage({ src: item.src, caption: item.caption })}
-                  className="group flex flex-col gap-3 p-4 rounded-3xl glass-panel border border-white/60 shadow-soft hover:shadow-premium transition-premium cursor-pointer"
+                  className="group flex flex-col gap-3 p-4 rounded-3xl glass-panel border border-white/60 shadow-soft cursor-pointer hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                 >
                   <div className="aspect-square rounded-2xl relative overflow-hidden bg-foreground/5 shadow-inner">
                     <img referrerPolicy="no-referrer"
@@ -129,7 +129,7 @@ export default function Gallery() {
           >
             <button
               onClick={() => setActiveImage(null)}
-              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
               aria-label="Close image"
             >
               <X className="w-6 h-6" />

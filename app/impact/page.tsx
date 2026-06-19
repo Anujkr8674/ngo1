@@ -37,16 +37,16 @@ export default function Impact() {
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#FCFCFA]/30" />
+          <div className="absolute inset-0 bg-[#FCFCFA]/10" />
         </div>
 
         {/* Floating Glassmorphism Hero Content Card */}
         <div className="max-w-4xl mx-auto w-full z-10 relative">
-          <div className="glass-panel bg-[#FCFCFA]/90 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
+          <div className="bg-black/40 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/10 text-xs uppercase tracking-widest text-foreground/70 shadow-soft font-semibold"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/10 text-xs uppercase tracking-widest text-white/70 shadow-soft font-semibold"
             >
               <Award className="w-3.5 h-3.5 text-secondary" />
               Transparency & Results
@@ -55,7 +55,7 @@ export default function Impact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-foreground tracking-tight leading-none"
+              className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none"
             >
               Measuring Our Impact
             </motion.h1>
@@ -63,7 +63,7 @@ export default function Impact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-sm sm:text-base md:text-lg text-foreground/75 leading-relaxed font-sans max-w-2xl"
+              className="text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl"
             >
               We translate every donation and resource directly into local, verified actions. Explore our core statistics, distributions, and field reports.
             </motion.p>
@@ -81,7 +81,7 @@ export default function Impact() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               key={card.label}
-              className="p-8 rounded-3xl glass-panel border border-white shadow-soft hover:shadow-premium transition-premium flex flex-col gap-6"
+              className="p-8 rounded-3xl glass-panel border border-white shadow-soft flex flex-col gap-6 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
             >
               <div className={`w-12 h-12 rounded-xl ${card.color} flex items-center justify-center`}>
                 {card.icon}
@@ -132,13 +132,13 @@ export default function Impact() {
                     Live 4 Help Foundation identifies deserving students based on academic credentials and household economic hardships. Our commitment is long-term, renewed year after year to ensure students finish their course journeys.
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-                    <div className="p-5 rounded-2xl glass-panel border border-white">
+                    <div className="p-5 rounded-2xl glass-panel border border-white hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
                       <h4 className="font-semibold text-xs uppercase tracking-wider text-foreground/60 mb-2">IIT Chennai Sponsoring</h4>
                       <p className="text-xs text-foreground/80 leading-relaxed">
                         Supporting student Mr. Subham Pandey pursuing M.Sc. Physics at IIT Chennai, providing tuition & research support.
                       </p>
                     </div>
-                    <div className="p-5 rounded-2xl glass-panel border border-white">
+                    <div className="p-5 rounded-2xl glass-panel border border-white hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
                       <h4 className="font-semibold text-xs uppercase tracking-wider text-foreground/60 mb-2">Tribal Village Sponsoring</h4>
                       <p className="text-xs text-foreground/80 leading-relaxed">
                         Funding 5 girl students (Anjali, Sila, Mukhimoni, Rupali, Sonali) in Bankura District tribal villages.
@@ -147,7 +147,7 @@ export default function Impact() {
                   </div>
                 </div>
                 <div className="lg:col-span-5 flex flex-col gap-6">
-                  <div className="p-8 rounded-3xl glass-panel border border-white/80 shadow-soft">
+                  <div className="p-8 rounded-3xl glass-panel border border-white/80 shadow-soft hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
                     <h4 className="font-display font-bold text-lg text-foreground mb-4 flex items-center gap-2">
                       <MapPin className="w-5 h-5 text-secondary" />
                       Major Sponsoring States
@@ -207,7 +207,7 @@ export default function Impact() {
                   </ul>
                 </div>
                 <div className="lg:col-span-5 flex flex-col gap-6">
-                  <div className="p-8 rounded-3xl glass-panel border border-white/80 shadow-soft">
+                  <div className="p-8 rounded-3xl glass-panel border border-white/80 shadow-soft hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
                     <h4 className="font-display font-bold text-lg text-foreground mb-4 flex items-center gap-2">
                       <Activity className="w-5 h-5 text-primary" />
                       Awareness Campaigns
@@ -241,7 +241,7 @@ export default function Impact() {
                   <p className="text-sm text-foreground/80 leading-relaxed">
                     Sundarban regions are vulnerable to recurrent severe cyclones (like Amphan and Yaas). To check coastal erosion and provide storm surge buffers, we coordinate mangrove plantation programs.
                   </p>
-                  <div className="p-6 rounded-2xl glass-panel border border-white flex flex-col gap-4">
+                  <div className="p-6 rounded-2xl glass-panel border border-white flex flex-col gap-4 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
                     <span className="font-semibold text-sm text-foreground">Sustained Survival Methods:</span>
                     <ul className="list-disc pl-5 text-xs text-foreground/70 flex flex-col gap-2">
                       <li>Planting indigenous resilient species: Sundari, Bain, Kakra, Garjan, Golpata, and Dhuldhul.</li>
@@ -251,7 +251,7 @@ export default function Impact() {
                   </div>
                 </div>
                 <div className="lg:col-span-5 flex flex-col gap-6">
-                  <div className="p-8 rounded-3xl glass-panel border border-white/80 shadow-soft">
+                  <div className="p-8 rounded-3xl glass-panel border border-white/80 shadow-soft hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
                     <h4 className="font-display font-bold text-lg text-foreground mb-4 flex items-center gap-2">
                       <Building className="w-5 h-5 text-secondary" />
                       Key Milestones

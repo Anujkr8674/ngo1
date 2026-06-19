@@ -47,26 +47,26 @@ export default function Blog() {
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#FCFCFA]/30" />
+          <div className="absolute inset-0 bg-[#FCFCFA]/10" />
         </div>
 
         {/* Floating Glassmorphism Hero Content Card */}
         <div className="max-w-4xl mx-auto w-full z-10 relative">
-          <div className="glass-panel bg-[#FCFCFA]/90 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
-            <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60 flex items-center gap-2 bg-secondary/10 px-4 py-1.5 rounded-full text-foreground/70 shadow-soft">
+          <div className="bg-black/40 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
+            <span className="text-xs uppercase tracking-widest font-semibold text-white/60 flex items-center gap-2 bg-secondary/10 px-4 py-1.5 rounded-full text-white/70 shadow-soft">
               <BookOpen className="w-4 h-4 text-secondary" />
               The Live 4 Help Journal
             </span>
-            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-foreground tracking-tight leading-none">
+            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
               Stories of Hope & Impact
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-foreground/75 leading-relaxed font-sans max-w-2xl">
+            <p className="text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
               Detailed reports, milestones, and on-ground transformations written by our team and field volunteers.
             </p>
 
             {/* Search Bar */}
             <div className="relative w-full max-w-lg mt-2 shadow-soft rounded-full overflow-hidden border border-foreground/5 bg-white">
-              <span className="absolute left-5 top-1/2 -translate-y-1/2 text-foreground/40">
+              <span className="absolute left-5 top-1/2 -translate-y-1/2 text-white/40">
                 <Search className="w-5 h-5" />
               </span>
               <input
@@ -74,7 +74,7 @@ export default function Blog() {
                 placeholder="Search articles and topics..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-6 py-4 text-sm font-sans focus:outline-none bg-transparent text-foreground"
+                className="w-full pl-12 pr-6 py-4 text-sm font-sans focus:outline-none bg-transparent text-white"
               />
             </div>
           </div>
@@ -82,7 +82,7 @@ export default function Blog() {
       </section>
 
       {/* Category selector */}
-      <section className="px-6 md:px-12 mb-16">
+      <section className="px-6 md:px-12 mt-16 mb-16">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-2">
           {categories.map((cat) => (
             <button
@@ -121,7 +121,7 @@ export default function Blog() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.05 }}
                     key={blog.slug}
-                    className="group flex flex-col justify-between p-6 rounded-3xl glass-panel shadow-soft hover:shadow-premium transition-premium border border-white/60 min-h-[500px]"
+                    className="group flex flex-col justify-between p-6 rounded-3xl glass-panel shadow-soft border border-white/60 min-h-[500px] hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                   >
                     <div className="flex flex-col gap-6">
                       {/* Image */}

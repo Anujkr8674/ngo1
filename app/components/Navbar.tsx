@@ -11,11 +11,8 @@ const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/impact", label: "Our Impact" },
   { href: "/initiatives", label: "Initiatives" },
-  { href: "/gallery", label: "Gallery" },
   { href: "/blog", label: "Magazine" },
   { href: "/volunteer", label: "Volunteer" },
-  { href: "/get-help", label: "Get Help" },
-  { href: "/transparency", label: "Transparency" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -48,18 +45,12 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-full bg-gradient-accent-soft flex items-center justify-center shadow-soft">
-              <Sparkles className="w-5 h-5 text-foreground/80" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-display font-semibold text-lg tracking-tight leading-none text-foreground">
-                LIVE 4 HELP
-              </span>
-              <span className="text-[10px] uppercase tracking-widest text-foreground/60 font-sans mt-0.5">
-                Foundation
-              </span>
-            </div>
+          <Link href="/" className="flex items-center group">
+            <img 
+              src="https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg" 
+              alt="Live 4 Help Foundation Logo" 
+              className="h-12 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation Links */}

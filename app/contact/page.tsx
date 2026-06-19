@@ -31,20 +31,20 @@ export default function Contact() {
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#FCFCFA]/30" />
+          <div className="absolute inset-0 bg-[#FCFCFA]/10" />
         </div>
 
         {/* Floating Glassmorphism Hero Content Card */}
         <div className="max-w-4xl mx-auto w-full z-10 relative">
-          <div className="glass-panel bg-[#FCFCFA]/90 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
-            <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60 flex items-center gap-2 bg-secondary/10 px-4 py-1.5 rounded-full text-foreground/70 shadow-soft">
+          <div className="bg-black/40 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
+            <span className="text-xs uppercase tracking-widest font-semibold text-white/60 flex items-center gap-2 bg-secondary/10 px-4 py-1.5 rounded-full text-white/70 shadow-soft">
               <Sparkles className="w-4 h-4 text-secondary" />
               Get in Touch
             </span>
-            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-foreground tracking-tight leading-none">
+            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
               Contact Us
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-foreground/75 leading-relaxed font-sans max-w-2xl">
+            <p className="text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
               Have an idea to share, want to partner, or need assistance? Write to our team or visit our office.
             </p>
           </div>
@@ -56,7 +56,7 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
           
           {/* Contact Message Form */}
-          <div className="lg:col-span-7 p-8 md:p-12 rounded-[2.5rem] glass-panel border border-white/60 shadow-premium">
+          <div className="lg:col-span-7 p-8 md:p-12 rounded-[2.5rem] glass-panel border border-white/60 shadow-premium hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
             <h3 className="font-display font-bold text-2xl text-foreground mb-6">Write to the Team</h3>
             
             {submitted ? (
@@ -82,7 +82,7 @@ export default function Contact() {
                       type="text" required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                      className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                       placeholder="Name"
                     />
                   </div>
@@ -92,7 +92,7 @@ export default function Contact() {
                       type="tel" required
                       value={formData.mobile}
                       onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                      className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                      className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                       placeholder="Contact phone"
                     />
                   </div>
@@ -102,7 +102,7 @@ export default function Contact() {
                       type="email" required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                      className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                       placeholder="Email address"
                     />
                   </div>
@@ -112,7 +112,7 @@ export default function Contact() {
                       type="text" required
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                      className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                       placeholder="Topic of conversation"
                     />
                   </div>
@@ -123,7 +123,7 @@ export default function Contact() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       rows={5}
-                      className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm font-sans"
+                      className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm font-sans hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                       placeholder="Write your suggestions or questions..."
                     />
                   </div>
@@ -146,7 +146,7 @@ export default function Contact() {
           <div className="lg:col-span-5 flex flex-col gap-8">
             
             {/* Info Card */}
-            <div className="p-8 rounded-3xl bg-white border border-foreground/5 shadow-soft flex flex-col gap-6">
+            <div className="p-8 rounded-3xl bg-white border border-foreground/5 shadow-soft flex flex-col gap-6 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
               <h3 className="font-display font-bold text-2xl text-foreground">Office Coordinates</h3>
               
               <div className="flex flex-col gap-5 text-sm text-foreground/75 leading-relaxed">

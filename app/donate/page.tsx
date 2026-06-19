@@ -73,20 +73,20 @@ export default function Donate() {
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#FCFCFA]/30" />
+          <div className="absolute inset-0 bg-[#FCFCFA]/10" />
         </div>
 
         {/* Floating Glassmorphism Hero Content Card */}
         <div className="max-w-4xl mx-auto w-full z-10 relative">
-          <div className="glass-panel bg-[#FCFCFA]/90 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
-            <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60 flex items-center gap-2 bg-secondary/10 px-4 py-1.5 rounded-full text-foreground/70 shadow-soft">
+          <div className="bg-black/40 backdrop-blur-md p-8 sm:p-12 md:p-16 rounded-[2.5rem] border border-white/60 shadow-premium text-center flex flex-col items-center gap-6">
+            <span className="text-xs uppercase tracking-widest font-semibold text-white/60 flex items-center gap-2 bg-secondary/10 px-4 py-1.5 rounded-full text-white/70 shadow-soft">
               <Heart className="w-4 h-4 text-secondary fill-secondary/20" />
               Selfless Sponsoring
             </span>
-            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-foreground tracking-tight leading-none">
+            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
               Support a Purpose
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-foreground/75 leading-relaxed font-sans max-w-2xl">
+            <p className="text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
               Sponsor a child&apos;s educational career, check a senior citizen&apos;s health, or restore storm buffers in the Sundarban.
             </p>
           </div>
@@ -98,7 +98,7 @@ export default function Donate() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
           
           {/* Sponsoring Impact Calculator */}
-          <div className="lg:col-span-7 p-8 md:p-12 rounded-[2.5rem] bg-white border border-foreground/5 shadow-soft flex flex-col justify-between gap-8">
+          <div className="lg:col-span-7 p-8 md:p-12 rounded-[2.5rem] bg-white border border-foreground/5 shadow-soft flex flex-col justify-between gap-8 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
             <div className="flex flex-col gap-6">
               <h3 className="font-display font-bold text-2xl text-foreground flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-secondary" />
@@ -163,7 +163,7 @@ export default function Donate() {
           </div>
 
           {/* Sponsoring Bank details card */}
-          <div className="lg:col-span-5 p-8 md:p-12 rounded-[2.5rem] glass-panel border border-white/60 shadow-soft flex flex-col justify-between gap-6">
+          <div className="lg:col-span-5 p-8 md:p-12 rounded-[2.5rem] glass-panel border border-white/60 shadow-soft flex flex-col justify-between gap-6 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
             <div className="flex flex-col gap-6">
               <h3 className="font-display font-bold text-2xl text-foreground flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-secondary" />
@@ -217,7 +217,7 @@ export default function Donate() {
 
       {/* Donor Information Form */}
       <section className="px-6 md:px-12 pb-24">
-        <div className="max-w-4xl mx-auto p-8 md:p-12 rounded-[2.5rem] glass-panel border border-white/60 shadow-premium">
+        <div className="max-w-4xl mx-auto p-8 md:p-12 rounded-[2.5rem] glass-panel border border-white/60 shadow-premium hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
           <div className="border-b border-foreground/5 pb-4 mb-8">
             <h3 className="font-display font-bold text-2xl text-foreground">Donor Information Form</h3>
             <p className="text-xs text-foreground/60 mt-1">Please fill in details post bank-transfer to generate your 80G tax receipt.</p>
@@ -246,7 +246,7 @@ export default function Donate() {
                     type="text" required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                     placeholder="Your full name"
                   />
                 </div>
@@ -256,7 +256,7 @@ export default function Donate() {
                     type="text" required
                     value={formData.panCard}
                     onChange={(e) => setFormData({ ...formData, panCard: e.target.value.toUpperCase() })}
-                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                     placeholder="E.g. ABCDE1234F (Mandatory for 80G)"
                   />
                 </div>
@@ -266,7 +266,7 @@ export default function Donate() {
                     type="email" required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                     placeholder="To receive receipt copy"
                   />
                 </div>
@@ -276,7 +276,7 @@ export default function Donate() {
                     type="tel" required
                     value={formData.mobile}
                     onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                     placeholder="Mobile Number"
                   />
                 </div>
@@ -286,7 +286,7 @@ export default function Donate() {
                     type="text" required
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                     placeholder="Street Address, Area"
                   />
                 </div>
@@ -296,7 +296,7 @@ export default function Donate() {
                     type="text" required
                     value={formData.state}
                     onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                     placeholder="State"
                   />
                 </div>
@@ -306,7 +306,7 @@ export default function Donate() {
                     type="text" required
                     value={formData.postalCode}
                     onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
-                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                     placeholder="PIN Code"
                   />
                 </div>
@@ -317,7 +317,7 @@ export default function Donate() {
                   <select
                     value={formData.purpose}
                     onChange={(e) => setFormData({ ...formData, purpose: e.target.value })}
-                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                   >
                     <option>Education</option>
                     <option>Healthcare Camps</option>
@@ -331,7 +331,7 @@ export default function Donate() {
                   <select
                     value={formData.paymentMode}
                     onChange={(e) => setFormData({ ...formData, paymentMode: e.target.value })}
-                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                   >
                     <option>NEFT / Online Transfer</option>
                     <option>Cheque / DD</option>
@@ -344,7 +344,7 @@ export default function Donate() {
                     type="text" required
                     value={formData.transactionId}
                     onChange={(e) => setFormData({ ...formData, transactionId: e.target.value })}
-                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                     placeholder="Reference Reference ID (Mandatory for validation)"
                   />
                 </div>
@@ -354,7 +354,7 @@ export default function Donate() {
                     type="number" required
                     value={formData.amountFigure}
                     onChange={(e) => setFormData({ ...formData, amountFigure: e.target.value })}
-                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                     placeholder="Figure in Rs"
                   />
                 </div>
@@ -364,7 +364,7 @@ export default function Donate() {
                     type="text" required
                     value={formData.amountWords}
                     onChange={(e) => setFormData({ ...formData, amountWords: e.target.value })}
-                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm"
+                    className="p-3.5 rounded-xl border border-foreground/10 bg-white/40 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
                     placeholder="e.g. Five Thousand Rupees"
                   />
                 </div>

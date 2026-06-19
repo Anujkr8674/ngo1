@@ -39,7 +39,7 @@ body {
 
 /* Premium Glassmorphism */
 .glass-panel {
-  background: rgba(252, 252, 250, 0.7);
+  background: rgba(252, 252, 250, 0.15);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.4);
