@@ -49,24 +49,33 @@ export default function Agm() {
   return (
     <div className="flex flex-col w-full min-h-screen">
       {/* Intro Hero */}
-      <section className="relative py-20 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 min-h-[50vh] bg-gradient-to-br from-[#FFF6ED] to-white">
-        <div className="absolute inset-0 bg-[url('https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg')] opacity-[0.03] bg-cover bg-center" />
+      <section className="relative py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 min-h-[90vh]">
+        {/* Full-size Hero Background */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/relief.jpg"
+            alt="AGM Hero"
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
         
         <div className="max-w-4xl mx-auto w-full z-10 relative">
           <div className="w-full text-center flex flex-col items-center gap-6">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs uppercase tracking-widest font-semibold bg-white border border-foreground/5 shadow-soft text-foreground"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs uppercase tracking-widest shadow-soft font-semibold bg-[#DCCFF8] text-[#444444]"
             >
-              <FileText className="w-3.5 h-3.5 text-primary" />
+              <FileText className="w-3.5 h-3.5 text-[#444444]" />
               Transparency & Reports
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-foreground tracking-tight leading-none"
+              className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none"
             >
               Annual General Meetings
             </motion.h1>
@@ -74,7 +83,7 @@ export default function Agm() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-sm sm:text-base md:text-lg text-foreground/70 leading-relaxed font-sans max-w-2xl"
+              className="bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 text-sm sm:text-base md:text-lg text-white/80 leading-relaxed font-sans max-w-2xl mx-auto"
             >
               Explore our financial reports, project reviews, and community achievements to see how your support translates into real-world impact.
             </motion.p>

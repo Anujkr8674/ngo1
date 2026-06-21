@@ -90,7 +90,7 @@ export default function Volunteer() {
  <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
  Become Part of Us
  </h1>
- <p className="text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
+ <p className="bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
  Apply as a volunteer to dedicate your skills and time on-ground, or join as a permanent member to help sustain our operations.
  </p>
 
@@ -124,7 +124,7 @@ export default function Volunteer() {
  <div className="bg-[#FFF6ED] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
  
  {/* Form Wizard Column */}
- <div className="lg:col-span-8 p-8 md:p-12 rounded-[2.5rem] glass-panel border border-white/60 shadow-premium hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
+ <div className="lg:col-span-8 p-8 md:p-12 rounded-[2.5rem] bg-white border border-white/60 shadow-premium hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
  {submitted ? (
  <motion.div
  initial={{ opacity: 0, scale: 0.95 }}
@@ -460,7 +460,7 @@ export default function Volunteer() {
  <div className="lg:col-span-4 flex flex-col gap-8">
  
  {/* Volunteers are priceless */}
- <div className="p-8 rounded-3xl border border-white shadow-soft flex flex-col gap-4 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
+ <div className="p-8 rounded-3xl bg-white border border-white shadow-soft flex flex-col gap-4 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
  <span className="w-8 h-8 rounded-xl bg-white flex items-center justify-center">
  <Heart className="w-4 h-4 text-secondary fill-secondary/20" />
  </span>
@@ -473,7 +473,7 @@ export default function Volunteer() {
  </div>
 
  {/* Bank details card */}
- <div className="p-8 rounded-3xl glass-panel border border-white shadow-soft flex flex-col gap-6 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
+ <div className="p-8 rounded-3xl bg-white border border-white shadow-soft flex flex-col gap-6 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
  <h4 className="font-display font-bold text-lg text-foreground flex items-center gap-2">
  <ShieldCheck className="w-5 h-5 text-secondary" />
  Bank Transfer Routing

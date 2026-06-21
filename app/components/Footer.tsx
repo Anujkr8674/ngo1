@@ -76,7 +76,9 @@ export default function Footer() {
                         <Link href="/impact" className="hover:text-blue-950 transition-colors">Our Impact</Link>
                         <Link href="/initiatives" className="hover:text-blue-950 transition-colors">Initiatives</Link>
                         <Link href="/gallery" className="hover:text-blue-950 transition-colors">Photo Gallery</Link>
+                        <Link href="/testimonials" className="hover:text-blue-950 transition-colors">Testimonials</Link>
                         <Link href="/blog" className="hover:text-blue-950 transition-colors">Magazine / News</Link>
+                        <Link href="/students" className="hover:text-blue-950 transition-colors">Students</Link>
                         <Link href="/transparency" className="hover:text-blue-950 transition-colors">Transparency & Reports</Link>
                     </nav>
                 </div>
@@ -137,9 +139,9 @@ export default function Footer() {
                 </div>
                 <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
                     <Link href="/transparency" className="hover:text-blue-950 transition-colors">Privacy Policy</Link>
-                    <Link href="/transparency" className="hover:text-blue-950 transition-colors">Terms & Conditions</Link>
-                    <Link href="/transparency" className="hover:text-blue-950 transition-colors">Disclaimer</Link>
-                    <Link href="/transparency" className="hover:text-blue-950 transition-colors">Refund & Cancellation</Link>
+                    <Link href="/terms-conditions" className="hover:text-blue-950 transition-colors">Terms & Conditions</Link>
+                    <Link href="/disclaimer" className="hover:text-blue-950 transition-colors">Disclaimer</Link>
+                    <Link href="/refund-cancellation-policy" className="hover:text-blue-950 transition-colors">Refund & Cancellation</Link>
                 </div>
             </div>
         </footer>

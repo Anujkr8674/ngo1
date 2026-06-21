@@ -26,7 +26,7 @@ export default function Contact() {
                 {/* Full-size Hero Background */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg"
+                        src="https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-3.jpg"
                         alt="Contact Hero"
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover"
@@ -44,7 +44,7 @@ export default function Contact() {
                         <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
                             Contact Us
                         </h1>
-                        <p className="text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
+                        <p className="bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
                             Have an idea to share, want to partner, or need assistance? Write to our team or visit our office.
                         </p>
                     </div>

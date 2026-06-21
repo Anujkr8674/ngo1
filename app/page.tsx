@@ -25,7 +25,7 @@ const carouselImages = [
 
   "https://live4help.org/wp-content/uploads/2022/04/L4H-Medical-Camp-Photo-1.jpg",
   "https://live4help.org/wp-content/uploads/2022/02/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg",
-  "https://live4help.org/wp-content/uploads/2026/02/Students.png"
+  "https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-3.jpg"
 ];
 
 export default function Home() {
@@ -147,7 +147,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-sm sm:text-base md:text-lg text-white/75 max-w-2xl leading-relaxed font-sans"
+              className="bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 text-sm sm:text-base md:text-lg text-white/75 max-w-2xl leading-relaxed font-sans"
             >
               Empowering underprivileged children, supporting elderly care, restoration of coastal environment, and bringing healthcare access where it's needed most.
             </motion.p>
@@ -291,7 +291,7 @@ export default function Home() {
                 Hear directly from our members, students, and supporters sharing their journey of collective actions and hope.
               </p>
             </div>
-            <Link href="/about">
+            <Link href="/testimonials">
               <button className="flex items-center gap-1.5 px-6 py-3 rounded-full text-xs font-semibold text-foreground bg-primary  shadow-soft transition-premium cursor-pointer">
                 View All Stories
               </button>
@@ -308,7 +308,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
                 key={item.name}
                 onClick={() => setActiveVideo(item.video)}
-                className="flex-shrink-0 w-72 h-[380px] p-5 rounded-[2.5rem] group cursor-pointer border border-white/60 flex flex-col snap-start"
+                className="flex-shrink-0 w-72 h-[380px] p-5 rounded-[2.5rem] group cursor-pointer border border-white/60 flex flex-col snap-start hover:bg-[#CFE8FF] transition-colors duration-300"
               >
                 <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-inner flex-1">
                   <img referrerPolicy="no-referrer"
@@ -347,7 +347,7 @@ export default function Home() {
                 <Camera className="w-4 h-4 text-secondary" />
                 Moments of Change
               </span>
-              <h3 className="font-display font-bold text-4xl md:text-5xl text-foreground">Action Gallery</h3>
+              <h3 className="font-display font-bold text-4xl md:text-5xl text-foreground">Media Library</h3>
               <p className="text-foreground/70">
                 Glimpses of our operations, workshops, and distributions in rural and tribal districts.
               </p>
@@ -384,38 +384,40 @@ export default function Home() {
       </section>
 
       {/* CSR Partners & Support */}
-      <section className="py-24 px-6 md:px-12 border-y border-foreground/5 bg-gradient-pastel-mesh bg-[#F9F5FA]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Corporate Engagement</span>
-            <h3 className="font-display font-bold text-3xl md:text-4xl text-foreground">Our CSR Partnerships</h3>
-            <p className="text-foreground/75 leading-relaxed">
-              We collaborate with forward-looking corporate organizations to create scaled local impacts. Key initiatives like healthcare clinics, cancer screenings, and large-scale mangrove plantation are made possible through CSR programs.
-            </p>
-            <div className="flex items-center gap-4 mt-2">
-              <div className="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full glass-panel text-foreground/80 shadow-soft">
-                <ShieldCheck className="w-4 h-4 text-secondary" />
-                80G & 12A Certified
-              </div>
-              <div className="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full glass-panel text-foreground/80 shadow-soft">
-                <ShieldCheck className="w-4 h-4 text-primary" />
-                MCA CSR Registered
+      <section className="py-8 px-6 md:px-12 bg-white">
+        <div className="max-w-7xl mx-auto bg-[#F5FAF5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 shadow-soft">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-5 flex flex-col gap-6">
+              <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Corporate Engagement</span>
+              <h3 className="font-display font-bold text-3xl md:text-4xl text-foreground">Our CSR Partnerships</h3>
+              <p className="text-foreground/75 leading-relaxed">
+                We collaborate with forward-looking corporate organizations to create scaled local impacts. Key initiatives like healthcare clinics, cancer screenings, and large-scale mangrove plantation are made possible through CSR programs.
+              </p>
+              <div className="flex items-center gap-4 mt-2">
+                <div className="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full bg-white text-foreground/80 shadow-soft">
+                  <ShieldCheck className="w-4 h-4 text-secondary" />
+                  80G & 12A Certified
+                </div>
+                <div className="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full bg-white text-foreground/80 shadow-soft">
+                  <ShieldCheck className="w-4 h-4 text-primary" />
+                  MCA CSR Registered
+                </div>
               </div>
             </div>
-          </div>
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <Card className="p-8 rounded-3xl flex flex-col gap-4 bg-white">
-              <h4 className="font-display font-bold text-xl text-foreground">M/s Erbe Medical India</h4>
-              <p className="text-xs text-foreground/75 leading-relaxed">
-                Generously sponsored the Darjeeling Hills University Cancer Awareness session and rural Sundarbans diagnostic medical camps.
-              </p>
-            </Card>
-            <Card className="p-8 rounded-3xl flex flex-col gap-4 bg-white">
-              <h4 className="font-display font-bold text-xl text-foreground">M/s ABS Professional India</h4>
-              <p className="text-xs text-foreground/75 leading-relaxed">
-                Generously supported the large-scale Mangrove Plantation restoration project in coastal Sundarbans to buffer climatic storms.
-              </p>
-            </Card>
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <Card className="p-8 rounded-3xl flex flex-col gap-4 bg-white border-0 shadow-soft">
+                <h4 className="font-display font-bold text-xl text-foreground">M/s Erbe Medical India</h4>
+                <p className="text-xs text-foreground/75 leading-relaxed">
+                  Generously sponsored the Darjeeling Hills University Cancer Awareness session and rural Sundarbans diagnostic medical camps.
+                </p>
+              </Card>
+              <Card className="p-8 rounded-3xl flex flex-col gap-4 bg-white border-0 shadow-soft">
+                <h4 className="font-display font-bold text-xl text-foreground">M/s ABS Professional India</h4>
+                <p className="text-xs text-foreground/75 leading-relaxed">
+                  Generously supported the large-scale Mangrove Plantation restoration project in coastal Sundarbans to buffer climatic storms.
+                </p>
+              </Card>
+            </div>
           </div>
         </div>
       </section>

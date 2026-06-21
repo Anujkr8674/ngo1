@@ -62,7 +62,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={`relative px-4 py-2 font-medium tracking-tight rounded-full transition-all duration-300 hover:scale-110 inline-block ${isActive
-                    ? `text-[15px] bg-secondary/40 ${scrolled ? "text-foreground" : "text-white"}`
+                    ? `text-[15px] bg-[#cbb6f5] ${scrolled ? "text-foreground" : "text-white"}`
                     : `text-[13px] ${scrolled ? "text-foreground hover:bg-foreground/5" : "text-white hover:bg-white/10"}`
                     }`}
                 >
@@ -120,7 +120,7 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       className={`block px-4 py-3 text-lg font-display font-medium rounded-2xl transition-colors ${isActive
-                        ? "bg-secondary/20 text-foreground"
+                        ? "bg-[#cbb6f5] text-foreground"
                         : "text-foreground/85 hover:bg-foreground/5"
                         }`}
                     >

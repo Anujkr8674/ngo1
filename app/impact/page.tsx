@@ -64,7 +64,7 @@ export default function Impact() {
  initial={{ opacity: 0, y: 20 }}
  animate={{ opacity: 1, y: 0 }}
  transition={{ delay: 0.2 }}
- className="text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl"
+ className="bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl"
  >
  We translate every donation and resource directly into local, verified actions. Explore our core statistics, distributions, and field reports.
  </motion.p>

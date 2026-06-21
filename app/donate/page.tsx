@@ -88,7 +88,7 @@ export default function Donate() {
                         <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
                             Support Live 4 Help Foundation
                         </h1>
-                        <p className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed font-sans max-w-2xl drop-shadow-sm">
+                        <p className="bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 text-sm sm:text-base md:text-lg text-white/90 leading-relaxed font-sans max-w-2xl drop-shadow-sm">
                             Your donation helps us support education, elderly care, health care, plantation, and relief work across Delhi NCR.
                         </p>
                     </div>
@@ -96,7 +96,7 @@ export default function Donate() {
             </section>
 
             {/* Main Content Area */}
-            <section className="py-12 px-6 md:px-12 bg-[#F5F2FC] pb-24">
+            <section className="py-12 px-6 md:px-12 bg-[#FFF6ED] pb-24">
                 <div className="max-w-4xl mx-auto flex flex-col gap-8">
 
                     {/* Step 1: Selection Cards */}
@@ -112,8 +112,8 @@ export default function Donate() {
                                             key={amt.value}
                                             onClick={() => setSelectedAmount(amt.value)}
                                             className={`flex flex-col items-center justify-center p-4 rounded-xl border-2 transition-all duration-300 ${isSelected
-                                                    ? "border-[#DCCFF8] bg-[#F3EFFF]"
-                                                    : "border-foreground/5 hover:border-foreground/15 bg-white"
+                                                ? "border-[#DCCFF8] bg-[#F3EFFF]"
+                                                : "border-foreground/5 hover:border-foreground/15 bg-white"
                                                 }`}
                                         >
                                             <span className={`font-display font-bold text-lg ${isSelected ? "text-foreground" : "text-foreground/80"}`}>
@@ -163,8 +163,8 @@ export default function Donate() {
                                             key={purpose.id}
                                             onClick={() => setSelectedPurpose(purpose.id)}
                                             className={`flex flex-col items-center justify-center p-4 rounded-xl border-2 transition-all duration-300 gap-3 text-center ${isSelected
-                                                    ? "border-[#DCCFF8] bg-[#F3EFFF]"
-                                                    : "border-foreground/5 hover:border-foreground/15 bg-white"
+                                                ? "border-[#DCCFF8] bg-[#F3EFFF]"
+                                                : "border-foreground/5 hover:border-foreground/15 bg-white"
                                                 }`}
                                         >
                                             <span className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${isSelected ? "bg-white shadow-soft text-[#444444]" : "bg-foreground/5 text-foreground/60"

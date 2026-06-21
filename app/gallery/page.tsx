@@ -48,7 +48,7 @@ export default function Gallery() {
  <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
  Photo Gallery
  </h1>
- <p className="text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
+ <p className="bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
  Visual glimpses capturing our diagnostic medical clinics, student support virtual/offline meetings, Sundarban mangrove plantings, and winter blanket distributions.
  </p>
  </div>
