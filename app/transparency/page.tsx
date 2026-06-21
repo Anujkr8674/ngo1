@@ -30,7 +30,7 @@ export default function Transparency() {
  return (
  <div className="flex flex-col w-full">
  {/* Intro Hero */}
- <section className="relative py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 text-center min-h-[50vh]">
+ <section className="relative py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 text-center min-h-[90vh]">
  {/* Full-size Hero Background */}
  <div className="absolute inset-0 z-0">
  <img

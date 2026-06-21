@@ -38,7 +38,7 @@ export default function Blog() {
  return (
  <div className="flex flex-col w-full">
  {/* Intro Hero */}
- <section className="relative py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 text-center min-h-[50vh]">
+ <section className="relative py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 text-center min-h-[90vh]">
  {/* Full-size Hero Background */}
  <div className="absolute inset-0 z-0">
  <img
@@ -78,7 +78,7 @@ export default function Blog() {
  key={cat.id}
  onClick={() => setActiveCategory(cat.id)}
  className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer ${activeCategory === cat.id
- ? "bg-foreground text-background shadow-soft"
+ ? "bg-primary text-[#444444] shadow-soft"
  : "bg-white text-foreground/80 hover:text-foreground border border-foreground/5 shadow-soft hover:"
  }`}
  >
@@ -109,7 +109,7 @@ export default function Blog() {
  viewport={{ once: true }}
  transition={{ duration: 0.5, delay: idx * 0.05 }}
  key={blog.slug}
- className="group flex flex-col justify-between p-6 rounded-3xl bg-white shadow-soft border border-foreground/5 min-h-[500px] hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
+ className="group flex flex-col justify-between p-6 rounded-3xl bg-white shadow-soft border border-foreground/5 min-h-[500px] hover:-translate-y-2 hover:border-primary hover:shadow-premium hover:!bg-[#CFE8FF] transition-all duration-300"
  >
  <div className="flex flex-col gap-6">
  {/* Image */}

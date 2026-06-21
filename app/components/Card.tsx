@@ -10,7 +10,7 @@ interface CardProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 // We removed hover:-translate-y-2 from baseClasses so we can handle it differently for MotionCard to avoid conflicts
-const baseClasses = "glass-panel border shadow-soft hover:border-primary hover:shadow-premium hover:!bg-[#CFE8FF] transition-all duration-300";
+const baseClasses = "bg-white border-transparent shadow-soft hover:border-primary hover:shadow-premium hover:!bg-[#CFE8FF] transition-all duration-300";
 
 export function Card({ children, className = "", as: Component = "div", ...props }: CardProps) {
   return (

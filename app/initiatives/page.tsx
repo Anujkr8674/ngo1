@@ -94,7 +94,7 @@ export default function Initiatives() {
  return (
  <div className="flex flex-col w-full">
  {/* Intro Header */}
- <section className="relative py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 min-h-[50vh]">
+ <section className="relative py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 min-h-[90vh]">
  {/* Full-size Hero Background */}
  <div className="absolute inset-0 z-0">
  <img
@@ -131,7 +131,7 @@ export default function Initiatives() {
  onClick={() => setFilter(cat.id as Category)}
  className={`px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer ${
  filter === cat.id
- ? "bg-foreground text-background shadow-soft"
+ ? "bg-primary text-[#444444] shadow-soft"
  : "bg-white text-foreground/80 hover:text-foreground border border-foreground/5 shadow-soft hover:"
  }`}
  >

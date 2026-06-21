@@ -17,7 +17,7 @@ import Counter from "../components/Counter";
 import { Card, MotionCard } from "../components/Card";
 
 export default function Impact() {
- const [activeTab, setActiveTab] = useState<"education" | "healthcare" | "environment">("education");
+ const [activeTab, setActiveTab] = useState<"education" | "healthcare" | "environment" | "relief">("education");
 
  const statCards = [
  { label: "Students Supported", count: 100, suffix: "+", desc: "Providing fees & supplies across 11 states of India.", icon: <GraduationCap className="w-5 h-5 text-foreground" />, color: "" },
@@ -29,7 +29,7 @@ export default function Impact() {
  return (
  <div className="flex flex-col w-full">
  {/* Intro Hero */}
- <section className="relative py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 min-h-[50vh]">
+ <section className="relative py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 min-h-[90vh]">
  {/* Full-size Hero Background */}
  <div className="absolute inset-0 z-0">
  <img
@@ -102,17 +102,17 @@ export default function Impact() {
  {/* Interactive Tabs Section */}
  <section className="py-8 px-6 md:px-12 bg-white pb-16">
  <div className="bg-[#F5FAF5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
- {/* Tab Selector */}
- <div className="flex justify-center border-b border-foreground/5 p-1 max-w-md mx-auto w-full">
- {(["education", "healthcare", "environment"] as const).map((tab) => (
- <button
- key={tab}
- onClick={() => setActiveTab(tab)}
- className={`flex-1 py-3 text-sm font-semibold uppercase tracking-wider rounded-2xl transition-premium cursor-pointer ${
- activeTab === tab 
- ? "bg-white text-foreground shadow-soft border border-foreground/5" 
- : "text-foreground/65 hover:text-foreground hover:"
- }`}
+  {/* Tab Selector */}
+  <div className="flex flex-wrap justify-center gap-2 sm:gap-4 border-b border-foreground/5 p-1 max-w-3xl mx-auto w-full">
+  {(["education", "healthcare", "environment", "relief"] as const).map((tab) => (
+  <button
+  key={tab}
+  onClick={() => setActiveTab(tab)}
+  className={`px-4 sm:px-6 py-3 text-xs sm:text-sm font-semibold uppercase tracking-wider rounded-2xl transition-premium cursor-pointer ${
+  activeTab === tab 
+  ? "bg-[#CFE8FF] text-foreground shadow-soft border border-foreground/5" 
+  : "text-foreground/65 hover:text-foreground"
+  }`}
  >
  {tab}
  </button>
@@ -267,6 +267,49 @@ export default function Impact() {
  <img referrerPolicy="no-referrer"
  src="https://live4help.org/wp-content/uploads/2022/02/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg"
  alt="Sundarban Mangrove Plantation Campaign"
+ className="w-full h-full object-cover absolute inset-0"
+ />
+ </div>
+ </div>
+ </motion.div>
+ )}
+
+ {activeTab === "relief" && (
+ <motion.div
+ initial={{ opacity: 0, y: 15 }}
+ animate={{ opacity: 1, y: 0 }}
+ className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
+ >
+ <div className="lg:col-span-7 flex flex-col gap-6">
+ <h3 className="font-display font-bold text-3xl text-foreground">Winter Relief & Community Support</h3>
+ <p className="text-sm text-foreground/80 leading-relaxed">
+ Beyond our core focus areas, Live 4 Help Foundation actively responds to seasonal challenges. Our "Other Social Works" initiative primarily focuses on winter relief drives to support economically weaker sections of society, including migrant daily laborers and construction workers.
+ </p>
+ <div className="grid grid-cols-1 gap-4 mt-2">
+ <Card className="p-6 rounded-2xl border-white">
+   <h4 className="font-semibold text-sm uppercase tracking-wider text-foreground mb-2">Annual Blanket Distribution</h4>
+   <p className="text-xs text-foreground/80 leading-relaxed">
+     Every winter, we conduct extensive blanket distribution drives across Delhi NCR and West Bengal. This crucial initiative ensures that vulnerable individuals, particularly those living in makeshift shelters or on the streets, have protection against the severe cold.
+   </p>
+ </Card>
+ </div>
+ </div>
+ <div className="lg:col-span-5 flex flex-col gap-6">
+ <Card className="p-8 rounded-3xl border-white/80">
+   <h4 className="font-display font-bold text-lg text-foreground mb-4 flex items-center gap-2">
+     <HeartHandshake className="w-5 h-5 text-primary" />
+     Impact Highlights
+   </h4>
+   <ul className="flex flex-col gap-3 text-xs text-foreground/75">
+     <li className="flex justify-between border-b border-foreground/5 pb-2"><span>Beneficiaries</span> <span className="font-semibold text-foreground">Daily Laborers</span></li>
+     <li className="flex justify-between border-b border-foreground/5 pb-2"><span>Winter Protection</span> <span className="font-semibold text-foreground">460+ Blankets</span></li>
+     <li className="flex justify-between pb-1"><span>Locations</span> <span className="font-semibold text-foreground">Delhi & West Bengal</span></li>
+   </ul>
+ </Card>
+ <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative">
+ <img referrerPolicy="no-referrer"
+ src="/relief.jpg"
+ alt="Relief Work & Blanket Distribution"
  className="w-full h-full object-cover absolute inset-0"
  />
  </div>

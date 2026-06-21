@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
+  { href: "/agm", label: "AGM" },
   { href: "/impact", label: "Our Impact" },
   { href: "/initiatives", label: "Initiatives" },
   { href: "/blog", label: "Magazine" },
@@ -60,9 +61,9 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-4 py-2 text-sm font-medium tracking-tight rounded-full transition-colors duration-300 ${isActive
-                    ? `bg-secondary/40 ${scrolled ? "text-foreground" : "text-white"}`
-                    : `${scrolled ? "text-foreground hover:bg-foreground/5" : "text-white hover:bg-white/10"}`
+                  className={`relative px-4 py-2 font-medium tracking-tight rounded-full transition-all duration-300 hover:scale-110 inline-block ${isActive
+                    ? `text-[15px] bg-secondary/40 ${scrolled ? "text-foreground" : "text-white"}`
+                    : `text-[13px] ${scrolled ? "text-foreground hover:bg-foreground/5" : "text-white hover:bg-white/10"}`
                     }`}
                 >
                   {link.label}
