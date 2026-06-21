@@ -47,7 +47,7 @@ export default function Donate() {
     setSubmitted(true);
   };
 
-  const amounts = [
+  const amounts: { value: number | "other"; label: string }[] = [
     { value: 500, label: "School supplies" },
     { value: 1000, label: "Medical kit" },
     { value: 2500, label: "Monthly support" },
