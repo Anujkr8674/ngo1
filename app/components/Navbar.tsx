@@ -38,7 +38,7 @@ export default function Navbar() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-premium duration-500 ${scrolled
-          ? "glass-nav py-3 shadow-soft"
+          ? "bg-white py-3 shadow-soft"
           : "bg-transparent py-5"
           }`}
       >
@@ -60,17 +60,12 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-2.5 xl:px-4 py-2 text-sm font-medium tracking-tight rounded-full transition-colors duration-300 ${isActive ? "text-foreground" : "text-foreground hover:bg-foreground/5"
+                  className={`relative px-4 py-2 text-sm font-medium tracking-tight rounded-full transition-colors duration-300 ${isActive
+                    ? `bg-secondary/40 ${scrolled ? "text-foreground" : "text-white"}`
+                    : `${scrolled ? "text-foreground hover:bg-foreground/5" : "text-white hover:bg-white/10"}`
                     }`}
                 >
                   {link.label}
-                  {isActive && (
-                    <motion.span
-                      layoutId="activeNavIndicator"
-                      className="absolute bottom-0.5 left-4 right-4 h-0.5 rounded-full bg-foreground"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
                 </Link>
               );
             })}
@@ -93,7 +88,7 @@ export default function Navbar() {
           {/* Mobile Hamburguer Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-full hover:bg-foreground/5 transition-colors text-foreground"
+            className={`lg:hidden p-2 rounded-full transition-colors ${scrolled ? "text-foreground hover:bg-foreground/5" : "text-white hover:bg-white/10"}`}
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
