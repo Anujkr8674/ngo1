@@ -84,14 +84,14 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1">
+          <nav className="hidden xl:flex items-center gap-0.5 xl:gap-1">
             {navLinks.map((link) => {
               if (link.dropdown) {
                 const isAnyActive = link.dropdown.some((subLink) => pathname === subLink.href);
                 return (
                   <div key={link.label} className="relative group">
                     <button
-                      className={`relative px-4 py-2 font-medium tracking-tight rounded-full transition-all duration-300 hover:scale-110 inline-flex items-center gap-1.5 cursor-pointer ${isAnyActive
+                      className={`relative px-4 py-2 font-medium tracking-tight rounded-full transition-all duration-300 hover:scale-110 inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${isAnyActive
                         ? `text-[15px] bg-[#cbb6f5] ${scrolled ? "text-foreground" : "text-white"}`
                         : `text-[13px] ${scrolled ? "text-foreground hover:bg-foreground/5" : "text-white hover:bg-white/10"}`
                         }`}
@@ -128,7 +128,7 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href!}
-                  className={`relative px-4 py-2 font-medium tracking-tight rounded-full transition-all duration-300 hover:scale-110 inline-block ${isActive
+                  className={`relative px-4 py-2 font-medium tracking-tight rounded-full transition-all duration-300 hover:scale-110 inline-block whitespace-nowrap ${isActive
                     ? `text-[15px] bg-[#cbb6f5] ${scrolled ? "text-foreground" : "text-white"}`
                     : `text-[13px] ${scrolled ? "text-foreground hover:bg-foreground/5" : "text-white hover:bg-white/10"}`
                     }`}
@@ -140,7 +140,7 @@ export default function Navbar() {
           </nav>
 
           {/* Donate CTA button (Desktop) */}
-          <div className="hidden lg:flex items-center">
+          <div className="hidden xl:flex items-center">
             <Link href="/donate">
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -156,7 +156,7 @@ export default function Navbar() {
           {/* Mobile Hamburguer Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-2 rounded-full transition-colors ${scrolled ? "text-foreground hover:bg-foreground/5" : "text-white hover:bg-white/10"}`}
+            className={`xl:hidden p-2 rounded-full transition-colors ${scrolled ? "text-foreground hover:bg-foreground/5" : "text-white hover:bg-white/10"}`}
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

@@ -74,6 +74,7 @@ export default function Footer() {
                         <Link href="/" className="hover:text-white transition-colors">Home</Link>
                         <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
                         <Link href="/donors-csr-sponsors-members" className="hover:text-white transition-colors">Donors, CSR Sponsors & Members</Link>
+                        <Link href="/transparency" className="hover:text-white transition-colors">Transparency & Certifications</Link>
                         <Link href="/impact" className="hover:text-white transition-colors">Our Impact</Link>
                         <Link href="/initiatives" className="hover:text-white transition-colors">Initiatives</Link>
                         <Link href="/gallery" className="hover:text-white transition-colors">Photo Gallery</Link>
