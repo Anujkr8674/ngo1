@@ -22,10 +22,19 @@ const navLinks: NavLink[] = [
       { href: "/transparency", label: "Archived Material" },
     ],
   },
+  {
+    label: "Get Help",
+    dropdown: [
+      { href: "/get-help/education", label: "Education Support Form" },
+      { href: "/get-help/elderly", label: "Elderly Support Form" },
+      { href: "/get-help/medical", label: "Medical Support Form" },
+      { href: "/get-help/each-other", label: "Help Each Other Form" },
+    ],
+  },
   { href: "/impact", label: "Our Impact" },
   { href: "/initiatives", label: "Initiatives" },
   { href: "/blog", label: "Web Posts" },
-  { href: "/volunteer", label: "Volunteer" },
+  { href: "/volunteer", label: "Be Part Us" },
   { href: "/contact", label: "Contact" },
 ];
 

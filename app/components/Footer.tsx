@@ -91,9 +91,9 @@ export default function Footer() {
                     <nav className="flex flex-col gap-3.5 text-sm text-blue-950/75">
                         <Link href="/volunteer" className="hover:text-blue-950 transition-colors">Become a Volunteer</Link>
                         <Link href="/volunteer" className="hover:text-blue-950 transition-colors">Become a Member</Link>
-                        <Link href="/get-help" className="hover:text-blue-950 transition-colors">Request Educational Help</Link>
-                        <Link href="/get-help" className="hover:text-blue-950 transition-colors">Request Medical Help</Link>
-                        <Link href="/get-help" className="hover:text-blue-950 transition-colors">Elderly Citizen Care</Link>
+                        <Link href="/get-help/education" className="hover:text-blue-950 transition-colors">Request Educational Help</Link>
+                        <Link href="/get-help/medical" className="hover:text-blue-950 transition-colors">Request Medical Help</Link>
+                        <Link href="/get-help/elderly" className="hover:text-blue-950 transition-colors">Elderly Citizen Care</Link>
                         <Link href="/donate" className="hover:text-blue-950 transition-colors flex items-center gap-1.5 font-medium">
                             <Heart className="w-3.5 h-3.5 text-secondary fill-secondary/20" />
                             Make a Donation
