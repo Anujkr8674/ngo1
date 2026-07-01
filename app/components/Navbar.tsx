@@ -6,13 +6,25 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Heart, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const navLinks = [
+interface NavLink {
+  href?: string;
+  label: string;
+  dropdown?: { href: string; label: string }[];
+}
+
+const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
-  { href: "/agm", label: "AGM" },
+  {
+    label: "Virtual Meetings",
+    dropdown: [
+      { href: "/agm", label: "AGM" },
+      { href: "/transparency", label: "Archived Material" },
+    ],
+  },
   { href: "/impact", label: "Our Impact" },
   { href: "/initiatives", label: "Initiatives" },
-  { href: "/blog", label: "Magazine" },
+  { href: "/blog", label: "Web Posts" },
   { href: "/volunteer", label: "Volunteer" },
   { href: "/contact", label: "Contact" },
 ];
@@ -20,6 +32,7 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileDropdowns, setMobileDropdowns] = useState<{ [key: string]: boolean }>({});
   const pathname = usePathname();
 
   useEffect(() => {
@@ -30,9 +43,17 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const toggleMobileDropdown = (label: string) => {
+    setMobileDropdowns((prev) => ({
+      ...prev,
+      [label]: !prev[label],
+    }));
+  };
+
   // Close drawer on path change
   useEffect(() => {
     setIsOpen(false);
+    setMobileDropdowns({});
   }, [pathname]);
 
   return (
@@ -56,11 +77,48 @@ export default function Navbar() {
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1">
             {navLinks.map((link) => {
+              if (link.dropdown) {
+                const isAnyActive = link.dropdown.some((subLink) => pathname === subLink.href);
+                return (
+                  <div key={link.label} className="relative group">
+                    <button
+                      className={`relative px-4 py-2 font-medium tracking-tight rounded-full transition-all duration-300 hover:scale-110 inline-flex items-center gap-1.5 cursor-pointer ${isAnyActive
+                        ? `text-[15px] bg-[#cbb6f5] ${scrolled ? "text-foreground" : "text-white"}`
+                        : `text-[13px] ${scrolled ? "text-foreground hover:bg-foreground/5" : "text-white hover:bg-white/10"}`
+                        }`}
+                    >
+                      {link.label}
+                      <svg className="w-3 h-3 opacity-60 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {/* Dropdown Menu */}
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white border border-foreground/5 rounded-2xl shadow-premium opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 py-2 z-50 overflow-hidden">
+                      {link.dropdown.map((subLink) => {
+                        const isSubActive = pathname === subLink.href;
+                        return (
+                          <Link
+                            key={subLink.href}
+                            href={subLink.href}
+                            className={`block px-5 py-3 text-xs font-semibold tracking-wide transition-colors ${isSubActive
+                              ? "bg-secondary/40 text-foreground"
+                              : "text-foreground/80 hover:bg-foreground/5 hover:text-foreground"
+                              }`}
+                          >
+                            {subLink.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              }
+
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={link.href!}
                   className={`relative px-4 py-2 font-medium tracking-tight rounded-full transition-all duration-300 hover:scale-110 inline-block ${isActive
                     ? `text-[15px] bg-[#cbb6f5] ${scrolled ? "text-foreground" : "text-white"}`
                     : `text-[13px] ${scrolled ? "text-foreground hover:bg-foreground/5" : "text-white hover:bg-white/10"}`
@@ -107,8 +165,63 @@ export default function Navbar() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-background/95 pt-24 pb-8 px-6 flex flex-col justify-between xl:hidden"
           >
-            <div className="flex flex-col gap-3 mt-4">
+            <div className="flex flex-col gap-3 mt-4 overflow-y-auto max-h-[60vh] no-scrollbar">
               {navLinks.map((link, idx) => {
+                if (link.dropdown) {
+                  const isDropdownOpen = !!mobileDropdowns[link.label];
+                  return (
+                    <motion.div
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.05 }}
+                      key={link.label}
+                      className="flex flex-col gap-1 px-4 py-1"
+                    >
+                      <button
+                        onClick={() => toggleMobileDropdown(link.label)}
+                        className="flex items-center justify-between w-full py-3 text-lg font-display font-medium text-foreground/85 rounded-2xl hover:bg-foreground/5 text-left cursor-pointer transition-colors"
+                      >
+                        <span>{link.label}</span>
+                        <svg
+                          className={`w-4 h-4 opacity-60 transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`}
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {isDropdownOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="overflow-hidden flex flex-col gap-1 pl-4 border-l border-foreground/10"
+                          >
+                            {link.dropdown.map((subLink) => {
+                              const isSubActive = pathname === subLink.href;
+                              return (
+                                <Link
+                                  key={subLink.href}
+                                  href={subLink.href}
+                                  className={`block px-4 py-2 text-base font-display font-medium rounded-2xl transition-colors ${isSubActive
+                                    ? "bg-[#cbb6f5] text-foreground"
+                                    : "text-foreground/80 hover:bg-foreground/5"
+                                    }`}
+                                >
+                                  {subLink.label}
+                                </Link>
+                              );
+                            })}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                }
+
                 const isActive = pathname === link.href;
                 return (
                   <motion.div
@@ -118,7 +231,7 @@ export default function Navbar() {
                     key={link.href}
                   >
                     <Link
-                      href={link.href}
+                      href={link.href!}
                       className={`block px-4 py-3 text-lg font-display font-medium rounded-2xl transition-colors ${isActive
                         ? "bg-[#cbb6f5] text-foreground"
                         : "text-foreground/85 hover:bg-foreground/5"

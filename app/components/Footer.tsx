@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Sparkles, Heart } from "lucide-react";
 
 export default function Footer() {
     return (
-        <footer className="bg-[#F5F2FC] border-t border-blue-950/5 py-16 md:py-24 font-sans text-blue-950">
+        <footer className="bg-[#CBB6F5] border-t border-blue-950/5 py-16 md:py-24 font-sans text-blue-950">
             <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16">
                 {/* Info Column */}
                 <div className="flex flex-col gap-6">
@@ -77,7 +77,7 @@ export default function Footer() {
                         <Link href="/initiatives" className="hover:text-blue-950 transition-colors">Initiatives</Link>
                         <Link href="/gallery" className="hover:text-blue-950 transition-colors">Photo Gallery</Link>
                         <Link href="/testimonials" className="hover:text-blue-950 transition-colors">Testimonials</Link>
-                        <Link href="/blog" className="hover:text-blue-950 transition-colors">Magazine / News</Link>
+                        <Link href="/blog" className="hover:text-blue-950 transition-colors">Web Posts</Link>
                         <Link href="/students" className="hover:text-blue-950 transition-colors">Students</Link>
                         <Link href="/transparency" className="hover:text-blue-950 transition-colors">Transparency & Reports</Link>
                     </nav>

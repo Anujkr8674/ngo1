@@ -58,7 +58,7 @@ export default function Blog() {
               The Live 4 Help Journal
             </span>
             <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
-              Stories of Hope & Impact
+              Web Posts
             </h1>
             <p className="bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
               Detailed reports, milestones, and on-ground transformations written by our team and field volunteers.
@@ -72,7 +72,7 @@ export default function Blog() {
 
       {/* Category selector */}
       <section className="py-8 px-6 md:px-12 bg-white pb-16">
-        <div className="bg-[#FFF6ED] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-wrap justify-center gap-2">
+        <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-wrap justify-center gap-2">
           {categories.map((cat) => (
             <button
               key={cat.id}
@@ -90,7 +90,7 @@ export default function Blog() {
 
       {/* Magazine Grid */}
       <section className="py-8 px-6 md:px-12 bg-white pb-16">
-        <div className="bg-[#F5FAF5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto">
+        <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto">
           {filteredBlogs.length === 0 ? (
             <div className="text-center py-20 text-foreground/50 text-sm">
               No articles match your search criteria. Try a different term.
@@ -126,7 +126,7 @@ export default function Blog() {
                       )}
                       {/* Body */}
                       <div className="flex flex-col gap-3">
-                        <div className="flex flex-wrap items-center gap-4 text-[11px] font-semibold tracking-wider text-foreground/50 uppercase">
+                        <div className="flex flex-wrap items-center gap-4 text-xs font-semibold tracking-wider text-foreground/50 uppercase">
                           <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{blog.date}</span>
                           <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" />{readTime} Min Read</span>
                         </div>

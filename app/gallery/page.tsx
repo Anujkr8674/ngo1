@@ -57,7 +57,7 @@ export default function Gallery() {
 
  {/* Category selector */}
  <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#FFF6ED] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-wrap justify-center gap-2">
+ <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-wrap justify-center gap-2">
  {categories.map((cat) => (
  <button
  key={cat.id}
@@ -76,7 +76,7 @@ export default function Gallery() {
 
  {/* Grid of Images */}
  <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#F5FAF5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto">
+ <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto">
  <motion.div 
  layout
  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"

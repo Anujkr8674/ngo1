@@ -93,7 +93,7 @@ export default function Agm() {
 
       {/* PDF Viewer Dashboard */}
       <section className="py-8 px-6 md:px-12 bg-white pb-24">
-        <div className="bg-[#F5F2FC] rounded-[3rem] p-4 sm:p-8 md:p-12 border border-foreground/5 max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 items-start min-h-[80vh]">
+        <div className="bg-[#E5DDF8] rounded-[3rem] p-4 sm:p-8 md:p-12 border border-foreground/5 max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 items-start min-h-[80vh]">
           
           {/* Sidebar Navigation */}
           <div className="w-full lg:w-1/3 flex flex-col gap-4">

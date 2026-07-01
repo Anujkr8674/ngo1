@@ -55,10 +55,10 @@ export default function Home() {
   }, []);
 
   const stats = [
-    { value: 100, suffix: "+", label: "Students Supported", desc: "Long-term educational funding across 11 states" },
-    { value: 397, suffix: "+", label: "Medical Beneficiaries", desc: "Free medical testing & cancer screening" },
-    { value: 3000, suffix: "+", label: "Trees Planted", desc: "Mangrove saplings restored in Sundarbans" },
-    { value: 460, suffix: "+", label: "Blankets Distributed", desc: "Winter protection in Delhi and West Bengal" },
+    { value: 120, suffix: "+", label: "Students Sponsored", desc: "Across 12 states in India in 50+ institutions" },
+    { value: 2900, suffix: "+", label: "Healthcare Beneficiaries", desc: "Free medical testing & cancer screening" },
+    { value: 40000, suffix: "+", label: "Mangrove Saplings", desc: "Mangrove saplings restored in Sundarbans" },
+    { value: 1300, suffix: "+", label: "Relief Material Delivered", desc: "Families served with winter & flood relief materials" },
   ];
 
   const focusAreas = [
@@ -191,7 +191,7 @@ export default function Home() {
 
       {/* Impact Statistics */}
       <section className="py-8 px-6 md:px-12 border-y border-foreground/5 bg-white">
-        <div className="max-w-7xl mx-auto bg-[#FFF6ED] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
+        <div className="max-w-7xl mx-auto bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, i) => (
               <MotionCard
@@ -219,7 +219,7 @@ export default function Home() {
 
       {/* Mission Quote */}
       <section className="py-8 px-6 md:px-12 text-center bg-white">
-        <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#F5FAF5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
+        <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
           <span className="w-10 h-0.5 bg-secondary rounded-full" />
           <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground italic leading-normal px-4">
             &ldquo;We ourselves feel that what we are doing is just a drop in the ocean. But the ocean would be less because of that missing drop.&rdquo;
@@ -232,7 +232,7 @@ export default function Home() {
 
       {/* Focus Areas */}
       <section className="py-8 px-6 md:px-12 bg-white">
-        <div className="max-w-7xl mx-auto bg-[#FDF8F5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 flex flex-col gap-12 border border-foreground/5">
+        <div className="max-w-7xl mx-auto bg-[#F8E7DC] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 flex flex-col gap-12 border border-foreground/5">
           <div className="flex flex-col gap-4 max-w-2xl">
             <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">What We Do</span>
             <h3 className="font-display font-bold text-4xl md:text-5xl text-foreground">Our Core Focus Areas</h3>
@@ -282,7 +282,7 @@ export default function Home() {
 
       {/* Video Testimonials Section */}
       <section className="py-8 px-6 md:px-12 overflow-hidden bg-white">
-        <div className="max-w-7xl mx-auto bg-[#F6F7FA] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 flex flex-col gap-12 border border-foreground/5">
+        <div className="max-w-7xl mx-auto bg-[#E8ECF2] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 flex flex-col gap-12 border border-foreground/5">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="flex flex-col gap-4 max-w-2xl">
               <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Voice of the People</span>
@@ -327,7 +327,7 @@ export default function Home() {
                   <div className="absolute bottom-5 left-5 right-5 z-10 text-white flex flex-col gap-1.5">
                     <span className="text-xs uppercase tracking-widest font-sans opacity-75">Supporter Story</span>
                     <h4 className="font-display font-bold text-lg leading-tight">{item.name}</h4>
-                    <div className="flex items-center gap-1.5 text-[10px] backdrop-blur w-fit px-2.5 py-1 rounded-full font-semibold uppercase mt-1">
+                    <div className="flex items-center gap-1.5 text-xs backdrop-blur w-fit px-2.5 py-1 rounded-full font-semibold uppercase mt-1">
                       <Play className="w-2.5 h-2.5 fill-current" /> Play Video
                     </div>
                   </div>
@@ -340,7 +340,7 @@ export default function Home() {
 
       {/* On-Ground Moments Gallery Preview */}
       <section className="py-8 px-6 md:px-12 bg-white">
-        <div className="max-w-7xl mx-auto bg-[#FFFDF0] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 flex flex-col gap-12 border border-foreground/5">
+        <div className="max-w-7xl mx-auto bg-[#FFF6D1] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 flex flex-col gap-12 border border-foreground/5">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="flex flex-col gap-4 max-w-2xl">
               <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60 flex items-center gap-2">
@@ -376,7 +376,7 @@ export default function Home() {
                     className="w-full h-full object-cover absolute inset-0 object-cover group-hover:scale-102 transition-premium"
                   />
                 </div>
-                <span className="text-[11px] font-semibold text-foreground/80 leading-relaxed truncate px-1">{img.caption}</span>
+                <span className="text-xs font-semibold text-foreground/80 leading-relaxed truncate px-1">{img.caption}</span>
               </Card>
             ))}
           </div>
@@ -385,7 +385,7 @@ export default function Home() {
 
       {/* CSR Partners & Support */}
       <section className="py-8 px-6 md:px-12 bg-white">
-        <div className="max-w-7xl mx-auto bg-[#F5FAF5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 shadow-soft">
+        <div className="max-w-7xl mx-auto bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 shadow-soft">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 flex flex-col gap-6">
               <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Corporate Engagement</span>
@@ -424,7 +424,7 @@ export default function Home() {
 
       {/* Latest News & Magazine */}
       <section className="py-8 px-6 md:px-12 bg-white">
-        <div className="max-w-7xl mx-auto flex flex-col gap-16 bg-[#F9F5FA] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
+        <div className="max-w-7xl mx-auto flex flex-col gap-16 bg-[#ECE0F0] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="flex flex-col gap-4 max-w-2xl">
               <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Journal</span>
@@ -479,7 +479,7 @@ export default function Home() {
 
       {/* CTA Sponosorship Grid */}
       <section className="py-8 px-6 md:px-12 bg-white pb-24">
-        <div className="max-w-7xl mx-auto py-12 px-6 md:py-20 md:px-10 rounded-[3rem] border border-foreground/5 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-[#F2FAFA]">
+        <div className="max-w-7xl mx-auto py-12 px-6 md:py-20 md:px-10 rounded-[3rem] border border-foreground/5 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-[#DCEFEF]">
           <div className="flex flex-col gap-6">
             <span className="text-xs uppercase tracking-widest font-semibold text-foreground/70">Join Our Movement</span>
             <h3 className="font-display font-bold text-4xl md:text-5xl text-foreground tracking-tight leading-none">

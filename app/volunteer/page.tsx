@@ -121,7 +121,7 @@ export default function Volunteer() {
 
  {/* Main Grid */}
  <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#FFF6ED] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+ <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
  
  {/* Form Wizard Column */}
  <div className="lg:col-span-8 p-8 md:p-12 rounded-[2.5rem] bg-white border border-white/60 shadow-premium hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
@@ -507,7 +507,7 @@ export default function Volunteer() {
 
  <div className="flex flex-col gap-2">
  <h5 className="font-semibold text-xs text-foreground">Cheque Sponsoring Address:</h5>
- <p className="text-[11px] text-foreground/60 leading-normal">
+ <p className="text-xs text-foreground/60 leading-normal">
  Make Cheque in favor of &ldquo;Live 4 Help Foundation&rdquo; and mail to:<br />
  C-504, Sea Show CGHS Ltd. Plot No. 14, Sector -19B, Dwarka, New Delhi - 110075.
  </p>

@@ -49,8 +49,8 @@ export default function Transparency() {
                             <ShieldCheck className="w-4 h-4 text-[#444444]" />
                             Public Audits & Governance
                         </span>
-                        <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
-                            Transparency & Compliance
+                        <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.1] max-w-4xl mx-auto">
+                            Archived Virtual Meetings, Activity & Finance Reports
                         </h1>
                         <p className="bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
                             We believe in absolute accountability. Explore our corporate certifications, tax exemptions, and audited operational balance sheets.
@@ -61,7 +61,7 @@ export default function Transparency() {
 
             {/* Registrations & Certifications */}
             <section className="py-8 px-6 md:px-12 bg-white pb-16">
-                <div className="bg-[#FFF6ED] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
+                <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
                     <h3 className="font-display font-bold text-2xl text-foreground border-b border-foreground/5 pb-4">
                         NGO Registrations & Certifications
                     </h3>
@@ -75,7 +75,7 @@ export default function Transparency() {
                                     <h4 className="font-semibold text-sm text-foreground leading-snug">{cert.title}</h4>
                                     <p className="text-xs text-foreground/60 leading-relaxed">{cert.desc}</p>
                                 </div>
-                                <div className="flex items-center justify-between text-[10px] text-foreground/50 font-semibold uppercase tracking-wider mt-6 pt-2 border-t border-foreground/5">
+                                <div className="flex items-center justify-between text-xs text-foreground/50 font-semibold uppercase tracking-wider mt-6 pt-2 border-t border-foreground/5">
                                     <span>{cert.issue}</span>
                                     <span>{cert.year}</span>
                                 </div>
@@ -87,7 +87,7 @@ export default function Transparency() {
 
             {/* Audited Financial Downloads */}
             <section className="py-8 px-6 md:px-12 bg-white pb-16">
-                <div className="bg-[#F5FAF5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
+                <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
                     <h3 className="font-display font-bold text-2xl text-foreground border-b border-foreground/5 pb-4">
                         Audit Reports & Sponsoring Disclosures
                     </h3>
@@ -100,7 +100,7 @@ export default function Transparency() {
                                     </div>
                                     <div className="flex flex-col">
                                         <span className="font-semibold text-sm text-foreground leading-tight">{doc.title}</span>
-                                        <span className="text-[10px] text-foreground/50 uppercase tracking-widest mt-1 font-semibold">{doc.size} • {doc.type}</span>
+                                        <span className="text-xs text-foreground/50 uppercase tracking-widest mt-1 font-semibold">{doc.size} • {doc.type}</span>
                                     </div>
                                 </div>
                                 <button className="p-3 rounded-full bg-primary  text-foreground shadow-soft shrink-0 cursor-pointer hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
@@ -114,7 +114,7 @@ export default function Transparency() {
 
             {/* Zoomable Members List */}
             <section className="py-8 px-6 md:px-12 bg-white pb-16">
-                <div className="bg-[#FDF8F5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
+                <div className="bg-[#F8E7DC] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
                     <div className="flex flex-col gap-4 max-w-xl">
                         <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60 flex items-center gap-1.5">
                             <Sparkles className="w-3.5 h-3.5 text-secondary" />

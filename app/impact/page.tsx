@@ -20,10 +20,10 @@ export default function Impact() {
  const [activeTab, setActiveTab] = useState<"education" | "healthcare" | "environment" | "relief">("education");
 
  const statCards = [
- { label: "Students Supported", count: 100, suffix: "+", desc: "Providing fees & supplies across 11 states of India.", icon: <GraduationCap className="w-5 h-5 text-foreground" />, color: "" },
- { label: "Clinical Beneficiaries", count: 397, suffix: "", desc: "Diagnostics and cancer screenings in rural villages.", icon: <HeartHandshake className="w-5 h-5 text-foreground" />, color: "" },
- { label: "Mangrove Saplings", count: 3000, suffix: "+", desc: "Saplings planted & fenced in coastal Sundarbans.", icon: <Leaf className="w-5 h-5 text-foreground" />, color: "" },
- { label: "Winter Protection", count: 460, suffix: "+", desc: "Blankets distributed to construction workers & families.", icon: <Activity className="w-5 h-5 text-foreground" />, color: "" }
+  { label: "Students Sponsored", count: 120, suffix: "+", desc: "Across 12 states in India in 50+ institutions.", icon: <GraduationCap className="w-5 h-5 text-foreground" />, color: "" },
+  { label: "Healthcare Beneficiaries", count: 2900, suffix: "+", desc: "Diagnostics and cancer screenings in rural villages.", icon: <HeartHandshake className="w-5 h-5 text-foreground" />, color: "" },
+  { label: "Mangrove Saplings", count: 40000, suffix: "+", desc: "Saplings planted & fenced in coastal Sundarbans.", icon: <Leaf className="w-5 h-5 text-foreground" />, color: "" },
+  { label: "Relief Material Delivered", count: 1300, suffix: "+", desc: "Families served with winter & flood relief materials.", icon: <Activity className="w-5 h-5 text-foreground" />, color: "" }
  ];
 
  return (
@@ -74,7 +74,7 @@ export default function Impact() {
 
  {/* Grid Dashboard */}
  <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#FFF6ED] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+ <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
  {statCards.map((card, i) => (
  <MotionCard
   initial={{ opacity: 0, y: 20 }}
@@ -101,7 +101,7 @@ export default function Impact() {
 
  {/* Interactive Tabs Section */}
  <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#F5FAF5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
+ <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
   {/* Tab Selector */}
   <div className="flex flex-wrap justify-center gap-2 sm:gap-4 border-b border-foreground/5 p-1 max-w-3xl mx-auto w-full">
   {(["education", "healthcare", "environment", "relief"] as const).map((tab) => (

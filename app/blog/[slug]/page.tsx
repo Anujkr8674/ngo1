@@ -120,7 +120,7 @@ export default async function BlogPostPage({ params }: PageProps) {
  {/* Gallery grid of additional photos if any */}
  {blog.images && blog.images.length > 1 && (
  <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <h3 className="bg-[#FFF6ED] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 font-display font-bold text-2xl text-foreground mb-8">Campaign Photographs</h3>
+ <h3 className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 font-display font-bold text-2xl text-foreground mb-8">Campaign Photographs</h3>
  <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
  {blog.images.slice(1).map((img, i) => (
  <div key={i} className="aspect-square rounded-2xl relative overflow-hidden shadow-soft border border-white">
@@ -139,7 +139,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
  {/* Related Posts */}
  <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <h3 className="bg-[#F5FAF5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 font-display font-bold text-2xl text-foreground mb-10">Related Stories</h3>
+ <h3 className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 font-display font-bold text-2xl text-foreground mb-10">Related Stories</h3>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
  {related.map((post) => (
  <Link href={`/blog/${post.slug}`} key={post.slug} className="group">
@@ -156,7 +156,7 @@ export default async function BlogPostPage({ params }: PageProps) {
  </div>
  )}
  <div className="flex flex-col gap-2">
- <span className="text-[10px] text-foreground/45 uppercase tracking-wider font-semibold">{post.date}</span>
+ <span className="text-xs text-foreground/45 uppercase tracking-wider font-semibold">{post.date}</span>
  <h4 className="font-display font-bold text-lg text-foreground group-hover:text-blue-600 leading-snug transition-colors">
  {post.title}
  </h4>

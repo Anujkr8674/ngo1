@@ -68,7 +68,7 @@ export default function Testimonials() {
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
                 key={item.name}
                 onClick={() => setActiveVideo(item.video)}
-                className="w-full h-[400px] p-5 rounded-[2.5rem] group cursor-pointer border border-foreground/5 shadow-soft hover:shadow-premium transition-all duration-300 flex flex-col bg-[#F6F7FA] hover:bg-[#CFE8FF]"
+                className="w-full h-[400px] p-5 rounded-[2.5rem] group cursor-pointer border border-foreground/5 shadow-soft hover:shadow-premium transition-all duration-300 flex flex-col bg-[#E8ECF2] hover:bg-[#CFE8FF]"
               >
                 <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-inner flex-1 bg-white">
                   <img referrerPolicy="no-referrer"
@@ -87,7 +87,7 @@ export default function Testimonials() {
                   <div className="absolute bottom-5 left-5 right-5 z-10 text-white flex flex-col gap-1.5">
                     <span className="text-xs uppercase tracking-widest font-sans opacity-75">Supporter Story</span>
                     <h4 className="font-display font-bold text-lg leading-tight">{item.name}</h4>
-                    <div className="flex items-center gap-1.5 text-[10px] backdrop-blur w-fit px-2.5 py-1 rounded-full font-semibold uppercase mt-1 border border-white/20">
+                    <div className="flex items-center gap-1.5 text-xs backdrop-blur w-fit px-2.5 py-1 rounded-full font-semibold uppercase mt-1 border border-white/20">
                       <Play className="w-2.5 h-2.5 fill-current" /> Play Video
                     </div>
                   </div>

@@ -67,7 +67,7 @@ export default function About() {
 
  {/* Our Story */}
  <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#FFF6ED] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+ <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
  <div className="lg:col-span-6 flex flex-col gap-6">
  <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground">How We Started</h2>
  <p className="text-foreground/85 leading-relaxed text-sm md:text-base">
@@ -90,7 +90,7 @@ export default function About() {
 
  {/* Vision, Mission, Values */}
  <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#F5FAF5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+ <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card className="p-8 rounded-3xl flex flex-col gap-6 group">
             <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
               <Star className="w-6 h-6 text-foreground" />
@@ -125,7 +125,7 @@ export default function About() {
 
  {/* Journey Timeline */}
  <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#FDF8F5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-16">
+ <div className="bg-[#F8E7DC] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-16">
  <div className="text-center flex flex-col items-center gap-4">
  <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Milestones</span>
  <h3 className="font-display font-bold text-4xl text-foreground">Our Journey Timeline</h3>
@@ -175,7 +175,7 @@ export default function About() {
 
  {/* Founders Section */}
  <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#F6F7FA] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-16">
+ <div className="bg-[#E8ECF2] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-16">
  <div className="flex flex-col gap-4 max-w-xl">
  <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Leadership</span>
  <h3 className="font-display font-bold text-4xl text-foreground">Our Founders</h3>
@@ -229,7 +229,7 @@ export default function About() {
 
  {/* Advisory & Operations Team */}
  <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#FFFDF0] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-16">
+ <div className="bg-[#FFF6D1] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-16">
  <div className="flex flex-col gap-4 max-w-xl">
  <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Guidance</span>
  <h3 className="font-display font-bold text-4xl text-foreground">Governing Body & Advisors</h3>
