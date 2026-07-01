@@ -19,7 +19,7 @@ const navLinks: NavLink[] = [
     label: "Virtual Meetings",
     dropdown: [
       { href: "/agm", label: "AGM" },
-      { href: "/transparency", label: "Archived Material" },
+      { href: "/archived-material", label: "Archived Material" },
     ],
   },
   {
@@ -32,7 +32,7 @@ const navLinks: NavLink[] = [
     ],
   },
   { href: "/impact", label: "Our Impact" },
-  { href: "/initiatives", label: "Initiatives" },
+  // { href: "/initiatives", label: "Initiatives" },
   { href: "/blog", label: "Web Posts" },
   { href: "/volunteer", label: "Be Part Us" },
   { href: "/contact", label: "Contact" },
@@ -69,11 +69,11 @@ export default function Navbar() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-premium duration-500 ${scrolled
-          ? "bg-white py-3 shadow-soft"
+          ? "bg-white py-3 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.4)]"
           : "bg-transparent py-5"
           }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+        <div className="w-full px-4 md:px-6 lg:px-8 xl:px-12 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center group">
             <img
@@ -102,14 +102,14 @@ export default function Navbar() {
                       </svg>
                     </button>
                     {/* Dropdown Menu */}
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white border border-foreground/5 rounded-2xl shadow-premium opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 py-2 z-50 overflow-hidden">
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-max min-w-[12rem] bg-white border border-foreground/5 rounded-2xl shadow-premium opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 py-2 z-50 overflow-hidden">
                       {link.dropdown.map((subLink) => {
                         const isSubActive = pathname === subLink.href;
                         return (
                           <Link
                             key={subLink.href}
                             href={subLink.href}
-                            className={`block px-5 py-3 text-xs font-semibold tracking-wide transition-colors ${isSubActive
+                            className={`block px-5 py-3 text-xs font-semibold tracking-wide whitespace-nowrap transition-colors ${isSubActive
                               ? "bg-secondary/40 text-foreground"
                               : "text-foreground/80 hover:bg-foreground/5 hover:text-foreground"
                               }`}

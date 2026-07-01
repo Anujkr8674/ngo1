@@ -57,7 +57,7 @@ export default function MedicalSupport() {
             alt="Medical Support Hero Background"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/45" />
+          <div className="absolute inset-0 bg-black/20" />
         </div>
 
         {/* Floating Glassmorphism Hero Content Card */}
@@ -73,12 +73,7 @@ export default function MedicalSupport() {
             <p className="bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
               Apply for diagnostics testing, medicine procurement, offline/online doctor consultations, or diagnostic clinical support.
             </p>
-            <Link
-              href="/get-help"
-              className="text-xs font-semibold uppercase tracking-wider text-white hover:text-white/80 transition-colors flex items-center gap-1.5 mt-2"
-            >
-              ← Back to Help Portal
-            </Link>
+            
           </div>
         </div>
       </section>
