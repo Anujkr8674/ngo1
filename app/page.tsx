@@ -97,7 +97,11 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full relative">
+      <div 
+        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/img/bg1.jpg')" }}
+      />
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-20 px-6 md:px-12 overflow-hidden">
         {/* Full-size Carousel Background */}
@@ -190,7 +194,7 @@ export default function Home() {
 
 
       {/* Impact Statistics */}
-      <section className="py-8 px-6 md:px-12 border-y border-foreground/5 bg-white">
+      <section className="py-8 px-6 md:px-12 border-y border-foreground/5">
         <div className="max-w-7xl mx-auto bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, i) => (
@@ -218,7 +222,7 @@ export default function Home() {
       </section>
 
       {/* Mission Quote */}
-      <section className="py-8 px-6 md:px-12 text-center bg-white">
+      <section className="py-8 px-6 md:px-12 text-center">
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
           <span className="w-10 h-0.5 bg-secondary rounded-full" />
           <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground italic leading-normal px-4">
@@ -231,7 +235,7 @@ export default function Home() {
       </section>
 
       {/* Focus Areas */}
-      <section className="py-8 px-6 md:px-12 bg-white">
+      <section className="py-8 px-6 md:px-12">
         <div className="max-w-7xl mx-auto bg-[#F8E7DC] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 flex flex-col gap-12 border border-foreground/5">
           <div className="flex flex-col gap-4 max-w-2xl">
             <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">What We Do</span>
@@ -281,7 +285,7 @@ export default function Home() {
       </section>
 
       {/* Video Testimonials Section */}
-      <section className="py-8 px-6 md:px-12 overflow-hidden bg-white">
+      <section className="py-8 px-6 md:px-12 overflow-hidden">
         <div className="max-w-7xl mx-auto bg-[#E8ECF2] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 flex flex-col gap-12 border border-foreground/5">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="flex flex-col gap-4 max-w-2xl">
@@ -339,7 +343,7 @@ export default function Home() {
       </section>
 
       {/* On-Ground Moments Gallery Preview */}
-      <section className="py-8 px-6 md:px-12 bg-white">
+      <section className="py-8 px-6 md:px-12">
         <div className="max-w-7xl mx-auto bg-[#FFF6D1] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 flex flex-col gap-12 border border-foreground/5">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="flex flex-col gap-4 max-w-2xl">
@@ -384,7 +388,7 @@ export default function Home() {
       </section>
 
       {/* CSR Partners & Support */}
-      <section className="py-8 px-6 md:px-12 bg-white">
+      <section className="py-8 px-6 md:px-12">
         <div className="max-w-7xl mx-auto bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 shadow-soft">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 flex flex-col gap-6">
@@ -423,7 +427,7 @@ export default function Home() {
       </section>
 
       {/* Latest News & Magazine */}
-      <section className="py-8 px-6 md:px-12 bg-white">
+      <section className="py-8 px-6 md:px-12">
         <div className="max-w-7xl mx-auto flex flex-col gap-16 bg-[#ECE0F0] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="flex flex-col gap-4 max-w-2xl">
@@ -478,7 +482,7 @@ export default function Home() {
       </section>
 
       {/* CTA Sponosorship Grid */}
-      <section className="py-8 px-6 md:px-12 bg-white pb-24">
+      <section className="py-8 px-6 md:px-12 pb-24">
         <div className="max-w-7xl mx-auto py-12 px-6 md:py-20 md:px-10 rounded-[3rem] border border-foreground/5 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-[#DCEFEF]">
           <div className="flex flex-col gap-6">
             <span className="text-xs uppercase tracking-widest font-semibold text-foreground/70">Join Our Movement</span>
