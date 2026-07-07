@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ShieldCheck, Sparkles } from "lucide-react";
+import { Card } from "../components/Card";
 
 export default function Transparency() {
   const certificates = [
@@ -48,12 +49,12 @@ export default function Transparency() {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {certificates.map((cert) => (
-              <div
+              <Card
                 key={cert.title}
-                className="p-6 rounded-2xl bg-[#F6F7FA] border border-foreground/5 shadow-soft flex flex-col justify-between min-h-[220px] hover:-translate-y-2 hover:border-primary hover:shadow-premium hover:bg-[#CFE8FF] transition-all duration-300"
+                className="p-6 rounded-[2.5rem] bg-white border border-[#EEB898] shadow-soft flex flex-col justify-between min-h-[220px]"
               >
                 <div className="flex flex-col gap-3">
-                  <div className="w-9 h-9 rounded-lg flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-foreground/5 shrink-0">
                     <ShieldCheck className="w-5 h-5 text-foreground" />
                   </div>
                   <h4 className="font-semibold text-sm text-foreground leading-snug">{cert.title}</h4>
@@ -63,7 +64,7 @@ export default function Transparency() {
                   <span>{cert.issue}</span>
                   <span>{cert.year}</span>
                 </div>
-              </div>
+              </Card>
             ))}
           </div>
         </div>

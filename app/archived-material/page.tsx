@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FileText, Download, ShieldCheck, Check, Sparkles, X, Eye } from "lucide-react";
+import { Card } from "../components/Card";
 
 export default function Transparency() {
     
@@ -59,9 +60,9 @@ export default function Transparency() {
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {reports.map((doc) => (
-                            <div key={doc.title} className="p-5 rounded-2xl glass-panel border border-white shadow-soft flex items-center justify-between gap-6 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
+                            <Card key={doc.title} className="p-5 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex items-center justify-between gap-6">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0">
+                                    <div className="w-11 h-11 rounded-xl bg-foreground/5 flex items-center justify-center shrink-0">
                                         <FileText className="w-5 h-5 text-foreground" />
                                     </div>
                                     <div className="flex flex-col">
@@ -69,10 +70,10 @@ export default function Transparency() {
                                         <span className="text-xs text-foreground/50 uppercase tracking-widest mt-1 font-semibold">{doc.size} • {doc.type}</span>
                                     </div>
                                 </div>
-                                <button className="p-3 rounded-full bg-primary  text-foreground shadow-soft shrink-0 cursor-pointer hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
+                                <button className="p-3 rounded-full bg-primary text-foreground shadow-soft shrink-0 cursor-pointer hover:-translate-y-1 hover:border-primary hover:shadow-premium transition-all duration-300">
                                     <Download className="w-4 h-4" />
                                 </button>
-                            </div>
+                            </Card>
                         ))}
                     </div>
                 </div>

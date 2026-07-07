@@ -156,20 +156,22 @@ export default function Initiatives() {
  animate={{ opacity: 1, scale: 1 }}
  exit={{ opacity: 0, scale: 0.9 }}
  transition={{ duration: 0.4 }}
+ whileHover={{ y: -8 }}
  key={item.id}
- className="group flex flex-col justify-between p-6 rounded-[2rem] border-white/60 min-h-[520px]"
+ className="group flex flex-col justify-between rounded-[2.5rem] border border-[#C1D6C1] overflow-hidden pb-6 min-h-[520px]"
  >
- <div className="flex flex-col gap-6">
+ <div className="flex flex-col flex-grow">
  {/* Featured Image */}
- <div className="aspect-[16/10] rounded-2xl relative overflow-hidden shadow-inner">
+ <div className="relative aspect-[16/10] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0">
  <img referrerPolicy="no-referrer"
  src={item.image}
  alt={item.title}
- 
- 
- className="w-full h-full object-cover absolute inset-0 object-cover group-hover:scale-102 transition-premium"
+ className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-premium"
  />
  </div>
+ {/* Content */}
+ <div className="pt-6 px-6 flex flex-col flex-grow justify-between">
+ <div className="flex flex-col gap-6">
  {/* Header */}
  <div className="flex items-center gap-4">
  <div className={`w-12 h-12 rounded-xl ${item.color} flex items-center justify-center shrink-0`}>
@@ -196,6 +198,8 @@ export default function Initiatives() {
  <div className="flex items-center gap-1.5 text-foreground/70">
  <ShieldCheck className="w-3.5 h-3.5 text-secondary" />
  <span>Sponsor: <strong>{item.sponsor}</strong></span>
+ </div>
+ </div>
  </div>
  </div>
  </MotionCard>

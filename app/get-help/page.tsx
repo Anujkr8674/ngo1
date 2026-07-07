@@ -14,7 +14,7 @@ export default function GetHelpPortal() {
       link: "/get-help/education",
       icon: <GraduationCap className="w-8 h-8 text-[#6B46C1]" />,
       bgColor: "bg-gradient-to-br from-[#F5F2FC] to-[#E9E3F8]",
-      borderColor: "border-[#CBB6F5]/30",
+      borderColor: "border-[#CBB6F5]",
       accentColor: "#6B46C1"
     },
     {
@@ -24,7 +24,7 @@ export default function GetHelpPortal() {
       link: "/get-help/elderly",
       icon: <ShieldAlert className="w-8 h-8 text-[#DD6B20]" />,
       bgColor: "bg-gradient-to-br from-[#FFF6ED] to-[#FFEAD6]",
-      borderColor: "border-[#FFEAD6]/30",
+      borderColor: "border-[#EEB898]",
       accentColor: "#DD6B20"
     },
     {
@@ -34,7 +34,7 @@ export default function GetHelpPortal() {
       link: "/get-help/medical",
       icon: <HeartHandshake className="w-8 h-8 text-[#3182CE]" />,
       bgColor: "bg-gradient-to-br from-[#EBF8FF] to-[#DBF0FF]",
-      borderColor: "border-[#DBF0FF]/30",
+      borderColor: "border-[#B8C5D6]",
       accentColor: "#3182CE"
     },
     {
@@ -44,7 +44,7 @@ export default function GetHelpPortal() {
       link: "/get-help/each-other",
       icon: <Compass className="w-8 h-8 text-[#319795]" />,
       bgColor: "bg-gradient-to-br from-[#E6FFFA] to-[#D2F9F1]",
-      borderColor: "border-[#D2F9F1]/30",
+      borderColor: "border-[#A5DDD0]",
       accentColor: "#319795"
     }
   ];

@@ -91,15 +91,13 @@ export default function Gallery() {
  transition={{ duration: 0.4, delay: idx * 0.02 }}
  key={item.src}
  onClick={() => setActiveImage({ src: item.src, caption: item.caption })}
- className="group flex flex-col gap-3 p-4 rounded-3xl glass-panel border border-white/60 shadow-soft cursor-pointer hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
+ className="group flex flex-col rounded-[2.5rem] bg-white shadow-soft border border-[#C1D6C1] cursor-pointer overflow-hidden pb-6 hover:-translate-y-2 hover:border-[#90BCE6] hover:shadow-premium hover:!bg-[#CFE8FF] transition-all duration-300"
  >
- <div className="aspect-square rounded-2xl relative overflow-hidden shadow-inner">
+ <div className="relative aspect-square w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0">
  <img referrerPolicy="no-referrer"
  src={item.src}
  alt={item.caption}
- 
- 
- className="w-full h-full object-cover absolute inset-0 object-cover group-hover:scale-102 transition-premium"
+ className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-premium"
  />
  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-premium">
  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg text-foreground">
@@ -107,9 +105,11 @@ export default function Gallery() {
  </div>
  </div>
  </div>
- <span className="text-xs text-foreground/80 line-clamp-2 leading-relaxed px-1 font-medium">
+ <div className="pt-6 px-6 flex flex-col h-full justify-between">
+ <span className="text-xs text-foreground/80 line-clamp-2 leading-relaxed font-semibold">
  {item.caption}
  </span>
+ </div>
  </motion.div>
  ))}
  </AnimatePresence>

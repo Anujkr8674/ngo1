@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Check, Sparkles } from "lucide-react";
+import { Card } from "../components/Card";
 
 export default function Contact() {
     const [submitted, setSubmitted] = useState(false);
@@ -56,7 +57,7 @@ export default function Contact() {
                 <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
 
                     {/* Contact Message Form */}
-                    <div className="lg:col-span-7 p-8 md:p-12 rounded-[2.5rem] bg-white border border-foreground/5 shadow-premium hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
+                    <div className="lg:col-span-7 p-8 md:p-12 rounded-[2.5rem] bg-white border border-[#EEB898] shadow-soft flex flex-col">
                         <h3 className="font-display font-bold text-2xl text-foreground mb-6">Write to the Team</h3>
 
                         {submitted ? (
@@ -146,7 +147,7 @@ export default function Contact() {
                     <div className="lg:col-span-5 flex flex-col gap-8">
 
                         {/* Info Card */}
-                        <div className="p-8 rounded-3xl bg-white border border-foreground/5 shadow-soft flex flex-col gap-6 hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300">
+                        <div className="p-8 rounded-[2.5rem] bg-white border border-[#EEB898] shadow-soft flex flex-col gap-6">
                             <h3 className="font-display font-bold text-2xl text-foreground">Office Coordinates</h3>
 
                             <div className="flex flex-col gap-5 text-sm text-foreground/75 leading-relaxed">
@@ -203,7 +204,7 @@ export default function Contact() {
                         </div>
 
                         {/* Google Maps Iframe */}
-                        <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-foreground/5 shadow-soft relative">
+                        <div className="aspect-[4/3] rounded-[2.5rem] overflow-hidden border border-[#EEB898] shadow-soft relative">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.9464528131336!2d77.0182606!3d28.586358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1af8d8a01bf7%3A0xe54e38c946261536!2sSector%2019%20Dwarka!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                                 width="100%"

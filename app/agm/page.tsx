@@ -105,10 +105,10 @@ export default function Agm() {
                   <button
                     key={report.id}
                     onClick={() => setActivePdf(report)}
-                    className={`flex items-start text-left gap-4 p-4 rounded-3xl transition-premium border ${
+                    className={`flex items-start text-left gap-4 p-4 rounded-[2.5rem] transition-premium border ${
                       isActive 
-                        ? "bg-white border-white/60 shadow-premium" 
-                        : "bg-transparent border-transparent hover:bg-white/50"
+                        ? "bg-white border-[#C8B4D4] shadow-premium" 
+                        : "bg-transparent border-transparent hover:bg-white/50 hover:border-[#C8B4D4]/30"
                     }`}
                   >
                     <div className={`mt-1 w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-soft transition-colors ${isActive ? "bg-[#CFE8FF] text-foreground" : "bg-white text-foreground/60"}`}>
@@ -127,7 +127,7 @@ export default function Agm() {
               })}
             </div>
             
-            <div className="mt-8 p-6 bg-white rounded-3xl border border-white/60 shadow-soft hidden lg:flex flex-col gap-4">
+            <div className="mt-8 p-6 bg-white rounded-[2.5rem] border border-[#C8B4D4] shadow-soft hidden lg:flex flex-col gap-4">
               <div className="w-12 h-12 bg-gradient-soft-yellow rounded-2xl flex items-center justify-center shadow-soft">
                 <Download className="w-5 h-5 text-foreground" />
               </div>
@@ -139,7 +139,7 @@ export default function Agm() {
           </div>
 
           {/* Main PDF Viewer Area */}
-          <div className="w-full lg:w-2/3 flex flex-col h-full bg-white rounded-[2.5rem] shadow-soft border border-white/60 overflow-hidden">
+          <div className="w-full lg:w-2/3 flex flex-col h-full bg-white rounded-[2.5rem] shadow-soft border border-[#C8B4D4] overflow-hidden">
             {/* Toolbar Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between p-6 border-b border-foreground/5 gap-4">
               <div className="flex flex-col gap-1">

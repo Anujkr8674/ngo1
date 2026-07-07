@@ -204,7 +204,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 key={stat.label}
-                className="flex flex-col gap-3 p-6 rounded-2xl border-white/50"
+                className="flex flex-col gap-3 p-6 rounded-[2.5rem] border border-[#EEB898]"
               >
                 <div className="text-4xl md:text-5xl font-display font-bold text-foreground">
                   <Counter end={stat.value} suffix={stat.suffix} />
@@ -253,9 +253,9 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 key={area.title}
-                className="group p-6 rounded-[2.5rem] border-white/60 flex flex-col h-full"
+                className="group pb-6 rounded-[2.5rem] border border-[#E0B69B] flex flex-col h-full overflow-hidden"
               >
-                <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-inner shrink-0">
+                <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0">
                   <img
                     src={area.image}
                     alt={area.title}
@@ -268,7 +268,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="pt-6 flex flex-col h-full">
+                <div className="pt-6 px-6 flex flex-col h-full">
                   <div className="flex flex-col gap-2">
                     <h4 className="font-display font-bold text-lg text-foreground">{area.title}</h4>
                     <p className="text-xs text-foreground/70 leading-relaxed line-clamp-3 min-h-[58px]">{area.desc}</p>
@@ -312,28 +312,26 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
                 key={item.name}
                 onClick={() => setActiveVideo(item.video)}
-                className="flex-shrink-0 w-72 h-[380px] p-5 rounded-[2.5rem] group cursor-pointer border border-white/60 flex flex-col snap-start hover:bg-[#CFE8FF] transition-colors duration-300"
+                className="flex-shrink-0 w-72 h-[380px] rounded-[2.5rem] group cursor-pointer border border-[#B8C5D6] flex flex-col snap-start overflow-hidden relative"
               >
-                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-inner flex-1">
-                  <img referrerPolicy="no-referrer"
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-premium"
-                  />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white" />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-premium">
-                    <div className="w-14 h-14 rounded-full backdrop-blur flex items-center justify-center shadow-lg text-foreground">
-                      <Play className="w-6 h-6 fill-current text-foreground ml-1" />
-                    </div>
+                <img referrerPolicy="no-referrer"
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-premium"
+                />
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-premium">
+                  <div className="w-14 h-14 rounded-full backdrop-blur-md bg-white/20 border border-white/30 flex items-center justify-center shadow-lg text-white">
+                    <Play className="w-6 h-6 fill-current text-white ml-1" />
                   </div>
-                  {/* Bottom Details */}
-                  <div className="absolute bottom-5 left-5 right-5 z-10 text-white flex flex-col gap-1.5">
-                    <span className="text-xs uppercase tracking-widest font-sans opacity-75">Supporter Story</span>
-                    <h4 className="font-display font-bold text-lg leading-tight">{item.name}</h4>
-                    <div className="flex items-center gap-1.5 text-xs backdrop-blur w-fit px-2.5 py-1 rounded-full font-semibold uppercase mt-1">
-                      <Play className="w-2.5 h-2.5 fill-current" /> Play Video
-                    </div>
+                </div>
+                {/* Bottom Details */}
+                <div className="absolute bottom-6 left-6 right-6 z-10 text-white flex flex-col gap-1.5">
+                  <span className="text-xs uppercase tracking-widest font-sans opacity-75">Supporter Story</span>
+                  <h4 className="font-display font-bold text-lg leading-tight">{item.name}</h4>
+                  <div className="flex items-center gap-1.5 text-xs backdrop-blur-md bg-white/20 border border-white/20 w-fit px-2.5 py-1 rounded-full font-semibold uppercase mt-1">
+                    <Play className="w-2.5 h-2.5 fill-current" /> Play Video
                   </div>
                 </div>
               </MotionCard>
@@ -370,17 +368,17 @@ export default function Home() {
               { src: "https://live4help.org/wp-content/uploads/2022/02/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg", caption: "Mangrove saplings restoration campaign, Sundarbans" },
               { src: "https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-3.jpg", caption: "Winter blanket and clothing distributions" }
             ].map((img, i) => (
-              <Card key={i} className="group p-4 rounded-3xl flex flex-col gap-3">
-                <div className="aspect-square rounded-2xl relative overflow-hidden shadow-inner">
+              <Card key={i} className="group pb-6 rounded-[2.5rem] border border-[#E3D38C] flex flex-col h-full overflow-hidden">
+                <div className="relative aspect-square w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0">
                   <img referrerPolicy="no-referrer"
                     src={img.src}
                     alt={img.caption}
-
-
-                    className="w-full h-full object-cover absolute inset-0 object-cover group-hover:scale-102 transition-premium"
+                    className="w-full h-full object-cover absolute inset-0 object-cover group-hover:scale-105 transition-premium"
                   />
                 </div>
-                <span className="text-xs font-semibold text-foreground/80 leading-relaxed truncate px-1">{img.caption}</span>
+                <div className="pt-6 px-6 flex flex-col h-full justify-between">
+                  <span className="text-xs font-semibold text-foreground/80 leading-relaxed line-clamp-2 min-h-[32px]">{img.caption}</span>
+                </div>
               </Card>
             ))}
           </div>
@@ -409,13 +407,13 @@ export default function Home() {
               </div>
             </div>
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <Card className="p-8 rounded-3xl flex flex-col gap-4 bg-white border-0 shadow-soft">
+              <Card className="p-8 rounded-[2.5rem] flex flex-col gap-4 bg-white border border-[#C1D6C1] shadow-soft">
                 <h4 className="font-display font-bold text-xl text-foreground">M/s Erbe Medical India</h4>
                 <p className="text-xs text-foreground/75 leading-relaxed">
                   Generously sponsored the Darjeeling Hills University Cancer Awareness session and rural Sundarbans diagnostic medical camps.
                 </p>
               </Card>
-              <Card className="p-8 rounded-3xl flex flex-col gap-4 bg-white border-0 shadow-soft">
+              <Card className="p-8 rounded-[2.5rem] flex flex-col gap-4 bg-white border border-[#C1D6C1] shadow-soft">
                 <h4 className="font-display font-bold text-xl text-foreground">M/s ABS Professional India</h4>
                 <p className="text-xs text-foreground/75 leading-relaxed">
                   Generously supported the large-scale Mangrove Plantation restoration project in coastal Sundarbans to buffer climatic storms.
@@ -446,35 +444,35 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {blogsData.slice(0, 3).map((blog) => (
-              <Card as="article" key={blog.slug} className="group flex flex-col gap-6 p-6 rounded-3xl border-white/60">
+              <Card as="article" key={blog.slug} className="group flex flex-col rounded-[2.5rem] border border-[#C8B4D4] overflow-hidden pb-6 h-full">
                 {blog.images && blog.images.length > 0 && (
-                  <div className="aspect-[4/3] rounded-2xl relative overflow-hidden shadow-inner">
+                  <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0">
                     <img referrerPolicy="no-referrer"
                       src={blog.images[0]}
                       alt={blog.title}
-
-
-                      className="w-full h-full object-cover absolute inset-0 object-cover group-hover:scale-103 transition-premium"
+                      className="w-full h-full object-cover absolute inset-0 object-cover group-hover:scale-105 transition-premium"
                     />
                   </div>
                 )}
-                <div className="flex flex-col gap-3 flex-1">
-                  <div className="flex items-center gap-3 text-xs text-foreground/50">
-                    <span>{blog.date}</span>
-                    <span>•</span>
-                    <span>By {blog.author}</span>
+                <div className="pt-6 px-6 flex flex-col h-full flex-grow justify-between">
+                  <div className="flex flex-col gap-2.5 flex-1">
+                    <div className="flex items-center gap-3 text-xs text-foreground/50">
+                      <span>{blog.date}</span>
+                      <span>•</span>
+                      <span>By {blog.author}</span>
+                    </div>
+                    <h4 className="font-display font-bold text-lg text-foreground leading-snug group-hover:text-blue-600 transition-colors">
+                      {blog.title}
+                    </h4>
+                    <p className="text-xs text-foreground/70 leading-relaxed line-clamp-3">
+                      {blog.paragraphs[0]}
+                    </p>
                   </div>
-                  <h4 className="font-display font-bold text-xl text-foreground leading-snug group-hover:text-blue-600 transition-colors">
-                    {blog.title}
-                  </h4>
-                  <p className="text-sm text-foreground/70 leading-relaxed line-clamp-3">
-                    {blog.paragraphs[0]}
-                  </p>
+                  <Link href={`/blog/${blog.slug}`} className="flex items-center gap-1.5 text-xs font-semibold text-foreground/80 hover:text-foreground mt-4 w-fit group/btn">
+                    Read article
+                    <ArrowRight className="w-3.5 h-3.5 text-foreground/40 group-hover/btn:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
-                <Link href={`/blog/${blog.slug}`} className="flex items-center gap-1 text-xs font-semibold text-foreground/80 hover:text-foreground mt-4 group/btn">
-                  Read article
-                  <ArrowRight className="w-3.5 h-3.5 text-foreground/40 group-hover/btn:translate-x-1 transition-transform" />
-                </Link>
               </Card>
             ))}
           </div>

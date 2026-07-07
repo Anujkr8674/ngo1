@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { AlertCircle } from "lucide-react";
+import { Card } from "../components/Card";
 
 export default function Disclaimer() {
   return (
@@ -52,11 +53,11 @@ export default function Disclaimer() {
 
       {/* Content Section */}
       <section className="py-16 px-6 md:px-12 bg-white pb-32">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-soft border border-foreground/5 text-foreground/80 font-sans leading-relaxed flex flex-col gap-6 text-sm md:text-base">
+        <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-12 md:px-8 border border-foreground/5 max-w-5xl mx-auto w-full">
+          <div className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-[#EEB898] shadow-soft text-foreground/80 font-sans leading-relaxed flex flex-col gap-6 text-sm md:text-base">
             <h2 className="text-2xl font-display font-bold text-foreground">Website Disclaimer</h2>
             <p>
-              The information contained in this website is for general information purposes only. LIVE 4 HELP FOUNDATION believes the content to be accurate, complete, and current. LIVE 4 HELP FOUNDATION makes no representations or warranties of any kind about the accuracy, reliability, completeness, suitability or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose. Any reliance you place on such information is therefore strictly at your own risk.
+              The information contained in this website is for general information purposes only. LIVE 4 HELP FOUNDATION believes the content to be accurate, complete, and current. LIVE 4 HELP FOUNDATION makes no representations or warranties of any kind about the accuracy, reliability, completeness, &nbsp;suitability or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose. Any reliance you place on such information is therefore strictly at your own risk.
             </p>
             <p>
               All content is provided &ldquo;AS IS&rdquo; without warranty of any kind. LIVE 4 HELP FOUNDATION hereby disclaims all warranties about the content, including but not limited to all implied warranties of merchantability, fitness for a particular purpose, title, and non-infringement.

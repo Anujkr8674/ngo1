@@ -96,11 +96,11 @@ export default function Donate() {
             </section>
 
             {/* Main Content Area */}
-            <section className="py-12 px-6 md:px-12 bg-[#FFE6D4] pb-24">
-                <div className="max-w-4xl mx-auto flex flex-col gap-8">
+            <section className="py-8 px-6 md:px-12 bg-white pb-24">
+                <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-12 md:px-8 border border-foreground/5 max-w-5xl mx-auto flex flex-col gap-8">
 
                     {/* Step 1: Selection Cards */}
-                    <div className="bg-white rounded-3xl p-8 md:p-10 border border-foreground/5 shadow-soft flex flex-col gap-10">
+                    <div className="bg-white rounded-[2.5rem] p-8 md:p-10 border border-[#EEB898] shadow-soft flex flex-col gap-10">
                         {/* Amount Selection */}
                         <div className="flex flex-col gap-6">
                             <h3 className="font-display font-bold text-xl text-foreground">How much would you like to give?</h3>
@@ -182,7 +182,7 @@ export default function Donate() {
                     </div>
 
                     {/* Step 2: Payment Methods */}
-                    <div className="bg-white rounded-3xl p-8 md:p-10 border border-foreground/5 shadow-soft flex flex-col gap-8">
+                    <div className="bg-white rounded-[2.5rem] p-8 md:p-10 border border-[#EEB898] shadow-soft flex flex-col gap-8">
                         <h3 className="font-display font-bold text-2xl text-foreground">Payment methods</h3>
 
                         {/* Tabs */}
@@ -296,7 +296,7 @@ export default function Donate() {
                                         initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }}
                                         className="flex flex-col gap-6"
                                     >
-                                        <div className="bg-[#E5F0E5] p-6 rounded-2xl border border-foreground/5 flex flex-col gap-4 text-sm text-foreground/80 leading-relaxed">
+                                        <div className="bg-[#E5F0E5] p-6 rounded-2xl border border-[#C1D6C1] flex flex-col gap-4 text-sm text-foreground/80 leading-relaxed">
                                             <p>
                                                 Please make a cheque/DD in favour of:<br />
                                                 <strong className="text-foreground text-base">Live 4 Help Foundation</strong>
@@ -325,7 +325,7 @@ export default function Donate() {
                     </div>
 
                     {/* Step 3: Receipt Form */}
-                    <div className="bg-white rounded-3xl p-8 md:p-10 border border-foreground/5 shadow-soft flex flex-col gap-8 mb-12">
+                    <div className="bg-white rounded-[2.5rem] p-8 md:p-10 border border-[#EEB898] shadow-soft flex flex-col gap-8 mb-12">
                         <div className="flex flex-col gap-2 border-b border-foreground/5 pb-6">
                             <h3 className="font-display font-bold text-2xl text-foreground">After you pay — help us send your receipt</h3>
                             <p className="text-sm text-foreground/70">Thank you for your generosity. Please share a few details after making your payment so we can issue your receipt.</p>

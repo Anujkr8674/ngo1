@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, X, Eye } from "lucide-react";
+import { Card } from "../components/Card";
 
 export default function DonorsCSRSponsorsMembers() {
     const [activeImage, setActiveImage] = useState<string | null>(null);
@@ -59,12 +60,12 @@ export default function DonorsCSRSponsorsMembers() {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4">
                         {memberImages.map((sheet, i) => (
-                            <div
+                            <Card
                                 key={i}
                                 onClick={() => setActiveImage(sheet.src)}
-                                className="group flex flex-col gap-4 p-5 rounded-3xl glass-panel border border-white shadow-soft cursor-pointer hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
+                                className="group pb-6 rounded-[2.5rem] border border-[#E0B69B] shadow-soft cursor-pointer flex flex-col h-full overflow-hidden"
                             >
-                                <div className="aspect-[4/5] rounded-2xl relative overflow-hidden shadow-inner">
+                                <div className="aspect-[4/5] w-full rounded-b-2xl relative overflow-hidden shadow-inner shrink-0">
                                     <img referrerPolicy="no-referrer"
                                         src={sheet.src}
                                         alt={sheet.title}
@@ -76,8 +77,10 @@ export default function DonorsCSRSponsorsMembers() {
                                         </div>
                                     </div>
                                 </div>
-                                <span className="font-semibold text-xs tracking-tight text-foreground/90">{sheet.title}</span>
-                            </div>
+                                <div className="pt-6 px-6 flex flex-col h-full flex-grow">
+                                    <span className="font-semibold text-xs tracking-tight text-foreground/90 group-hover:text-blue-600 transition-colors">{sheet.title}</span>
+                                </div>
+                            </Card>
                         ))}
                     </div>
                 </div>

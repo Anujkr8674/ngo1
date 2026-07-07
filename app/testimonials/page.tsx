@@ -66,30 +66,29 @@ export default function Testimonials() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
+                whileHover={{ y: -8 }}
                 key={item.name}
                 onClick={() => setActiveVideo(item.video)}
-                className="w-full h-[400px] p-5 rounded-[2.5rem] group cursor-pointer border border-foreground/5 shadow-soft hover:shadow-premium transition-all duration-300 flex flex-col bg-[#E8ECF2] hover:bg-[#CFE8FF]"
+                className="w-full h-[400px] rounded-[2.5rem] group cursor-pointer border border-[#B8C5D6] hover:border-[#90BCE6] shadow-soft hover:shadow-premium transition-all duration-300 flex flex-col bg-[#E8ECF2] hover:bg-[#CFE8FF] overflow-hidden relative"
               >
-                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-inner flex-1 bg-white">
-                  <img referrerPolicy="no-referrer"
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-premium"
-                  />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white" />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-premium">
-                    <div className="w-14 h-14 rounded-full backdrop-blur flex items-center justify-center shadow-lg text-foreground bg-white/20">
-                      <Play className="w-6 h-6 fill-current text-white ml-1" />
-                    </div>
+                <img referrerPolicy="no-referrer"
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-premium"
+                />
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-premium">
+                  <div className="w-14 h-14 rounded-full backdrop-blur-md bg-white/20 border border-white/30 flex items-center justify-center shadow-lg text-white">
+                    <Play className="w-6 h-6 fill-current text-white ml-1" />
                   </div>
-                  {/* Bottom Details */}
-                  <div className="absolute bottom-5 left-5 right-5 z-10 text-white flex flex-col gap-1.5">
-                    <span className="text-xs uppercase tracking-widest font-sans opacity-75">Supporter Story</span>
-                    <h4 className="font-display font-bold text-lg leading-tight">{item.name}</h4>
-                    <div className="flex items-center gap-1.5 text-xs backdrop-blur w-fit px-2.5 py-1 rounded-full font-semibold uppercase mt-1 border border-white/20">
-                      <Play className="w-2.5 h-2.5 fill-current" /> Play Video
-                    </div>
+                </div>
+                {/* Bottom Details */}
+                <div className="absolute bottom-6 left-6 right-6 z-10 text-white flex flex-col gap-1.5">
+                  <span className="text-xs uppercase tracking-widest font-sans opacity-75">Supporter Story</span>
+                  <h4 className="font-display font-bold text-lg leading-tight">{item.name}</h4>
+                  <div className="flex items-center gap-1.5 text-xs backdrop-blur-md bg-white/20 border border-white/20 w-fit px-2.5 py-1 rounded-full font-semibold uppercase mt-1">
+                    <Play className="w-2.5 h-2.5 fill-current" /> Play Video
                   </div>
                 </div>
               </MotionCard>

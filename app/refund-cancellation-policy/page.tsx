@@ -52,9 +52,9 @@ export default function RefundPolicy() {
 
       {/* Content Section */}
       <section className="py-16 px-6 md:px-12 bg-white pb-32">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-soft border border-foreground/5 text-foreground/80 font-sans leading-relaxed flex flex-col gap-6 text-sm md:text-base">
-            <h2 className="text-2xl font-display font-bold text-foreground">Refund & Cancellation Policy</h2>
+        <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-12 md:px-8 border border-foreground/5 max-w-5xl mx-auto w-full">
+          <div className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-[#EEB898] shadow-soft text-foreground/80 font-sans leading-relaxed flex flex-col gap-6 text-sm md:text-base">
+            <h2 className="text-2xl font-display font-bold text-foreground">Refund &amp; Cancellation Policy</h2>
             <p>
               LIVE 4 HELP FOUNDATION confirms <strong>NO Refund or Cancellation</strong> for the donations by any donor after a successful transaction through NEFT/RTGS/Cheque or any other offline modes.
             </p>

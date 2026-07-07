@@ -82,7 +82,7 @@ export default function Impact() {
   viewport={{ once: true }}
   transition={{ duration: 0.5, delay: i * 0.1 }}
   key={card.label}
-  className="p-8 rounded-3xl border border-white flex flex-col gap-6"
+  className="p-8 rounded-[2.5rem] border border-[#EEB898] flex flex-col gap-6 shadow-soft"
  >
   <div className={`w-12 h-12 rounded-xl ${card.color} flex items-center justify-center`}>
     {card.icon}
@@ -133,13 +133,13 @@ export default function Impact() {
  Live 4 Help Foundation identifies deserving students based on academic credentials and household economic hardships. Our commitment is long-term, renewed year after year to ensure students finish their course journeys.
  </p>
  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
- <Card className="p-5 rounded-2xl border-white">
+ <Card className="p-5 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
    <h4 className="font-semibold text-xs uppercase tracking-wider text-foreground/60 mb-2">IIT Chennai Sponsoring</h4>
    <p className="text-xs text-foreground/80 leading-relaxed">
      Supporting student Mr. Subham Pandey pursuing M.Sc. Physics at IIT Chennai, providing tuition & research support.
    </p>
  </Card>
- <Card className="p-5 rounded-2xl border-white">
+ <Card className="p-5 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
    <h4 className="font-semibold text-xs uppercase tracking-wider text-foreground/60 mb-2">Tribal Village Sponsoring</h4>
    <p className="text-xs text-foreground/80 leading-relaxed">
      Funding 5 girl students (Anjali, Sila, Mukhimoni, Rupali, Sonali) in Bankura District tribal villages.
@@ -148,7 +148,7 @@ export default function Impact() {
  </div>
  </div>
  <div className="lg:col-span-5 flex flex-col gap-6">
- <Card className="p-8 rounded-3xl border-white/80">
+ <Card className="p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
    <h4 className="font-display font-bold text-lg text-foreground mb-4 flex items-center gap-2">
      <MapPin className="w-5 h-5 text-secondary" />
      Major Sponsoring States
@@ -208,7 +208,7 @@ export default function Impact() {
  </ul>
  </div>
  <div className="lg:col-span-5 flex flex-col gap-6">
- <Card className="p-8 rounded-3xl border-white/80">
+ <Card className="p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
    <h4 className="font-display font-bold text-lg text-foreground mb-4 flex items-center gap-2">
      <Activity className="w-5 h-5 text-primary" />
      Awareness Campaigns
@@ -242,7 +242,7 @@ export default function Impact() {
  <p className="text-sm text-foreground/80 leading-relaxed">
  Sundarban regions are vulnerable to recurrent severe cyclones (like Amphan and Yaas). To check coastal erosion and provide storm surge buffers, we coordinate mangrove plantation programs.
  </p>
- <Card className="p-6 rounded-2xl border-white flex flex-col gap-4">
+ <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] flex flex-col gap-4 shadow-soft">
    <span className="font-semibold text-sm text-foreground">Sustained Survival Methods:</span>
    <ul className="list-disc pl-5 text-xs text-foreground/70 flex flex-col gap-2">
      <li>Planting indigenous resilient species: Sundari, Bain, Kakra, Garjan, Golpata, and Dhuldhul.</li>
@@ -252,7 +252,7 @@ export default function Impact() {
  </Card>
  </div>
  <div className="lg:col-span-5 flex flex-col gap-6">
- <Card className="p-8 rounded-3xl border-white/80">
+ <Card className="p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
    <h4 className="font-display font-bold text-lg text-foreground mb-4 flex items-center gap-2">
      <Building className="w-5 h-5 text-secondary" />
      Key Milestones
@@ -286,7 +286,7 @@ export default function Impact() {
  Beyond our core focus areas, Live 4 Help Foundation actively responds to seasonal challenges. Our "Other Social Works" initiative primarily focuses on winter relief drives to support economically weaker sections of society, including migrant daily laborers and construction workers.
  </p>
  <div className="grid grid-cols-1 gap-4 mt-2">
- <Card className="p-6 rounded-2xl border-white">
+ <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
    <h4 className="font-semibold text-sm uppercase tracking-wider text-foreground mb-2">Annual Blanket Distribution</h4>
    <p className="text-xs text-foreground/80 leading-relaxed">
      Every winter, we conduct extensive blanket distribution drives across Delhi NCR and West Bengal. This crucial initiative ensures that vulnerable individuals, particularly those living in makeshift shelters or on the streets, have protection against the severe cold.
@@ -295,7 +295,7 @@ export default function Impact() {
  </div>
  </div>
  <div className="lg:col-span-5 flex flex-col gap-6">
- <Card className="p-8 rounded-3xl border-white/80">
+ <Card className="p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
    <h4 className="font-display font-bold text-lg text-foreground mb-4 flex items-center gap-2">
      <HeartHandshake className="w-5 h-5 text-primary" />
      Impact Highlights

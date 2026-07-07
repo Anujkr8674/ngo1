@@ -90,8 +90,8 @@ export default function About() {
 
  {/* Vision, Mission, Values */}
  <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card className="p-8 rounded-3xl flex flex-col gap-6 group">
+  <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+          <Card className="p-8 rounded-[2.5rem] border border-[#C1D6C1] flex flex-col gap-6 group shadow-soft">
             <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
               <Star className="w-6 h-6 text-foreground" />
             </div>
@@ -101,7 +101,7 @@ export default function About() {
             </p>
           </Card>
 
-          <Card className="p-8 rounded-3xl flex flex-col gap-6 group">
+          <Card className="p-8 rounded-[2.5rem] border border-[#C1D6C1] flex flex-col gap-6 group shadow-soft">
             <div className="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center">
               <Compass className="w-6 h-6 text-foreground" />
             </div>
@@ -111,7 +111,7 @@ export default function About() {
             </p>
           </Card>
 
-          <Card className="p-8 rounded-3xl flex flex-col gap-6 group">
+          <Card className="p-8 rounded-[2.5rem] border border-[#C1D6C1] flex flex-col gap-6 group shadow-soft">
             <div className="w-12 h-12 rounded-xl bg-accent/30 flex items-center justify-center">
               <ShieldAlert className="w-6 h-6 text-foreground" />
             </div>
@@ -151,7 +151,7 @@ export default function About() {
 
  {/* Card Content */}
  <div className={`w-full md:w-1/2 pl-16 md:pl-0 ${isLeft ? 'md:pr-16 order-1' : 'md:pl-16 order-3'} flex`}>
-                      <Card className="w-full relative p-6 md:p-8 rounded-3xl border-foreground/5 flex flex-col gap-4">
+                      <Card className="w-full relative p-6 md:p-8 rounded-[2.5rem] border border-[#E0B69B] flex flex-col gap-4 shadow-soft">
                         
                         {/* Little triangle pointer (hidden on mobile) */}
                         <div className={`hidden md:block absolute top-1/2 transform -translate-y-1/2 w-4 h-4 bg-white border border-foreground/5 rotate-45 ${isLeft ? '-right-2 border-l-0 border-b-0' : '-left-2 border-r-0 border-t-0'}`} />
@@ -198,7 +198,7 @@ export default function About() {
  viewport={{ once: true }}
  transition={{ duration: 0.6 }}
  key={founder.name}
- className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 md:p-12 rounded-[2.5rem] backdrop-blur-md border border-white shadow-premium transition-colors duration-500 cursor-pointer ${hoverColors[index % hoverColors.length]} ${
+ className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 md:p-12 rounded-[2.5rem] backdrop-blur-md border border-[#B8C5D6] shadow-premium transition-colors duration-500 cursor-pointer ${hoverColors[index % hoverColors.length]} ${
  index % 2 === 1 ? "lg:flex-row-reverse" : ""
  }`}
  >
@@ -238,29 +238,29 @@ export default function About() {
  </p>
  </div>
 
- <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {advisors.map((adv) => (
-              <Card key={adv.name} className="p-8 rounded-3xl border-white flex flex-col gap-6">
-                <div className="flex items-center gap-4">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 border border-white shadow-inner bg-foreground/5">
-                    <img referrerPolicy="no-referrer"
-                      src={adv.image}
-                      alt={adv.name}
-                      
-                      
-                      className="w-full h-full object-cover absolute inset-0 object-cover"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <h4 className="font-display font-bold text-lg text-foreground leading-snug">{adv.name}</h4>
-                    <span className="text-xs text-foreground/60">{adv.role}</span>
-                  </div>
-                </div>
-                <p className="text-xs md:text-sm text-foreground/70 leading-relaxed">
-                  {adv.description}
-                </p>
-              </Card>
-            ))}
+ <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+             {advisors.map((adv) => (
+               <Card key={adv.name} className="group pb-6 rounded-[2.5rem] border border-[#E3D38C] flex flex-col h-full overflow-hidden shadow-soft bg-white">
+                 <div className="relative aspect-square w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0">
+                   <img referrerPolicy="no-referrer"
+                     src={adv.image}
+                     alt={adv.name}
+                     className="w-full h-full object-cover absolute inset-0 object-top group-hover:scale-105 transition-premium"
+                   />
+                 </div>
+                 <div className="pt-6 px-6 flex flex-col h-full flex-grow">
+                   <div className="flex flex-col gap-3 flex-1">
+                     <div className="flex flex-col">
+                       <span className="text-xs uppercase tracking-widest font-semibold text-[#DD6B20]/80">{adv.role}</span>
+                       <h4 className="font-display font-bold text-lg text-foreground leading-snug group-hover:text-blue-600 transition-colors">{adv.name}</h4>
+                     </div>
+                     <p className="text-xs text-foreground/75 leading-relaxed">
+                       {adv.description}
+                     </p>
+                   </div>
+                 </div>
+               </Card>
+             ))}
  </div>
  </div>
  </section>

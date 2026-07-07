@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FileText } from "lucide-react";
+import { Card } from "../components/Card";
 
 export default function TermsConditions() {
   return (
@@ -52,8 +53,8 @@ export default function TermsConditions() {
 
       {/* Content Section */}
       <section className="py-16 px-6 md:px-12 bg-white pb-32">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-soft border border-foreground/5 text-foreground/80 font-sans leading-relaxed flex flex-col gap-6 text-sm md:text-base">
+        <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-12 md:px-8 border border-foreground/5 max-w-5xl mx-auto w-full">
+          <div className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-[#EEB898] shadow-soft text-foreground/80 font-sans leading-relaxed flex flex-col gap-6 text-sm md:text-base">
             <h2 className="text-2xl font-display font-bold text-foreground">Terms of Use</h2>
             <p>
               The use of this website provided by LIVE 4 HELP FOUNDATION is subject to the following Terms and Conditions:

@@ -109,40 +109,42 @@ export default function Blog() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.05 }}
                     key={blog.slug}
-                    className="group flex flex-col justify-between p-6 rounded-3xl bg-white shadow-soft border border-foreground/5 min-h-[500px] hover:-translate-y-2 hover:border-primary hover:shadow-premium hover:!bg-[#CFE8FF] transition-all duration-300"
+                    className="group flex flex-col justify-between rounded-[2.5rem] bg-white shadow-soft border border-[#C1D6C1] min-h-[500px] hover:-translate-y-2 hover:border-[#90BCE6] hover:shadow-premium hover:!bg-[#CFE8FF] transition-all duration-300 overflow-hidden pb-6"
                   >
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col flex-1">
                       {/* Image */}
                       {blog.images && blog.images.length > 0 && (
-                        <div className="aspect-[4/3] rounded-2xl relative overflow-hidden shadow-inner">
+                        <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0">
                           <img referrerPolicy="no-referrer"
                             src={blog.images[0]}
                             alt={blog.title}
-
-
-                            className="w-full h-full object-cover absolute inset-0 object-cover group-hover:scale-103 transition-premium"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-premium"
                           />
                         </div>
                       )}
                       {/* Body */}
-                      <div className="flex flex-col gap-3">
-                        <div className="flex flex-wrap items-center gap-4 text-xs font-semibold tracking-wider text-foreground/50 uppercase">
-                          <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{blog.date}</span>
-                          <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" />{readTime} Min Read</span>
+                      <div className="pt-6 px-6 flex flex-col h-full flex-grow justify-between">
+                        <div className="flex flex-col gap-2.5 flex-grow">
+                          <div className="flex flex-wrap items-center gap-4 text-xs font-semibold tracking-wider text-foreground/50 uppercase">
+                            <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{blog.date}</span>
+                            <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" />{readTime} Min Read</span>
+                          </div>
+                          <h2 className="font-display font-bold text-lg md:text-xl text-foreground leading-snug group-hover:text-blue-600 transition-colors">
+                            {blog.title}
+                          </h2>
+                          <p className="text-xs text-foreground/70 leading-relaxed line-clamp-3">
+                            {blog.paragraphs[0]}
+                          </p>
                         </div>
-                        <h2 className="font-display font-bold text-xl md:text-2xl text-foreground leading-snug group-hover:text-blue-600 transition-colors">
-                          {blog.title}
-                        </h2>
-                        <p className="text-xs md:text-sm text-foreground/70 leading-relaxed line-clamp-3">
-                          {blog.paragraphs[0]}
-                        </p>
                       </div>
                     </div>
 
-                    <Link href={`/blog/${blog.slug}`} className="flex items-center gap-1 text-xs font-semibold text-foreground/80 hover:text-foreground mt-8 group/btn w-fit">
-                      Read full story
-                      <ArrowRight className="w-3.5 h-3.5 text-foreground/40 group-hover/btn:translate-x-1 transition-transform" />
-                    </Link>
+                    <div className="px-6 mt-6">
+                      <Link href={`/blog/${blog.slug}`} className="flex items-center gap-1 text-xs font-semibold text-foreground/80 hover:text-foreground group/btn w-fit">
+                        Read full story
+                        <ArrowRight className="w-3.5 h-3.5 text-foreground/40 group-hover/btn:translate-x-1 transition-transform" />
+                      </Link>
+                    </div>
                   </motion.article>
                 );
               })}

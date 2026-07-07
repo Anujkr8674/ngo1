@@ -102,7 +102,7 @@ export default function Navbar() {
                       </svg>
                     </button>
                     {/* Dropdown Menu */}
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-max min-w-[12rem] bg-white border border-foreground/5 rounded-2xl shadow-premium opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 py-2 z-50 overflow-hidden">
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-max min-w-[12rem] bg-white border border-[#CBB6F5] rounded-2xl shadow-premium opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 py-2 z-50 overflow-hidden">
                       {link.dropdown.map((subLink) => {
                         const isSubActive = pathname === subLink.href;
                         return (
