@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { LayoutDashboard, LogOut, Settings, Users, Menu, X, Image as ImageIcon, ListTree } from 'lucide-react'
+import { logoutAdmin } from '../../actions/adminAuth'
 
 const navItems = [
   { name: 'Overview', href: '/admin/dashboard', icon: LayoutDashboard },
