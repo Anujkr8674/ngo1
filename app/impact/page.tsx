@@ -134,10 +134,10 @@ export default function Impact() {
                 <div className="flex flex-col gap-4">
                   <h3 className="font-display font-bold text-3xl text-foreground">Ngo for Poor Child Education Underprivileged Children in Delhi/NCR</h3>
                   <p className="text-sm text-foreground/80 leading-relaxed">
-                    Live 4 Help (L4H) Foundation is committed to identify deserving students and their academic needs. L4H Foundation through social platforms appeals to donors to help these needy students with stipends / scholarships to meet their basic needs and continuity of education.
+                    <strong>Live 4 Help (L4H) Foundation</strong> is committed to identify deserving students and their academic needs. L4H Foundation through social platforms appeals to donors to help these needy students with stipends / scholarships to meet their basic needs and continuity of education.
                   </p>
                   <p className="text-sm text-foreground/80 leading-relaxed">
-                    From a humble journey with one student in June’21, L4H Foundation has extended education support to a total of 34 students from seven states of India (Delhi, West Bengal, Orissa, Uttarakhand, Uttar Pradesh, Jharkhand and Bihar). Majority (22 out of 34/65%) students are girls. With the help of local volunteers, L4H Foundation keeps tracks of the progress of their education.
+                    From a humble journey with one student in <strong>June’21</strong>, L4H Foundation has extended education support to a total of <strong>34</strong> students from <strong>seven states of India (Delhi, West Bengal, Orissa, Uttarakhand, Uttar Pradesh, Jharkhand and Bihar).</strong> Majority (22 out of 34/65%) students are girls. With the help of local volunteers, L4H Foundation keeps tracks of the progress of their education.
                   </p>
                 </div>
 
@@ -269,10 +269,10 @@ export default function Impact() {
                     Live 4 Help Foundation always endeavor to make a difference and believe that face to face interaction with the students is vital for our success towards education support program. With this thoughts, Live 4 Help Foundation Team met few students in Dec’23. One of core team members, Mr. Ramkrishna (Ramu) Sadhukhan who has come from USA to meet students and motivate them.
                   </p>
                   <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
-                    Our Beneficiary Student, Mr. Subham Pandey who is pursuing M.Sc. Physics from IIT, Chennai met with us on 26th Dec’23. We had a good discussion about his future carrier path. Mr. Subham like to pursue Ph. D after completion of master’s degree.
+                    Our Beneficiary Student, <strong>Mr. Subham Pandey</strong> who is pursuing <strong>M.Sc. Physics from IIT, Chennai</strong> met with us on <strong>26<sup>th</sup> Dec’23</strong>. We had a good discussion about his future carrier path. Mr. Subham like to pursue Ph. D after completion of master’s degree.
                   </p>
                   <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
-                    Live 4 Help Team met five Girl Students, Anjali Kisku, Sila Soren, Mukhi Moni, Rupali Hembram, Sonali Hembram and their parents in Tribal Village of Bankura District, West Bengal and observed ground reality of the living conditions of these students. It was really eye-opening and heart-breaking experience. We have given School Bags and Christmas Cake to the students. Live 4 Help Team reiterated and re-emphasized their parents to continue their education.
+                    Live 4 Help Team met five Girl Students, <strong>Anjali Kisku, Sila Soren, Mukhi Moni, Rupali Hembram, Sonali Hembram</strong> and their parents in <strong>Tribal Village of Bankura District, West Bengal</strong> and observed ground reality of the living conditions of these students. It was really eye-opening and heart-breaking experience. We have given <strong>School Bags</strong> and <strong>Christmas Cake</strong> to the students. Live 4 Help Team reiterated and re-emphasized their parents to continue their education.
                   </p>
                   <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
                     Live 4 Help Team strongly believe that such interaction will provide moral boost and motivation to them. L4H will continue to meet more students in future.
@@ -312,7 +312,7 @@ export default function Impact() {
                       <div className="flex flex-col gap-3 z-10">
                         <h5 className="font-display font-bold text-lg text-foreground">Shweta Singh</h5>
                         <p className="text-xs text-foreground/70 leading-relaxed">
-                          Shweta Singh is a student of New Sainik Public School in Delhi, living with her mother and two siblings. Her father passed away 4 years ago due to cancer. She is an intelligent and meritorious student. L4H Foundation has committed to support her education. Additionally, two L4H Foundation members, Mrs. Amrita Datta from USA and Mr. Subhendu Shekhar Mal from Kuwait have provided Shweta free online coaching in English and Science subjects. Principal of her school, Mrs. Pushpa Singh informed us that she has noticed increased confidence level in Shweta over the years. Shweta is now studying in Class X and would like to pursue higher studies in commerce.
+                          Shweta Singh is a student of New Sainik Public School in Delhi, living with her mother and two siblings. Her father passed away 4 years ago due to cancer. She is an intelligent and meritorious student. L4H Foundation has committed to support her education. Additionally, two L4H Foundation members, <strong>Mrs. Amrita Datta</strong> from USA and <strong>Mr. Subhendu Shekhar Mal</strong> from Kuwait have provided Shweta free online coaching in English and Science subjects. Principal of her school, Mrs. Pushpa Singh informed us that she has noticed increased confidence level in Shweta over the years. Shweta is now studying in Class X and would like to pursue higher studies in commerce.
                         </p>
                       </div>
                     </Card>
@@ -336,7 +336,7 @@ export default function Impact() {
                       <div className="flex flex-col gap-3 z-10">
                         <h5 className="font-display font-bold text-lg text-foreground">Anjali Kisku</h5>
                         <p className="text-xs text-foreground/70 leading-relaxed">
-                          Anjali Kisku, is the 1st graduate from village in Bankura District, West Bengal. She is preparing for a job for which a basic computer training and soft skill development has become a necessity. Anjali belongs to a poor tribal family and her father is only earning member who works as a daily labourer Anjali was struggling to bear the cost of computer course and transportation costs for commuting from her home to nearest training centre, which is more than 20 kms from her village. L4H Foundation stepped in by providing the transportation cost and computer course fee. We are pleased to share that Anjali now has the necessary skills needed to fulfil her aspirations and wish her all the best in pursuing her journey.
+                          Anjali Kisku, is the <strong>1<sup>st</sup></strong> graduate from village in <strong>Bankura District</strong>, West Bengal. She is preparing for a job for which a basic computer training and soft skill development has become a necessity. Anjali belongs to a poor tribal family and her father is only earning member who works as a daily labourer Anjali was struggling to bear the cost of computer course and transportation costs for commuting from her home to nearest training centre, which is more than 20 kms from her village. L4H Foundation stepped in by providing the transportation cost and computer course fee. We are pleased to share that Anjali now has the necessary skills needed to fulfil her aspirations and wish her all the best in pursuing her journey.
                         </p>
                       </div>
                     </Card>
@@ -347,7 +347,7 @@ export default function Impact() {
                 <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
                   <h4 className="font-display font-bold text-xl text-foreground">E. Free OFFLINE Coaching to Needy Students</h4>
                   <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
-                    During Covid 19 pandemic, all schools and institutions remained closed. The students in rural areas were struggling to continue their education. L4H Foundation explored opportunities to help needy student who can’t afford their private tuition fees. L4H Foundation launched a pilot project by selecting one of the villages in Medinipur district of West Bengal. L4H Foundation arranged free offline coaching covering 10 students by engaging local volunteers. Our plan is to develop such models in more villages by finding local volunteers who can devote their time to help and educate children.
+                    During Covid 19 pandemic, all schools and institutions remained closed. The students in rural areas were struggling to continue their education. L4H Foundation explored opportunities to help needy student who can’t afford their private tuition fees. L4H Foundation launched a <strong>pilot project</strong> by selecting one of the villages in Medinipur district of West Bengal. L4H Foundation arranged <strong>free offline coaching covering 10 students</strong> by engaging local volunteers. Our plan is to develop such models in more villages by finding local volunteers who can devote their time to help and educate children.
                   </p>
                 </Card>
               </motion.div>
