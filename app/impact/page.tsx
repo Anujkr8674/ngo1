@@ -7,12 +7,14 @@ import {
   HeartHandshake, 
   Leaf, 
   MapPin, 
+  Calendar, 
+  UserCheck, 
+  Building,
   Activity,
   Award,
-  UserCheck,
+  Users,
   CheckCircle2,
-  Quote,
-  Users
+  Quote
 } from "lucide-react";
 import Counter from "../components/Counter";
 import { Card, MotionCard } from "../components/Card";
@@ -131,12 +133,12 @@ export default function Impact() {
                 <div className="lg:col-span-8 flex flex-col gap-8">
                   {/* Overview */}
                   <div className="flex flex-col gap-4">
-                    <h3 className="font-display font-bold text-3xl text-foreground">Underprivileged Student Sponsoring (USS)</h3>
+                    <h3 className="font-display font-bold text-3xl text-foreground">Ngo for Poor Child Education Underprivileged Children in Delhi/NCR</h3>
                     <p className="text-sm text-foreground/80 leading-relaxed">
-                      Education is the key to unlock the golden door of freedom. The main objective of L4H Foundation under the Education domain is to support needy students who are at risk of discontinuing their education due to financial hardship. 
+                      Live 4 Help (L4H) Foundation is committed to identify deserving students and their academic needs. L4H Foundation through social platforms appeals to donors to help these needy students with stipends / scholarships to meet their basic needs and continuity of education.
                     </p>
                     <p className="text-sm text-foreground/80 leading-relaxed">
-                      L4H Foundation has started this journey since its inception with 1 needy student in West Bengal in June 2021. Today, cumulative 34 needy students from seven states of India (Delhi, West Bengal, Orissa, Uttarakhand, Uttar Pradesh, Jharkhand, Bihar) are supported under the USS scheme. Out of total students, 65% (22) are girl students.
+                      From a humble journey with one student in June’21, L4H Foundation has extended education support to a total of 34 students from seven states of India (Delhi, West Bengal, Orissa, Uttarakhand, Uttar Pradesh, Jharkhand and Bihar). Majority (22 out of 34/65%) students are girls. With the help of local volunteers, L4H Foundation keeps tracks of the progress of their education.
                     </p>
                   </div>
 
@@ -145,93 +147,148 @@ export default function Impact() {
                     <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
                       <div className="flex items-center gap-2">
                         <GraduationCap className="w-5 h-5 text-primary" />
-                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">What We Support</h4>
+                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Supports Provided</h4>
                       </div>
-                      <p className="text-xs text-foreground/75 leading-relaxed">
-                        The support under the USS scheme covers semester and school fees, purchasing books/stationery, tuition fees, and transportation to ensure students do not drop out. Further, online/offline coaching, guidance, counselling, and where necessary, health check-ups and medicines are arranged.
+                      <p className="text-xs text-foreground/75 leading-relaxed mb-1">
+                        L4H Foundation is providing following supports to the needy students:
                       </p>
+                      <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
+                        <li>School, Semester and Tuition Fees</li>
+                        <li>Books / Stationeries</li>
+                        <li>Free Online / Offline coaching on need basis</li>
+                        <li>Counselling</li>
+                        <li>Transportation, Health check-up, medicines, as deemed essential</li>
+                      </ul>
                     </Card>
                     <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
                       <div className="flex items-center gap-2">
                         <CheckCircle2 className="w-5 h-5 text-[#DD6B20]" />
-                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Selection Guidelines</h4>
+                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Guidelines / Criteria</h4>
                       </div>
+                      <p className="text-xs text-foreground/75 leading-relaxed mb-1">
+                        Students are identified based of following guidelines/criteria:
+                      </p>
                       <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
-                        <li>Needy and meritorious student.</li>
-                        <li>Preference given to children with a single parent or no parents.</li>
-                        <li>Preference given to girl students.</li>
-                        <li>Preference given to students below Class IX.</li>
+                        <li>Meritorious student, who needs financial assistance.</li>
+                        <li>Preference to students with single parent or no parents</li>
+                        <li>Preference to girl students</li>
+                        <li>Preference to students below class IX</li>
                       </ul>
                     </Card>
                   </div>
 
-                  {/* Core Education Team */}
+                  {/* A. Education Team */}
                   <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-6">
                     <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
                       <Users className="w-6 h-6 text-secondary" />
                       <div>
-                        <h4 className="font-display font-bold text-lg text-foreground">Core Education Domain Team</h4>
-                        <p className="text-xs text-foreground/50">Core team members running the education sector with extensive experience</p>
+                        <h4 className="font-display font-bold text-lg text-foreground">A. Education Team</h4>
                       </div>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                      <div className="p-3 rounded-xl hover:bg-foreground/5 transition-colors">
-                        <strong className="text-foreground text-sm block">Dr. Ramkrishna Sadhukhan</strong>
-                        <span className="text-foreground/60 text-[11px]">Retired Deputy Director, Delhi University</span>
-                      </div>
-                      <div className="p-3 rounded-xl hover:bg-foreground/5 transition-colors">
-                        <strong className="text-foreground text-sm block">Mr. Debashish Das</strong>
-                        <span className="text-foreground/60 text-[11px]">Retired Joint Director, CSIR-NIScPR, Delhi</span>
-                      </div>
-                      <div className="p-3 rounded-xl hover:bg-foreground/5 transition-colors">
-                        <strong className="text-foreground text-sm block">Mr. Bibekananda Maiti</strong>
-                        <span className="text-foreground/60 text-[11px]">Retired Dy. Controller General, Patents, Design & Trademarks, Govt. of India</span>
-                      </div>
-                      <div className="p-3 rounded-xl hover:bg-foreground/5 transition-colors">
-                        <strong className="text-foreground text-sm block">Mr. Subhabrata Chakraborti</strong>
-                        <span className="text-foreground/60 text-[11px]">Ex-Principal Director, CDAC</span>
-                      </div>
-                      <div className="p-3 rounded-xl hover:bg-foreground/5 transition-colors">
-                        <strong className="text-foreground text-sm block">Dr. Subhendu Shekhar Mal</strong>
-                        <span className="text-foreground/60 text-[11px]">Scientist, Jadavpur University</span>
-                      </div>
-                      <div className="p-3 rounded-xl hover:bg-foreground/5 transition-colors">
-                        <strong className="text-foreground text-sm block">Mr. Tarun Kanti Maiti</strong>
-                        <span className="text-foreground/60 text-[11px]">Social Worker & IT Professional</span>
-                      </div>
+                    <p className="text-xs text-foreground/75 leading-relaxed">
+                      L4H Foundation has formed an education team comprising highly qualified persons. During regular monthly virtual meeting, team invites students to share their aspirations, career path, progress, needs etc. Such interaction provides an open forum for bonding with members of L4H Foundation/sponsors, increased their confidence, communication skills as well as assist Foundation to identify gaps and potential improvement opportunities.
+                    </p>
+                    
+                    <div className="overflow-x-auto w-full rounded-2xl border border-[#C1D6C1] shadow-soft">
+                      <table className="min-w-full text-xs text-left text-foreground/80 bg-white">
+                        <thead className="bg-[#FFE6D4] text-foreground uppercase tracking-wider text-[10px] font-bold border-b border-[#EEB898]">
+                          <tr>
+                            <th className="px-6 py-4">Name</th>
+                            <th className="px-6 py-4">Qualifications</th>
+                            <th className="px-6 py-4">Profession</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-[#C1D6C1]/30">
+                          <tr className="hover:bg-foreground/5 transition-colors">
+                            <td className="px-6 py-4 font-bold text-foreground">Dr. Ramkrishna Sadhukhan</td>
+                            <td className="px-6 py-4">PhD in Biochemistry, Post Doctorate from Cleveland Clinic and Pfizer</td>
+                            <td className="px-6 py-4">Senior Principal Research Scientist, Head of Therapeutic Protein Engineering, Global Biologics, AbbVie, USA</td>
+                          </tr>
+                          <tr className="hover:bg-foreground/5 transition-colors">
+                            <td className="px-6 py-4 font-bold text-foreground">Debashish Das</td>
+                            <td className="px-6 py-4">Master’s in computer science</td>
+                            <td className="px-6 py-4">Entrepreneur, Former Executive Director of IBM (GBS)</td>
+                          </tr>
+                          <tr className="hover:bg-foreground/5 transition-colors">
+                            <td className="px-6 py-4 font-bold text-foreground">Bibekananda Maiti</td>
+                            <td className="px-6 py-4">B.Tech, Chemical, PGDIE</td>
+                            <td className="px-6 py-4">Supply Chain Director – APAC, Guardian Industries, Thailand</td>
+                          </tr>
+                          <tr className="hover:bg-foreground/5 transition-colors">
+                            <td className="px-6 py-4 font-bold text-foreground">Subhabrata Chakraborti</td>
+                            <td className="px-6 py-4">M.Sc. Economics</td>
+                            <td className="px-6 py-4">Head of Business at Bharati Bhawan, Delhi, India, Formerly Director of Higher Education at Oxford University Press</td>
+                          </tr>
+                          <tr className="hover:bg-foreground/5 transition-colors">
+                            <td className="px-6 py-4 font-bold text-foreground">Subhendu Shekhar Mal</td>
+                            <td className="px-6 py-4">B. Tech, Chemical</td>
+                            <td className="px-6 py-4">Operations Engineer, Kuwait National Petrochemical Company (KNPC), Kuwait</td>
+                          </tr>
+                          <tr className="hover:bg-foreground/5 transition-colors">
+                            <td className="px-6 py-4 font-bold text-foreground">Tarun Kanti Maiti</td>
+                            <td className="px-6 py-4">B. Tech, Chemical</td>
+                            <td className="px-6 py-4">Project Engineering Manager, Bechtel, India</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </Card>
 
-                  {/* Achievements */}
+                  {/* B. Achievement of Students in 2023 */}
                   <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
-                    <h4 className="font-display font-bold text-lg text-foreground">Student Achievements (2023)</h4>
+                    <h4 className="font-display font-bold text-lg text-foreground">B. Achievement of Students in 2023</h4>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
-                      <li><strong>IIT Selection:</strong> 1 student selected for M.Sc. Physics at IIT Chennai.</li>
-                      <li><strong>Employment:</strong> 3 students successfully joined in Indian Post.</li>
-                      <li><strong>Class 12th Board:</strong> 1 student passed with 90% plus marks.</li>
-                      <li><strong>Class 12th Board:</strong> 2 students passed with 80% plus marks.</li>
-                      <li><strong>Secondary:</strong> 1 student in 8th standard secured 92% marks.</li>
+                      <li>1 student selected in IIT(M.Sc.)</li>
+                      <li>3 students joined in Indian Post</li>
+                      <li>1 student passed 12th with 90% +</li>
+                      <li>2 students passed 12th with 80% +</li>
+                      <li>1 student passed 12th with 70% +</li>
+                      <li>1 student in 8th secured 92%</li>
                     </ul>
                   </Card>
 
-                  {/* Success Stories Grid */}
+                  {/* C. Face to face interaction with beneficiary students */}
+                  <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-5">
+                    <h4 className="font-display font-bold text-lg text-foreground border-b border-foreground/5 pb-2">C. Face to face interaction with beneficiary students</h4>
+                    <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                      Live 4 Help Foundation always endeavor to make a difference and believe that face to face interaction with the students is vital for our success towards education support program. With this thoughts, Live 4 Help Foundation Team met few students in Dec’23. One of core team members, Mr. Ramkrishna (Ramu) Sadhukhan who has come from USA to meet students and motivate them.
+                    </p>
+                    <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                      Our Beneficiary Student, Mr. Subham Pandey who is pursuing M.Sc. Physics from IIT, Chennai met with us on 26th Dec’23. We had a good discussion about his future carrier path. Mr. Subham like to pursue Ph. D after completion of master’s degree.
+                    </p>
+                    <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                      Live 4 Help Team met five Girl Students, Anjali Kisku, Sila Soren, Mukhi Moni, Rupali Hembram, Sonali Hembram and their parents in Tribal Village of Bankura District, West Bengal and observed ground reality of the living conditions of these students. It was really eye-opening and heart-breaking experience. We have given School Bags and Christmas Cake to the students. Live 4 Help Team reiterated and re-emphasized their parents to continue their education.
+                    </p>
+                    <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                      Live 4 Help Team strongly believe that such interaction will provide moral boost and motivation to them. L4H will continue to meet more students in future.
+                    </p>
+                    <div className="mt-2">
+                      <p className="text-xs text-foreground/50 font-semibold mb-3">Here is few photographs capturing moments while interacting with students.</p>
+                      <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative">
+                        <img referrerPolicy="no-referrer"
+                          src="https://live4help.org/wp-content/uploads/2026/02/Students.png"
+                          alt="Student Interaction photographs"
+                          className="w-full h-full object-cover absolute inset-0"
+                        />
+                      </div>
+                    </div>
+                  </Card>
+
+                  {/* D. Few Success Stories */}
                   <div className="flex flex-col gap-6">
-                    <h4 className="font-display font-bold text-2xl text-foreground">Notable USS Success Stories</h4>
+                    <h4 className="font-display font-bold text-2xl text-foreground">D. Few Success Stories</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between relative overflow-hidden group">
                         <div className="absolute top-4 right-4 text-foreground/5 group-hover:scale-110 transition-transform">
                           <Quote className="w-16 h-16 transform rotate-180" />
                         </div>
                         <div className="flex flex-col gap-3 z-10">
-                          <span className="text-[10px] uppercase font-bold tracking-wider text-secondary">Geography Master's Student</span>
+                          <span className="text-[10px] uppercase font-bold tracking-wider text-secondary">Success Story 1</span>
                           <h5 className="font-display font-bold text-lg text-foreground">Suvankari Mondal</h5>
                           <p className="text-xs text-foreground/70 leading-relaxed">
-                            From a remote village of Paschim Medinipur, West Bengal. Today she is pursuing Master’s in Geography from Midnapore College (Autonomous). L4H Foundation has sponsored her since graduation.
+                            Suvankari Mondal lost both her parents and is living with her aunty, a daily labourer. She was suffering from malnutrition and was unable to continue her education. L4H foundation initially helped her by providing medical support and nutritious foods to recover from health issues, expanded assistance in pursuing education. L4H Foundation is pleased to witness Suvankari becoming healthy young aspiring women, soon to be appearing B.A. final. Her journey is a testament of how a little bit of help can do so much of goodness for someone. Her transformation from illness to healthy life inspires us to do more for such causes.
                           </p>
                         </div>
-                        <blockquote className="border-l-2 border-secondary pl-3 text-xs italic text-foreground/60 mt-4 leading-normal">
-                          "Today whatever I am, it is because of Live 4 Help Foundation."
-                        </blockquote>
                       </Card>
 
                       <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between relative overflow-hidden group">
@@ -239,15 +296,12 @@ export default function Impact() {
                           <Quote className="w-16 h-16 transform rotate-180" />
                         </div>
                         <div className="flex flex-col gap-3 z-10">
-                          <span className="text-[10px] uppercase font-bold tracking-wider text-secondary">Delhi University Graduate</span>
+                          <span className="text-[10px] uppercase font-bold tracking-wider text-secondary">Success Story 2</span>
                           <h5 className="font-display font-bold text-lg text-foreground">Shweta Singh</h5>
                           <p className="text-xs text-foreground/70 leading-relaxed">
-                            Today she is pursuing graduation in Delhi University. Sponsoring her in peak winter when she was about to drop out due to a complete lack of support and financial means.
+                            Shweta Singh is a student of New Sainik Public School in Delhi, living with her mother and two siblings. Her father passed away 4 years ago due to cancer. She is an intelligent and meritorious student. L4H Foundation has committed to support her education. Additionally, two L4H Foundation members, Mrs. Amrita Datta from USA and Mr. Subhendu Shekhar Mal from Kuwait have provided Shweta free online coaching in English and Science subjects. Principal of her school, Mrs. Pushpa Singh informed us that she has noticed increased confidence level in Shweta over the years. Shweta is now studying in Class X and would like to pursue higher studies in commerce.
                           </p>
                         </div>
-                        <blockquote className="border-l-2 border-secondary pl-3 text-xs italic text-foreground/60 mt-4 leading-normal">
-                          "L4H sponsored me and today I am confidently continuing my studies."
-                        </blockquote>
                       </Card>
 
                       <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between relative overflow-hidden group">
@@ -255,15 +309,12 @@ export default function Impact() {
                           <Quote className="w-16 h-16 transform rotate-180" />
                         </div>
                         <div className="flex flex-col gap-3 z-10">
-                          <span className="text-[10px] uppercase font-bold tracking-wider text-secondary">M.Sc. Physics at IIT Chennai</span>
+                          <span className="text-[10px] uppercase font-bold tracking-wider text-secondary">Success Story 3</span>
                           <h5 className="font-display font-bold text-lg text-foreground">Subham Pandey</h5>
                           <p className="text-xs text-foreground/70 leading-relaxed">
-                            Hailing from a very remote village in Bankura district, West Bengal. Today he is doing his M.Sc. in Physics at the prestigious IIT Chennai, with L4H supporting his research and educational expenses.
+                            Subham Pandey is studying in B.Sc. (with Physics Honours) at Bankura Christian College, West Bengal. Subham has excellent results in both Class X (94%) and in Class XII (95.8). His education was at stake during Covid when his father’s income dwindled, and poor health further deteriorated future prospected income. L4H Foundation stepped in for assisting his higher studies by covering semester fees of college, monthly private coaching fees, and cost of books. One of our Volunteers, Dr. Mrs. Kazi Sabnam Banu from Kolkata provided him free online coaching in chemistry. He has completed his fifth semester and now in final year of B.Sc. L4H Foundation is proud to share that Subham has been selected in IIT Guwahati for pursuing master’s degree (M.Sc. in Physics). He has a desire to do research after completing master’s degree.
                           </p>
                         </div>
-                        <blockquote className="border-l-2 border-secondary pl-3 text-xs italic text-foreground/60 mt-4 leading-normal">
-                          "Sponsoring this bright mind is a privilege for our foundation."
-                        </blockquote>
                       </Card>
 
                       <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between relative overflow-hidden group">
@@ -271,24 +322,21 @@ export default function Impact() {
                           <Quote className="w-16 h-16 transform rotate-180" />
                         </div>
                         <div className="flex flex-col gap-3 z-10">
-                          <span className="text-[10px] uppercase font-bold tracking-wider text-secondary">Graduation Student</span>
+                          <span className="text-[10px] uppercase font-bold tracking-wider text-secondary">Success Story 4</span>
                           <h5 className="font-display font-bold text-lg text-foreground">Anjali Kisku</h5>
                           <p className="text-xs text-foreground/70 leading-relaxed">
-                            From a tribal village in Paschim Medinipur where girls rarely have the chance to go to college. L4H is sponsoring her graduation studies.
+                            Anjali Kisku, is the 1st graduate from village in Bankura District, West Bengal. She is preparing for a job for which a basic computer training and soft skill development has become a necessity. Anjali belongs to a poor tribal family and her father is only earning member who works as a daily labourer Anjali was struggling to bear the cost of computer course and transportation costs for commuting from her home to nearest training centre, which is more than 20 kms from her village. L4H Foundation stepped in by providing the transportation cost and computer course fee. We are pleased to share that Anjali now has the necessary skills needed to fulfil her aspirations and wish her all the best in pursuing her journey.
                           </p>
                         </div>
-                        <blockquote className="border-l-2 border-secondary pl-3 text-xs italic text-foreground/60 mt-4 leading-normal">
-                          "L4H Foundation has given wings to my dreams."
-                        </blockquote>
                       </Card>
                     </div>
                   </div>
 
-                  {/* Offline Coaching */}
+                  {/* E. Free OFFLINE Coaching to Needy Students */}
                   <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
-                    <h4 className="font-display font-bold text-xl text-foreground">Free Offline Coaching Center Pilot Project</h4>
+                    <h4 className="font-display font-bold text-xl text-foreground">E. Free OFFLINE Coaching to Needy Students</h4>
                     <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
-                      L4H Foundation launched a pilot project by selecting a village in Paschim Medinipur district of West Bengal to provide free offline coaching to 10 needy students who can't afford tuition fees. By engaging a local volunteer, we ensure they get regular academic support and mentoring. We have also sourced electronic gadgets to enable online mentoring and counseling sessions.
+                      During Covid 19 pandemic, all schools and institutions remained closed. The students in rural areas were struggling to continue their education. L4H Foundation explored opportunities to help needy student who can’t afford their private tuition fees. L4H Foundation launched a pilot project by selecting one of the villages in Medinipur district of West Bengal. L4H Foundation arranged free offline coaching covering 10 students by engaging local volunteers. Our plan is to develop such models in more villages by finding local volunteers who can devote their time to help and educate children.
                     </p>
                   </Card>
                 </div>
