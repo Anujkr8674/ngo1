@@ -7,10 +7,12 @@ import {
   HeartHandshake, 
   Leaf, 
   MapPin, 
-  UserCheck, 
-  Building,
   Activity,
-  Award
+  Award,
+  UserCheck,
+  CheckCircle2,
+  Quote,
+  Users
 } from "lucide-react";
 import Counter from "../components/Counter";
 import { Card, MotionCard } from "../components/Card";
@@ -126,47 +128,174 @@ export default function Impact() {
                 animate={{ opacity: 1, y: 0 }}
                 className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
               >
-                <div className="lg:col-span-7 flex flex-col gap-6">
-                  <h3 className="font-display font-bold text-3xl text-foreground">Sustained Educational Sponsoring</h3>
-                  <p className="text-sm text-foreground/80 leading-relaxed">
-                    Live 4 Help Foundation identifies deserving students based on academic credentials and household economic hardships. Our commitment is long-term, renewed year after year to ensure students finish their course journeys. From supporting 1 student in June 2021, we now sponsor 34 students in total across 7 states, of which 65% (22) are girl students.
-                  </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-                    <Card className="p-5 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
-                      <h4 className="font-semibold text-xs uppercase tracking-wider text-foreground/60 mb-2">IIT Chennai Sponsoring</h4>
-                      <p className="text-xs text-foreground/80 leading-relaxed">
-                        Supporting student Mr. Subham Pandey pursuing M.Sc. Physics at IIT Chennai, providing tuition & research support.
-                      </p>
-                    </Card>
-                    <Card className="p-5 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
-                      <h4 className="font-semibold text-xs uppercase tracking-wider text-foreground/60 mb-2">Tribal Village Sponsoring</h4>
-                      <p className="text-xs text-foreground/80 leading-relaxed">
-                        Funding 5 girl students (Anjali, Sila, Mukhimoni, Rupali, Sonali) in Bankura District tribal villages.
-                      </p>
-                    </Card>
-                  </div>
-                  
-                  <div className="p-6 rounded-[2rem] bg-white border border-[#C1D6C1] shadow-soft flex flex-col gap-3">
-                    <h4 className="font-display font-bold text-sm text-foreground">Key Student Achievements (2023)</h4>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-foreground/75 list-disc pl-5">
-                      <li>1 student selected for M.Sc at IIT Chennai</li>
-                      <li>3 students successfully joined Indian Post</li>
-                      <li>1 student passed 12th Board with 90%+ marks</li>
-                      <li>2 students passed 12th Board with 80%+ marks</li>
-                      <li>1 student in 8th standard secured 92% marks</li>
-                    </ul>
-                  </div>
-
-                  <div className="p-6 rounded-[2rem] bg-[#FFE6D4] border border-[#EEB898] shadow-soft flex flex-col gap-2">
-                    <h4 className="font-display font-bold text-sm text-[#DD6B20]">Sponsoring Selection Guidelines</h4>
-                    <p className="text-xs text-foreground/75 leading-relaxed">
-                      Deserving students must meet academic criteria and prove household financial distress. Preference is given to meritorious students facing dropout risk, single-parent/orphan children, girl students, and students below class IX.
+                <div className="lg:col-span-8 flex flex-col gap-8">
+                  {/* Overview */}
+                  <div className="flex flex-col gap-4">
+                    <h3 className="font-display font-bold text-3xl text-foreground">Underprivileged Student Sponsoring (USS)</h3>
+                    <p className="text-sm text-foreground/80 leading-relaxed">
+                      Education is the key to unlock the golden door of freedom. The main objective of L4H Foundation under the Education domain is to support needy students who are at risk of discontinuing their education due to financial hardship. 
+                    </p>
+                    <p className="text-sm text-foreground/80 leading-relaxed">
+                      L4H Foundation has started this journey since its inception with 1 needy student in West Bengal in June 2021. Today, cumulative 34 needy students from seven states of India (Delhi, West Bengal, Orissa, Uttarakhand, Uttar Pradesh, Jharkhand, Bihar) are supported under the USS scheme. Out of total students, 65% (22) are girl students.
                     </p>
                   </div>
+
+                  {/* Split Cards: Support Scope & Guidelines */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
+                      <div className="flex items-center gap-2">
+                        <GraduationCap className="w-5 h-5 text-primary" />
+                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">What We Support</h4>
+                      </div>
+                      <p className="text-xs text-foreground/75 leading-relaxed">
+                        The support under the USS scheme covers semester and school fees, purchasing books/stationery, tuition fees, and transportation to ensure students do not drop out. Further, online/offline coaching, guidance, counselling, and where necessary, health check-ups and medicines are arranged.
+                      </p>
+                    </Card>
+                    <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-[#DD6B20]" />
+                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Selection Guidelines</h4>
+                      </div>
+                      <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
+                        <li>Needy and meritorious student.</li>
+                        <li>Preference given to children with a single parent or no parents.</li>
+                        <li>Preference given to girl students.</li>
+                        <li>Preference given to students below Class IX.</li>
+                      </ul>
+                    </Card>
+                  </div>
+
+                  {/* Core Education Team */}
+                  <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-6">
+                    <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
+                      <Users className="w-6 h-6 text-secondary" />
+                      <div>
+                        <h4 className="font-display font-bold text-lg text-foreground">Core Education Domain Team</h4>
+                        <p className="text-xs text-foreground/50">Core team members running the education sector with extensive experience</p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                      <div className="p-3 rounded-xl hover:bg-foreground/5 transition-colors">
+                        <strong className="text-foreground text-sm block">Dr. Ramkrishna Sadhukhan</strong>
+                        <span className="text-foreground/60 text-[11px]">Retired Deputy Director, Delhi University</span>
+                      </div>
+                      <div className="p-3 rounded-xl hover:bg-foreground/5 transition-colors">
+                        <strong className="text-foreground text-sm block">Mr. Debashish Das</strong>
+                        <span className="text-foreground/60 text-[11px]">Retired Joint Director, CSIR-NIScPR, Delhi</span>
+                      </div>
+                      <div className="p-3 rounded-xl hover:bg-foreground/5 transition-colors">
+                        <strong className="text-foreground text-sm block">Mr. Bibekananda Maiti</strong>
+                        <span className="text-foreground/60 text-[11px]">Retired Dy. Controller General, Patents, Design & Trademarks, Govt. of India</span>
+                      </div>
+                      <div className="p-3 rounded-xl hover:bg-foreground/5 transition-colors">
+                        <strong className="text-foreground text-sm block">Mr. Subhabrata Chakraborti</strong>
+                        <span className="text-foreground/60 text-[11px]">Ex-Principal Director, CDAC</span>
+                      </div>
+                      <div className="p-3 rounded-xl hover:bg-foreground/5 transition-colors">
+                        <strong className="text-foreground text-sm block">Dr. Subhendu Shekhar Mal</strong>
+                        <span className="text-foreground/60 text-[11px]">Scientist, Jadavpur University</span>
+                      </div>
+                      <div className="p-3 rounded-xl hover:bg-foreground/5 transition-colors">
+                        <strong className="text-foreground text-sm block">Mr. Tarun Kanti Maiti</strong>
+                        <span className="text-foreground/60 text-[11px]">Social Worker & IT Professional</span>
+                      </div>
+                    </div>
+                  </Card>
+
+                  {/* Achievements */}
+                  <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
+                    <h4 className="font-display font-bold text-lg text-foreground">Student Achievements (2023)</h4>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
+                      <li><strong>IIT Selection:</strong> 1 student selected for M.Sc. Physics at IIT Chennai.</li>
+                      <li><strong>Employment:</strong> 3 students successfully joined in Indian Post.</li>
+                      <li><strong>Class 12th Board:</strong> 1 student passed with 90% plus marks.</li>
+                      <li><strong>Class 12th Board:</strong> 2 students passed with 80% plus marks.</li>
+                      <li><strong>Secondary:</strong> 1 student in 8th standard secured 92% marks.</li>
+                    </ul>
+                  </Card>
+
+                  {/* Success Stories Grid */}
+                  <div className="flex flex-col gap-6">
+                    <h4 className="font-display font-bold text-2xl text-foreground">Notable USS Success Stories</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between relative overflow-hidden group">
+                        <div className="absolute top-4 right-4 text-foreground/5 group-hover:scale-110 transition-transform">
+                          <Quote className="w-16 h-16 transform rotate-180" />
+                        </div>
+                        <div className="flex flex-col gap-3 z-10">
+                          <span className="text-[10px] uppercase font-bold tracking-wider text-secondary">Geography Master's Student</span>
+                          <h5 className="font-display font-bold text-lg text-foreground">Suvankari Mondal</h5>
+                          <p className="text-xs text-foreground/70 leading-relaxed">
+                            From a remote village of Paschim Medinipur, West Bengal. Today she is pursuing Master’s in Geography from Midnapore College (Autonomous). L4H Foundation has sponsored her since graduation.
+                          </p>
+                        </div>
+                        <blockquote className="border-l-2 border-secondary pl-3 text-xs italic text-foreground/60 mt-4 leading-normal">
+                          "Today whatever I am, it is because of Live 4 Help Foundation."
+                        </blockquote>
+                      </Card>
+
+                      <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between relative overflow-hidden group">
+                        <div className="absolute top-4 right-4 text-foreground/5 group-hover:scale-110 transition-transform">
+                          <Quote className="w-16 h-16 transform rotate-180" />
+                        </div>
+                        <div className="flex flex-col gap-3 z-10">
+                          <span className="text-[10px] uppercase font-bold tracking-wider text-secondary">Delhi University Graduate</span>
+                          <h5 className="font-display font-bold text-lg text-foreground">Shweta Singh</h5>
+                          <p className="text-xs text-foreground/70 leading-relaxed">
+                            Today she is pursuing graduation in Delhi University. Sponsoring her in peak winter when she was about to drop out due to a complete lack of support and financial means.
+                          </p>
+                        </div>
+                        <blockquote className="border-l-2 border-secondary pl-3 text-xs italic text-foreground/60 mt-4 leading-normal">
+                          "L4H sponsored me and today I am confidently continuing my studies."
+                        </blockquote>
+                      </Card>
+
+                      <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between relative overflow-hidden group">
+                        <div className="absolute top-4 right-4 text-foreground/5 group-hover:scale-110 transition-transform">
+                          <Quote className="w-16 h-16 transform rotate-180" />
+                        </div>
+                        <div className="flex flex-col gap-3 z-10">
+                          <span className="text-[10px] uppercase font-bold tracking-wider text-secondary">M.Sc. Physics at IIT Chennai</span>
+                          <h5 className="font-display font-bold text-lg text-foreground">Subham Pandey</h5>
+                          <p className="text-xs text-foreground/70 leading-relaxed">
+                            Hailing from a very remote village in Bankura district, West Bengal. Today he is doing his M.Sc. in Physics at the prestigious IIT Chennai, with L4H supporting his research and educational expenses.
+                          </p>
+                        </div>
+                        <blockquote className="border-l-2 border-secondary pl-3 text-xs italic text-foreground/60 mt-4 leading-normal">
+                          "Sponsoring this bright mind is a privilege for our foundation."
+                        </blockquote>
+                      </Card>
+
+                      <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between relative overflow-hidden group">
+                        <div className="absolute top-4 right-4 text-foreground/5 group-hover:scale-110 transition-transform">
+                          <Quote className="w-16 h-16 transform rotate-180" />
+                        </div>
+                        <div className="flex flex-col gap-3 z-10">
+                          <span className="text-[10px] uppercase font-bold tracking-wider text-secondary">Graduation Student</span>
+                          <h5 className="font-display font-bold text-lg text-foreground">Anjali Kisku</h5>
+                          <p className="text-xs text-foreground/70 leading-relaxed">
+                            From a tribal village in Paschim Medinipur where girls rarely have the chance to go to college. L4H is sponsoring her graduation studies.
+                          </p>
+                        </div>
+                        <blockquote className="border-l-2 border-secondary pl-3 text-xs italic text-foreground/60 mt-4 leading-normal">
+                          "L4H Foundation has given wings to my dreams."
+                        </blockquote>
+                      </Card>
+                    </div>
+                  </div>
+
+                  {/* Offline Coaching */}
+                  <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
+                    <h4 className="font-display font-bold text-xl text-foreground">Free Offline Coaching Center Pilot Project</h4>
+                    <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                      L4H Foundation launched a pilot project by selecting a village in Paschim Medinipur district of West Bengal to provide free offline coaching to 10 needy students who can't afford tuition fees. By engaging a local volunteer, we ensure they get regular academic support and mentoring. We have also sourced electronic gadgets to enable online mentoring and counseling sessions.
+                    </p>
+                  </Card>
                 </div>
-                
-                <div className="lg:col-span-5 flex flex-col gap-6">
-                  <Card className="p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
+
+                {/* Right Column (Sidebar) */}
+                <div className="lg:col-span-4 flex flex-col gap-6">
+                  <Card className="p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white">
                     <h4 className="font-display font-bold text-lg text-foreground mb-4 flex items-center gap-2">
                       <MapPin className="w-5 h-5 text-secondary" />
                       Sponsoring States (7)
