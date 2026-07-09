@@ -150,7 +150,7 @@ export default function Footer() {
                     <span>Website Design by <strong>Eveda Online Service</strong></span>
                 </div>
                 <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-                    <Link href="/archived-material" className="hover:text-white transition-colors">Privacy Policy</Link>
+                    <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
                     <Link href="/terms-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
                     <Link href="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link>
                     <Link href="/refund-cancellation-policy" className="hover:text-white transition-colors">Refund & Cancellation</Link>
