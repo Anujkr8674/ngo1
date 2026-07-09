@@ -25,6 +25,7 @@ const navLinks: NavLink[] = [
   {
     label: "Get Help",
     dropdown: [
+      { href: "/get-help", label: "Get Help" },
       { href: "/get-help/education", label: "Education Support Form" },
       { href: "/get-help/elderly", label: "Elderly Support Form" },
       { href: "/get-help/medical", label: "Medical Support Form" },
