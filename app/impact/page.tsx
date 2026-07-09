@@ -362,7 +362,7 @@ export default function Impact() {
                 {/* Overview */}
                 <div className="flex flex-col gap-4">
                   <h3 className="font-display font-bold text-3xl text-foreground">Health Care NGO in Delhi Support Senior Citizen Care</h3>
-                  <p className="text-sm text-foreground/80 leading-relaxed font-sans font-normal">
+                  <p className="text-sm text-foreground/80 leading-relaxed font-sans">
                     Live 4 Help (L4H) Foundation organized three medical camps in remote villages in last 2 years. Total number of beneficiaries from the camp is <strong>397</strong>. It is observed that rural people always give lesser priority to their health check-up due to financial constraints. The rural-urban divide in healthcare is linked to the lack of healthcare literacy. The insufficient level of health awareness has a negative impact on access to healthcare. Living conditions and a low level of education are crucial barriers for rural population. The basic objectives of these medical camps were to provide free medical tests including preliminary cancer screening test to underprivileged people and create general healthcare awareness.
                   </p>
                 </div>
@@ -586,49 +586,96 @@ export default function Impact() {
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
+                className="flex flex-col gap-8 w-full"
               >
-                <div className="lg:col-span-7 flex flex-col gap-6">
+                {/* Overview */}
+                <div className="flex flex-col gap-4">
                   <h3 className="font-display font-bold text-3xl text-foreground">Winter Relief & Other Social Works</h3>
                   <p className="text-sm text-foreground/80 leading-relaxed font-sans">
-                    In response to seasonal hardships, Live 4 Help Foundation coordinates annual blanket distribution campaigns to protect daily wagers, construction workers, and daily wage labor families from severe cold waves.
+                    Live 4 Help Foundation is exploring and trying to find out opportunities to help underprivileged people in every way possible. One of the initiatives is to distribute blankets during winter seasons. In last 3 years Foundation distributed total <strong>480 blankets</strong> at various locations.
                   </p>
-                  <div className="flex flex-col gap-4">
-                    <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
-                      <h4 className="font-semibold text-sm text-foreground mb-3 font-sans">Key Blanket Distribution Drives (480 total)</h4>
-                      <ul className="flex flex-col gap-2.5 text-xs text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
-                        <li><strong>December 29, 2023:</strong> Distributed 160 heavy blankets to rural villagers in North 24 Parganas, West Bengal.</li>
-                        <li><strong>January 15, 2023:</strong> Sourced and delivered 100 blankets to construction daily laborers at Government Boys Senior Secondary School, Jharoda Kalan, New Delhi.</li>
-                        <li><strong>December 27, 2022:</strong> Distributed 200 winter blankets across the vulnerable rural Sundarbans delta stretches.</li>
-                        <li><strong>January 14, 2021:</strong> Distributed 20 blankets to daily wage park laborers at Sec 19B DDA Park, Dwarka, New Delhi.</li>
-                      </ul>
-                    </Card>
-
-                    <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
-                      <h4 className="font-semibold text-sm text-foreground mb-2 font-sans">Dwarka Clothes Distribution Drive</h4>
-                      <p className="text-xs text-foreground/75 leading-relaxed font-sans">
-                        On August 15, 2021, L4H volunteers distributed wearable old clothes to approximately 30 daily wager families living in roadside tents near Dwarka Sector 19, New Delhi.
-                      </p>
-                    </Card>
-                  </div>
                 </div>
-                
-                <div className="lg:col-span-5 flex flex-col gap-6">
-                  <Card className="p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
-                    <h4 className="font-display font-bold text-lg text-foreground mb-4 flex items-center gap-2">
-                      <HeartHandshake className="w-5 h-5 text-primary" />
-                      Relief Outreach Summary
-                    </h4>
-                    <ul className="flex flex-col gap-3 text-xs text-foreground/75 font-sans">
-                      <li className="flex justify-between border-b border-foreground/5 pb-2"><span>Total Blankets</span> <span className="font-semibold text-foreground">480 Blankets</span></li>
-                      <li className="flex justify-between border-b border-foreground/5 pb-2"><span>Primary Recipients</span> <span className="font-semibold text-foreground">Migrant Labor & Villagers</span></li>
-                      <li className="flex justify-between pb-1"><span>Locations Served</span> <span className="font-semibold text-foreground">Delhi NCR & West Bengal</span></li>
-                    </ul>
+
+                {/* 3-Column / 2-Row Responsive Grid for Distribution Campaigns */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* Drive 1 */}
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-5 h-5 text-primary" />
+                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">1. Blanket Distribution</h4>
+                      </div>
+                      <span className="text-[10px] font-semibold text-foreground/50">Held on <strong>29<sup>th</sup> December, 2023</strong></span>
+                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
+                        L4H distributed <strong>160 blankets</strong> to rural villagers in North 24 Parganas District of West Bengal.
+                      </p>
+                    </div>
                   </Card>
-                  <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative">
+
+                  {/* Drive 2 */}
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-5 h-5 text-primary" />
+                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">2. Blanket Distribution</h4>
+                      </div>
+                      <span className="text-[10px] font-semibold text-foreground/50">Held on <strong>15<sup>th</sup> January, 2023</strong></span>
+                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
+                        L4H distributed <strong>100 blankets</strong> to construction workers at Govt. Boys Senior Secondary School, Jharoda Kalan, New Delhi-110072 during peak winter.
+                      </p>
+                    </div>
+                  </Card>
+
+                  {/* Drive 3 */}
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-5 h-5 text-primary" />
+                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">3. Blanket Distribution</h4>
+                      </div>
+                      <span className="text-[10px] font-semibold text-foreground/50">Held on <strong>27<sup>th</sup> December, 2022</strong></span>
+                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
+                        L4H distributed <strong>200 blankets</strong> among disadvantaged people in rural villages of 24th Parganas, West Bengal to provide a touch of warmth amidst the bitter winters.
+                      </p>
+                    </div>
+                  </Card>
+
+                  {/* Drive 4 */}
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-5 h-5 text-primary" />
+                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">4. Cloth Distribution</h4>
+                      </div>
+                      <span className="text-[10px] font-semibold text-foreground/50">Held on <strong>15<sup>th</sup> August, 2021</strong></span>
+                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
+                        On Independence Day, Live 4 Help Foundation team distributed old clothes collected from friends and family to approximately <strong>30</strong> underprivileged families. Beneficiaries are daily wagers living in roadside tent in Dwarka Sub city, New Delhi. This is a small endeavour through our NGO. We will continue to do such drives in future with support from well-wishers and like-minded people.
+                      </p>
+                    </div>
+                  </Card>
+
+                  {/* Drive 5 */}
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between md:col-span-1 lg:col-span-2">
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-5 h-5 text-primary" />
+                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">5. Charity Begin – Blanket Distribution</h4>
+                      </div>
+                      <span className="text-[10px] font-semibold text-foreground/50">Held on Sankranti Day, <strong>14<sup>th</sup> January, 2021</strong></span>
+                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
+                        Live 4 Help Foundation performed a special puja on <strong>14<sup>th</sup> Jan’21</strong>, Sankranti Day to begin our journey towards services and to kickstart the activities outlined in the objectives. We have distributed blankets to <strong>20</strong> daily wagers of Sec 19B DDA Park, Dwarka, New Delhi to provide a little comfort during peak winter.
+                      </p>
+                    </div>
+                  </Card>
+                </div>
+
+                {/* Gallery Snapshots Image */}
+                <div className="flex flex-col gap-4 items-center">
+                  <p className="text-xs text-foreground/50 font-semibold align-self-start">Here are a few snapshots of photograph of our earlier distributions.</p>
+                  <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative max-w-4xl mx-auto">
                     <img referrerPolicy="no-referrer"
                       src="https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-3.jpg"
-                      alt="Relief Work & Blanket Distribution"
+                      alt="Relief Work & Blanket Distribution Campaigns"
                       className="w-full h-full object-cover absolute inset-0"
                     />
                   </div>
