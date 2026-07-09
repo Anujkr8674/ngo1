@@ -362,8 +362,8 @@ export default function Impact() {
                 {/* Overview */}
                 <div className="flex flex-col gap-4">
                   <h3 className="font-display font-bold text-3xl text-foreground">Health Care NGO in Delhi Support Senior Citizen Care</h3>
-                  <p className="text-sm text-foreground/80 leading-relaxed font-sans">
-                    Live 4 Help (L4H) Foundation organized three medical camps in remote villages in last 2 years. Total number of beneficiaries from the camp is 397. It is observed that rural people always give lesser priority to their health check-up due to financial constraints. The rural-urban divide in healthcare is linked to the lack of healthcare literacy. The insufficient level of health awareness has a negative impact on access to healthcare. Living conditions and a low level of education are crucial barriers for rural population. The basic objectives of these medical camps were to provide free medical tests including preliminary cancer screening test to underprivileged people and create general healthcare awareness.
+                  <p className="text-sm text-foreground/80 leading-relaxed font-sans font-normal">
+                    Live 4 Help (L4H) Foundation organized three medical camps in remote villages in last 2 years. Total number of beneficiaries from the camp is <strong>397</strong>. It is observed that rural people always give lesser priority to their health check-up due to financial constraints. The rural-urban divide in healthcare is linked to the lack of healthcare literacy. The insufficient level of health awareness has a negative impact on access to healthcare. Living conditions and a low level of education are crucial barriers for rural population. The basic objectives of these medical camps were to provide free medical tests including preliminary cancer screening test to underprivileged people and create general healthcare awareness.
                   </p>
                 </div>
 
@@ -376,9 +376,9 @@ export default function Impact() {
                         <Calendar className="w-5 h-5 text-primary" />
                         <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Free Medical Camp (Daspur)</h4>
                       </div>
-                      <span className="text-[10px] font-semibold text-foreground/50">Held on 26th March’22</span>
+                      <span className="text-[10px] font-semibold text-foreground/50">Held on <strong>26<sup>th</sup> March’22</strong></span>
                       <p className="text-xs text-foreground/70 leading-relaxed font-sans">
-                        L4H Foundation organized Free Medical Camp on 26th March, 2022 in Daspur Block, Paschim Medinipur, West Bengal. Blood samples were taken by Thyrocare for 102 adults against our target of 100. Out of 102 beneficiaries, 30 were female. The people from nearby villages availed the benefits of free medical tests. The age group of beneficiaries varied from 26 years to 76 years. The blood test covered complete Hemogram, TBC, Thyroid Profile, Lipid Profile, Kidney Function Test (KFT), Liver Function Test, Iron Deficiency, Vitamin D and Vitamin B12, Blood Sugar including cancer test (PSA for Male, Ca125 for Female). The Free Medical Camp was supported by M/s ERBE (Erbe Medical India Pvt. Ltd.).
+                        L4H Foundation organized <strong>Free Medical Camp</strong> on <strong>26<sup>th</sup> March, 2022</strong> in Daspur Block, Paschim Medinipur, West Bengal. Blood samples were taken by <strong>Thyrocare</strong> for <strong>102</strong> adults against our target of <strong>100</strong>. Out of <strong>102</strong> beneficiaries, <strong>30</strong> were female. The people from nearby villages availed the benefits of free medical tests. The age group of beneficiaries varied from <strong>26 years to 76 years</strong>. The blood test covered complete Hemogram, TBC, Thyroid Profile, Lipid Profile, Kidney Function Test (KFT), Liver Function Test, Iron Deficiency, Vitamin D and Vitamin B12, Blood Sugar including cancer test (PSA for Male, Ca125 for Female). The Free Medical Camp was supported by <strong>M/s ERBE</strong> (Erbe Medical India Pvt. Ltd.).
                       </p>
                     </div>
                   </Card>
@@ -390,12 +390,12 @@ export default function Impact() {
                         <Calendar className="w-5 h-5 text-primary" />
                         <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Free Medical Camp (Hingalganj)</h4>
                       </div>
-                      <span className="text-[10px] font-semibold text-foreground/50">Held on 28th December’22</span>
+                      <span className="text-[10px] font-semibold text-foreground/50">Held on <strong>28<sup>th</sup> December’22</strong></span>
                       <p className="text-xs text-foreground/70 leading-relaxed font-sans mb-2">
-                        The basic objective of this medical camp was to provide free medical test including preliminary cancer screening test to underprivileged people, mainly adults of age group 30 years and above. Rural people in Sundarban area never got opportunity to do medical test due to remote location and unavailability of diagnostic center. This Medical Camp had special significance. The First time such medical camp was held at the far remote corner of the delta and the last human habitat, after which the core of Sundarban National Park starts.
+                        The basic objective of this medical camp was to provide free medical test including preliminary cancer screening test to underprivileged people, mainly adults of age group <strong>30 years and above</strong>. Rural people in Sundarban area never got opportunity to do medical test due to remote location and unavailability of diagnostic center. This Medical Camp had special significance. The First time such medical camp was held at the far remote corner of the delta and the last human habitat, after which the core of Sundarban National Park starts.
                       </p>
                       <p className="text-xs text-foreground/70 leading-relaxed font-sans mb-2">
-                        M/s ERBE (Erbe Medical India Pvt. Ltd.) supported the Medical Camp through their Corporate Social Responsibility (CSR). 125 beneficiaries availed this benefit. Thyrocare Kolkata took the blood sample and provided test report.
+                        <strong>M/s ERBE (Erbe Medical India Pvt. Ltd.)</strong> supported the Medical Camp through their Corporate Social Responsibility (CSR). <strong>125</strong> beneficiaries availed this benefit. <strong>Thyrocare Kolkata</strong> took the blood sample and provided test report.
                       </p>
                       <div className="border-t border-foreground/5 pt-2">
                         <span className="text-xs font-semibold text-foreground block mb-1">The medical test included:</span>
@@ -418,12 +418,12 @@ export default function Impact() {
                         <Calendar className="w-5 h-5 text-primary" />
                         <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Free Medical Camp (Sundarban)</h4>
                       </div>
-                      <span className="text-[10px] font-semibold text-foreground/50">Held on 29th December’23</span>
+                      <span className="text-[10px] font-semibold text-foreground/50">Held on <strong>29<sup>th</sup> December’23</strong></span>
                       <p className="text-xs text-foreground/70 leading-relaxed font-sans">
-                        L4H Foundation organized third Free Medical Camp on 29th December, 2023 in Sundarban area of West Bengal. 170 beneficiaries mostly adults availed this benefit. The medical camp includes free blood test covering Complete Hemogram, Cancer Test – PSA for Male and Ca125 for Female, Thyroid Profile and Lipid Profile, Kidney Function Test and Liver Function Test, Iron Deficiency, Blood Sugar. The foundation arranged five doctors (3 male and 2 female) to provide free consultation during camp and after availability of blood test report.
+                        L4H Foundation organized third <strong>Free Medical Camp</strong> on <strong>29<sup>th</sup> December, 2023</strong> in Sundarban area of West Bengal. <strong>170</strong> beneficiaries mostly adults availed this benefit. The medical camp includes free blood test covering Complete Hemogram, Cancer Test – PSA for Male and Ca125 for Female, Thyroid Profile and Lipid Profile, Kidney Function Test and Liver Function Test, Iron Deficiency, Blood Sugar. The foundation arranged <strong>five doctors (3 male and 2 female)</strong> to provide free consultation during camp and after availability of blood test report.
                       </p>
                       <p className="text-xs text-foreground/70 leading-relaxed font-sans">
-                        M/s ERBE (Erbe Medical India Pvt. Ltd.) supported the Medical Camp through their Corporate Social Responsibility (CSR).
+                        <strong>M/s ERBE (Erbe Medical India Pvt. Ltd.)</strong> supported the Medical Camp through their Corporate Social Responsibility (CSR).
                       </p>
                     </div>
                   </Card>
@@ -438,7 +438,7 @@ export default function Impact() {
                         <h4 className="font-display font-bold text-xl text-foreground">4. Cancer Awareness Workshops</h4>
                       </div>
                       <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
-                        L4H Foundation organized 1st Cancer Awareness Session at Bhagbanchak Patiram Shikha Niketan, Medinipur, West Bengal and 2nd Cancer Awareness Session at Gobindakati Sikshaniketan High School, Hingalganj West Bengal. Both sessions were facilitated by Dr. Shyamsundar Mondal, retired ex. HOD, Department of Epidemiology and Biostatistics, Chittaranjan National Cancer Institute, Kolkata and attended by school students, local people. Dr. S. Mondal’s lucid explanation was well appreciated by all attendees.
+                        L4H Foundation organized <strong>1st Cancer Awareness Session</strong> at <strong>Bhagbanchak Patiram Shikha Niketan, Medinipur, West Bengal</strong> and <strong>2nd Cancer Awareness Session</strong> at <strong>Gobindakati Sikshaniketan High School, Hingalganj West Bengal</strong>. Both sessions were facilitated by <strong>Dr. Shyamsundar Mondal</strong>, retired ex. HOD, Department of Epidemiology and Biostatistics, Chittaranjan National Cancer Institute, Kolkata and attended by school students, local people. Dr. S. Mondal’s lucid explanation was well appreciated by all attendees.
                       </p>
                       <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
                         The L4H Foundation is organizing similar program at regular intervals to create awareness and reach out to large population in future and thereby to help people in early detection and treatment.
@@ -453,7 +453,7 @@ export default function Impact() {
                         </ul>
                       </div>
                       <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
-                        The Foundation has procured Breast Examination Simulator with a donation from one of our Patrons. The simulator is used during cancer awareness program for educating woman about breast self-exam.
+                        The Foundation has procured <strong>Breast Examination Simulator</strong> with a donation from one of our Patrons. The simulator is used during cancer awareness program for educating woman about breast self-exam.
                       </p>
                     </div>
 
@@ -475,43 +475,109 @@ export default function Impact() {
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
+                className="flex flex-col gap-8 w-full"
               >
-                <div className="lg:col-span-7 flex flex-col gap-6">
-                  <h3 className="font-display font-bold text-3xl text-foreground">Sundarbans Mangrove Buffer Zones</h3>
-                  <p className="text-sm text-foreground/80 leading-relaxed">
-                    Sundarbans delta region is extremely vulnerable to severe cyclone erosion (such as Amphan and Yaas). To check soil erosion, protect coastal borders, and provide natural storm surge barriers, we lead community-led mangrove plantation programs.
+                {/* Overview */}
+                <div className="flex flex-col gap-4">
+                  <h3 className="font-display font-bold text-3xl text-foreground">Mangrove Plantation for Greener and Cleaner Environment</h3>
+                  <p className="text-sm text-foreground/80 leading-relaxed font-sans">
+                    Live 4 Help (L4H) Foundation is committed to contribute to mother earth by means of plantation with a motto of cleaner and greener environment. In a span of two years, L4H Foundation planted approximately <strong>4000</strong> mangrove saplings in three plantation drives (<strong>2<sup>nd</sup> Nov’21</strong>, <strong>26<sup>th</sup> Jan’22</strong> and <strong>30<sup>th</sup> Dec’23</strong>) in Sundarbans Areas of West Bengal.
                   </p>
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] flex flex-col gap-4 shadow-soft">
-                    <span className="font-semibold text-sm text-foreground">Plantation and Survival Care:</span>
-                    <ul className="list-disc pl-5 text-xs text-foreground/70 flex flex-col gap-2 leading-relaxed">
-                      <li>Planted approximately 4,000 mangrove saplings across three plantation drives (November 2, 2021, January 26, 2022, and December 30, 2023).</li>
-                      <li>Cultivated resilient local species including Sundari, Bain, Kakra, Garjan, Golpata, and Dhuldhul.</li>
-                      <li>Post-plantation maintenance: Sourced local bamboo and nets to build extensive fences, guarding the saplings against cattle. We maintain the plantation for 3 years to ensure long-term sustainability.</li>
-                      <li>The saplings have shown excellent growth, reaching an average height of 8 to 12 feet.</li>
+                </div>
+
+                {/* 2-Column Split Details: Objectives & Protection Info */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
+                    <div className="flex items-center gap-2">
+                      <Leaf className="w-5 h-5 text-primary" />
+                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Benefits of Mangrove Plantation</h4>
+                    </div>
+                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
+                      <li>Provide a natural defence against storm surges, coastal erosion, and flooding</li>
+                      <li>Reduce of carbon footprints</li>
+                      <li>Minimize greenhouse effect</li>
                     </ul>
+                  </Card>
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
+                    <div className="flex items-center gap-2">
+                      <UserCheck className="w-5 h-5 text-[#DD6B20]" />
+                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Sustainability & Growth</h4>
+                    </div>
+                    <p className="text-xs text-foreground/75 leading-relaxed font-sans mb-1">
+                      With the help of local team/volunteers, L4H Foundation undertook responsibility for protecting the plants for <strong>3 years</strong> to ensure their sustainability.
+                    </p>
+                    <p className="text-xs text-foreground/75 leading-relaxed font-sans">
+                      The saplings of earlier plantation drives are growing very rapidly, and it gives us immense pleasure and satisfaction to see the growth. The average height of the sapling is <strong>8-12 feet</strong>.
+                    </p>
                   </Card>
                 </div>
-                <div className="lg:col-span-5 flex flex-col gap-6">
-                  <Card className="p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
-                    <h4 className="font-display font-bold text-lg text-foreground mb-4 flex items-center gap-2">
-                      <Building className="w-5 h-5 text-secondary" />
-                      Key Plantation Drives
-                    </h4>
-                    <ul className="flex flex-col gap-3 text-xs text-foreground/75">
-                      <li className="flex justify-between border-b border-foreground/5 pb-2"><span>First Drive (Nov 2021)</span> <span className="font-semibold text-foreground">1000+ Saplings</span></li>
-                      <li className="flex justify-between border-b border-foreground/5 pb-2"><span>Second Drive (Jan 2022)</span> <span className="font-semibold text-foreground">2000+ Saplings</span></li>
-                      <li className="flex justify-between border-b border-foreground/5 pb-2"><span>Third Drive (Dec 2023)</span> <span className="font-semibold text-foreground">1000+ Saplings</span></li>
-                      <li className="flex justify-between pb-1"><span>CSR Partner</span> <span className="font-semibold text-foreground">ABS Professional India</span></li>
-                    </ul>
+
+                {/* General Info and Photo note */}
+                <div className="flex flex-col gap-2">
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                    The Foundation would like to take more such drives in future with funding from individuals or through CSR as a part of green initiative to protect environment for better tomorrow.
+                  </p>
+                  <p className="text-xs text-foreground/50 font-semibold mt-2">Here are a few Snapshots of photograph of our earlier plantation.</p>
+                </div>
+
+                {/* 3-Column Grid for Plantation Drives */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Drive A */}
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-5 h-5 text-primary" />
+                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">A. 1st Mangrove Plantation</h4>
+                      </div>
+                      <span className="text-[10px] font-semibold text-foreground/50">Held on 2nd November, 2021</span>
+                      <p className="text-xs text-foreground/70 leading-relaxed font-sans mb-2">
+                        The world’s largest contiguous mangrove forest is Sundarbans in West Bengal, India. Mangroves provide ecosystem including carbon sequestration and costal protection. Unfortunately, deadliest cyclone Amphan destroyed one-third of mangrove forest in 2020.
+                      </p>
+                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
+                        L4H Foundation successfully implemented its <strong>first initiative</strong> towards a clean and green environment through mangrove plantation on <strong>November 2<sup>nd</sup>, 2021</strong>. We planted approximately <strong>1000</strong> saplings at <strong>Purba Kalitala, Haridaskati</strong> near the banks of Kalindi river of Hingalganj Block of Sundarbans.
+                      </p>
+                      <p className="text-xs text-foreground/70 leading-relaxed font-sans border-t border-foreground/5 pt-2">
+                        The entire area has been <strong>fenced with bamboo and nylon net</strong> to protect the plants from cattle. L4H Foundation commit to maintain plants for <strong>3 years</strong> with the help of local team and reserved adjacent space within the fence for plantation of another <strong>~2000</strong> saplings with <strong>2<sup>nd</sup></strong> round of fundraising later.
+                      </p>
+                    </div>
                   </Card>
-                  <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative">
-                    <img referrerPolicy="no-referrer"
-                      src="https://live4help.org/wp-content/uploads/2022/02/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg"
-                      alt="Sundarban Mangrove Plantation Campaign"
-                      className="w-full h-full object-cover absolute inset-0"
-                    />
-                  </div>
+
+                  {/* Drive B */}
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-5 h-5 text-primary" />
+                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">B. 2nd Mangrove Plantation</h4>
+                      </div>
+                      <span className="text-[10px] font-semibold text-foreground/50">Held on 26th January, 2022</span>
+                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
+                        L4H Foundation has celebrated <strong>73<sup>rd</sup> Republic Day</strong> with successive plantation drive within a span of 3 months. With <strong>2<sup>nd</sup></strong> batch of <strong>2000</strong> mangrove saplings, L4H Foundation commit to maintain a total of <strong>3,000</strong> plants for <strong>3 years</strong> to ensure sustainability of plants. Varieties of mangroves planted are <strong>Sundari, Kakra, Dhudhul, Bain, Gorgon, Poshur.</strong>
+                      </p>
+                    </div>
+                  </Card>
+
+                  {/* Drive C */}
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-5 h-5 text-primary" />
+                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">C. 3rd Mangrove Plantation</h4>
+                      </div>
+                      <span className="text-[10px] font-semibold text-foreground/50">Held on 30th December, 2023</span>
+                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
+                        L4H Foundation planted approximately <strong>1000</strong> Mangroves mostly <strong>Kakra and Sundari</strong> on <strong>Kalindi River Bank, Gobindakati, Hingalganj, North 24 Parganas, West Bengal</strong> on <strong>30<sup>th</sup> Dec’23</strong>.
+                      </p>
+                    </div>
+                  </Card>
+                </div>
+
+                {/* Plantation Gallery Snapshot Image */}
+                <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative max-w-4xl mx-auto">
+                  <img referrerPolicy="no-referrer"
+                    src="https://live4help.org/wp-content/uploads/2022/02/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg"
+                    alt="Sundarban Mangrove Plantation Campaign Photographs"
+                    className="w-full h-full object-cover absolute inset-0"
+                  />
                 </div>
               </motion.div>
             )}
@@ -524,13 +590,13 @@ export default function Impact() {
               >
                 <div className="lg:col-span-7 flex flex-col gap-6">
                   <h3 className="font-display font-bold text-3xl text-foreground">Winter Relief & Other Social Works</h3>
-                  <p className="text-sm text-foreground/80 leading-relaxed">
+                  <p className="text-sm text-foreground/80 leading-relaxed font-sans">
                     In response to seasonal hardships, Live 4 Help Foundation coordinates annual blanket distribution campaigns to protect daily wagers, construction workers, and daily wage labor families from severe cold waves.
                   </p>
                   <div className="flex flex-col gap-4">
                     <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
-                      <h4 className="font-semibold text-sm text-foreground mb-3">Key Blanket Distribution Drives (480 total)</h4>
-                      <ul className="flex flex-col gap-2.5 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
+                      <h4 className="font-semibold text-sm text-foreground mb-3 font-sans">Key Blanket Distribution Drives (480 total)</h4>
+                      <ul className="flex flex-col gap-2.5 text-xs text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
                         <li><strong>December 29, 2023:</strong> Distributed 160 heavy blankets to rural villagers in North 24 Parganas, West Bengal.</li>
                         <li><strong>January 15, 2023:</strong> Sourced and delivered 100 blankets to construction daily laborers at Government Boys Senior Secondary School, Jharoda Kalan, New Delhi.</li>
                         <li><strong>December 27, 2022:</strong> Distributed 200 winter blankets across the vulnerable rural Sundarbans delta stretches.</li>
@@ -539,8 +605,8 @@ export default function Impact() {
                     </Card>
 
                     <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft">
-                      <h4 className="font-semibold text-sm text-foreground mb-2">Dwarka Clothes Distribution Drive</h4>
-                      <p className="text-xs text-foreground/75 leading-relaxed">
+                      <h4 className="font-semibold text-sm text-foreground mb-2 font-sans">Dwarka Clothes Distribution Drive</h4>
+                      <p className="text-xs text-foreground/75 leading-relaxed font-sans">
                         On August 15, 2021, L4H volunteers distributed wearable old clothes to approximately 30 daily wager families living in roadside tents near Dwarka Sector 19, New Delhi.
                       </p>
                     </Card>
@@ -553,7 +619,7 @@ export default function Impact() {
                       <HeartHandshake className="w-5 h-5 text-primary" />
                       Relief Outreach Summary
                     </h4>
-                    <ul className="flex flex-col gap-3 text-xs text-foreground/75">
+                    <ul className="flex flex-col gap-3 text-xs text-foreground/75 font-sans">
                       <li className="flex justify-between border-b border-foreground/5 pb-2"><span>Total Blankets</span> <span className="font-semibold text-foreground">480 Blankets</span></li>
                       <li className="flex justify-between border-b border-foreground/5 pb-2"><span>Primary Recipients</span> <span className="font-semibold text-foreground">Migrant Labor & Villagers</span></li>
                       <li className="flex justify-between pb-1"><span>Locations Served</span> <span className="font-semibold text-foreground">Delhi NCR & West Bengal</span></li>
