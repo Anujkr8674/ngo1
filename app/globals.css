@@ -20,6 +20,7 @@
   
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-display: var(--font-outfit), system-ui, sans-serif;
+  --font-admin: "Neue Montreal", "Gotham", var(--font-inter), system-ui, sans-serif;
   
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;

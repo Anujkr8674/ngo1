@@ -39,6 +39,8 @@ export const metadata: Metadata = {
  },
 };
 
+import LayoutWrapper from "./components/LayoutWrapper";
+
 export default function RootLayout({
  children,
 }: Readonly<{
@@ -98,10 +100,10 @@ export default function RootLayout({
  dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
  />
  </head>
- <body className="min-h-full flex flex-col font-sans bg-background text-foreground ">
- <Navbar />
- <main className="flex-1 flex flex-col">{children}</main>
- <Footer />
+ <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
+ <LayoutWrapper navbar={<Navbar />} footer={<Footer />}>
+ {children}
+ </LayoutWrapper>
  </body>
  </html>
  );
