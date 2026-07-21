@@ -64,7 +64,7 @@ export default function Donate() {
     ];
 
     return (
-        <div className="flex flex-col w-full bg-background font-sans">
+        <div className="flex flex-col w-full font-sans">
             {/* Intro Header */}
             <section className="relative py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 text-center min-h-[90vh]">
                 {/* Full-size Hero Background */}
@@ -96,7 +96,7 @@ export default function Donate() {
             </section>
 
             {/* Main Content Area */}
-            <section className="py-8 px-6 md:px-12 bg-white pb-24">
+            <section className="py-8 px-6 md:px-12 pb-24">
                 <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-12 md:px-8 border border-foreground/5 max-w-5xl mx-auto flex flex-col gap-8">
 
                     {/* Step 1: Selection Cards */}

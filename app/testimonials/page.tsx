@@ -56,8 +56,8 @@ export default function Testimonials() {
       </section>
 
       {/* Video Grid Section */}
-      <section className="py-16 px-6 md:px-12 bg-white pb-32">
-        <div className="max-w-7xl mx-auto flex flex-col gap-12">
+      <section className="py-16 px-6 md:px-12 pb-32">
+        <div className="max-w-7xl mx-auto bg-white rounded-[3rem] p-8 md:p-12 border border-foreground/10 shadow-premium flex flex-col gap-12">
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {testimonialsData.map((item, idx) => (

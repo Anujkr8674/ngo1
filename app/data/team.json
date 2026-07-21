@@ -3,60 +3,80 @@
     "name": "Tarun Maiti",
     "role": "Founder",
     "image": "https://live4help.org/wp-content/uploads/2021/01/PicsArt_01-01-07.59.50-min-scaled.jpg",
+    "email": "tarun.maiti@live4help.org",
+    "mobile": "+91 98107 45206",
     "description": "Tarun Maiti is a Chemical Engineer by profession working in a Private Engineering Company having 32 years of experiences in field of Oil and Gas Sector. He is associated with a charitable organisation, Dwarka Kalibari, Delhi for more than 10 years and is instrumental to motivate and build an energetic team for fundraising and various social activities. He took initiative for distributing rations and cooked food to hungry and jobless people during COVID 19 pandemic. He has passion for plantation and cleanliness drive. He has high energy and enthusiasm for any kind of social works."
   },
   {
     "name": "K G Verma",
     "role": "Founder",
     "image": "https://live4help.org/wp-content/uploads/2021/01/PHOTO-2021-01-02-21-38-55.jpg",
+    "email": "kg.verma@live4help.org",
+    "mobile": "+91 93132 41727",
     "description": "K G Verma is Mechanical Engineer and MBA working as Sr. Vice President in reputed engineering industry having 28 years’ experience in field of marketing, business development, procurement etc. He is an active volunteer in Earth Saviours Foundation founded by Mr. Ravi Karla. He has passion to help the poor and needy people and always been active for any kind of social work. He has joined this foundation with an aim and mission to serve needy people in a better way."
   },
   {
     "name": "Late Gautam Mandal",
     "role": "Founder",
     "image": "https://live4help.org/wp-content/uploads/2020/12/Gautam-Mondal-3-e1609422926793.jpg",
+    "email": "contact@live4help.org",
+    "mobile": "In Remembrance",
     "description": "Gautam Mandal studied Mechanical Engineering from Jadavpur University- Kolkata. He had over 35 years of working experience in India and abroad in Oil and Gas industries. He also was an active volunteer of the Art Of Living and engaged in various social works. With his own finance, he supported a primary school in his native village in West Bengal, aiming to help the students of his neighbouring villages. He left for heavenly abode on 9th July, 2021. May his legacy and passion to help people live through us."
   },
   {
     "name": "Subhendu Sekhar Mal",
     "role": "Advisor (Education)",
     "image": "https://live4help.org/wp-content/uploads/2021/12/Subhnedu-Sekhar-Mal-NDP.jpeg",
+    "email": "subhendu.mal@live4help.org",
+    "mobile": "+91 98712 34567",
     "description": "B. Tech in Chemical, Operation Engineer in Kuwait National Petroleum Company. He loves to devote his time to interact with students and to provide moral support."
   },
   {
     "name": "Debashis Das",
     "role": "Advisor (Education)",
     "image": "https://live4help.org/wp-content/uploads/2021/12/Debashis-Das-NDP.jpeg",
+    "email": "debashis.das@live4help.org",
+    "mobile": "+91 98111 22334",
     "description": "Master in Computer Science, Entrepreneur, Former Executive Director of IBM, Global Business Services(GBS), USA. He strives to support education of needy students."
   },
   {
     "name": "Ramkrishna Sadhukhan",
     "role": "Advisor (Education)",
     "image": "https://live4help.org/wp-content/uploads/2021/11/Ramkrishna-Sadhukhan-NDP.jpeg",
+    "email": "ramkrishna.s@live4help.org",
+    "mobile": "+91 98222 33445",
     "description": "Head of Protein Engineering & Expression, Global Biologics AbbVie. Highly passionate about education of girls and women empowerment."
   },
   {
     "name": "Subhabrata Chakrabarti",
     "role": "Advisor (Education)",
     "image": "https://live4help.org/wp-content/uploads/2021/11/Subhabrata-Chakraborty-2-NDP.jpeg",
+    "email": "subhabrata.c@live4help.org",
+    "mobile": "+91 98333 44556",
     "description": "Head of Business at Bharati Bhawan. Passionately involved in imparting and facilitating education for underprivileged children in his own capacity."
   },
   {
     "name": "Dr. Syamsundar Mandal",
     "role": "Advisor (Healthcare)",
     "image": "https://live4help.org/wp-content/uploads/2021/01/Samu1_Friend.jpg",
+    "email": "dr.smandal@live4help.org",
+    "mobile": "+91 98444 55667",
     "description": "Statistical Officer and Head, Department of Epidemiology and Biostatistics, Chittaranjan National Cancer Institute (CNCI). Works in cancer research and awareness programme."
   },
   {
     "name": "Subhabrata Saha",
     "role": "Advisor (Elderly Care)",
     "image": "https://live4help.org/wp-content/uploads/2021/01/Subhabrata-1.jpg",
+    "email": "subhabrata.saha@live4help.org",
+    "mobile": "+91 98555 66778",
     "description": "Chemical Engineer by profession, is young, energetic and passionate about voluntary works. He is enthusiastic and has a zeal to help people in need."
   },
   {
     "name": "Saurav Moni",
     "role": "Advisor (Plantation & Relief)",
-    "image": "https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg",
+    "image": "/logo/logo.jpg",
+    "email": "saurav.moni@live4help.org",
+    "mobile": "+91 98666 77889",
     "description": "Singer, Vocal Archivist and Folk performer. Engaged in relief work for Cyclone Amphan affected people and sustainable Mangrove Plantation Programme."
   }
 ]

@@ -2,13 +2,13 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { 
-  GraduationCap, 
-  HeartHandshake, 
-  Leaf, 
-  MapPin, 
-  Calendar, 
-  UserCheck, 
+import {
+  GraduationCap,
+  HeartHandshake,
+  Leaf,
+  MapPin,
+  Calendar,
+  UserCheck,
   Building,
   Activity,
   Award,
@@ -76,7 +76,7 @@ export default function Impact() {
       </section>
 
       {/* Grid Dashboard */}
-      <section className="py-8 px-6 md:px-12 bg-white pb-16">
+      <section className="py-8 px-6 md:px-12 pb-16">
         <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {statCards.map((card, i) => (
             <MotionCard
@@ -103,7 +103,7 @@ export default function Impact() {
       </section>
 
       {/* Interactive Tabs Section */}
-      <section className="py-8 px-6 md:px-12 bg-white pb-16">
+      <section className="py-8 px-6 md:px-12 pb-16">
         <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
           {/* Tab Selector */}
           <div className="flex flex-wrap justify-center gap-2 sm:gap-4 border-b border-foreground/5 p-1 max-w-3xl mx-auto w-full">
@@ -111,11 +111,10 @@ export default function Impact() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-4 sm:px-6 py-3 text-xs sm:text-sm font-semibold uppercase tracking-wider rounded-2xl transition-premium cursor-pointer ${
-                  activeTab === tab 
-                    ? "bg-[#CFE8FF] text-foreground shadow-soft border border-foreground/5" 
-                    : "text-foreground/65 hover:text-foreground"
-                }`}
+                className={`px-4 sm:px-6 py-3 text-xs sm:text-sm font-semibold uppercase tracking-wider rounded-2xl transition-premium cursor-pointer ${activeTab === tab
+                  ? "bg-[#CFE8FF] text-foreground shadow-soft border border-foreground/5"
+                  : "text-foreground/65 hover:text-foreground"
+                  }`}
               >
                 {tab}
               </button>
@@ -203,7 +202,7 @@ export default function Impact() {
                   <p className="text-xs text-foreground/75 leading-relaxed">
                     L4H Foundation has formed an education team comprising highly qualified persons. During regular monthly virtual meeting, team invites students to share their aspirations, career path, progress, needs etc. Such interaction provides an open forum for bonding with members of L4H Foundation/sponsors, increased their confidence, communication skills as well as assist Foundation to identify gaps and potential improvement opportunities.
                   </p>
-                  
+
                   <div className="overflow-x-auto w-full rounded-2xl border border-[#C1D6C1] shadow-soft">
                     <table className="min-w-full text-xs text-left text-foreground/80 bg-white">
                       <thead className="bg-[#FFE6D4] text-foreground uppercase tracking-wider text-[10px] font-bold border-b border-[#EEB898]">
@@ -281,7 +280,7 @@ export default function Impact() {
                     <p className="text-xs text-foreground/50 font-semibold mb-3">Here is few photographs capturing moments while interacting with students.</p>
                     <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative">
                       <img referrerPolicy="no-referrer"
-                        src="https://live4help.org/wp-content/uploads/2026/02/Students.png"
+                        src="/student/Students.png"
                         alt="Student Interaction photographs"
                         className="w-full h-full object-cover absolute inset-0"
                       />
@@ -460,7 +459,7 @@ export default function Impact() {
                     <div className="lg:col-span-5 flex flex-col gap-6 w-full">
                       <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative">
                         <img referrerPolicy="no-referrer"
-                          src="https://live4help.org/wp-content/uploads/2022/04/L4H-Medical-Camp-Photo-1.jpg"
+                          src="/focus/L4H-Medical-Camp-Photo-1.jpg"
                           alt="Cancer Awareness Workshops & Medical Camp"
                           className="w-full h-full object-cover absolute inset-0"
                         />
@@ -574,7 +573,7 @@ export default function Impact() {
                 {/* Plantation Gallery Snapshot Image */}
                 <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative max-w-4xl mx-auto">
                   <img referrerPolicy="no-referrer"
-                    src="https://live4help.org/wp-content/uploads/2022/02/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg"
+                    src="/focus/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg"
                     alt="Sundarban Mangrove Plantation Campaign Photographs"
                     className="w-full h-full object-cover absolute inset-0"
                   />
@@ -674,7 +673,7 @@ export default function Impact() {
                   <p className="text-xs text-foreground/50 font-semibold align-self-start">Here are a few snapshots of photograph of our earlier distributions.</p>
                   <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative max-w-4xl mx-auto">
                     <img referrerPolicy="no-referrer"
-                      src="https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-3.jpg"
+                      src="/focus/Cloth-Distribution-Photo-3.jpg"
                       alt="Relief Work & Blanket Distribution Campaigns"
                       className="w-full h-full object-cover absolute inset-0"
                     />

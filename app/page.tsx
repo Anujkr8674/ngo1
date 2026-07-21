@@ -14,12 +14,20 @@ import {
   Compass,
   ArrowRight,
   ShieldCheck,
-  Camera
+  Camera,
+  Tag,
+  Calendar,
+  Clock,
+  BookOpen,
+  Eye
 } from "lucide-react";
 import Counter from "./components/Counter";
 import testimonialsData from "./data/testimonials.json";
 import blogsData from "./data/blogs.json";
 import { Card, MotionCard } from "./components/Card";
+import { getBlogPosts } from "./actions/blog";
+import { getGalleryImages } from "./actions/gallery";
+import SmoothImage from "./components/SmoothImage";
 
 const carouselImages = [
 
@@ -30,8 +38,32 @@ const carouselImages = [
 
 export default function Home() {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [activeGalleryImage, setActiveGalleryImage] = useState<{ src: string; caption: string } | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [blogsList, setBlogsList] = useState<any[]>(blogsData.slice(0, 3));
+
+  const defaultGallery = [
+    { id: "1", url: "https://live4help.org/wp-content/uploads/2024/02/Meeting-with-Subham-Pandey-225x300.jpg", caption: "IIT Chennai M.Sc. Physics student Subham Pandey" },
+    { id: "2", url: "https://live4help.org/wp-content/uploads/2022/04/L4H-Medical-Camp-Photo-1.jpg", caption: "Clinical diagnostic camp in Paschim Medinipur" },
+    { id: "3", url: "https://live4help.org/wp-content/uploads/2022/02/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg", caption: "Mangrove saplings restoration campaign, Sundarbans" },
+    { id: "4", url: "https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-3.jpg", caption: "Winter blanket and clothing distributions" }
+  ];
+  const [galleryList, setGalleryList] = useState<any[]>(defaultGallery);
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    getBlogPosts().then((posts) => {
+      if (posts && posts.length > 0) {
+        setBlogsList(posts.slice(0, 3));
+      }
+    }).catch(() => { });
+
+    getGalleryImages().then((imgs) => {
+      if (imgs && imgs.length > 0) {
+        setGalleryList(imgs.slice(0, 4));
+      }
+    }).catch(() => { });
+  }, []);
 
   useEffect(() => {
     const autoScroll = setInterval(() => {
@@ -68,7 +100,7 @@ export default function Home() {
       desc: "Identifying underprivileged students to sponsor annual school fees, tuition, and basic training.",
       link: "/initiatives",
       bgColor: "",
-      image: "https://live4help.org/wp-content/uploads/2026/02/Students.png"
+      image: "/focus/Picture7.png"
     },
     {
       icon: <HeartHandshake className="w-5 h-5 text-foreground" />,
@@ -76,7 +108,7 @@ export default function Home() {
       desc: "Providing free diagnostics, consultations, and cancer awareness drives in remote villages.",
       link: "/initiatives",
       bgColor: "",
-      image: "https://live4help.org/wp-content/uploads/2022/04/L4H-Medical-Camp-Photo-1.jpg"
+      image: "/focus/L4H-Medical-Camp-Photo-1.jpg"
     },
     {
       icon: <Leaf className="w-5 h-5 text-foreground" />,
@@ -84,7 +116,7 @@ export default function Home() {
       desc: "Mangrove restoration in coastal Sundarbans to counter environmental challenges & build resilience.",
       link: "/initiatives",
       bgColor: "",
-      image: "https://live4help.org/wp-content/uploads/2022/02/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg"
+      image: "/focus/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg"
     },
     {
       icon: <Compass className="w-5 h-5 text-foreground" />,
@@ -92,16 +124,12 @@ export default function Home() {
       desc: "Winter clothes distribution, cyclone relief support, and daily food sponsoring during lock-downs.",
       link: "/initiatives",
       bgColor: "",
-      image: "https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-3.jpg"
+      image: "/focus/Cloth-Distribution-Photo-3.jpg"
     },
   ];
 
   return (
     <div className="flex flex-col w-full relative">
-      <div 
-        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/img/bg1.jpg')" }}
-      />
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-20 px-6 md:px-12 overflow-hidden">
         {/* Full-size Carousel Background */}
@@ -362,24 +390,35 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { src: "https://live4help.org/wp-content/uploads/2024/02/Meeting-with-Subham-Pandey-225x300.jpg", caption: "IIT Chennai M.Sc. Physics student Subham Pandey" },
-              { src: "https://live4help.org/wp-content/uploads/2022/04/L4H-Medical-Camp-Photo-1.jpg", caption: "Clinical diagnostic camp in Paschim Medinipur" },
-              { src: "https://live4help.org/wp-content/uploads/2022/02/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg", caption: "Mangrove saplings restoration campaign, Sundarbans" },
-              { src: "https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-3.jpg", caption: "Winter blanket and clothing distributions" }
-            ].map((img, i) => (
-              <Card key={i} className="group pb-6 rounded-[2.5rem] border border-[#E3D38C] flex flex-col h-full overflow-hidden">
-                <div className="relative aspect-square w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0">
-                  <img referrerPolicy="no-referrer"
-                    src={img.src}
-                    alt={img.caption}
-                    className="w-full h-full object-cover absolute inset-0 object-cover group-hover:scale-105 transition-premium"
+            {galleryList.slice(0, 4).map((item, idx) => (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                key={item.id || idx}
+                onClick={() => setActiveGalleryImage({ src: item.url, caption: item.caption || '' })}
+                className="group flex flex-col rounded-[2.5rem] bg-white shadow-soft border border-[#E3D38C] cursor-pointer overflow-hidden pb-6 hover:-translate-y-2 hover:border-[#90BCE6] hover:shadow-premium hover:!bg-[#CFE8FF] transition-all duration-300"
+              >
+                <div className="relative aspect-square w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-gray-50">
+                  <SmoothImage
+                    src={item.url}
+                    alt={item.caption || 'Gallery Image'}
+                    aspectRatioClassName="aspect-square"
+                    className="group-hover:scale-105 transition-all duration-300"
                   />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-premium">
+                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg text-foreground">
+                      <Eye className="w-4 h-4" />
+                    </div>
+                  </div>
                 </div>
                 <div className="pt-6 px-6 flex flex-col h-full justify-between">
-                  <span className="text-xs font-semibold text-foreground/80 leading-relaxed line-clamp-2 min-h-[32px]">{img.caption}</span>
+                  <span className="text-xs text-foreground/80 line-clamp-2 leading-relaxed font-semibold">
+                    {item.caption}
+                  </span>
                 </div>
-              </Card>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -443,38 +482,92 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {blogsData.slice(0, 3).map((blog) => (
-              <Card as="article" key={blog.slug} className="group flex flex-col rounded-[2.5rem] border border-[#C8B4D4] overflow-hidden pb-6 h-full">
-                {blog.images && blog.images.length > 0 && (
-                  <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0">
-                    <img referrerPolicy="no-referrer"
-                      src={blog.images[0]}
-                      alt={blog.title}
-                      className="w-full h-full object-cover absolute inset-0 object-cover group-hover:scale-105 transition-premium"
-                    />
-                  </div>
-                )}
-                <div className="pt-6 px-6 flex flex-col h-full flex-grow justify-between">
-                  <div className="flex flex-col gap-2.5 flex-1">
-                    <div className="flex items-center gap-3 text-xs text-foreground/50">
-                      <span>{blog.date}</span>
-                      <span>•</span>
-                      <span>By {blog.author}</span>
+            {blogsList.slice(0, 3).map((blog, idx) => {
+              const blogDate = blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+              }) : (blog.date || 'June 1, 2026')
+
+              const images = blog.images || []
+              const coverImage = images.length > 0 ? (images[0] === '/logo/logo.jpg' && images.length > 1 ? images[1] : images[0]) : null
+              const isVid = coverImage && coverImage.toLowerCase().match(/\.(mp4|webm|mov|avi|mkv)$/i)
+              const title = blog.title && blog.title !== 'BLOG' ? blog.title : (blog.subheadings?.[0]?.text || 'Blog Post')
+              const categoryName = blog.category?.name || blog.category || 'General'
+              const readTime = blog.readTime || 3
+              const excerpt = blog.excerpt || (blog.paragraphs && blog.paragraphs[0]) || 'No description available.'
+
+              return (
+                <motion.article
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.05 }}
+                  key={blog.slug}
+                  className="group flex flex-col justify-between rounded-[2.5rem] bg-white shadow-soft border border-[#C8B4D4] min-h-[500px] hover:-translate-y-2 hover:border-[#90BCE6] hover:shadow-premium hover:!bg-[#CFE8FF] transition-all duration-300 overflow-hidden pb-6 relative"
+                >
+                  <div className="flex flex-col flex-1">
+                    {/* Image / Video */}
+                    {coverImage ? (
+                      <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-slate-900">
+                        {isVid ? (
+                          <video src={coverImage} muted className="w-full h-full object-cover group-hover:scale-105 transition-premium" />
+                        ) : (
+                          <img
+                            referrerPolicy="no-referrer"
+                            src={coverImage}
+                            alt={title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-premium animate-fade-in"
+                          />
+                        )}
+                        {/* Category Badge on Card */}
+                        <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/10 flex items-center gap-1">
+                          <Tag className="w-3 h-3 text-blue-400" />
+                          {categoryName}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-slate-100 flex items-center justify-center text-slate-400">
+                        <BookOpen className="w-12 h-12 text-slate-300" />
+                        <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/10 flex items-center gap-1">
+                          <Tag className="w-3 h-3 text-blue-400" />
+                          {categoryName}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Body */}
+                    <div className="pt-6 px-6 flex flex-col h-full flex-grow justify-between">
+                      <div className="flex flex-col gap-2.5 flex-grow">
+                        <div className="flex flex-wrap items-center gap-4 text-xs font-semibold tracking-wider text-foreground/50 uppercase">
+                          <span className="flex items-center gap-1">
+                            <Calendar className="w-3.5 h-3.5" />
+                            {blogDate}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5" />
+                            {readTime} Min Read
+                          </span>
+                        </div>
+                        <h4 className="font-display font-bold text-lg md:text-xl text-foreground leading-snug group-hover:text-blue-600 transition-colors">
+                          {title}
+                        </h4>
+                        <p className="text-xs text-foreground/70 leading-relaxed line-clamp-3">
+                          {excerpt}
+                        </p>
+                      </div>
                     </div>
-                    <h4 className="font-display font-bold text-lg text-foreground leading-snug group-hover:text-blue-600 transition-colors">
-                      {blog.title}
-                    </h4>
-                    <p className="text-xs text-foreground/70 leading-relaxed line-clamp-3">
-                      {blog.paragraphs[0]}
-                    </p>
                   </div>
-                  <Link href={`/blog/${blog.slug}`} className="flex items-center gap-1.5 text-xs font-semibold text-foreground/80 hover:text-foreground mt-4 w-fit group/btn">
-                    Read article
-                    <ArrowRight className="w-3.5 h-3.5 text-foreground/40 group-hover/btn:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </Card>
-            ))}
+
+                  <div className="px-6 mt-6">
+                    <Link href={`/blog/${blog.slug}`} className="flex items-center gap-1.5 text-xs font-semibold text-foreground/80 hover:text-foreground group/btn w-fit">
+                      Read full story
+                      <ArrowRight className="w-3.5 h-3.5 text-foreground/40 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </motion.article>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -534,6 +627,45 @@ export default function Home() {
                 autoPlay
                 className="w-full h-full"
               />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* Image Lightbox Modal */}
+      <AnimatePresence>
+        {activeGalleryImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveGalleryImage(null)}
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4"
+          >
+            <button
+              onClick={() => setActiveGalleryImage(null)}
+              className="absolute top-6 right-6 p-3 rounded-full hover: text-white transition-colors cursor-pointer hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
+              aria-label="Close image"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-3xl flex flex-col items-center gap-6"
+            >
+              <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-premium border border-white/10 bg-black">
+                <SmoothImage
+                  src={activeGalleryImage.src}
+                  alt={activeGalleryImage.caption}
+                  aspectRatioClassName="aspect-[4/3]"
+                  className="object-contain"
+                />
+              </div>
+              <p className="text-white text-sm md:text-base text-center max-w-2xl px-4 leading-relaxed font-sans">
+                {activeGalleryImage.caption}
+              </p>
             </motion.div>
           </motion.div>
         )}

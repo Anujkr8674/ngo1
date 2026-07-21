@@ -2,95 +2,94 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Calendar, Award, Star, BookOpen, HeartPulse, ShieldAlert, Compass } from "lucide-react";
+import { Sparkles, Calendar, Award, Star, BookOpen, HeartPulse, ShieldAlert, Compass, Mail, Phone } from "lucide-react";
 import teamData from "../data/team.json";
-import { Card, MotionCard } from "../components/Card";
+import { Card } from "../components/Card";
 
 export default function About() {
- const founders = teamData.filter(m => m.role === "Founder");
- const advisors = teamData.filter(m => m.role.includes("Advisor"));
+  const founders = teamData.filter(m => m.role === "Founder");
+  const advisors = teamData.filter(m => m.role.includes("Advisor"));
 
- const milestones = [
- { year: "Oct 2020", title: "NGO Inception", desc: "Live 4 Help Foundation registered under the Ministry of Corporate Affairs, Gov of India. Began with individual feuding of fees and rations." },
- { year: "June 2021", title: "First Student Sponsored", desc: "Sponsorship of a single underprivileged student launched our long-term education support program." },
- { year: "Jan 2022", title: "Sundarban Mangrove Initiative", desc: "Launched coastal restoration project planting over 3000 mangrove saplings with ABS Professional India's CSR support." },
- { year: "March 2022", title: "First Rural Medical Camp", desc: "Diagnosed 125 village patients in Paschim Medinipur in collaboration with Erbe Medical India & Thyrocare." },
- { year: "Dec 2023", title: "3rd Medical Camp", desc: "Reached 170+ beneficiaries in Sundarbans and launched cancer awareness screenings using advanced simulator blocks." },
- { year: "April 2026", title: "100+ Cumulative Students", desc: "Surpassed the milestone of supporting 100+ students across 11 states of India, proving sustained long-term commitment." }
- ];
+  const milestones = [
+    { year: "Oct 2020", title: "NGO Inception", desc: "Live 4 Help Foundation registered under the Ministry of Corporate Affairs, Gov of India. Began with individual feuding of fees and rations." },
+    { year: "June 2021", title: "First Student Sponsored", desc: "Sponsorship of a single underprivileged student launched our long-term education support program." },
+    { year: "Jan 2022", title: "Sundarban Mangrove Initiative", desc: "Launched coastal restoration project planting over 3000 mangrove saplings with ABS Professional India's CSR support." },
+    { year: "March 2022", title: "First Rural Medical Camp", desc: "Diagnosed 125 village patients in Paschim Medinipur in collaboration with Erbe Medical India & Thyrocare." },
+    { year: "Dec 2023", title: "3rd Medical Camp", desc: "Reached 170+ beneficiaries in Sundarbans and launched cancer awareness screenings using advanced simulator blocks." },
+    { year: "April 2026", title: "100+ Cumulative Students", desc: "Surpassed the milestone of supporting 100+ students across 11 states of India, proving sustained long-term commitment." }
+  ];
 
- return (
- <div className="flex flex-col w-full">
- {/* Intro Hero */}
- <section className="relative py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 min-h-[90vh]">
- {/* Full-size Hero Background */}
- <div className="absolute inset-0 z-0">
- <img
- src="https://live4help.org/wp-content/uploads/2021/01/PHOTO-2019-08-18-10-59-21.jpg"
- alt="About Live 4 Help Foundation Hero"
- referrerPolicy="no-referrer"
- className="w-full h-full object-cover"
- />
- <div className="absolute inset-0 bg-black/20" />
- </div>
+  return (
+    <div className="flex flex-col w-full">
+      {/* Intro Hero */}
+      <section className="relative py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 min-h-[90vh]">
+        {/* Full-size Hero Background */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://live4help.org/wp-content/uploads/2021/01/PHOTO-2019-08-18-10-59-21.jpg"
+            alt="About Live 4 Help Foundation Hero"
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/20" />
+        </div>
 
- {/* Floating Glassmorphism Hero Content Card */}
- <div className="max-w-4xl mx-auto w-full z-10 relative">
- <div className="w-full text-center flex flex-col items-center gap-6">
- <motion.div
- initial={{ opacity: 0, y: 15 }}
- animate={{ opacity: 1, y: 0 }}
- className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs uppercase tracking-widest shadow-soft font-semibold bg-[#DCCFF8] text-[#444444]"
- >
- <Award className="w-3.5 h-3.5 text-[#444444]" />
- Who We Are
- </motion.div>
- <motion.h1
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.1 }}
- className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none"
- >
- Redefining Community Support
- </motion.h1>
- <motion.p
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ delay: 0.2 }}
- className="bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl"
- >
- We are a registered non-profit organization dedicated to bridging the gap between individuals seeking help and patrons willing to extend their support.
- </motion.p>
- </div>
- </div>
- </section>
+        {/* Floating Glassmorphism Hero Content Card */}
+        <div className="max-w-4xl mx-auto w-full z-10 relative">
+          <div className="w-full text-center flex flex-col items-center gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs uppercase tracking-widest shadow-soft font-semibold bg-[#DCCFF8] text-[#444444]"
+            >
+              <Award className="w-3.5 h-3.5 text-[#444444]" />
+              Who We Are
+            </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none"
+            >
+              Redefining Community Support
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl"
+            >
+              We are a registered non-profit organization dedicated to bridging the gap between individuals seeking help and patrons willing to extend their support.
+            </motion.p>
+          </div>
+        </div>
+      </section>
 
- {/* Our Story */}
- <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
- <div className="lg:col-span-6 flex flex-col gap-6">
- <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground">How We Started</h2>
- <p className="text-foreground/85 leading-relaxed text-sm md:text-base">
- Like others we were engaged individually in social services by sponsoring annual school fees for deserving students and distributing rations to a few needy families. 
- </p>
- <p className="text-foreground/80 leading-relaxed text-sm">
- As we realized the depth of the challenges faced by children and elderly citizens, we formalised our efforts in 2020 under the Ministry of Corporate Affairs. By focusing strictly on Education, Environment (Plantation), and Healthcare, we created a channel to coordinate community-level assistance with transparent auditing, accountability, and direct human connection.
- </p>
- </div>
- <div className="lg:col-span-6 relative aspect-[16/10] rounded-3xl overflow-hidden shadow-premium border border-white ">
- <img referrerPolicy="no-referrer"
- src="https://live4help.org/wp-content/uploads/2021/01/PHOTO-2019-08-18-10-59-21.jpg"
- alt="Live 4 Help Foundation early journey"
- 
- className="w-full h-full object-cover absolute inset-0 object-cover"
- />
- </div>
- </div>
- </section>
+      {/* Our Story */}
+      <section className="py-8 px-6 md:px-12 pb-16">
+        <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-6 flex flex-col gap-6">
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground">How We Started</h2>
+            <p className="text-foreground/85 leading-relaxed text-sm md:text-base">
+              Like others we were engaged individually in social services by sponsoring annual school fees for deserving students and distributing rations to a few needy families. 
+            </p>
+            <p className="text-foreground/80 leading-relaxed text-sm">
+              As we realized the depth of the challenges faced by children and elderly citizens, we formalised our efforts in 2020 under the Ministry of Corporate Affairs. By focusing strictly on Education, Environment (Plantation), and Healthcare, we created a channel to coordinate community-level assistance with transparent auditing, accountability, and direct human connection.
+            </p>
+          </div>
+          <div className="lg:col-span-6 relative aspect-[16/10] rounded-3xl overflow-hidden shadow-premium border border-white ">
+            <img referrerPolicy="no-referrer"
+              src="https://live4help.org/wp-content/uploads/2021/01/PHOTO-2019-08-18-10-59-21.jpg"
+              alt="Live 4 Help Foundation early journey"
+              className="w-full h-full object-cover absolute inset-0 object-cover"
+            />
+          </div>
+        </div>
+      </section>
 
- {/* Vision, Mission, Values */}
- <section className="py-8 px-6 md:px-12 bg-white pb-16">
-  <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Vision, Mission, Values */}
+      <section className="py-8 px-6 md:px-12 pb-16">
+        <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card className="p-8 rounded-[2.5rem] border border-[#C1D6C1] flex flex-col gap-6 group shadow-soft">
             <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
               <Star className="w-6 h-6 text-foreground" />
@@ -120,39 +119,37 @@ export default function About() {
               Selfless service with honesty, integrity, complete transparency, and accountability. We ensure every rupee donated reaches the beneficiary directly.
             </p>
           </Card>
- </div>
- </section>
+        </div>
+      </section>
 
- {/* Journey Timeline */}
- <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#F8E7DC] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-16">
- <div className="text-center flex flex-col items-center gap-4">
- <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Milestones</span>
- <h3 className="font-display font-bold text-4xl text-foreground">Our Journey Timeline</h3>
- </div>
+      {/* Journey Timeline */}
+      <section className="py-8 px-6 md:px-12 pb-16">
+        <div className="bg-[#F8E7DC] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-16">
+          <div className="text-center flex flex-col items-center gap-4">
+            <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Milestones</span>
+            <h3 className="font-display font-bold text-4xl text-foreground">Our Journey Timeline</h3>
+          </div>
 
- <div className="relative max-w-5xl mx-auto w-full px-2 md:px-0">
- {/* Center Line */}
- <div className="absolute left-[28px] md:left-1/2 top-4 bottom-4 w-1.5 transform md:-translate-x-1/2 rounded-full bg-foreground/10" />
- 
- <div className="flex flex-col gap-12 md:gap-16">
- {milestones.map((m, i) => {
- const isLeft = i % 2 === 0;
- return (
- <div key={m.year} className="relative flex flex-col md:flex-row items-center w-full">
- 
- {/* Empty half for desktop to push card to the correct side */}
- <div className={`hidden md:block w-1/2 ${isLeft ? 'order-3' : 'order-1'}`} />
- 
- {/* Step No / Dot in the Middle */}
- <div className="absolute left-7 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-secondary text-white shadow-[0_0_0_6px_var(--bg-white,white)] z-10 md:order-2">
- <span className="text-xs font-bold tracking-tight">{i + 1}</span>
- </div>
+          <div className="relative max-w-5xl mx-auto w-full px-2 md:px-0">
+            {/* Center Line */}
+            <div className="absolute left-[28px] md:left-1/2 top-4 bottom-4 w-1.5 transform md:-translate-x-1/2 rounded-full bg-foreground/10" />
+            
+            <div className="flex flex-col gap-12 md:gap-16">
+              {milestones.map((m, i) => {
+                const isLeft = i % 2 === 0;
+                return (
+                  <div key={m.year} className="relative flex flex-col md:flex-row items-center w-full">
+                    {/* Empty half for desktop to push card to the correct side */}
+                    <div className={`hidden md:block w-1/2 ${isLeft ? 'order-3' : 'order-1'}`} />
+                    
+                    {/* Step No / Dot in the Middle */}
+                    <div className="absolute left-7 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-secondary text-white shadow-[0_0_0_6px_var(--bg-white,white)] z-10 md:order-2">
+                      <span className="text-xs font-bold tracking-tight">{i + 1}</span>
+                    </div>
 
- {/* Card Content */}
- <div className={`w-full md:w-1/2 pl-16 md:pl-0 ${isLeft ? 'md:pr-16 order-1' : 'md:pl-16 order-3'} flex`}>
+                    {/* Card Content */}
+                    <div className={`w-full md:w-1/2 pl-16 md:pl-0 ${isLeft ? 'md:pr-16 order-1' : 'md:pl-16 order-3'} flex`}>
                       <Card className="w-full relative p-6 md:p-8 rounded-[2.5rem] border border-[#E0B69B] flex flex-col gap-4 shadow-soft">
-                        
                         {/* Little triangle pointer (hidden on mobile) */}
                         <div className={`hidden md:block absolute top-1/2 transform -translate-y-1/2 w-4 h-4 bg-white border border-foreground/5 rotate-45 ${isLeft ? '-right-2 border-l-0 border-b-0' : '-left-2 border-r-0 border-t-0'}`} />
                         
@@ -163,107 +160,168 @@ export default function About() {
                         <h4 className="font-display font-bold text-xl md:text-2xl text-foreground leading-snug">{m.title}</h4>
                         <p className="text-sm text-foreground/75 leading-relaxed">{m.desc}</p>
                       </Card>
- </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
 
- </div>
- );
- })}
- </div>
- </div>
- </div>
- </section>
+      {/* Founders Section */}
+      <section className="py-8 px-6 md:px-12 pb-16">
+        <div className="bg-[#E8ECF2] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-16">
+          <div className="flex flex-col gap-4 max-w-xl">
+            <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Leadership</span>
+            <h3 className="font-display font-bold text-4xl text-foreground">Our Founders</h3>
+            <p className="text-foreground/70">
+              Meet the founding members who shaped the vision of Live 4 Help Foundation.
+            </p>
+          </div>
 
- {/* Founders Section */}
- <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#E8ECF2] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-16">
- <div className="flex flex-col gap-4 max-w-xl">
- <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Leadership</span>
- <h3 className="font-display font-bold text-4xl text-foreground">Our Founders</h3>
- <p className="text-foreground/70">
- Meet the founding members who shaped the vision of Live 4 Help Foundation.
- </p>
- </div>
+          <div className="flex flex-col gap-12">
+            {founders.map((founder, index) => {
+              const hoverColors = [
+                "hover:bg-[#FFF6ED]",
+                "hover:bg-[#e6f4ea]",
+                "hover:bg-[#e8f0fe]"
+              ];
+              return (
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  key={founder.name}
+                  className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 md:p-12 rounded-[2.5rem] backdrop-blur-md border border-[#B8C5D6] bg-white/80 shadow-premium transition-colors duration-500 cursor-pointer ${hoverColors[index % hoverColors.length]} ${
+                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                  }`}
+                >
+                  <div className={`lg:col-span-4 relative aspect-square w-full max-w-[280px] mx-auto rounded-3xl overflow-hidden shadow-soft border-2 border-white shrink-0 ${
+                    index % 2 === 1 ? "lg:order-2" : ""
+                  }`}>
+                    <img
+                      referrerPolicy="no-referrer"
+                      src={founder.image}
+                      alt={founder.name}
+                      className="w-full h-full object-cover absolute inset-0 object-cover"
+                    />
+                  </div>
+                  <div className="lg:col-span-8 flex flex-col gap-4">
+                    <h4 className="font-display font-bold text-2xl md:text-3xl text-foreground">{founder.name}</h4>
+                    <span className="text-xs uppercase tracking-widest font-bold text-foreground/80 bg-white/80 border border-foreground/10 px-3.5 py-1.5 rounded-full w-fit">{founder.role}</span>
+                    <p className="text-sm md:text-base text-foreground/75 leading-relaxed">
+                      {founder.description}
+                    </p>
 
- <div className="flex flex-col gap-12">
- {founders.map((founder, index) => {
- const hoverColors = [
- "hover:bg-[#FFF6ED]", // Peach
- "hover:bg-[#e6f4ea]", // Light mint green
- "hover:bg-[#e8f0fe]"  // Light google blue
- ];
- return (
- <motion.div
- initial={{ opacity: 0, y: 30 }}
- whileInView={{ opacity: 1, y: 0 }}
- viewport={{ once: true }}
- transition={{ duration: 0.6 }}
- key={founder.name}
- className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 md:p-12 rounded-[2.5rem] backdrop-blur-md border border-[#B8C5D6] shadow-premium transition-colors duration-500 cursor-pointer ${hoverColors[index % hoverColors.length]} ${
- index % 2 === 1 ? "lg:flex-row-reverse" : ""
- }`}
- >
+                    {/* Contact Info Badges */}
+                    {(founder.email || founder.mobile) && (
+                      <div className="flex flex-wrap items-center gap-3 pt-3 mt-1 border-t border-foreground/10">
+                        {founder.email && (
+                          <a
+                            href={`mailto:${founder.email}`}
+                            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-foreground/80 bg-white hover:bg-foreground hover:text-white border border-foreground/10 transition-all shadow-soft"
+                          >
+                            <Mail className="w-3.5 h-3.5 text-blue-600" />
+                            {founder.email}
+                          </a>
+                        )}
+                        {founder.mobile && (
+                          <a
+                            href={founder.mobile.startsWith("+") ? `tel:${founder.mobile.replace(/\s+/g, '')}` : "#"}
+                            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-foreground/80 bg-white hover:bg-foreground hover:text-white border border-foreground/10 transition-all shadow-soft"
+                          >
+                            <Phone className="w-3.5 h-3.5 text-emerald-600" />
+                            {founder.mobile}
+                          </a>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
- <div className={`lg:col-span-4 relative aspect-square w-full max-w-[280px] mx-auto rounded-3xl overflow-hidden shadow-soft border-2 border-white shrink-0 ${
- index % 2 === 1 ? "lg:order-2" : ""
- }`}>
- <img referrerPolicy="no-referrer"
- src={founder.image}
- alt={founder.name}
- 
- className="w-full h-full object-cover absolute inset-0 object-cover"
- />
- </div>
- <div className="lg:col-span-8 flex flex-col gap-4">
- <h4 className="font-display font-bold text-2xl md:text-3xl text-foreground">{founder.name}</h4>
- <span className="text-xs uppercase tracking-widest font-bold text-foreground/80 px-3 py-1.5 rounded-full w-fit">{founder.role}</span>
- <p className="text-sm md:text-base text-foreground/75 leading-relaxed">
- {founder.description}
- </p>
- </div>
- </motion.div>
+      {/* Leadership Team Section */}
+      <section className="py-8 px-6 md:px-12 pb-16">
+        <div className="bg-[#FFF6D1] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-16">
+          <div className="flex flex-col gap-4 max-w-xl">
+            <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Guidance</span>
+            <h3 className="font-display font-bold text-4xl text-foreground">Our Leadership Team</h3>
+            <p className="text-foreground/70">
+              Our initiatives are backed and mentored by a group of highly qualified experts from oil, biotechnology, biostatistics, business development, and education sectors.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-12">
+            {advisors.map((adv, index) => {
+              const hoverColors = [
+                "hover:bg-[#FFF6ED]",
+                "hover:bg-[#e6f4ea]",
+                "hover:bg-[#e8f0fe]"
+              ];
+              return (
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  key={adv.name}
+                  className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 md:p-12 rounded-[2.5rem] backdrop-blur-md border border-[#E3D38C] bg-white/80 shadow-premium transition-colors duration-500 cursor-pointer ${hoverColors[index % hoverColors.length]} ${
+                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                  }`}
+                >
+                  <div className={`lg:col-span-4 relative aspect-square w-full max-w-[280px] mx-auto rounded-3xl overflow-hidden shadow-soft border-2 border-white shrink-0 ${
+                    index % 2 === 1 ? "lg:order-2" : ""
+                  }`}>
+                    <img
+                      referrerPolicy="no-referrer"
+                      src={adv.image}
+                      alt={adv.name}
+                      className="w-full h-full object-cover absolute inset-0 object-top"
+                    />
+                  </div>
+                  <div className="lg:col-span-8 flex flex-col gap-4">
+                    <h4 className="font-display font-bold text-2xl md:text-3xl text-foreground">{adv.name}</h4>
+                    <span className="text-xs uppercase tracking-widest font-bold text-[#DD6B20] bg-[#FFEAD6] border border-[#EEB898] px-3.5 py-1.5 rounded-full w-fit">{adv.role}</span>
+                    <p className="text-sm md:text-base text-foreground/75 leading-relaxed">
+                      {adv.description}
+                    </p>
+
+                    {/* Contact Info Badges */}
+                    {(adv.email || adv.mobile) && (
+                      <div className="flex flex-wrap items-center gap-3 pt-3 mt-1 border-t border-foreground/10">
+                        {adv.email && (
+                          <a
+                            href={`mailto:${adv.email}`}
+                            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-foreground/80 bg-white hover:bg-foreground hover:text-white border border-foreground/10 transition-all shadow-soft"
+                          >
+                            <Mail className="w-3.5 h-3.5 text-blue-600" />
+                            {adv.email}
+                          </a>
+                        )}
+                        {adv.mobile && (
+                          <a
+                            href={adv.mobile.startsWith("+") ? `tel:${adv.mobile.replace(/\s+/g, '')}` : "#"}
+                            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-foreground/80 bg-white hover:bg-foreground hover:text-white border border-foreground/10 transition-all shadow-soft"
+                          >
+                            <Phone className="w-3.5 h-3.5 text-emerald-600" />
+                            {adv.mobile}
+                          </a>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </div>
   );
- })}
- </div>
- </div>
- </section>
-
- {/* Advisory & Operations Team */}
- <section className="py-8 px-6 md:px-12 bg-white pb-16">
- <div className="bg-[#FFF6D1] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-16">
- <div className="flex flex-col gap-4 max-w-xl">
- <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Guidance</span>
- <h3 className="font-display font-bold text-4xl text-foreground">Governing Body & Advisors</h3>
- <p className="text-foreground/70">
- Our initiatives are backed and mentored by a group of highly qualified experts from oil, biotechnology, biostatistics, business development, and education sectors.
- </p>
- </div>
-
- <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-             {advisors.map((adv) => (
-               <Card key={adv.name} className="group pb-6 rounded-[2.5rem] border border-[#E3D38C] flex flex-col h-full overflow-hidden shadow-soft bg-white">
-                 <div className="relative aspect-square w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0">
-                   <img referrerPolicy="no-referrer"
-                     src={adv.image}
-                     alt={adv.name}
-                     className="w-full h-full object-cover absolute inset-0 object-top group-hover:scale-105 transition-premium"
-                   />
-                 </div>
-                 <div className="pt-6 px-6 flex flex-col h-full flex-grow">
-                   <div className="flex flex-col gap-3 flex-1">
-                     <div className="flex flex-col">
-                       <span className="text-xs uppercase tracking-widest font-semibold text-[#DD6B20]/80">{adv.role}</span>
-                       <h4 className="font-display font-bold text-lg text-foreground leading-snug group-hover:text-blue-600 transition-colors">{adv.name}</h4>
-                     </div>
-                     <p className="text-xs text-foreground/75 leading-relaxed">
-                       {adv.description}
-                     </p>
-                   </div>
-                 </div>
-               </Card>
-             ))}
- </div>
- </div>
- </section>
- </div>
- );
 }

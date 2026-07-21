@@ -32,7 +32,7 @@ export default function AdminLogin() {
         <div className="text-center space-y-2">
           <div className="flex justify-center mb-6">
             <img
-              src="https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg"
+              src="/logo/logo.jpg"
               alt="Live 4 Help Foundation Logo"
               className="h-14 w-auto object-contain"
             />

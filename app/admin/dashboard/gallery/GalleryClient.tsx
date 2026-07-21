@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { createGalleryImage, deleteGalleryImage, updateGalleryImage } from '@/app/actions/gallery'
 import { Loader2, Plus, Trash2, Edit2, Eye, Upload, X } from 'lucide-react'
+import SmoothImage from '@/app/components/SmoothImage'
+import { supabase } from '@/lib/supabase'
 
 export default function GalleryClient({ initialCategories, initialImages }: { initialCategories: any[], initialImages: any[] }) {
   const [categories] = useState(initialCategories)
@@ -14,7 +16,7 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
   const [file, setFile] = useState<File | null>(null)
   const [preview, setPreview] = useState<string | null>(null)
   const [caption, setCaption] = useState('')
-  const [selectedCat, setSelectedCat] = useState('')
+  const [selectedCat, setSelectedCat] = useState(initialCategories[0]?.id || '')
   const [imgLoading, setImgLoading] = useState(false)
   const [imgError, setImgError] = useState('')
 
@@ -62,22 +64,42 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
     setImgLoading(true)
     setImgError('')
     
-    const formData = new FormData()
-    formData.append('file', file)
-    formData.append('caption', caption)
-    formData.append('categoryId', selectedCat)
-
-    const res = await createGalleryImage(formData)
-    if (res.error) setImgError(res.error)
-    else if (res.image) {
+    try {
       const cat = categories.find(c => c.id === selectedCat)
-      setImages([{ ...res.image, category: cat }, ...images])
-      setFile(null)
-      setPreview(null)
-      setCaption('')
-      setIsUploading(false)
+      const categoryName = cat ? cat.name : 'Uncategorized'
+      const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
+      const path = `Gallery/${categoryName}/${filename}`
+
+      // 1. Upload directly from browser to Supabase Storage
+      const bucketName = process.env.NEXT_PUBLIC_SUPABASE_BUCKET || 'assets'
+      const { error: uploadError } = await supabase.storage.from(bucketName).upload(path, file, {
+        contentType: file.type,
+        upsert: false
+      })
+
+      if (uploadError) {
+        throw new Error(`Supabase upload failed: ${uploadError.message}`)
+      }
+
+      // 2. Get Public URL
+      const { data: { publicUrl } } = supabase.storage.from('assets').getPublicUrl(path)
+
+      // 3. Save URL in Supabase Postgres
+      const res = await createGalleryImage({ url: publicUrl, caption, categoryId: selectedCat })
+      if (res.error) {
+        setImgError(res.error)
+      } else if (res.image) {
+        setImages([{ ...res.image, category: cat }, ...images])
+        setFile(null)
+        setPreview(null)
+        setCaption('')
+        setIsUploading(false)
+      }
+    } catch (err: any) {
+      setImgError(err.message || 'Upload failed')
+    } finally {
+      setImgLoading(false)
     }
-    setImgLoading(false)
   }
 
   const handleDeleteImage = async (id: string) => {
@@ -115,7 +137,12 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
 
         {!isUploading && (
           <button 
-            onClick={() => setIsUploading(true)}
+            onClick={() => {
+              setIsUploading(true)
+              if (!selectedCat && categories.length > 0) {
+                setSelectedCat(filter !== 'all' ? filter : categories[0].id)
+              }
+            }}
             className="w-full sm:w-auto bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] hover:opacity-90 text-[#444444] text-sm font-bold px-6 py-2.5 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2"
           >
             <Plus className="w-4 h-4" />
@@ -141,11 +168,11 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-[#444444] mb-1.5">Category</label>
+                <label className="block text-xs font-semibold text-[#444444] mb-1.5">Category <span className="text-red-500">*</span></label>
                 <select 
                   value={selectedCat} 
                   onChange={e => setSelectedCat(e.target.value)}
-                  className="w-full px-3 py-2 text-sm bg-[#FCFCFA] border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-[#CFE8FF] transition-all text-[#444444] cursor-pointer"
+                  className={`w-full px-3 py-2 text-sm bg-[#FCFCFA] border rounded-lg outline-none focus:ring-2 focus:ring-[#CFE8FF] transition-all text-[#444444] cursor-pointer ${!selectedCat ? 'border-amber-300 ring-2 ring-amber-100' : 'border-gray-200'}`}
                   required
                 >
                   <option value="">Select category</option>
@@ -153,11 +180,14 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
                     <option key={c.id} value={c.id}>{c.name}</option>
                   ))}
                 </select>
+                {!selectedCat && (
+                  <p className="text-amber-600 text-[11px] mt-1 font-medium">Please select a category to enable upload.</p>
+                )}
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#444444] mb-1.5">Image</label>
+              <label className="block text-xs font-semibold text-[#444444] mb-1.5">Image <span className="text-red-500">*</span></label>
               <div className="border border-dashed border-[#CFE8FF] rounded-lg p-2 bg-[#FCFCFA]">
                 {preview ? (
                   <div className="relative rounded-md overflow-hidden h-48 border border-gray-100">
@@ -184,10 +214,10 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
             {imgError && <p className="text-red-500 text-xs bg-red-50 p-2 rounded-lg border border-red-100">{imgError}</p>}
 
             <div className="flex gap-2 pt-1">
-              <button disabled={imgLoading || !file || !selectedCat} type="submit" className="px-6 py-2.5 text-sm bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] hover:opacity-90 disabled:opacity-50 text-[#444444] font-bold rounded-xl flex justify-center items-center gap-2 transition-all shadow-sm min-w-[120px]">
+              <button disabled={imgLoading || !file || !selectedCat} type="submit" className="px-6 py-2.5 text-sm bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] hover:opacity-90 disabled:opacity-50 text-[#444444] font-bold rounded-xl flex justify-center items-center gap-2 transition-all shadow-sm min-w-[120px] cursor-pointer">
                 {imgLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Upload Image'}
               </button>
-              <button type="button" onClick={() => setIsUploading(false)} className="px-5 py-2 text-sm bg-white border border-gray-200 hover:bg-gray-50 text-[#444444] font-semibold rounded-lg transition-colors">
+              <button type="button" onClick={() => setIsUploading(false)} className="px-5 py-2 text-sm bg-white border border-gray-200 hover:bg-gray-50 text-[#444444] font-semibold rounded-lg transition-colors cursor-pointer">
                 Cancel
               </button>
             </div>
@@ -207,7 +237,12 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
                 className="aspect-[4/3] w-full overflow-hidden bg-gray-50 border-b border-gray-100 relative cursor-pointer"
                 onClick={() => setViewingImage(img.url)}
               >
-                <img src={img.url} alt={img.caption || ''} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <SmoothImage
+                  src={img.url}
+                  alt={img.caption || ''}
+                  aspectRatioClassName="aspect-[4/3]"
+                  className="transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
               <div className="p-3 flex flex-col flex-1">
                 <span className="text-[9px] font-bold uppercase tracking-wider text-blue-600 mb-1.5">

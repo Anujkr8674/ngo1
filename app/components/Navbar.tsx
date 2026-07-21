@@ -33,7 +33,17 @@ const navLinks: NavLink[] = [
     ],
   },
   { href: "/impact", label: "Our Impact" },
-  // { href: "/initiatives", label: "Initiatives" },
+  {
+    label: "More",
+    dropdown: [
+      { href: "/donors-csr-sponsors-members", label: "Donors, CSR Sponsors & Members" },
+      { href: "/transparency", label: "Transparency & Certifications" },
+      { href: "/initiatives", label: "Initiatives" },
+      { href: "/gallery", label: "Photo Gallery" },
+      { href: "/testimonials", label: "Testimonials" },
+      { href: "/students", label: "Students" },
+    ],
+  },
   { href: "/blog", label: "Web Posts" },
   { href: "/volunteer", label: "Be Part Us" },
   { href: "/contact", label: "Contact" },
@@ -74,11 +84,11 @@ export default function Navbar() {
           : "bg-transparent py-5"
           }`}
       >
-        <div className="w-full px-4 md:px-6 lg:px-8 xl:px-12 flex items-center justify-between">
+        <div className="w-full px-3 sm:px-4 md:px-6 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center group">
             <img
-              src="https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg"
+              src="/logo/logo.jpg"
               alt="Live 4 Help Foundation Logo"
               className="h-12 w-auto object-contain"
             />
@@ -92,8 +102,8 @@ export default function Navbar() {
                 return (
                   <div key={link.label} className="relative group">
                     <button
-                      className={`relative px-4 py-2 font-medium tracking-tight rounded-full transition-all duration-300 hover:scale-110 inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${isAnyActive
-                        ? `text-[15px] bg-[#cbb6f5] ${scrolled ? "text-foreground" : "text-white"}`
+                      className={`relative px-3 py-2 font-medium tracking-tight rounded-full transition-all duration-300 hover:scale-105 inline-flex items-center gap-1 cursor-pointer whitespace-nowrap ${isAnyActive
+                        ? `text-[14px] bg-[#cbb6f5] ${scrolled ? "text-foreground" : "text-white"}`
                         : `text-[13px] ${scrolled ? "text-foreground hover:bg-foreground/5" : "text-white hover:bg-white/10"}`
                         }`}
                     >
@@ -129,8 +139,8 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href!}
-                  className={`relative px-4 py-2 font-medium tracking-tight rounded-full transition-all duration-300 hover:scale-110 inline-block whitespace-nowrap ${isActive
-                    ? `text-[15px] bg-[#cbb6f5] ${scrolled ? "text-foreground" : "text-white"}`
+                  className={`relative px-3 py-2 font-medium tracking-tight rounded-full transition-all duration-300 hover:scale-105 inline-block whitespace-nowrap ${isActive
+                    ? `text-[14px] bg-[#cbb6f5] ${scrolled ? "text-foreground" : "text-white"}`
                     : `text-[13px] ${scrolled ? "text-foreground hover:bg-foreground/5" : "text-white hover:bg-white/10"}`
                     }`}
                 >

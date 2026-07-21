@@ -58,14 +58,14 @@ export default function Students() {
       </section>
 
       {/* Content Section */}
-      <section className="py-16 px-6 md:px-12 bg-white pb-32">
-        <div className="max-w-5xl mx-auto flex justify-center">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-premium border border-foreground/5 bg-white p-4">
+      <section className="py-16 px-6 md:px-12 pb-32">
+        <div className="max-w-5xl mx-auto bg-white rounded-[3rem] p-6 md:p-10 border border-foreground/10 shadow-premium flex justify-center">
+          <div className="rounded-[2rem] overflow-hidden border border-foreground/5 p-2 w-full">
             <img
-              src="https://live4help.org/wp-content/uploads/2026/02/Students.png"
+              src="/student/Students.png"
               alt="Live 4 Help Foundation Students"
               referrerPolicy="no-referrer"
-              className="w-full h-auto rounded-[2rem]"
+              className="w-full h-auto rounded-[1.5rem]"
             />
           </div>
         </div>

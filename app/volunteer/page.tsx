@@ -120,7 +120,7 @@ export default function Volunteer() {
  </section>
 
  {/* Main Grid */}
- <section className="py-8 px-6 md:px-12 bg-white pb-16">
+ <section className="py-8 px-6 md:px-12 pb-16">
  <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
  
  {/* Form Wizard Column */}

@@ -64,42 +64,54 @@ export async function getGalleryImages(categoryId?: string) {
   })
 }
 
-export async function createGalleryImage(formData: FormData) {
+export async function createGalleryImage(data: { url: string; caption?: string; categoryId: string } | FormData) {
   try {
-    const file = formData.get('file') as File
-    const caption = formData.get('caption') as string
-    const categoryId = formData.get('categoryId') as string
+    let url: string
+    let caption: string
+    let categoryId: string
 
-    if (!file || !categoryId) {
-      return { error: 'File and category are required' }
+    if (data instanceof FormData) {
+      const file = data.get('file') as File
+      caption = (data.get('caption') as string) || ''
+      categoryId = data.get('categoryId') as string
+
+      if (!file || !categoryId) {
+        return { error: 'File and category are required' }
+      }
+
+      const category = await prisma.galleryCategory.findUnique({ where: { id: categoryId } })
+      if (!category) return { error: 'Category not found' }
+
+      const arrayBuffer = await file.arrayBuffer()
+      const buffer = Buffer.from(arrayBuffer)
+      
+      const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
+      const path = `Gallery/${category.name}/${filename}`
+
+      const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
+        contentType: file.type,
+        upsert: false
+      })
+
+      if (uploadError) {
+        throw new Error(`Supabase upload failed: ${uploadError.message}`)
+      }
+
+      const { data: publicUrlData } = supabase.storage.from('assets').getPublicUrl(path)
+      url = publicUrlData.publicUrl
+    } else {
+      url = data.url
+      caption = data.caption || ''
+      categoryId = data.categoryId
     }
 
-    const category = await prisma.galleryCategory.findUnique({ where: { id: categoryId } })
-    if (!category) return { error: 'Category not found' }
-
-    // Upload to Supabase
-    const arrayBuffer = await file.arrayBuffer()
-    const buffer = Buffer.from(arrayBuffer)
-    
-    // Path: Gallery/CategoryName/timestamp-filename
-    const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-    const path = `Gallery/${category.name}/${filename}`
-
-    const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
-      contentType: file.type,
-      upsert: false
-    })
-
-    if (uploadError) {
-      throw new Error(`Supabase upload failed: ${uploadError.message}`)
+    if (!url || !categoryId) {
+      return { error: 'URL and category are required' }
     }
-
-    // Get public URL
-    const { data: { publicUrl } } = supabase.storage.from('assets').getPublicUrl(path)
 
     const image = await prisma.galleryImage.create({
       data: {
-        url: publicUrl,
+        url,
         caption,
         categoryId
       }

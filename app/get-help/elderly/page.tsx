@@ -48,7 +48,7 @@ export default function ElderlySupport() {
   };
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-white font-sans text-foreground">
+    <div className="flex flex-col w-full min-h-screen font-sans text-foreground">
       {/* Page Header */}
       <section className="relative min-h-[90vh] px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 text-center">
         {/* Full-size Hero Background */}
@@ -80,7 +80,7 @@ export default function ElderlySupport() {
       </section>
 
       {/* Form Area */}
-      <section className="py-8 px-6 md:px-12 bg-white pb-24">
+      <section className="py-8 px-6 md:px-12 pb-24">
         <div className="bg-[#FFF6ED] rounded-[3rem] py-8 px-4 md:py-12 md:px-8 border border-foreground/5 max-w-5xl mx-auto w-full">
           <div className="bg-white border border-[#EEB898] rounded-[2.5rem] shadow-soft p-6 md:p-12">
           {submitted ? (

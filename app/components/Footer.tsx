@@ -1,23 +1,23 @@
 import React from "react";
 import Link from "next/link";
-import { Mail, Phone, MapPin, Sparkles, Heart } from "lucide-react";
+import { Mail, Phone, MapPin, Heart } from "lucide-react";
 
 export default function Footer() {
     return (
-        <footer className="bg-[#CBB6F5] border-t border-blue-950/5 shadow-[0_-15px_30px_-5px_rgba(0,0,0,0.4)] py-16 md:py-24 font-sans text-blue-950">
+        <footer className="bg-[#FFE6D4] border-t border-[#EEB898] py-16 md:py-24 font-sans text-foreground">
             <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16">
                 {/* Info Column */}
                 <div className="flex flex-col gap-6">
                     <Link href="/" className="flex items-center group w-fit">
-                        <div className="bg-white p-3 rounded-2xl shadow-soft hover:shadow-premium hover:-translate-y-1 transition-all duration-300">
+                        <div className="bg-white p-3 rounded-2xl shadow-soft hover:shadow-premium hover:-translate-y-1 transition-all duration-300 border border-[#EEB898]">
                             <img
-                                src="https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg"
+                                src="/logo/logo.jpg"
                                 alt="Live 4 Help Foundation Logo"
                                 className="h-14 w-auto object-contain"
                             />
                         </div>
                     </Link>
-                    <p className="text-sm text-black leading-relaxed max-w-sm">
+                    <p className="text-sm text-foreground/80 leading-relaxed max-w-sm">
                         Live 4 Help Foundation is a Non-Profit Organization registered under the Ministry of Corporate Affairs, Govt. of India. Selfless service with honesty, integrity, accountability, and transparency.
                     </p>
                     <div className="flex flex-wrap items-center gap-3">
@@ -25,7 +25,7 @@ export default function Footer() {
                             href="https://www.facebook.com/live4help.org"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-[#CFE8FF] hover:text-[#444444] transition-all duration-300 text-blue-950 shadow-soft hover:-translate-y-1"
+                            className="w-10 h-10 rounded-full bg-white border border-[#EEB898] flex items-center justify-center hover:bg-[#DD6B20] hover:text-white transition-all duration-300 text-foreground shadow-soft hover:-translate-y-1"
                             aria-label="Facebook"
                         >
                             <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -36,7 +36,7 @@ export default function Footer() {
                             href="https://www.instagram.com/live4helpfoundation/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-[#DCCFF8] hover:text-[#444444] transition-all duration-300 text-blue-950 shadow-soft hover:-translate-y-1"
+                            className="w-10 h-10 rounded-full bg-white border border-[#EEB898] flex items-center justify-center hover:bg-[#DD6B20] hover:text-white transition-all duration-300 text-foreground shadow-soft hover:-translate-y-1"
                             aria-label="Instagram"
                         >
                             <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -47,7 +47,7 @@ export default function Footer() {
                             href="https://www.linkedin.com/company/live4help-foundation-ngo/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-[#b8daff] hover:text-[#444444] transition-all duration-300 text-blue-950 shadow-soft hover:-translate-y-1"
+                            className="w-10 h-10 rounded-full bg-white border border-[#EEB898] flex items-center justify-center hover:bg-[#DD6B20] hover:text-white transition-all duration-300 text-foreground shadow-soft hover:-translate-y-1"
                             aria-label="LinkedIn"
                         >
                             <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -57,7 +57,7 @@ export default function Footer() {
                         {/* Mail Shortcut */}
                         <a
                             href="mailto:live4help.org@gmail.com"
-                            className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-[#FDF8F5] hover:text-[#444444] transition-all duration-300 text-blue-950 shadow-soft hover:-translate-y-1"
+                            className="w-10 h-10 rounded-full bg-white border border-[#EEB898] flex items-center justify-center hover:bg-[#DD6B20] hover:text-white transition-all duration-300 text-foreground shadow-soft hover:-translate-y-1"
                             aria-label="Email Us"
                         >
                             <Mail className="w-5 h-5" />
@@ -67,39 +67,36 @@ export default function Footer() {
 
                 {/* Quick Links Column */}
                 <div className="flex flex-col gap-6">
-                    <h4 className="font-display font-semibold text-sm uppercase tracking-wider text-blue-950/80">
+                    <h4 className="font-display font-bold text-xs uppercase tracking-widest text-[#DD6B20]">
                         Quick Links
                     </h4>
-                    <nav className="flex flex-col gap-3.5 text-sm text-black">
-                        <Link href="/" className="hover:text-white transition-colors">Home</Link>
-                        <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
-                        <Link href="/donors-csr-sponsors-members" className="hover:text-white transition-colors">Donors, CSR Sponsors & Members</Link>
-                        <Link href="/transparency" className="hover:text-white transition-colors">Transparency & Certifications</Link>
-                        <Link href="/impact" className="hover:text-white transition-colors">Our Impact</Link>
-                        <Link href="/initiatives" className="hover:text-white transition-colors">Initiatives</Link>
-                        <Link href="/gallery" className="hover:text-white transition-colors">Photo Gallery</Link>
-                        <Link href="/testimonials" className="hover:text-white transition-colors">Testimonials</Link>
-
-                        {/* <Link href="/blog" className="hover:text-white transition-colors">Web Posts</Link> */}
-                        <Link href="/students" className="hover:text-white transition-colors">Students</Link>
-                        {/* <Link href="/archived-material" className="hover:text-white transition-colors">Archived Material</Link> */}
+                    <nav className="flex flex-col gap-3 text-sm text-foreground/80 font-medium">
+                        <Link href="/" className="hover:text-[#DD6B20] transition-colors">Home</Link>
+                        <Link href="/about" className="hover:text-[#DD6B20] transition-colors">About Us</Link>
+                        <Link href="/donors-csr-sponsors-members" className="hover:text-[#DD6B20] transition-colors">Donors, CSR Sponsors & Members</Link>
+                        <Link href="/transparency" className="hover:text-[#DD6B20] transition-colors">Transparency & Certifications</Link>
+                        <Link href="/impact" className="hover:text-[#DD6B20] transition-colors">Our Impact</Link>
+                        <Link href="/initiatives" className="hover:text-[#DD6B20] transition-colors">Initiatives</Link>
+                        <Link href="/gallery" className="hover:text-[#DD6B20] transition-colors">Photo Gallery</Link>
+                        <Link href="/testimonials" className="hover:text-[#DD6B20] transition-colors">Testimonials</Link>
+                        <Link href="/students" className="hover:text-[#DD6B20] transition-colors">Students</Link>
                     </nav>
                 </div>
 
                 {/* Support Forms & Involve Column */}
                 <div className="flex flex-col gap-6">
-                    <h4 className="font-display font-semibold text-sm uppercase tracking-wider text-blue-950/80">
+                    <h4 className="font-display font-bold text-xs uppercase tracking-widest text-[#DD6B20]">
                         Get Involved
                     </h4>
-                    <nav className="flex flex-col gap-3.5 text-sm text-black">
-                        <Link href="/volunteer" className="hover:text-white transition-colors">Become a Volunteer</Link>
-                        <Link href="/volunteer" className="hover:text-white transition-colors">Become a Member</Link>
-                        <Link href="/get-help/education" className="hover:text-white transition-colors">Education Support Form</Link>
-                        <Link href="/get-help/elderly" className="hover:text-white transition-colors">Elderly Support Form</Link>
-                        <Link href="/get-help/medical" className="hover:text-white transition-colors">Medical Support Form</Link>
-                        <Link href="/get-help/each-other" className="hover:text-white transition-colors">Help Each Other Form</Link>
-                        <Link href="/donate" className="hover:text-white transition-colors flex items-center gap-1.5 font-medium">
-                            <Heart className="w-3.5 h-3.5 text-secondary fill-secondary/20" />
+                    <nav className="flex flex-col gap-3 text-sm text-foreground/80 font-medium">
+                        <Link href="/volunteer" className="hover:text-[#DD6B20] transition-colors">Become a Volunteer</Link>
+                        <Link href="/volunteer" className="hover:text-[#DD6B20] transition-colors">Become a Member</Link>
+                        <Link href="/get-help/education" className="hover:text-[#DD6B20] transition-colors">Education Support Form</Link>
+                        <Link href="/get-help/elderly" className="hover:text-[#DD6B20] transition-colors">Elderly Support Form</Link>
+                        <Link href="/get-help/medical" className="hover:text-[#DD6B20] transition-colors">Medical Support Form</Link>
+                        <Link href="/get-help/each-other" className="hover:text-[#DD6B20] transition-colors">Help Each Other Form</Link>
+                        <Link href="/donate" className="hover:text-[#DD6B20] transition-colors flex items-center gap-2 font-bold text-[#DD6B20] mt-1">
+                            <Heart className="w-4 h-4 text-[#DD6B20] fill-[#DD6B20]/20" />
                             Make a Donation
                         </Link>
                     </nav>
@@ -107,33 +104,41 @@ export default function Footer() {
 
                 {/* Contact Info Column */}
                 <div className="flex flex-col gap-6">
-                    <h4 className="font-display font-semibold text-sm uppercase tracking-wider text-blue-950/80">
+                    <h4 className="font-display font-bold text-xs uppercase tracking-widest text-[#DD6B20]">
                         Contact Office
                     </h4>
-                    <div className="flex flex-col gap-4 text-sm text-black leading-relaxed">
-                        <div className="flex items-start gap-3">
-                            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-soft shrink-0">
-                                <MapPin className="w-5 h-5 text-blue-950" />
+                    <div className="flex flex-col gap-5 text-sm text-foreground/80 leading-relaxed font-sans">
+                        <div className="flex items-start gap-3.5">
+                            <div className="w-9 h-9 rounded-full bg-white border border-[#EEB898] flex items-center justify-center shrink-0 mt-0.5 text-foreground shadow-soft">
+                                <MapPin className="w-4 h-4 text-[#DD6B20]" />
                             </div>
-                            <span className="mt-2.5">
+                            <span className="text-sm leading-snug">
+                                <strong className="font-bold text-foreground block mb-0.5">Live 4 Help Foundation</strong>
                                 C-504, Sea Show CGHS Ltd.<br />
                                 Plot No. 14, Sector -19B, Dwarka,<br />
-                                New Delhi -110075, India
+                                New Delhi - 110075, India
                             </span>
                         </div>
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-soft shrink-0">
-                                <Phone className="w-5 h-5 text-blue-950" />
+
+                        <div className="flex items-start gap-3.5">
+                            <div className="w-9 h-9 rounded-full bg-white border border-[#EEB898] flex items-center justify-center shrink-0 mt-0.5 text-foreground shadow-soft">
+                                <Phone className="w-4 h-4 text-[#DD6B20]" />
                             </div>
-                            <a href="tel:+919810745206" className="hover:text-white transition-colors">
-                                +91-9810745206, +91-9313241727
-                            </a>
+                            <div className="flex flex-col gap-1 text-sm font-semibold">
+                                <a href="tel:+919810745206" className="hover:text-[#DD6B20] transition-colors">
+                                    +91 98107 45206
+                                </a>
+                                <a href="tel:+919313241727" className="hover:text-[#DD6B20] transition-colors">
+                                    +91 93132 41727
+                                </a>
+                            </div>
                         </div>
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-soft shrink-0">
-                                <Mail className="w-5 h-5 text-blue-950" />
+
+                        <div className="flex items-start gap-3.5">
+                            <div className="w-9 h-9 rounded-full bg-white border border-[#EEB898] flex items-center justify-center shrink-0 mt-0.5 text-foreground shadow-soft">
+                                <Mail className="w-4 h-4 text-[#DD6B20]" />
                             </div>
-                            <a href="mailto:live4help.org@gmail.com" className="hover:text-white transition-colors break-all">
+                            <a href="mailto:live4help.org@gmail.com" className="text-sm font-semibold hover:text-[#DD6B20] transition-colors break-all mt-1">
                                 live4help.org@gmail.com
                             </a>
                         </div>
@@ -141,19 +146,19 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 md:px-12 mt-16 md:mt-24 pt-8 border-t border-blue-950/5 flex flex-col xl:flex-row items-center justify-between gap-6 text-xs text-black">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 mt-16 md:mt-24 pt-8 border-t border-[#EEB898] flex flex-col xl:flex-row items-center justify-between gap-6 text-xs text-foreground/75">
                 <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 text-center xl:text-left">
                     <span>© 2026 Live 4 Help Foundation. All rights reserved.</span>
-                    <span className="hidden md:inline text-blue-950/20">|</span>
+                    <span className="hidden md:inline text-foreground/20">|</span>
                     <span>Registered under MCA, Govt. of India (Reg No: 2020)</span>
-                    <span className="hidden md:inline text-blue-950/20">|</span>
-                    <span>Website Design by <strong>Eveda Online Service</strong></span>
+                    <span className="hidden md:inline text-foreground/20">|</span>
+                    <span>Website Design by <strong className="text-foreground font-semibold">Eveda Online Service</strong></span>
                 </div>
-                <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-                    <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
-                    <Link href="/terms-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
-                    <Link href="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link>
-                    <Link href="/refund-cancellation-policy" className="hover:text-white transition-colors">Refund & Cancellation</Link>
+                <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 font-medium">
+                    <Link href="/privacy-policy" className="hover:text-[#DD6B20] transition-colors">Privacy Policy</Link>
+                    <Link href="/terms-conditions" className="hover:text-[#DD6B20] transition-colors">Terms & Conditions</Link>
+                    <Link href="/disclaimer" className="hover:text-[#DD6B20] transition-colors">Disclaimer</Link>
+                    <Link href="/refund-cancellation-policy" className="hover:text-[#DD6B20] transition-colors">Refund & Cancellation</Link>
                 </div>
             </div>
         </footer>

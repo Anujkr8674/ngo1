@@ -123,7 +123,7 @@ export default function Initiatives() {
  </section>
 
  {/* Interactive Category Filter */}
- <section className="py-8 px-6 md:px-12 bg-white pb-16">
+ <section className="py-8 px-6 md:px-12 pb-16">
  <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-wrap justify-center gap-3">
  {categories.map((cat) => (
  <button
@@ -142,7 +142,7 @@ export default function Initiatives() {
  </section>
 
  {/* Grid of Cards */}
- <section className="py-8 px-6 md:px-12 bg-white pb-16">
+ <section className="py-8 px-6 md:px-12 pb-16">
  <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto">
  <motion.div 
  layout

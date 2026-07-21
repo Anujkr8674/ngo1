@@ -9,9 +9,9 @@ export default function DonorsCSRSponsorsMembers() {
     const [activeImage, setActiveImage] = useState<string | null>(null);
 
     const memberImages = [
-        { src: "https://live4help.org/wp-content/uploads/2026/06/Members-1-June-18.png", title: "Patron Donors & Life Members - Sheet 1" },
-        { src: "https://live4help.org/wp-content/uploads/2026/06/Members-2-June-18.png", title: "Patron Donors & Life Members - Sheet 2" },
-        { src: "https://live4help.org/wp-content/uploads/2026/06/Members-3-June-18-.png", title: "Patron Donors & Life Members - Sheet 3" }
+        { src: "/donar/Members-1-June-18.png/", title: "Patron Donors & Life Members - Sheet 1" },
+        { src: "/donar/Members-2-June-18.png", title: "Patron Donors & Life Members - Sheet 2" },
+        { src: "/donar/Members-3-June-18-.png", title: "Patron Donors & Life Members - Sheet 3" }
     ];
 
     return (
@@ -45,7 +45,7 @@ export default function DonorsCSRSponsorsMembers() {
 
 
             {/* Zoomable Members List */}
-            <section className="py-8 px-6 md:px-12 bg-white pb-16">
+            <section className="py-8 px-6 md:px-12 pb-16">
                 <div className="bg-[#F8E7DC] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
                     <div className="flex flex-col gap-4 max-w-xl">
                         <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60 flex items-center gap-1.5">
@@ -93,11 +93,12 @@ export default function DonorsCSRSponsorsMembers() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+                        onClick={() => setActiveImage(null)}
+                        className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 cursor-pointer"
                     >
                         <button
                             onClick={() => setActiveImage(null)}
-                            className="absolute top-6 right-6 p-3 rounded-full hover:bg-white/10 text-white transition-colors cursor-pointer"
+                            className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer z-20"
                             aria-label="Close sheet"
                         >
                             <X className="w-6 h-6" />
@@ -106,15 +107,14 @@ export default function DonorsCSRSponsorsMembers() {
                             initial={{ scale: 0.95 }}
                             animate={{ scale: 1 }}
                             exit={{ scale: 0.95 }}
-                            className="w-full max-w-2xl h-[85vh] relative rounded-2xl overflow-y-auto p-4 backdrop-blur-md border border-white/10"
+                            onClick={(e) => e.stopPropagation()}
+                            className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center rounded-2xl overflow-hidden backdrop-blur-md border border-white/10 p-2"
                         >
-                            <div className="relative w-full h-[1500px]">
-                                <img referrerPolicy="no-referrer"
-                                    src={activeImage}
-                                    alt="Zoomed document"
-                                    className="w-full h-full object-contain absolute inset-0 object-top"
-                                />
-                            </div>
+                            <img referrerPolicy="no-referrer"
+                                src={activeImage}
+                                alt="Zoomed document"
+                                className="max-w-[88vw] max-h-[84vh] w-auto h-auto object-contain rounded-xl shadow-premium"
+                            />
                         </motion.div>
                     </motion.div>
                 )}

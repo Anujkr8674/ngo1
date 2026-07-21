@@ -53,7 +53,7 @@ export default function Transparency() {
             
 
             {/* Audited Financial Downloads */}
-            <section className="py-8 px-6 md:px-12 bg-white pb-16">
+            <section className="py-8 px-6 md:px-12 pb-16">
                 <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
                     <h3 className="font-display font-bold text-2xl text-foreground border-b border-foreground/5 pb-4">
                         Audit Reports & Sponsoring Disclosures

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
  siteName: "Live 4 Help Foundation",
  images: [
  {
- url: "https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg",
+ url: "/logo/logo.jpg",
  width: 1200,
  height: 630,
  alt: "Live 4 Help Foundation - Selfless Service",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
  card: "summary_large_image",
  title: "Live 4 Help Foundation | Best NGO in Delhi",
  description: "Empowering communities through child education, elderly care, healthcare, and mangrove restoration.",
- images: ["https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg"],
+ images: ["/logo/logo.jpg"],
  },
  alternates: {
  canonical: "https://live4help.org/",
@@ -55,7 +55,7 @@ export default function RootLayout({
  "@id": "https://live4help.org/#organization",
  "name": "LIVE 4 HELP FOUNDATION",
  "url": "https://live4help.org/",
- "logo": "https://live4help.org/wp-content/uploads/2021/01/L4HLOGO-02-1-300x300.png",
+ "logo": "/logo/logo.jpg",
  "sameAs": [
  "https://www.facebook.com/live4help.org/?ref=page_internal"
  ],
@@ -93,6 +93,7 @@ export default function RootLayout({
  <html
  lang="en"
  className={`${inter.variable} ${outfit.variable} h-full antialiased`}
+ suppressHydrationWarning
  >
  <head>
  <script
@@ -100,7 +101,7 @@ export default function RootLayout({
  dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
  />
  </head>
- <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
+ <body className="min-h-full flex flex-col font-sans bg-background text-foreground" suppressHydrationWarning>
  <LayoutWrapper navbar={<Navbar />} footer={<Footer />}>
  {children}
  </LayoutWrapper>

@@ -1,9 +1,11 @@
 [
   {
-    "title": "BLOG",
+    "title": "Turning Purpose into Lasting Impact Through Human Connection: A Journey of Collective Action",
     "slug": "turning-purpose-into-lasting-impact-through-human-connection-a-journey-of-collective-action",
     "date": "2026-06-01",
     "author": "Admin",
+    "category": "COMMUNITY",
+    "readTime": 2,
     "paragraphs": [
       "In the final week of May, the Live4Help Foundation moved beyond plans and proposals, bringing its mission to life through meaningful, on-ground engagement. By connecting directly with donors, CSR leaders, institutional partners, and grassroots volunteers, the Foundation reaffirmed a powerful belief: True impact is built on trust, relationships, and human connection.",
       "From Conversations to Commitments",
@@ -37,22 +39,9 @@
       {
         "level": "h3",
         "text": "🎓 A Defining Milestone in Our Journey: Supporting Over 100 Students Through Education"
-      },
-      {
-        "level": "h2",
-        "text": "Quick Links"
-      },
-      {
-        "level": "h2",
-        "text": "Other Links"
-      },
-      {
-        "level": "h2",
-        "text": "Follow us"
       }
     ],
     "images": [
-      "https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg",
       "https://live4help.org/wp-content/uploads/2026/06/1.png",
       "https://live4help.org/wp-content/uploads/2026/06/2.png",
       "https://live4help.org/wp-content/uploads/2026/06/3.png",
@@ -65,10 +54,12 @@
     ]
   },
   {
-    "title": "BLOG",
+    "title": "Restoring Coastal Resilience Through CSR: Mangrove Plantation Initiative in Sundarban, West Bengal",
     "slug": "restoring-coastal-resilience-through-csr-mangrove-plantation-initiative-in-sundarban-west-bengal",
     "date": "2026-06-01",
     "author": "Admin",
+    "category": "ENVIRONMENT",
+    "readTime": 3,
     "paragraphs": [
       "Live 4 Help Foundation (L4H) advanced its environmental sustainability mission through a large-scale mangrove restoration initiative in the Sundarban region of West Bengal. Under this initiative, 5,000 native mangrove saplings were planted on May 30th, 2026, to help strengthen fragile coastal ecosystems, enhance biodiversity, and build long-term climate resilience in one of India’s most vulnerable ecological zones.",
       "The plantation included indigenous mangrove species such as Sundari, Bain, Kakra, Garjan, Golpata, and Dhuldhul, carefully selected for their adaptability and critical role in sustaining the biodiversity and stability of coastal mangrove habitats.",
@@ -112,34 +103,9 @@
       {
         "level": "h2",
         "text": "Invitation for Future CSR Collaboration"
-      },
-      {
-        "level": "h3",
-        "text": "Turning Purpose into Lasting Impact Through Human Connection: A Journey of Collective Action"
-      },
-      {
-        "level": "h3",
-        "text": "Restoring Coastal Resilience Through CSR: Mangrove Plantation Initiative in Sundarban, West Bengal"
-      },
-      {
-        "level": "h3",
-        "text": "🎓 A Defining Milestone in Our Journey: Supporting Over 100 Students Through Education"
-      },
-      {
-        "level": "h2",
-        "text": "Quick Links"
-      },
-      {
-        "level": "h2",
-        "text": "Other Links"
-      },
-      {
-        "level": "h2",
-        "text": "Follow us"
       }
     ],
     "images": [
-      "https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg",
       "https://live4help.org/wp-content/uploads/2026/06/file.png",
       "https://live4help.org/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-01-at-8.30.07-AM-1.jpeg",
       "https://live4help.org/wp-content/uploads/2026/06/WhatsApp-Image-2026-06-01-at-8.30.07-AM.jpeg",
@@ -156,10 +122,12 @@
     ]
   },
   {
-    "title": "BLOG",
+    "title": "A Defining Milestone in Our Journey: Supporting Over 100 Students Through Education",
     "slug": "supporting-over-100-students-through-education",
     "date": "2026-04-10",
     "author": "Admin",
+    "category": "EDUCATION",
+    "readTime": 2,
     "paragraphs": [
       "At Live 4 Help Foundation, education has always been more than a program – it has been a promise. A promise to stand beside children and young adults whose aspirations are strong, but whose access to opportunity is limited by circumstance.",
       "In FY 2025–26, we reached a moment that will forever remain special in our journey: for the first time since inception, the cumulative number of students supported through our education initiative crossed 100.",
@@ -191,39 +159,20 @@
     "subheadings": [
       {
         "level": "h3",
-        "text": "Turning Purpose into Lasting Impact Through Human Connection: A Journey of Collective Action"
-      },
-      {
-        "level": "h3",
-        "text": "Restoring Coastal Resilience Through CSR: Mangrove Plantation Initiative in Sundarban, West Bengal"
-      },
-      {
-        "level": "h3",
         "text": "🎓 A Defining Milestone in Our Journey: Supporting Over 100 Students Through Education"
-      },
-      {
-        "level": "h2",
-        "text": "Quick Links"
-      },
-      {
-        "level": "h2",
-        "text": "Other Links"
-      },
-      {
-        "level": "h2",
-        "text": "Follow us"
       }
     ],
     "images": [
-      "https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg",
       "https://live4help.org/wp-content/uploads/2026/04/bh.png"
     ]
   },
   {
-    "title": "BLOG",
+    "title": "Cancer Awareness Programme at Darjeeling Hills University (W.B.)",
     "slug": "cancer-awareness-programme-at-darjeeling-hills-university-w-b",
     "date": "2026-03-24",
     "author": "Admin",
+    "category": "HEALTHCARE",
+    "readTime": 3,
     "paragraphs": [
       "Cancer awareness is not only medical information—it is the work of replacing fear and stigma with knowledge, empathy, and timely action. Live4Help Foundation is committed to helping communities recognise early warning signs and seek screening without hesitation.",
       "Programme snapshot (24 March 2026): Live4Help Foundation conducted a Cancer Awareness Programme with a primary focus on breast cancer awareness, emphasising early detection and preventive screening. The session strengthened confidence around seeking care as an act of strength and self-care.",
@@ -238,34 +187,8 @@
       "+91-9810745206, +91-9313241727",
       "live4help.org@gmail.com"
     ],
-    "subheadings": [
-      {
-        "level": "h3",
-        "text": "Turning Purpose into Lasting Impact Through Human Connection: A Journey of Collective Action"
-      },
-      {
-        "level": "h3",
-        "text": "Restoring Coastal Resilience Through CSR: Mangrove Plantation Initiative in Sundarban, West Bengal"
-      },
-      {
-        "level": "h3",
-        "text": "🎓 A Defining Milestone in Our Journey: Supporting Over 100 Students Through Education"
-      },
-      {
-        "level": "h2",
-        "text": "Quick Links"
-      },
-      {
-        "level": "h2",
-        "text": "Other Links"
-      },
-      {
-        "level": "h2",
-        "text": "Follow us"
-      }
-    ],
+    "subheadings": [],
     "images": [
-      "https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg",
       "https://live4help.org/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-27-at-6.06.01-PM-1.jpeg",
       "https://live4help.org/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-27-at-6.06.01-PM.jpeg",
       "https://live4help.org/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-27-at-6.06.02-PM-1.jpeg",
@@ -274,10 +197,12 @@
     ]
   },
   {
-    "title": "BLOG",
+    "title": "Community Medical Camp at Ashapur Tea Garden, Naxalbari, Darjeeling",
     "slug": "community-medical-camp-at-ashapur-tea-garden-naxalbari-darjeeling",
     "date": "2026-03-21",
     "author": "Admin",
+    "category": "HEALTHCARE",
+    "readTime": 3,
     "paragraphs": [
       "On 21 March 2026, Live4Help Foundation organised a community medical camp at Ashapur Tea Garden, Naxalbari, Darjeeling (West Bengal), to support daily-wage workers, agricultural labourers, and economically disadvantaged residents from nearby villages who have limited access to regular healthcare. The initiative was generously sponsored by M/s ERBE Medical India Private Ltd., New Delhi, India.",
       "The camp benefited a total of 205 people (out of which 105 gave blood samples) and was conducted under the supervision of Dr. Manorajan Mandal and Dr. Pinki Goyala, with on-ground support from trained healthcare staff from Thyrocare. Participants received medical consultations and health guidance to enable early identification of potential concerns. Medical reports were distributed on March 25th, and follow-up consultations were recommended wherever required to help ensure continuity of care and reinforce the Foundation’s commitment to preventive healthcare.",
@@ -294,34 +219,9 @@
       {
         "level": "h2",
         "text": "Appeal for Sponsorship"
-      },
-      {
-        "level": "h3",
-        "text": "Turning Purpose into Lasting Impact Through Human Connection: A Journey of Collective Action"
-      },
-      {
-        "level": "h3",
-        "text": "Restoring Coastal Resilience Through CSR: Mangrove Plantation Initiative in Sundarban, West Bengal"
-      },
-      {
-        "level": "h3",
-        "text": "🎓 A Defining Milestone in Our Journey: Supporting Over 100 Students Through Education"
-      },
-      {
-        "level": "h2",
-        "text": "Quick Links"
-      },
-      {
-        "level": "h2",
-        "text": "Other Links"
-      },
-      {
-        "level": "h2",
-        "text": "Follow us"
       }
     ],
     "images": [
-      "https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg",
       "https://live4help.org/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-27-at-5.35.04-PM.jpeg",
       "https://live4help.org/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-27-at-5.35.05-PM-1.jpeg",
       "https://live4help.org/wp-content/uploads/2026/03/WhatsApp-Image-2026-03-27-at-5.35.05-PM-2.jpeg",

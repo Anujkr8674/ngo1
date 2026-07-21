@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Eye, X, Image as ImageIcon } from "lucide-react";
+import SmoothImage from "../components/SmoothImage";
 
 export default function GalleryClient({ initialCategories, initialImages }: { initialCategories: any[], initialImages: any[] }) {
   const [filter, setFilter] = useState("all");
@@ -50,7 +51,7 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
       </section>
 
       {/* Category selector */}
-      <section className="py-8 px-6 md:px-12 bg-white pb-16">
+      <section className="py-8 px-6 md:px-12 pb-16">
         <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-wrap justify-center gap-2">
           {categories.map((cat) => (
             <button
@@ -69,7 +70,7 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
       </section>
 
       {/* Grid of Images */}
-      <section className="py-8 px-6 md:px-12 bg-white pb-16">
+      <section className="py-8 px-6 md:px-12 pb-16">
         <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto min-h-[400px]">
           <motion.div 
             layout
@@ -88,10 +89,11 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
                   className="group flex flex-col rounded-[2.5rem] bg-white shadow-soft border border-[#C1D6C1] cursor-pointer overflow-hidden pb-6 hover:-translate-y-2 hover:border-[#90BCE6] hover:shadow-premium hover:!bg-[#CFE8FF] transition-all duration-300"
                 >
                   <div className="relative aspect-square w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-gray-50">
-                    <img referrerPolicy="no-referrer"
+                    <SmoothImage
                       src={item.url}
                       alt={item.caption || 'Gallery Image'}
-                      className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-premium"
+                      aspectRatioClassName="aspect-square"
+                      className="group-hover:scale-105 transition-all duration-300"
                     />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-premium">
                       <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg text-foreground">
@@ -141,11 +143,11 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
               className="w-full max-w-3xl flex flex-col items-center gap-6"
             >
               <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-premium border border-white/10 bg-black">
-                <img referrerPolicy="no-referrer"
+                <SmoothImage
                   src={activeImage.src}
                   alt={activeImage.caption}
-                  
-                  className="w-full h-full object-cover absolute inset-0 object-contain"
+                  aspectRatioClassName="aspect-[4/3]"
+                  className="object-contain"
                 />
               </div>
               <p className="text-white text-sm md:text-base text-center max-w-2xl px-4 leading-relaxed font-sans">

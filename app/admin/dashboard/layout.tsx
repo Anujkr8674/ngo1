@@ -2,58 +2,148 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
-import { LayoutDashboard, LogOut, Settings, Users, Menu, X, Image as ImageIcon, ListTree } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { LayoutDashboard, LogOut, Settings, Users, Menu, X, Image as ImageIcon, ListTree, FileText, ChevronDown, ChevronRight, FolderPlus, Plus } from 'lucide-react'
 import { logoutAdmin } from '../../actions/adminAuth'
-
-const navItems = [
-  { name: 'Overview', href: '/admin/dashboard', icon: LayoutDashboard },
-  { name: 'Categories', href: '/admin/dashboard/categories', icon: ListTree },
-  { name: 'Gallery', href: '/admin/dashboard/gallery', icon: ImageIcon },
-  { name: 'Users', href: '#', icon: Users },
-  { name: 'Settings', href: '#', icon: Settings },
-]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isWebPostsOpen, setIsWebPostsOpen] = useState(false)
 
-  const SidebarContent = () => (
+  // Expand Web Posts menu automatically if current route is within /admin/dashboard/posts
+  useEffect(() => {
+    if (pathname.startsWith('/admin/dashboard/posts')) {
+      setIsWebPostsOpen(true)
+    }
+  }, [pathname])
+
+  const sidebarContent = (
     <div className="flex flex-col h-full w-full">
       <div className="p-6">
-        <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-gradient-to-br from-[#DCCFF8] to-[#CFE8FF] rounded-xl flex items-center justify-center shadow-sm">
-            <span className="text-[#444444] font-black text-xl">N</span>
-          </div>
-          <span className="text-lg font-bold tracking-tight text-[#444444]">Admin Portal</span>
+        <div className="flex items-center gap-3">
+          <img
+            src="/logo/logo.jpg"
+            alt="Live 4 Help Foundation Logo"
+            className="h-10 w-auto object-contain"
+          />
         </div>
       </div>
       
-      <nav className="flex-1 px-4 space-y-1">
-        {navItems.map((item) => {
-          const isActive = pathname === item.href
-          const Icon = item.icon
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group ${
-                isActive 
-                  ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm' 
-                  : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
-              }`}
-            >
-              <Icon className={`h-5 w-5 transition-colors ${isActive ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
-              {item.name}
-            </Link>
-          )
-        })}
+      <nav className="flex-1 px-4 space-y-1 overflow-y-auto">
+        {/* Overview */}
+        <Link
+          href="/admin/dashboard"
+          className={`flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group ${
+            pathname === '/admin/dashboard'
+              ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+              : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+          }`}
+        >
+          <LayoutDashboard className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+          Overview
+        </Link>
+
+        {/* Gallery Categories */}
+        <Link
+          href="/admin/dashboard/categories"
+          className={`flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group ${
+            pathname === '/admin/dashboard/categories'
+              ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+              : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+          }`}
+        >
+          <ListTree className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/categories' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+          Categories
+        </Link>
+
+        {/* Gallery */}
+        <Link
+          href="/admin/dashboard/gallery"
+          className={`flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group ${
+            pathname === '/admin/dashboard/gallery'
+              ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+              : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+          }`}
+        >
+          <ImageIcon className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/gallery' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+          Gallery
+        </Link>
+
+        {/* Web Posts Dropdown Menu */}
+        <div>
+          <button
+            type="button"
+            onClick={() => setIsWebPostsOpen(!isWebPostsOpen)}
+            className={`flex items-center justify-between px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group cursor-pointer ${
+              pathname.startsWith('/admin/dashboard/posts')
+                ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+                : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <FileText className={`h-5 w-5 transition-colors ${pathname.startsWith('/admin/dashboard/posts') ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+              <span>Web Posts</span>
+            </div>
+            {isWebPostsOpen ? (
+              <ChevronDown className="h-4 w-4 text-[#444444]" />
+            ) : (
+              <ChevronRight className="h-4 w-4 text-slate-400 group-hover:text-[#444444]" />
+            )}
+          </button>
+
+          {/* Submenu links */}
+          {isWebPostsOpen && (
+            <div className="mt-1 ml-4 pl-3 border-l-2 border-blue-200 space-y-1">
+              <Link
+                href="/admin/dashboard/posts/categories"
+                className={`flex items-center gap-2.5 px-3 py-2.5 w-full rounded-lg transition-all text-xs font-semibold ${
+                  pathname === '/admin/dashboard/posts/categories'
+                    ? 'bg-blue-50 text-blue-700 font-bold'
+                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+                }`}
+              >
+                <FolderPlus className="h-4 w-4 text-purple-500" />
+                Post Categories
+              </Link>
+              <Link
+                href="/admin/dashboard/posts"
+                className={`flex items-center gap-2.5 px-3 py-2.5 w-full rounded-lg transition-all text-xs font-semibold ${
+                  pathname === '/admin/dashboard/posts'
+                    ? 'bg-blue-50 text-blue-700 font-bold'
+                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+                }`}
+              >
+                <FileText className="h-4 w-4 text-blue-500" />
+                Web Posts
+              </Link>
+            </div>
+          )}
+        </div>
+
+        {/* Users */}
+        <Link
+          href="#"
+          className="flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm text-slate-500 hover:text-[#444444] hover:bg-slate-50 group"
+        >
+          <Users className="h-5 w-5 text-slate-400 group-hover:text-[#444444]" />
+          Users
+        </Link>
+
+        {/* Settings */}
+        <Link
+          href="#"
+          className="flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm text-slate-500 hover:text-[#444444] hover:bg-slate-50 group"
+        >
+          <Settings className="h-5 w-5 text-slate-400 group-hover:text-[#444444]" />
+          Settings
+        </Link>
       </nav>
 
       <div className="p-4">
         <button 
           onClick={() => logoutAdmin()}
-          className="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-sm text-slate-500 hover:text-red-600 hover:bg-red-50 transition-all font-medium group"
+          className="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-sm text-slate-500 hover:text-red-600 hover:bg-red-50 transition-all font-medium group cursor-pointer"
         >
           <LogOut className="h-5 w-5 text-slate-400 group-hover:text-red-500 transition-colors" />
           Logout
@@ -74,7 +164,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* Sidebar Desktop */}
       <aside className="w-72 bg-white border-r border-slate-200 flex-col hidden md:flex z-50">
-        <SidebarContent />
+        {sidebarContent}
       </aside>
 
       {/* Sidebar Mobile Drawer */}
@@ -83,7 +173,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <SidebarContent />
+        {sidebarContent}
       </aside>
 
       {/* Main Content */}
@@ -95,7 +185,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <Menu className="h-6 w-6" />
             </button>
             <img
-              src="https://live4help.org/wp-content/uploads/2021/01/live4help-01-01-01-scaled.jpg"
+              src="/logo/logo.jpg"
               alt="Live 4 Help Foundation Logo"
               className="h-10 w-auto object-contain"
             />

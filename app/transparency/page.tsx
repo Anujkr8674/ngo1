@@ -13,7 +13,7 @@ export default function Transparency() {
   ];
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-[#FBFBFA]">
+    <div className="flex flex-col w-full min-h-screen">
       {/* Intro Hero (100vh) */}
       <section className="relative min-h-[100vh] px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 text-center">
         <div className="absolute inset-0 z-0">
@@ -42,7 +42,7 @@ export default function Transparency() {
       </section>
 
       {/* Registrations & Certifications Section */}
-      <section className="py-24 px-6 md:px-12 bg-white">
+      <section className="py-24 px-6 md:px-12">
         <div className="bg-[#FFE6D4] rounded-[3rem] py-12 px-6 md:py-20 md:px-12 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
           <h3 className="font-display font-bold text-2xl md:text-3xl text-foreground border-b border-foreground/10 pb-4">
             NGO Registrations & Certifications
