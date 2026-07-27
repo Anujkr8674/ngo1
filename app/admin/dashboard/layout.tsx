@@ -70,6 +70,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           Gallery
         </Link>
 
+        {/* AGM Reports */}
+        <Link
+          href="/admin/dashboard/agm"
+          className={`flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group ${
+            pathname === '/admin/dashboard/agm'
+              ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+              : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+          }`}
+        >
+          <FileText className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/agm' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+          AGM Reports
+        </Link>
+
         {/* Web Posts Dropdown Menu */}
         <div>
           <button
@@ -121,13 +134,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           )}
         </div>
 
-        {/* Users */}
+        {/* About Us (Team) */}
         <Link
-          href="#"
-          className="flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm text-slate-500 hover:text-[#444444] hover:bg-slate-50 group"
+          href="/admin/dashboard/about"
+          className={`flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group ${
+            pathname === '/admin/dashboard/about'
+              ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+              : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+          }`}
         >
-          <Users className="h-5 w-5 text-slate-400 group-hover:text-[#444444]" />
-          Users
+          <Users className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/about' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+          About Us (Team)
         </Link>
 
         {/* Settings */}

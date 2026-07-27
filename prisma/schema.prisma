@@ -60,3 +60,26 @@ model BlogPost {
   updatedAt  DateTime      @updatedAt
 }
 
+model TeamMember {
+  id          String   @id @default(cuid())
+  name        String
+  role        String
+  image       String   // URL of image stored in Supabase
+  email       String?
+  mobile      String?
+  description String   @db.Text // Rich text html from Tiptap Editor
+  order       Int      @default(0) // Display sorting order
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model AgmReport {
+  id        String   @id @default(cuid())
+  title     String
+  date      String   // e.g. "May 2026"
+  url       String   // Local path or Supabase Storage URL
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
