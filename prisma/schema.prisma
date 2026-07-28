@@ -83,3 +83,14 @@ model AgmReport {
   updatedAt DateTime @updatedAt
 }
 
+model ArchivedMaterial {
+  id        String   @id @default(cuid())
+  title     String
+  size      String   // e.g. "2.4 MB"
+  url       String   // Supabase Storage URL
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+

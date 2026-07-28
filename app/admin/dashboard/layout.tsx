@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
-import { LayoutDashboard, LogOut, Settings, Users, Menu, X, Image as ImageIcon, ListTree, FileText, ChevronDown, ChevronRight, FolderPlus, Plus } from 'lucide-react'
+import { LayoutDashboard, LogOut, Settings, Users, Menu, X, Image as ImageIcon, ListTree, FileText, ChevronDown, ChevronRight, FolderPlus, Plus, Archive } from 'lucide-react'
 import { logoutAdmin } from '../../actions/adminAuth'
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -81,6 +81,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         >
           <FileText className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/agm' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
           AGM Reports
+        </Link>
+
+        {/* Archived Material */}
+        <Link
+          href="/admin/dashboard/archived-material"
+          className={`flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group ${
+            pathname === '/admin/dashboard/archived-material'
+              ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+              : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+          }`}
+        >
+          <Archive className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/archived-material' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+          Archived Material
         </Link>
 
         {/* Web Posts Dropdown Menu */}
