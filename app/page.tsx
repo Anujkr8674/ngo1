@@ -27,6 +27,7 @@ import blogsData from "./data/blogs.json";
 import { Card, MotionCard } from "./components/Card";
 import { getBlogPosts } from "./actions/blog";
 import { getGalleryImages } from "./actions/gallery";
+import { getTestimonials } from "./actions/testimonial";
 import SmoothImage from "./components/SmoothImage";
 
 const carouselImages = [
@@ -41,6 +42,7 @@ export default function Home() {
   const [activeGalleryImage, setActiveGalleryImage] = useState<{ src: string; caption: string } | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [blogsList, setBlogsList] = useState<any[]>(blogsData.slice(0, 3));
+  const [testimonialsList, setTestimonialsList] = useState<any[]>(testimonialsData);
 
   const defaultGallery = [
     { id: "1", url: "https://live4help.org/wp-content/uploads/2024/02/Meeting-with-Subham-Pandey-225x300.jpg", caption: "IIT Chennai M.Sc. Physics student Subham Pandey" },
@@ -61,6 +63,12 @@ export default function Home() {
     getGalleryImages().then((imgs) => {
       if (imgs && imgs.length > 0) {
         setGalleryList(imgs.slice(0, 4));
+      }
+    }).catch(() => { });
+
+    getTestimonials().then((list) => {
+      if (list && list.length > 0) {
+        setTestimonialsList(list);
       }
     }).catch(() => { });
   }, []);
@@ -332,7 +340,7 @@ export default function Home() {
 
           {/* Testimonial slider / grid */}
           <div ref={carouselRef} className="flex gap-6 overflow-x-auto pb-8 pt-4 px-2 no-scrollbar scroll-smooth snap-x snap-mandatory">
-            {testimonialsData.map((item, idx) => (
+            {testimonialsList.map((item, idx) => (
               <MotionCard
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}

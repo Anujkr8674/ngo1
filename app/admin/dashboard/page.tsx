@@ -9,7 +9,11 @@ import {
   Sparkles,
   ShieldCheck,
   Activity,
-  Archive
+  Archive,
+  HeartHandshake,
+  GraduationCap,
+  Play,
+  Mail
 } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
@@ -23,7 +27,12 @@ export default async function DashboardOverview() {
     totalTeamMembers,
     totalAgmReports,
     totalAdmins,
-    totalArchivedMaterials
+    totalArchivedMaterials,
+    totalDonorCSRMembers,
+    totalStudentSheets,
+    totalInitiatives,
+    totalTestimonials,
+    totalContactMessages
   ] = await Promise.all([
     prisma.blogPost.count(),
     prisma.blogCategory.count(),
@@ -32,11 +41,16 @@ export default async function DashboardOverview() {
     prisma.teamMember.count(),
     prisma.agmReport.count(),
     prisma.admin.count(),
-    prisma.archivedMaterial.count()
+    prisma.archivedMaterial.count(),
+    prisma.donorCSRMember.count(),
+    prisma.studentSheet.count(),
+    prisma.initiative.count(),
+    prisma.testimonial.count(),
+    prisma.contactMessage.count()
   ])
 
   // Fetch some quick details
-  const [latestPost, latestImage, latestReport, latestArchived] = await Promise.all([
+  const [latestPost, latestImage, latestReport, latestArchived, latestDonor, latestStudent, latestInitiative, latestTestimonial, latestContactMessage] = await Promise.all([
     prisma.blogPost.findFirst({
       orderBy: { createdAt: 'desc' },
       select: { title: true }
@@ -52,6 +66,26 @@ export default async function DashboardOverview() {
     prisma.archivedMaterial.findFirst({
       orderBy: { createdAt: 'desc' },
       select: { title: true }
+    }),
+    prisma.donorCSRMember.findFirst({
+      orderBy: { createdAt: 'desc' },
+      select: { title: true }
+    }),
+    prisma.studentSheet.findFirst({
+      orderBy: { createdAt: 'desc' },
+      select: { title: true }
+    }),
+    prisma.initiative.findFirst({
+      orderBy: { createdAt: 'desc' },
+      select: { title: true }
+    }),
+    prisma.testimonial.findFirst({
+      orderBy: { createdAt: 'desc' },
+      select: { name: true }
+    }),
+    prisma.contactMessage.findFirst({
+      orderBy: { createdAt: 'desc' },
+      select: { name: true }
     })
   ])
 
@@ -292,6 +326,201 @@ export default async function DashboardOverview() {
               className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
             >
               Manage Archives
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Donors & CSR Sponsors Section */}
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div className="p-6">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-orange-500">Registry Sheets</span>
+                <h3 className="text-lg font-bold text-[#444444]">Donors & Sponsors</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <HeartHandshake className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50">
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Sheets / Pages</p>
+                <p className="text-2xl font-black text-slate-700 mt-1">{totalDonorCSRMembers}</p>
+              </div>
+            </div>
+
+            {latestDonor && (
+              <div className="mt-4 text-xs bg-orange-50/50 text-orange-855 px-3 py-2 rounded-lg border border-orange-50 flex items-center gap-1.5">
+                <span className="font-bold shrink-0">Latest Sheet:</span>
+                <span className="truncate">"{latestDonor.title}"</span>
+              </div>
+            )}
+          </div>
+
+          <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
+            <Link 
+              href="/admin/dashboard/donors-csr-sponsors-members" 
+              className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
+            >
+              Manage Donors & CSR
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Student Sheets Section */}
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div className="p-6">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-purple-500">Education Insight</span>
+                <h3 className="text-lg font-bold text-[#444444]">Student Sheets</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <GraduationCap className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50">
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Sheets / Pages</p>
+                <p className="text-2xl font-black text-slate-700 mt-1">{totalStudentSheets}</p>
+              </div>
+            </div>
+
+            {latestStudent && (
+              <div className="mt-4 text-xs bg-purple-50/50 text-purple-855 px-3 py-2 rounded-lg border border-purple-50 flex items-center gap-1.5">
+                <span className="font-bold shrink-0">Latest Sheet:</span>
+                <span className="truncate">"{latestStudent.title}"</span>
+              </div>
+            )}
+          </div>
+
+          <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
+            <Link 
+              href="/admin/dashboard/students" 
+              className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
+            >
+              Manage Student Sheets
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Initiatives & Categories Section */}
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div className="p-6">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#0ea5e9]">Operations</span>
+                <h3 className="text-lg font-bold text-[#444444]">NGO Initiatives</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-[#f0f9ff] text-[#0284c7] flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <Sparkles className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50">
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Active Programs</p>
+                <p className="text-2xl font-black text-slate-700 mt-1">{totalInitiatives}</p>
+              </div>
+            </div>
+
+            {latestInitiative && (
+              <div className="mt-4 text-xs bg-[#f0f9ff]/50 text-[#0284c7] px-3 py-2 rounded-lg border border-[#e0f2fe] flex items-center gap-1.5">
+                <span className="font-bold shrink-0">Latest:</span>
+                <span className="truncate">"{latestInitiative.title}"</span>
+              </div>
+            )}
+          </div>
+
+          <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
+            <Link 
+              href="/admin/dashboard/initiatives" 
+              className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
+            >
+              Manage Initiatives
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Video Testimonials Section */}
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div className="p-6">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-rose-500">Feedback</span>
+                <h3 className="text-lg font-bold text-[#444444]">Testimonials</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <Play className="w-5 h-5 fill-current" />
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50">
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Video Stories</p>
+                <p className="text-2xl font-black text-slate-700 mt-1">{totalTestimonials}</p>
+              </div>
+            </div>
+
+            {latestTestimonial && (
+              <div className="mt-4 text-xs bg-rose-50/50 text-rose-800 px-3 py-2 rounded-lg border border-rose-100 flex items-center gap-1.5">
+                <span className="font-bold shrink-0">Latest:</span>
+                <span className="truncate">"{latestTestimonial.name}"</span>
+              </div>
+            )}
+          </div>
+
+          <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
+            <Link 
+              href="/admin/dashboard/testimonials" 
+              className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
+            >
+              Manage Testimonials
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Contact Messages Section */}
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div className="p-6">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-teal-500">Inbox</span>
+                <h3 className="text-lg font-bold text-[#444444]">Contact Form</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-650 flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <Mail className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50">
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Submissions</p>
+                <p className="text-2xl font-black text-slate-700 mt-1">{totalContactMessages}</p>
+              </div>
+            </div>
+
+            {latestContactMessage && (
+              <div className="mt-4 text-xs bg-teal-50/50 text-teal-800 px-3 py-2 rounded-lg border border-teal-100 flex items-center gap-1.5">
+                <span className="font-bold shrink-0">Latest:</span>
+                <span className="truncate">"{latestContactMessage.name}"</span>
+              </div>
+            )}
+          </div>
+
+          <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
+            <Link 
+              href="/admin/dashboard/contact" 
+              className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
+            >
+              View Inbound Messages
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

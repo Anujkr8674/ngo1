@@ -93,4 +93,69 @@ model ArchivedMaterial {
   updatedAt DateTime @updatedAt
 }
 
+model DonorCSRMember {
+  id        String   @id @default(cuid())
+  title     String
+  src       String   // Public folder path or Supabase Storage URL
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model StudentSheet {
+  id        String   @id @default(cuid())
+  title     String
+  src       String   // Public folder path or Supabase URL
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model InitiativeCategory {
+  id          String       @id @default(cuid())
+  name        String
+  slug        String       @unique
+  iconName    String       @default("Sparkles")
+  order       Int          @default(0)
+  initiatives Initiative[]
+}
+
+model Initiative {
+  id         String             @id @default(cuid())
+  title      String
+  desc       String
+  details    String
+  sponsor    String
+  image      String             // Public path or Supabase URL
+  order      Int                @default(0)
+  categoryId String
+  category   InitiativeCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  video     String   // Public path or Supabase URL
+  image     String   // Public path or Supabase URL
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  mobile    String
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+
+
+
+
 

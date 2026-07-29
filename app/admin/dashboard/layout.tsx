@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
-import { LayoutDashboard, LogOut, Settings, Users, Menu, X, Image as ImageIcon, ListTree, FileText, ChevronDown, ChevronRight, FolderPlus, Plus, Archive } from 'lucide-react'
+import { LayoutDashboard, LogOut, Settings, Users, Menu, X, Image as ImageIcon, ListTree, FileText, ChevronDown, ChevronRight, FolderPlus, Plus, Archive, HeartHandshake, GraduationCap, Sparkles, Play, Mail } from 'lucide-react'
 import { logoutAdmin } from '../../actions/adminAuth'
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -94,6 +94,71 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         >
           <Archive className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/archived-material' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
           Archived Material
+        </Link>
+
+        {/* Donors & CSR Sponsors */}
+        <Link
+          href="/admin/dashboard/donors-csr-sponsors-members"
+          className={`flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group ${
+            pathname === '/admin/dashboard/donors-csr-sponsors-members'
+              ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+              : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+          }`}
+        >
+          <HeartHandshake className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/donors-csr-sponsors-members' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+          Donors & CSR Sponsors
+        </Link>
+
+        {/* Student Sheets */}
+        <Link
+          href="/admin/dashboard/students"
+          className={`flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group ${
+            pathname === '/admin/dashboard/students'
+              ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+              : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+          }`}
+        >
+          <GraduationCap className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/students' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+          Student Sheets
+        </Link>
+
+        {/* Initiatives & Categories */}
+        <Link
+          href="/admin/dashboard/initiatives"
+          className={`flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group ${
+            pathname === '/admin/dashboard/initiatives'
+              ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+              : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+          }`}
+        >
+          <Sparkles className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/initiatives' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+          Initiatives
+        </Link>
+
+        {/* Testimonials */}
+        <Link
+          href="/admin/dashboard/testimonials"
+          className={`flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group ${
+            pathname === '/admin/dashboard/testimonials'
+              ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+              : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+          }`}
+        >
+          <Play className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/testimonials' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+          Testimonials
+        </Link>
+
+        {/* Contact Messages */}
+        <Link
+          href="/admin/dashboard/contact"
+          className={`flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group ${
+            pathname === '/admin/dashboard/contact'
+              ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+              : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+          }`}
+        >
+          <Mail className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/contact' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+          Contact Messages
         </Link>
 
         {/* Web Posts Dropdown Menu */}

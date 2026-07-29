@@ -2,11 +2,14 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Check, Sparkles } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Check, Sparkles, Loader2 } from "lucide-react";
 import { Card } from "../components/Card";
+import { submitContactMessage } from "../actions/contact";
 
 export default function Contact() {
     const [submitted, setSubmitted] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -15,9 +18,54 @@ export default function Contact() {
         message: ""
     });
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setSubmitted(true);
+        setSubmitting(true);
+        setError(null);
+
+        // Client-side email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email.trim())) {
+            setError("Please enter a valid email address.");
+            setSubmitting(false);
+            return;
+        }
+
+        // Client-side mobile validation (ensure only digits and minimum length)
+        const mobileDigits = formData.mobile.replace(/\D/g, '');
+        if (mobileDigits.length < 10) {
+            setError("Please enter a valid mobile number (at least 10 digits).");
+            setSubmitting(false);
+            return;
+        }
+
+        try {
+            const res = await submitContactMessage({
+                ...formData,
+                mobile: mobileDigits
+            });
+            if (res.error) {
+                setError(res.error);
+            } else {
+                setSubmitted(true);
+                // Clear the form data
+                setFormData({
+                    name: "",
+                    email: "",
+                    mobile: "",
+                    subject: "",
+                    message: ""
+                });
+                // Automatically reset the form state back to the entry form after 3 seconds
+                setTimeout(() => {
+                    setSubmitted(false);
+                }, 3000);
+            }
+        } catch (err: any) {
+            setError(err.message || "Failed to submit message");
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     return (
@@ -83,7 +131,8 @@ export default function Contact() {
                                             type="text" required
                                             value={formData.name}
                                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                            className="p-3.5 rounded-xl border border-foreground/10 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
+                                            disabled={submitting}
+                                            className="p-3.5 rounded-xl border border-foreground/10 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300 disabled:bg-slate-50 disabled:text-slate-400"
                                             placeholder="Name"
                                         />
                                     </div>
@@ -92,8 +141,9 @@ export default function Contact() {
                                         <input
                                             type="tel" required
                                             value={formData.mobile}
-                                            onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                                            className="p-3.5 rounded-xl border border-foreground/10 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
+                                            onChange={(e) => setFormData({ ...formData, mobile: e.target.value.replace(/\D/g, '') })}
+                                            disabled={submitting}
+                                            className="p-3.5 rounded-xl border border-foreground/10 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300 disabled:bg-slate-50 disabled:text-slate-400"
                                             placeholder="Contact phone"
                                         />
                                     </div>
@@ -103,7 +153,8 @@ export default function Contact() {
                                             type="email" required
                                             value={formData.email}
                                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                            className="p-3.5 rounded-xl border border-foreground/10 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
+                                            disabled={submitting}
+                                            className="p-3.5 rounded-xl border border-foreground/10 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300 disabled:bg-slate-50 disabled:text-slate-400"
                                             placeholder="Email address"
                                         />
                                     </div>
@@ -113,7 +164,8 @@ export default function Contact() {
                                             type="text" required
                                             value={formData.subject}
                                             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                                            className="p-3.5 rounded-xl border border-foreground/10 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
+                                            disabled={submitting}
+                                            className="p-3.5 rounded-xl border border-foreground/10 focus:outline-none focus:border-secondary text-sm hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300 disabled:bg-slate-50 disabled:text-slate-400"
                                             placeholder="Topic of conversation"
                                         />
                                     </div>
@@ -123,20 +175,32 @@ export default function Contact() {
                                             required
                                             value={formData.message}
                                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                            disabled={submitting}
                                             rows={5}
-                                            className="p-3.5 rounded-xl border border-foreground/10 focus:outline-none focus:border-secondary text-sm font-sans hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
+                                            className="p-3.5 rounded-xl border border-foreground/10 focus:outline-none focus:border-secondary text-sm font-sans hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300 disabled:bg-slate-50 disabled:text-slate-400"
                                             placeholder="Write your suggestions or questions..."
                                         />
                                     </div>
                                 </div>
 
+                                {error && (
+                                    <div className="bg-red-50 text-red-800 p-4 rounded-xl text-xs font-semibold border border-red-100">
+                                        {error}
+                                    </div>
+                                )}
+
                                 <div className="flex justify-end pt-4">
                                     <button
                                         type="submit"
-                                        className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-foreground bg-primary hover:bg-[#b8daff] transition-premium shadow-soft cursor-pointer"
+                                        disabled={submitting}
+                                        className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-foreground bg-primary hover:bg-[#b8daff] transition-premium shadow-soft cursor-pointer disabled:opacity-50"
                                     >
-                                        <Send className="w-4 h-4" />
-                                        Send Message
+                                        {submitting ? (
+                                            <Loader2 className="w-4 h-4 animate-spin" />
+                                        ) : (
+                                            <Send className="w-4 h-4" />
+                                        )}
+                                        {submitting ? "Sending..." : "Send Message"}
                                     </button>
                                 </div>
                             </form>
