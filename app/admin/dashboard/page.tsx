@@ -858,41 +858,7 @@ export default async function DashboardOverview() {
           </div>
         </div>
 
-        {/* Gallery Categories Section */}
-        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
-          <div className="p-6">
-            <div className="flex justify-between items-start">
-              <div className="space-y-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-blue-500">Visual Assets</span>
-                <h3 className="text-lg font-bold text-[#444444]">Gallery Categories</h3>
-              </div>
-              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:rotate-6 transition-transform">
-                <ListTree className="w-5 h-5" />
-              </div>
-            </div>
 
-            <div className="mt-6 grid grid-cols-1 gap-4">
-              <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50">
-                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Categories</p>
-                <p className="text-2xl font-black text-slate-700 mt-1">{totalGalleryCategories}</p>
-              </div>
-            </div>
-
-            <div className="mt-4 text-xs bg-blue-50/50 text-blue-800 px-3 py-2 rounded-lg border border-blue-50 flex items-center gap-1.5">
-              <span className="font-semibold text-slate-500">Folders to group photo gallery uploads</span>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
-            <Link 
-              href="/admin/dashboard/categories" 
-              className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
-            >
-              Manage Categories
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-        </div>
 
       </div>
     </div>
