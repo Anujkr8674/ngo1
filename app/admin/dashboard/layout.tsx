@@ -11,14 +11,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isWebPostsOpen, setIsWebPostsOpen] = useState(false)
   const [isGetHelpOpen, setIsGetHelpOpen] = useState(false)
+  const [isBePartUsOpen, setIsBePartUsOpen] = useState(false)
 
-  // Expand Web Posts & Get Help menus automatically if current route matches
+  // Expand Web Posts, Get Help & Be Part Us menus automatically if current route matches
   useEffect(() => {
     if (pathname.startsWith('/admin/dashboard/posts')) {
       setIsWebPostsOpen(true)
     }
     if (pathname.startsWith('/admin/dashboard/get-help')) {
       setIsGetHelpOpen(true)
+    }
+    if (pathname.startsWith('/admin/dashboard/volunteer') || pathname.startsWith('/admin/dashboard/member')) {
+      setIsBePartUsOpen(true)
     }
   }, [pathname])
 
@@ -177,6 +181,56 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <Heart className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/donations' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
           Donations
         </Link>
+
+        {/* Be Part Us Dropdown */}
+        <div>
+          <button
+            type="button"
+            onClick={() => setIsBePartUsOpen(!isBePartUsOpen)}
+            className={`flex items-center justify-between px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group cursor-pointer ${
+              pathname.startsWith('/admin/dashboard/volunteer') || pathname.startsWith('/admin/dashboard/member')
+                ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+                : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <Users className={`h-5 w-5 transition-colors ${pathname.startsWith('/admin/dashboard/volunteer') || pathname.startsWith('/admin/dashboard/member') ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+              <span>Be Part Us</span>
+            </div>
+            {isBePartUsOpen ? (
+              <ChevronDown className="h-4 w-4 text-[#444444]" />
+            ) : (
+              <ChevronRight className="h-4 w-4 text-slate-400 group-hover:text-[#444444]" />
+            )}
+          </button>
+
+          {isBePartUsOpen && (
+            <div className="mt-1 ml-4 pl-3 border-l-2 border-purple-200 space-y-1">
+              <Link
+                href="/admin/dashboard/volunteer"
+                className={`flex items-center gap-2.5 px-3 py-2.5 w-full rounded-lg transition-all text-xs font-semibold ${
+                  pathname === '/admin/dashboard/volunteer'
+                    ? 'bg-blue-50 text-blue-700 font-bold'
+                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+                }`}
+              >
+                <Users className="h-4 w-4 text-purple-500" />
+                Volunteer Submissions
+              </Link>
+              <Link
+                href="/admin/dashboard/member"
+                className={`flex items-center gap-2.5 px-3 py-2.5 w-full rounded-lg transition-all text-xs font-semibold ${
+                  pathname === '/admin/dashboard/member'
+                    ? 'bg-blue-50 text-blue-700 font-bold'
+                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+                }`}
+              >
+                <Users className="h-4 w-4 text-blue-500" />
+                Member Submissions
+              </Link>
+            </div>
+          )}
+        </div>
 
         {/* Get Help Requests Dropdown */}
         <div>

@@ -12,6 +12,7 @@ import {
   Sparkles
 } from "lucide-react";
 import Link from "next/link";
+import { submitMember } from "@/app/actions/member";
 
 const interestsList = [
   "Education",
@@ -102,20 +103,78 @@ export default function MemberRegistration() {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission as backend is not requested now
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setSubmitted(true);
+      const data = new FormData();
+      data.append("name", formData.name);
+      data.append("fatherSpouseName", formData.fatherSpouseName);
+      data.append("gender", formData.gender);
+      data.append("dob", formData.dob);
+      data.append("address", formData.address);
+      data.append("state", formData.state);
+      data.append("postalCode", formData.postalCode);
+      data.append("mobile", formData.mobile);
+      data.append("email", formData.email);
+      data.append("pancard", formData.pancard);
+      data.append("education", formData.education);
+      data.append("profession", formData.profession);
+      data.append("company", formData.company);
+      data.append("interests", JSON.stringify(formData.interests));
+      data.append("otherInterest", formData.otherInterest);
+      data.append("reason", formData.reason);
+      data.append("modeOfPayment", formData.modeOfPayment);
+      data.append("paymentDate", formData.paymentDate);
+      data.append("chequeNo", formData.chequeNo);
+      data.append("bankName", formData.bankName);
+      data.append("transactionId", formData.transactionId);
 
-      // Clear files
-      setIdFile(null);
-      setIdPreview(null);
-      setResidenceFile(null);
-      setResidencePreview(null);
-      setPhotoFile(null);
-      setPhotoPreview(null);
-      setFileNames({});
+      if (idFile) data.append("idFile", idFile);
+      if (residenceFile) data.append("residenceFile", residenceFile);
+      if (photoFile) data.append("photoFile", photoFile);
+
+      const res = await submitMember(data);
+      if (res.error) {
+        setError(res.error);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setTimeout(() => {
+          setSubmitted(false);
+          setFormData({
+            name: "",
+            fatherSpouseName: "",
+            gender: "Male",
+            dob: "",
+            address: "",
+            state: "",
+            postalCode: "",
+            mobile: "",
+            email: "",
+            pancard: "",
+            education: "",
+            profession: "",
+            company: "",
+            interests: [],
+            otherInterest: "",
+            reason: "",
+            modeOfPayment: "NEFT",
+            paymentDate: "",
+            chequeNo: "",
+            bankName: "",
+            transactionId: "",
+            agree: false
+          });
+          setIdFile(null);
+          setIdPreview(null);
+          setResidenceFile(null);
+          setResidencePreview(null);
+          setPhotoFile(null);
+          setPhotoPreview(null);
+          setFileNames({});
+        }, 3000);
+      }
     } catch (err: any) {
       setError(err.message || "Something went wrong.");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } finally {
       setIsSubmitting(false);
     }

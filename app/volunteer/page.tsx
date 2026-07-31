@@ -8,13 +8,17 @@ import {
   Check,
   Upload,
   X,
-  FileText
+  FileText,
+  FileDown
 } from "lucide-react";
 import Link from "next/link";
+import { submitVolunteer } from "@/app/actions/volunteer";
 
 export default function Volunteer() {
   const [submitted, setSubmitted] = useState(false);
   const [fileNames, setFileNames] = useState<{ [key: string]: string }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -68,37 +72,74 @@ export default function Volunteer() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: "",
-        gender: "Male",
-        dob: "",
-        address: "",
-        state: "",
-        postalCode: "",
-        mobile: "",
-        email: "",
-        qualification: "",
-        profession: "",
-        company: "",
-        language: "",
-        interests: [],
-        otherInterest: "",
-        hoursPerWeek: "",
-        reason: "",
-        agree: false
-      });
-      setFileNames({});
-      setIdFile(null);
-      setIdPreview(null);
-      setPhotoFile(null);
-      setPhotoPreview(null);
-    }, 3000);
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const data = new FormData();
+      data.append("name", formData.name);
+      data.append("gender", formData.gender);
+      data.append("dob", formData.dob);
+      data.append("address", formData.address);
+      data.append("state", formData.state);
+      data.append("postalCode", formData.postalCode);
+      data.append("mobile", formData.mobile);
+      data.append("email", formData.email);
+      data.append("qualification", formData.qualification);
+      data.append("profession", formData.profession);
+      data.append("company", formData.company);
+      data.append("language", formData.language);
+      data.append("interests", JSON.stringify(formData.interests));
+      data.append("otherInterest", formData.otherInterest);
+      data.append("hoursPerWeek", formData.hoursPerWeek);
+      data.append("reason", formData.reason);
+
+      if (idFile) data.append("idFile", idFile);
+      if (photoFile) data.append("photoFile", photoFile);
+
+      const res = await submitVolunteer(data);
+      if (res.error) {
+        setError(res.error);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setTimeout(() => {
+          setSubmitted(false);
+          setFormData({
+            name: "",
+            gender: "Male",
+            dob: "",
+            address: "",
+            state: "",
+            postalCode: "",
+            mobile: "",
+            email: "",
+            qualification: "",
+            profession: "",
+            company: "",
+            language: "",
+            interests: [],
+            otherInterest: "",
+            hoursPerWeek: "",
+            reason: "",
+            agree: false
+          });
+          setFileNames({});
+          setIdFile(null);
+          setIdPreview(null);
+          setPhotoFile(null);
+          setPhotoPreview(null);
+        }, 3000);
+      }
+    } catch (err: any) {
+      setError(err.message || "Something went wrong.");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const interestsList = [
@@ -191,20 +232,18 @@ export default function Volunteer() {
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-8">
                 <div className="flex flex-col gap-6">
-                  <div className="border-b border-foreground/5 pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div className="border-b border-foreground/5 pb-4 w-full">
                     <div>
                       <h3 className="font-display font-bold text-xl text-[#6B46C1] uppercase tracking-wider">Volunteer Registration Form</h3>
                       <p className="text-xs text-slate-500 mt-1">Provide your details to join Live 4 Help Foundation as a volunteer.</p>
                     </div>
-                    <a
-                      href="/form/Volunteer-Registration-Form.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 px-4 py-2 border border-[#6B46C1]/20 hover:border-[#6B46C1] text-xs font-semibold uppercase tracking-wider rounded-xl transition-all w-fit shrink-0 cursor-pointer text-[#6B46C1] bg-purple-50"
-                    >
-                      <FileText className="w-4 h-4" /> Download PDF Form
-                    </a>
                   </div>
+
+                  {error && (
+                    <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-xs text-red-600 flex items-center gap-2 w-full">
+                      <span>{error}</span>
+                    </div>
+                  )}
 
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-4">
                     {/* Left Column: Personal Details */}
@@ -522,9 +561,17 @@ export default function Volunteer() {
                     <div className="flex justify-center w-full">
                       <button
                         type="submit"
-                        className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-[#444444] bg-[#CBB6F5] hover:bg-[#b8daff] transition-all duration-300 shadow-soft cursor-pointer"
+                        disabled={isSubmitting}
+                        className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-[#444444] bg-[#CBB6F5] hover:bg-[#b8daff] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-soft cursor-pointer"
                       >
-                        Submit Application
+                        {isSubmitting ? (
+                          <span className="flex items-center gap-1.5">
+                            <span className="w-3 h-3 rounded-full border-2 border-slate-600 border-t-transparent animate-spin" />
+                            Submitting...
+                          </span>
+                        ) : (
+                          "Submit Application"
+                        )}
                       </button>
                     </div>
                   </div>
@@ -554,6 +601,24 @@ export default function Volunteer() {
                   You can fill online form or download form and send us duly filled form through e-mail (live4help.org@gmail.com) or by post in the Office Address.
                 </p>
               </div>
+            </div>
+
+            {/* Click to download Volunteer Form */}
+            <div className="p-8 rounded-[2.5rem] bg-white border border-[#EEB898] shadow-soft flex flex-col gap-4">
+              <h4 className="font-display font-bold text-lg text-foreground">
+                Download Form PDF
+              </h4>
+              <p className="text-xs text-foreground/70 leading-relaxed">
+                If you prefer to fill out a paper application, you can download the PDF format, fill it out, and mail it to our office.
+              </p>
+              <a
+                href="/form/Volunteer-Registration-Form.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 px-6 py-3 border border-[#6B46C1]/20 hover:border-[#6B46C1] hover:bg-[#6B46C1]/5 text-sm font-semibold rounded-2xl transition-all cursor-pointer text-[#6B46C1]"
+              >
+                <FileDown className="w-4 h-4" /> Download Volunteer Form
+              </a>
             </div>
           </div>
         </div>
