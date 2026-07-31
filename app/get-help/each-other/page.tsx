@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Compass, Check, AlertCircle, Send, Upload, FileText } from "lucide-react";
+import { Compass, Check, AlertCircle, Send, Upload, FileText, X } from "lucide-react";
 import Link from "next/link";
 import { submitHelpEachOther } from "@/app/actions/getHelp";
 
