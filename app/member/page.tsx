@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  FileText,
   Heart,
   ShieldCheck,
   Upload,
   X,
   Check,
-  FileDown
+  FileDown,
+  Sparkles
 } from "lucide-react";
 import Link from "next/link";
 
@@ -122,28 +122,49 @@ export default function MemberRegistration() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FFF5EE] via-[#FFF8F5] to-[#F3EEFF] pt-28 pb-12 font-sans text-foreground selection:bg-[#CBB6F5]/30">
-      {/* Banner Section */}
-      <section className="relative overflow-hidden mb-6 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto bg-gradient-to-r from-[#CBB6F5]/20 to-[#FFD0B6]/20 rounded-[3rem] p-8 md:p-16 border border-white/40 flex flex-col md:flex-row items-center justify-between gap-8 shadow-soft">
-          <div className="flex flex-col gap-4 max-w-2xl">
-            <span className="px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-[#6B46C1] bg-[#CBB6F5]/20 w-fit">
-              Be Part of Us
+    <div className="flex flex-col w-full min-h-screen font-sans text-foreground">
+      {/* Intro Header */}
+      <section className="relative py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 text-center min-h-[90vh]">
+        {/* Full-size Hero Background */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-7-1.jpg"
+            alt="Member Hero"
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/20" />
+        </div>
+
+        {/* Floating Glassmorphism Hero Content Card */}
+        <div className="max-w-4xl mx-auto w-full z-10 relative">
+          <div className="w-full text-center flex flex-col items-center gap-6">
+            <span className="text-xs uppercase tracking-widest font-semibold flex items-center gap-2 px-4 py-1.5 rounded-full shadow-soft bg-[#DCCFF8] text-[#444444]">
+              <Sparkles className="w-4 h-4 text-[#444444]" />
+              Join the Foundation
             </span>
-            <h1 className="font-display font-extrabold text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight leading-tight">
-              Become a Member
+            <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
+              Become Part of Us
             </h1>
-            <p className="text-sm md:text-base text-foreground/70 leading-relaxed">
-              Join Live 4 Help Foundation as a Member to support our initiatives, participate in organizational development, and create a lasting social impact together.
+            <p className="bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
+              Apply as a volunteer to dedicate your skills and time on-ground, or join as a permanent member to help sustain our operations.
             </p>
-          </div>
-          <div className="flex gap-4 shrink-0">
-            <Link
-              href="/volunteer"
-              className="px-6 py-3 rounded-full text-sm font-semibold border border-[#6B46C1]/20 hover:border-[#6B46C1] hover:bg-[#6B46C1]/5 transition-all text-[#6B46C1]"
-            >
-              Apply as Volunteer
-            </Link>
+
+            {/* Role Selector Toggle */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6 w-full max-w-md mx-auto">
+              <Link
+                href="/volunteer"
+                className="w-full sm:w-auto px-8 py-4 rounded-full text-center text-base font-semibold transition-premium shadow-soft cursor-pointer bg-[#CFE8FF] text-[#444444] hover:bg-[#b8daff] opacity-70 hover:opacity-100"
+              >
+                As Volunteer
+              </Link>
+              <Link
+                href="/member"
+                className="w-full sm:w-auto px-8 py-4 rounded-full text-center text-base font-semibold transition-premium shadow-soft cursor-pointer bg-[#dccff8] text-[#444444] hover:bg-[#cbb6f5] ring-4 ring-white/50 scale-105"
+              >
+                As Member
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -719,7 +740,7 @@ export default function MemberRegistration() {
               </div>
 
               <div className="border-t border-foreground/5 pt-4 flex flex-col gap-2">
-                <h5 className="font-semibold text-xs text-foreground">Contact details:</h5>
+                <h5 className="font-semibold text-xs text-[#444444]">Contact details:</h5>
                 <p className="text-xs text-foreground/60 leading-normal">
                   Phone: +91-9810745206, +91-9313241727<br />
                   Email ID: live4help.org@gmail.com
