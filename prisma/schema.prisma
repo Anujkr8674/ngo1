@@ -154,6 +154,130 @@ model ContactMessage {
   createdAt DateTime @default(now())
 }
 
+model Donation {
+  id             String   @id @default(cuid())
+  title          String
+  name           String
+  mobile         String
+  email          String
+  state          String
+  address        String
+  postalCode     String
+  amount         Float
+  purpose        String
+  paymentMode    String
+  dateOfPayment  String
+  transactionId  String
+  panCard        String?
+  suggestions    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model HelpEachOther {
+  id            String   @id @default(cuid())
+  category      String
+  name          String
+  gender        String
+  age           Int?
+  dob           String
+  address       String
+  state         String
+  postalCode    String
+  mobile        String
+  email         String?
+  language      String
+  bloodGroup    String?
+  qualification String?
+  profession    String?
+  helpTypes     String[]
+  otherHelp     String?
+  suggestions   String?
+  idProofUrl    String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model EducationSupport {
+  id                 String   @id @default(cuid())
+  studentName        String
+  className          String
+  gender             String
+  dob                String
+  parentName         String
+  annualIncome       Float?
+  address            String
+  state              String
+  postalCode         String
+  mobile             String
+  email              String?
+  language           String
+  schoolName         String
+  schoolAddress      String
+  schoolState        String
+  schoolPin          String
+  teacherName        String
+  teacherPhone       String
+  admissionFee       Float?
+  tuitionFee         Float?
+  booksCost          Float?
+  stationeryCost     Float?
+  totalAmountWords   String
+  totalAmountFigure  Float
+  otherSupport       String[]
+  accountNo          String
+  ifsc               String
+  idProofUrl         String?
+  photoUrl           String?
+  passbookUrl        String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model ElderlySupport {
+  id               String   @id @default(cuid())
+  name             String
+  gender           String
+  age              Int
+  address          String
+  mobile           String
+  email            String?
+  livingStatus     String
+  language         String
+  emergencyContact String
+  emergencyPhone   String
+  healthStatus     String?
+  supportTypes     String[]
+  otherSupport     String?
+  suggestions      String?
+  idProofUrl       String?
+  photoUrl         String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model MedicalSupport {
+  id           String   @id @default(cuid())
+  name         String
+  gender       String
+  dob          String
+  address      String
+  state        String
+  postalCode   String
+  mobile       String
+  email        String?
+  language     String
+  healthStatus String?
+  supportTypes String[]
+  otherSupport String?
+  reason       String
+  idProofUrl   String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+
+
 
 
 

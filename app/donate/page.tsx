@@ -5,12 +5,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
     Heart, Check, Copy, AlertCircle, BookOpen, HeartHandshake, Users, Sparkles, Leaf, Shield, Download, Mail, Phone
 } from "lucide-react";
+import { submitDonation } from "@/app/actions/donation";
 
 type PaymentTab = "upi" | "neft" | "cheque";
 
 export default function Donate() {
     const [copiedField, setCopiedField] = useState<string | null>(null);
     const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [submitting, setSubmitting] = useState(false);
 
     // Selection State
     const [selectedAmount, setSelectedAmount] = useState<number | "other">(1000);
@@ -42,9 +45,65 @@ export default function Donate() {
         setTimeout(() => setCopiedField(null), 2000);
     };
 
-    const handleFormSubmit = (e: React.FormEvent) => {
+    const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setSubmitted(true);
+        setError(null);
+        setSubmitting(true);
+
+        const amount = selectedAmount === "other" ? parseFloat(customAmount) : selectedAmount;
+        if (!amount || isNaN(amount)) {
+            setError("Please select or enter a valid amount.");
+            setSubmitting(false);
+            return;
+        }
+
+        try {
+            const res = await submitDonation({
+                title: formData.title,
+                name: formData.name,
+                mobile: formData.mobile,
+                email: formData.email,
+                state: formData.state,
+                address: formData.address,
+                postalCode: formData.postalCode,
+                amount: amount,
+                purpose: selectedPurpose,
+                paymentMode: formData.paymentMode,
+                dateOfPayment: formData.dateOfPayment,
+                transactionId: formData.transactionId,
+                panCard: formData.panCard || undefined,
+                suggestions: formData.suggestions || undefined,
+            });
+
+            if (res.success) {
+                setSubmitted(true);
+                setTimeout(() => {
+                    setSubmitted(false);
+                    setFormData({
+                        title: "Mr.",
+                        name: "",
+                        mobile: "",
+                        email: "",
+                        state: "",
+                        address: "",
+                        postalCode: "",
+                        paymentMode: "UPI",
+                        dateOfPayment: "",
+                        transactionId: "",
+                        suggestions: "",
+                        panCard: ""
+                    });
+                    setCustomAmount("");
+                    setSelectedAmount(1000);
+                }, 3000);
+            } else {
+                setError(res.error || "Failed to submit donation details.");
+            }
+        } catch (err: any) {
+            setError(err.message || "An unexpected error occurred.");
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     const amounts: { value: number | "other"; label: string }[] = [
@@ -225,8 +284,12 @@ export default function Donate() {
                                         initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }}
                                         className="flex flex-col md:flex-row gap-8 items-start"
                                     >
-                                        <div className="w-40 h-40 bg-foreground/5 rounded-2xl border border-foreground/10 border-dashed flex items-center justify-center text-xs text-foreground/40 font-semibold text-center p-4 shrink-0">
-                                            UPI QR<br />CODE<br />HERE
+                                        <div className="w-40 h-40 bg-white rounded-2xl border border-foreground/10 flex items-center justify-center p-2 shrink-0">
+                                            <img
+                                                src="/qr/qr.jpeg"
+                                                alt="UPI QR Code"
+                                                className="w-full h-full object-contain"
+                                            />
                                         </div>
                                         <div className="flex flex-col gap-6 pt-4">
                                             <p className="text-sm text-foreground/80">Scan to pay, then complete the form below.</p>
@@ -241,7 +304,7 @@ export default function Donate() {
                                                     {copiedField === "upi" ? "Copied!" : "Copy"}
                                                 </button>
                                             </div>
-                                            <a href="#" className="text-xs text-foreground/60 underline hover:text-foreground transition-colors mt-2 flex items-center gap-1 w-fit">
+                                            <a href="/donate-form/Donor-Information-Form.pdf" className="text-xs text-foreground/60 underline hover:text-foreground transition-colors mt-2 flex items-center gap-1 w-fit">
                                                 Prefer to donate offline? Download donor information form (PDF)
                                             </a>
                                         </div>
@@ -451,9 +514,20 @@ export default function Donate() {
                                     <textarea rows={2} value={formData.suggestions} onChange={e => setFormData({ ...formData, suggestions: e.target.value })} placeholder="Any message" className="p-3.5 rounded-xl border border-foreground/10 focus:border-[#DCCFF8] outline-none transition-colors text-sm resize-none" />
                                 </div>
 
+                                {error && (
+                                    <div className="p-4 bg-red-50 text-red-600 rounded-xl text-sm flex items-center gap-2 font-medium">
+                                        <AlertCircle className="w-5 h-5 shrink-0" />
+                                        <span>{error}</span>
+                                    </div>
+                                )}
+
                                 <div className="pt-4">
-                                    <button type="submit" className="w-full py-4 rounded-xl text-sm font-semibold uppercase tracking-wider bg-[#CFE8FF] text-[#444444] hover:bg-[#b8daff] transition-premium shadow-soft cursor-pointer">
-                                        Submit donation details
+                                    <button
+                                        type="submit"
+                                        disabled={submitting}
+                                        className="w-full py-4 rounded-xl text-sm font-semibold uppercase tracking-wider bg-[#CFE8FF] text-[#444444] hover:bg-[#b8daff] disabled:opacity-50 disabled:cursor-not-allowed transition-premium shadow-soft cursor-pointer flex items-center justify-center gap-2"
+                                    >
+                                        {submitting ? "Submitting..." : "Submit donation details"}
                                     </button>
                                 </div>
 

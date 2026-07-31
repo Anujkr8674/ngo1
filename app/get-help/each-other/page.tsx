@@ -4,10 +4,16 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Compass, Check, AlertCircle, Send, Upload, FileText } from "lucide-react";
 import Link from "next/link";
+import { submitHelpEachOther } from "@/app/actions/getHelp";
 
 export default function HelpEachOther() {
   const [submitted, setSubmitted] = useState(false);
   const [fileNames, setFileNames] = useState<{ [key: string]: string }>({});
+  const [idFile, setIdFile] = useState<File | null>(null);
+  const [idPreview, setIdPreview] = useState<string | null>(null);
+  const [zoomImage, setZoomImage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const [eachOtherData, setEachOtherData] = useState({
     category: "Help Required",
@@ -32,7 +38,16 @@ export default function HelpEachOther() {
 
   const handleFileChange = (field: string, files: FileList | null) => {
     if (files && files.length > 0) {
-      setFileNames((prev) => ({ ...prev, [field]: files[0].name }));
+      const file = files[0];
+      setFileNames((prev) => ({ ...prev, [field]: file.name }));
+      
+      const isImage = file.type.startsWith("image/");
+      const previewUrl = isImage ? URL.createObjectURL(file) : null;
+      
+      if (field === "eachId") {
+        setIdFile(file);
+        setIdPreview(previewUrl);
+      }
     }
   };
 
@@ -44,10 +59,74 @@ export default function HelpEachOther() {
     }
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setError(null);
+    setSubmitting(true);
+
+    const formData = new FormData();
+    formData.append("category", eachOtherData.category);
+    formData.append("name", eachOtherData.name);
+    formData.append("gender", eachOtherData.gender);
+    formData.append("age", eachOtherData.age);
+    formData.append("dob", eachOtherData.dob);
+    formData.append("address", eachOtherData.address);
+    formData.append("state", eachOtherData.state);
+    formData.append("postalCode", eachOtherData.postalCode);
+    formData.append("mobile", eachOtherData.mobile);
+    formData.append("email", eachOtherData.email);
+    formData.append("language", eachOtherData.language);
+    formData.append("bloodGroup", eachOtherData.bloodGroup);
+    formData.append("qualification", eachOtherData.qualification);
+    formData.append("profession", eachOtherData.profession);
+    formData.append("helpTypes", JSON.stringify(eachOtherData.helpTypes));
+    formData.append("otherHelp", eachOtherData.otherHelp);
+    formData.append("suggestions", eachOtherData.suggestions);
+    if (idFile) {
+      formData.append("idFile", idFile);
+    }
+
+    try {
+      const res = await submitHelpEachOther(formData);
+      if (res.success) {
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setTimeout(() => {
+          setSubmitted(false);
+          setEachOtherData({
+            category: "Help Required",
+            name: "",
+            gender: "Male",
+            age: "",
+            dob: "",
+            address: "",
+            state: "",
+            postalCode: "",
+            mobile: "",
+            email: "",
+            language: "English",
+            bloodGroup: "",
+            qualification: "",
+            profession: "",
+            helpTypes: [],
+            otherHelp: "",
+            suggestions: "",
+            agree: false
+          });
+          setFileNames({});
+          setIdFile(null);
+          setIdPreview(null);
+        }, 3000);
+      } else {
+        setError(res.error || "Failed to submit request.");
+        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      }
+    } catch (err: any) {
+      setError(err.message || "An unexpected error occurred.");
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -179,6 +258,7 @@ export default function HelpEachOther() {
                         <label className="text-xs font-semibold text-foreground/75">Date of Birth *</label>
                         <input
                           type="date" required
+                          max={new Date().toISOString().split('T')[0]}
                           value={eachOtherData.dob}
                           onChange={(e) => setEachOtherData({ ...eachOtherData, dob: e.target.value })}
                           className="p-3.5 rounded-xl border border-foreground/10 focus:outline-none focus:border-[#CBB6F5] text-sm"
@@ -291,16 +371,46 @@ export default function HelpEachOther() {
                         <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
                           ID/Proof <span className="text-foreground/40 font-normal">(Optional)</span>
                         </label>
-                        <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01]">
-                          <input
-                            type="file"
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                            onChange={(e) => handleFileChange("eachId", e.target.files)}
-                          />
-                          <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
-                          <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
-                            {fileNames["eachId"] || "Upload ID Proof"}
-                          </span>
+                        <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[90px] overflow-hidden">
+                          {idPreview ? (
+                            <div className="flex flex-col items-center gap-2 w-full z-20">
+                              <img
+                                src={idPreview}
+                                alt="ID Preview"
+                                className="h-16 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  setZoomImage(idPreview);
+                                }}
+                              />
+                              <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
+                                Change File
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  onChange={(e) => handleFileChange("eachId", e.target.files)}
+                                />
+                              </label>
+                              <span className="text-[9px] text-foreground/45 text-center truncate max-w-full font-sans">
+                                {fileNames["eachId"]}
+                              </span>
+                            </div>
+                          ) : (
+                            <>
+                              <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
+                              <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
+                                {fileNames["eachId"] || "Upload ID Proof"}
+                              </span>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                onChange={(e) => handleFileChange("eachId", e.target.files)}
+                              />
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -369,14 +479,22 @@ export default function HelpEachOther() {
                   </label>
                 </div>
 
+                {error && (
+                  <div className="p-4 bg-red-50 text-red-650 rounded-xl text-xs flex items-center gap-2 font-medium">
+                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    <span>{error}</span>
+                  </div>
+                )}
+
                 {/* Submit Button */}
                 <div className="pt-6 border-t border-foreground/5 flex justify-end">
                   <button
                     type="submit"
-                    className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-blue-950 bg-[#CBB6F5] hover:bg-[#b8daff] transition-all duration-300 shadow-soft cursor-pointer"
+                    disabled={submitting}
+                    className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-blue-950 bg-[#CBB6F5] hover:bg-[#b8daff] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-soft cursor-pointer"
                   >
                     <Send className="w-4 h-4" />
-                    Submit Request
+                    {submitting ? "Submitting..." : "Submit Request"}
                   </button>
                 </div>
               </form>
@@ -384,6 +502,27 @@ export default function HelpEachOther() {
           </div>
         </div>
       </section>
+      {/* Image Zoom Modal */}
+      {zoomImage && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 cursor-pointer" onClick={() => setZoomImage(null)}>
+          <div className="relative max-w-4xl max-h-[90vh] bg-white rounded-2xl overflow-hidden p-2 flex flex-col shadow-2xl animate-scaleUp cursor-default" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setZoomImage(null)}
+              className="absolute top-3 right-3 p-2 bg-black/50 hover:bg-black/75 rounded-full text-white transition-all cursor-pointer z-10"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <img
+              src={zoomImage}
+              alt="Zoomed document"
+              className="max-w-full max-h-[80vh] object-contain rounded-lg"
+            />
+            <div className="p-3 text-center text-xs text-slate-500 font-semibold bg-slate-50 border-t border-slate-100 font-sans">
+              Original Size Image Preview
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

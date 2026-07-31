@@ -2,12 +2,20 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ShieldAlert, Check, AlertCircle, Send, Upload, FileText } from "lucide-react";
+import { ShieldAlert, Check, AlertCircle, Send, Upload, FileText, X } from "lucide-react";
 import Link from "next/link";
+import { submitElderlySupport } from "@/app/actions/getHelp";
 
 export default function ElderlySupport() {
   const [submitted, setSubmitted] = useState(false);
   const [fileNames, setFileNames] = useState<{ [key: string]: string }>({});
+  const [idFile, setIdFile] = useState<File | null>(null);
+  const [idPreview, setIdPreview] = useState<string | null>(null);
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [zoomImage, setZoomImage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const [elderlyData, setElderlyData] = useState({
     name: "",
@@ -29,7 +37,19 @@ export default function ElderlySupport() {
 
   const handleFileChange = (field: string, files: FileList | null) => {
     if (files && files.length > 0) {
-      setFileNames((prev) => ({ ...prev, [field]: files[0].name }));
+      const file = files[0];
+      setFileNames((prev) => ({ ...prev, [field]: file.name }));
+      
+      const isImage = file.type.startsWith("image/");
+      const previewUrl = isImage ? URL.createObjectURL(file) : null;
+      
+      if (field === "eldId") {
+        setIdFile(file);
+        setIdPreview(previewUrl);
+      } else if (field === "eldPhoto") {
+        setPhotoFile(file);
+        setPhotoPreview(previewUrl);
+      }
     }
   };
 
@@ -41,10 +61,70 @@ export default function ElderlySupport() {
     }
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setError(null);
+    setSubmitting(true);
+
+    const formData = new FormData();
+    formData.append("name", elderlyData.name);
+    formData.append("gender", elderlyData.gender);
+    formData.append("age", elderlyData.age);
+    formData.append("address", elderlyData.address);
+    formData.append("mobile", elderlyData.mobile);
+    formData.append("email", elderlyData.email);
+    formData.append("livingStatus", elderlyData.livingStatus);
+    formData.append("language", elderlyData.language);
+    formData.append("emergencyContact", elderlyData.emergencyContact);
+    formData.append("emergencyPhone", elderlyData.emergencyPhone);
+    formData.append("healthStatus", elderlyData.healthStatus);
+    formData.append("supportTypes", JSON.stringify(elderlyData.supportTypes));
+    formData.append("otherSupport", elderlyData.otherSupport);
+    formData.append("suggestions", elderlyData.suggestions);
+
+    if (idFile) formData.append("idFile", idFile);
+    if (photoFile) formData.append("photoFile", photoFile);
+
+    try {
+      const res = await submitElderlySupport(formData);
+      if (res.success) {
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setTimeout(() => {
+          setSubmitted(false);
+          setElderlyData({
+            name: "",
+            gender: "Male",
+            age: "",
+            address: "",
+            mobile: "",
+            email: "",
+            livingStatus: "Single",
+            language: "English",
+            emergencyContact: "",
+            emergencyPhone: "",
+            healthStatus: "",
+            supportTypes: [],
+            otherSupport: "",
+            suggestions: "",
+            agree: false
+          });
+          setFileNames({});
+          setIdFile(null);
+          setPhotoFile(null);
+          setIdPreview(null);
+          setPhotoPreview(null);
+        }, 3000);
+      } else {
+        setError(res.error || "Failed to submit request.");
+        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      }
+    } catch (err: any) {
+      setError(err.message || "An unexpected error occurred.");
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -246,32 +326,92 @@ export default function ElderlySupport() {
                         <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
                           ID Proof <span className="text-foreground/40 font-normal">(Optional)</span>
                         </label>
-                        <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01]">
-                          <input
-                            type="file"
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                            onChange={(e) => handleFileChange("eldId", e.target.files)}
-                          />
-                          <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
-                          <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
-                            {fileNames["eldId"] || "Upload ID Proof"}
-                          </span>
+                        <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[90px] overflow-hidden">
+                          {idPreview ? (
+                            <div className="flex flex-col items-center gap-2 w-full z-20">
+                              <img
+                                src={idPreview}
+                                alt="ID Preview"
+                                className="h-16 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  setZoomImage(idPreview);
+                                }}
+                              />
+                              <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
+                                Change File
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  onChange={(e) => handleFileChange("eldId", e.target.files)}
+                                />
+                              </label>
+                              <span className="text-[9px] text-foreground/45 text-center truncate max-w-full font-sans">
+                                {fileNames["eldId"]}
+                              </span>
+                            </div>
+                          ) : (
+                            <>
+                              <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
+                              <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
+                                {fileNames["eldId"] || "Upload ID Proof"}
+                              </span>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                onChange={(e) => handleFileChange("eldId", e.target.files)}
+                              />
+                            </>
+                          )}
                         </div>
                       </div>
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
                           Photo <span className="text-foreground/40 font-normal">(Optional)</span>
                         </label>
-                        <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01]">
-                          <input
-                            type="file"
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                            onChange={(e) => handleFileChange("eldPhoto", e.target.files)}
-                          />
-                          <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
-                          <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
-                            {fileNames["eldPhoto"] || "Upload Photo"}
-                          </span>
+                        <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[90px] overflow-hidden">
+                          {photoPreview ? (
+                            <div className="flex flex-col items-center gap-2 w-full z-20">
+                              <img
+                                src={photoPreview}
+                                alt="Photo Preview"
+                                className="h-16 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  setZoomImage(photoPreview);
+                                }}
+                              />
+                              <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
+                                Change File
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  onChange={(e) => handleFileChange("eldPhoto", e.target.files)}
+                                />
+                              </label>
+                              <span className="text-[9px] text-foreground/45 text-center truncate max-w-full font-sans">
+                                {fileNames["eldPhoto"]}
+                              </span>
+                            </div>
+                          ) : (
+                            <>
+                              <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
+                              <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
+                                {fileNames["eldPhoto"] || "Upload Photo"}
+                              </span>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                onChange={(e) => handleFileChange("eldPhoto", e.target.files)}
+                              />
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -354,21 +494,50 @@ export default function ElderlySupport() {
                   </label>
                 </div>
 
-                {/* Submit Button */}
-                <div className="pt-6 border-t border-foreground/5 flex justify-end">
-                  <button
-                    type="submit"
-                    className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-blue-950 bg-[#CBB6F5] hover:bg-[#b8daff] transition-all duration-300 shadow-soft cursor-pointer"
-                  >
-                    <Send className="w-4 h-4" />
-                    Submit Request
-                  </button>
+                {error && (
+                <div className="p-4 bg-red-50 text-red-650 rounded-xl text-xs flex items-center gap-2 font-medium">
+                  <AlertCircle className="w-5 h-5 shrink-0" />
+                  <span>{error}</span>
                 </div>
+              )}
+
+              {/* Submit Button */}
+              <div className="pt-6 border-t border-foreground/5 flex justify-end">
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-blue-950 bg-[#CBB6F5] hover:bg-[#b8daff] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-soft cursor-pointer"
+                >
+                  <Send className="w-4 h-4" />
+                  {submitting ? "Submitting..." : "Submit Request"}
+                </button>
+              </div>
               </form>
             )}
           </div>
         </div>
       </section>
+      {/* Image Zoom Modal */}
+      {zoomImage && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 cursor-pointer" onClick={() => setZoomImage(null)}>
+          <div className="relative max-w-4xl max-h-[90vh] bg-white rounded-2xl overflow-hidden p-2 flex flex-col shadow-2xl animate-scaleUp cursor-default" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setZoomImage(null)}
+              className="absolute top-3 right-3 p-2 bg-black/50 hover:bg-black/75 rounded-full text-white transition-all cursor-pointer z-10"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <img
+              src={zoomImage}
+              alt="Zoomed document"
+              className="max-w-full max-h-[80vh] object-contain rounded-lg"
+            />
+            <div className="p-3 text-center text-xs text-slate-500 font-semibold bg-slate-50 border-t border-slate-100 font-sans">
+              Original Size Image Preview
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -3,18 +3,22 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
-import { LayoutDashboard, LogOut, Settings, Users, Menu, X, Image as ImageIcon, ListTree, FileText, ChevronDown, ChevronRight, FolderPlus, Plus, Archive, HeartHandshake, GraduationCap, Sparkles, Play, Mail } from 'lucide-react'
+import { LayoutDashboard, LogOut, Settings, Users, Menu, X, Image as ImageIcon, ListTree, FileText, ChevronDown, ChevronRight, FolderPlus, Plus, Archive, HeartHandshake, GraduationCap, Sparkles, Play, Mail, Heart, Shield } from 'lucide-react'
 import { logoutAdmin } from '../../actions/adminAuth'
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isWebPostsOpen, setIsWebPostsOpen] = useState(false)
+  const [isGetHelpOpen, setIsGetHelpOpen] = useState(false)
 
-  // Expand Web Posts menu automatically if current route is within /admin/dashboard/posts
+  // Expand Web Posts & Get Help menus automatically if current route matches
   useEffect(() => {
     if (pathname.startsWith('/admin/dashboard/posts')) {
       setIsWebPostsOpen(true)
+    }
+    if (pathname.startsWith('/admin/dashboard/get-help')) {
+      setIsGetHelpOpen(true)
     }
   }, [pathname])
 
@@ -160,6 +164,91 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <Mail className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/contact' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
           Contact Messages
         </Link>
+
+        {/* Donations */}
+        <Link
+          href="/admin/dashboard/donations"
+          className={`flex items-center gap-3 px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group ${
+            pathname === '/admin/dashboard/donations'
+              ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+              : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+          }`}
+        >
+          <Heart className={`h-5 w-5 transition-colors ${pathname === '/admin/dashboard/donations' ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+          Donations
+        </Link>
+
+        {/* Get Help Requests Dropdown */}
+        <div>
+          <button
+            type="button"
+            onClick={() => setIsGetHelpOpen(!isGetHelpOpen)}
+            className={`flex items-center justify-between px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group cursor-pointer ${
+              pathname.startsWith('/admin/dashboard/get-help')
+                ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
+                : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <HeartHandshake className={`h-5 w-5 transition-colors ${pathname.startsWith('/admin/dashboard/get-help') ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+              <span>Get Help Requests</span>
+            </div>
+            {isGetHelpOpen ? (
+              <ChevronDown className="h-4 w-4 text-[#444444]" />
+            ) : (
+              <ChevronRight className="h-4 w-4 text-slate-400 group-hover:text-[#444444]" />
+            )}
+          </button>
+
+          {isGetHelpOpen && (
+            <div className="mt-1 ml-4 pl-3 border-l-2 border-purple-200 space-y-1">
+              <Link
+                href="/admin/dashboard/get-help/each-other"
+                className={`flex items-center gap-2.5 px-3 py-2.5 w-full rounded-lg transition-all text-xs font-semibold ${
+                  pathname === '/admin/dashboard/get-help/each-other'
+                    ? 'bg-blue-50 text-blue-700 font-bold'
+                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+                }`}
+              >
+                <Users className="h-4 w-4 text-purple-500" />
+                Help Each Other
+              </Link>
+              <Link
+                href="/admin/dashboard/get-help/education"
+                className={`flex items-center gap-2.5 px-3 py-2.5 w-full rounded-lg transition-all text-xs font-semibold ${
+                  pathname === '/admin/dashboard/get-help/education'
+                    ? 'bg-blue-50 text-blue-700 font-bold'
+                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+                }`}
+              >
+                <GraduationCap className="h-4 w-4 text-blue-500" />
+                Education Support
+              </Link>
+              <Link
+                href="/admin/dashboard/get-help/elderly"
+                className={`flex items-center gap-2.5 px-3 py-2.5 w-full rounded-lg transition-all text-xs font-semibold ${
+                  pathname === '/admin/dashboard/get-help/elderly'
+                    ? 'bg-blue-50 text-blue-700 font-bold'
+                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+                }`}
+              >
+                <Shield className="h-4 w-4 text-green-500" />
+                Elderly Support
+              </Link>
+              <Link
+                href="/admin/dashboard/get-help/medical"
+                className={`flex items-center gap-2.5 px-3 py-2.5 w-full rounded-lg transition-all text-xs font-semibold ${
+                  pathname === '/admin/dashboard/get-help/medical'
+                    ? 'bg-blue-50 text-blue-700 font-bold'
+                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+                }`}
+              >
+                <Heart className="h-4 w-4 text-red-500" />
+                Medical Support
+              </Link>
+            </div>
+          )}
+        </div>
 
         {/* Web Posts Dropdown Menu */}
         <div>

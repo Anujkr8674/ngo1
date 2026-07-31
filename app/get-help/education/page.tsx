@@ -2,12 +2,22 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, Check, AlertCircle, Send, Upload } from "lucide-react";
+import { GraduationCap, Check, AlertCircle, Send, Upload, X } from "lucide-react";
 import Link from "next/link";
+import { submitEducationSupport } from "@/app/actions/getHelp";
 
 export default function EducationSupport() {
   const [submitted, setSubmitted] = useState(false);
   const [fileNames, setFileNames] = useState<{ [key: string]: string }>({});
+  const [idFile, setIdFile] = useState<File | null>(null);
+  const [idPreview, setIdPreview] = useState<string | null>(null);
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [passbookFile, setPassbookFile] = useState<File | null>(null);
+  const [passbookPreview, setPassbookPreview] = useState<string | null>(null);
+  const [zoomImage, setZoomImage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const [eduData, setEduData] = useState({
     studentName: "",
@@ -45,7 +55,22 @@ export default function EducationSupport() {
 
   const handleFileChange = (field: string, files: FileList | null) => {
     if (files && files.length > 0) {
-      setFileNames((prev) => ({ ...prev, [field]: files[0].name }));
+      const file = files[0];
+      setFileNames((prev) => ({ ...prev, [field]: file.name }));
+      
+      const isImage = file.type.startsWith("image/");
+      const previewUrl = isImage ? URL.createObjectURL(file) : null;
+      
+      if (field === "eduId") {
+        setIdFile(file);
+        setIdPreview(previewUrl);
+      } else if (field === "eduPhoto") {
+        setPhotoFile(file);
+        setPhotoPreview(previewUrl);
+      } else if (field === "eduPassbook") {
+        setPassbookFile(file);
+        setPassbookPreview(previewUrl);
+      }
     }
   };
 
@@ -57,10 +82,99 @@ export default function EducationSupport() {
     }
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setError(null);
+    setSubmitting(true);
+
+    const formData = new FormData();
+    formData.append("studentName", eduData.studentName);
+    formData.append("className", eduData.className);
+    formData.append("gender", eduData.gender);
+    formData.append("dob", eduData.dob);
+    formData.append("parentName", eduData.parentName);
+    formData.append("annualIncome", eduData.annualIncome);
+    formData.append("address", eduData.address);
+    formData.append("state", eduData.state);
+    formData.append("postalCode", eduData.postalCode);
+    formData.append("mobile", eduData.mobile);
+    formData.append("email", eduData.email);
+    formData.append("language", eduData.language);
+    formData.append("schoolName", eduData.schoolName);
+    formData.append("schoolAddress", eduData.schoolAddress);
+    formData.append("schoolState", eduData.schoolState);
+    formData.append("schoolPin", eduData.schoolPin);
+    formData.append("teacherName", eduData.teacherName);
+    formData.append("teacherPhone", eduData.teacherPhone);
+    formData.append("admissionFee", eduData.admissionFee);
+    formData.append("tuitionFee", eduData.tuitionFee);
+    formData.append("booksCost", eduData.booksCost);
+    formData.append("stationeryCost", eduData.stationeryCost);
+    formData.append("totalAmountWords", eduData.totalAmountWords);
+    formData.append("totalAmountFigure", eduData.totalAmountFigure);
+    formData.append("otherSupport", JSON.stringify(eduData.otherSupport));
+    formData.append("accountNo", eduData.accountNo);
+    formData.append("ifsc", eduData.ifsc);
+
+    if (idFile) formData.append("idFile", idFile);
+    if (photoFile) formData.append("photoFile", photoFile);
+    if (passbookFile) formData.append("passbookFile", passbookFile);
+
+    try {
+      const res = await submitEducationSupport(formData);
+      if (res.success) {
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setTimeout(() => {
+          setSubmitted(false);
+          setEduData({
+            studentName: "",
+            className: "",
+            gender: "Male",
+            dob: "",
+            parentName: "",
+            annualIncome: "",
+            address: "",
+            state: "",
+            postalCode: "",
+            mobile: "",
+            email: "",
+            language: "English",
+            schoolName: "",
+            schoolAddress: "",
+            schoolState: "",
+            schoolPin: "",
+            teacherName: "",
+            teacherPhone: "",
+            admissionFee: "",
+            tuitionFee: "",
+            booksCost: "",
+            stationeryCost: "",
+            totalAmountWords: "",
+            totalAmountFigure: "",
+            otherSupport: [],
+            accountNo: "",
+            ifsc: "",
+            agree: false
+          });
+          setFileNames({});
+          setIdFile(null);
+          setPhotoFile(null);
+          setPassbookFile(null);
+          setIdPreview(null);
+          setPhotoPreview(null);
+          setPassbookPreview(null);
+        }, 3000);
+      } else {
+        setError(res.error || "Failed to submit request.");
+        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      }
+    } catch (err: any) {
+      setError(err.message || "An unexpected error occurred.");
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -165,6 +279,7 @@ export default function EducationSupport() {
                       <label className="text-xs font-semibold text-foreground/75">Date of Birth *</label>
                       <input
                         type="date" required
+                        max={new Date().toISOString().split('T')[0]}
                         value={eduData.dob}
                         onChange={(e) => setEduData({ ...eduData, dob: e.target.value })}
                         className="p-3.5 rounded-xl border border-foreground/10 focus:outline-none focus:border-[#CBB6F5] text-sm"
@@ -266,32 +381,92 @@ export default function EducationSupport() {
                       <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
                         ID/Proof <span className="text-foreground/40 font-normal">(Optional)</span>
                       </label>
-                      <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01]">
-                        <input
-                          type="file"
-                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                          onChange={(e) => handleFileChange("eduId", e.target.files)}
-                        />
-                        <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
-                        <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
-                          {fileNames["eduId"] || "Upload ID Proof"}
-                        </span>
+                      <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[90px] overflow-hidden">
+                        {idPreview ? (
+                          <div className="flex flex-col items-center gap-2 w-full z-20">
+                            <img
+                              src={idPreview}
+                              alt="ID Preview"
+                              className="h-16 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                setZoomImage(idPreview);
+                              }}
+                            />
+                            <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
+                              Change File
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={(e) => handleFileChange("eduId", e.target.files)}
+                              />
+                            </label>
+                            <span className="text-[9px] text-foreground/45 text-center truncate max-w-full font-sans">
+                              {fileNames["eduId"]}
+                            </span>
+                          </div>
+                        ) : (
+                          <>
+                            <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
+                            <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
+                              {fileNames["eduId"] || "Upload ID Proof"}
+                            </span>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                              onChange={(e) => handleFileChange("eduId", e.target.files)}
+                            />
+                          </>
+                        )}
                       </div>
                     </div>
                     <div className="flex flex-col gap-1.5">
                       <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
                         Photo <span className="text-foreground/40 font-normal">(Optional)</span>
                       </label>
-                      <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01]">
-                        <input
-                          type="file"
-                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                          onChange={(e) => handleFileChange("eduPhoto", e.target.files)}
-                        />
-                        <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
-                        <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
-                          {fileNames["eduPhoto"] || "Upload Photo"}
-                        </span>
+                      <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[90px] overflow-hidden">
+                        {photoPreview ? (
+                          <div className="flex flex-col items-center gap-2 w-full z-20">
+                            <img
+                              src={photoPreview}
+                              alt="Photo Preview"
+                              className="h-16 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
+                              onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  setZoomImage(photoPreview);
+                              }}
+                            />
+                            <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
+                              Change File
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={(e) => handleFileChange("eduPhoto", e.target.files)}
+                              />
+                            </label>
+                            <span className="text-[9px] text-foreground/45 text-center truncate max-w-full font-sans">
+                              {fileNames["eduPhoto"]}
+                            </span>
+                          </div>
+                        ) : (
+                          <>
+                            <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
+                            <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
+                              {fileNames["eduPhoto"] || "Upload Photo"}
+                            </span>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                              onChange={(e) => handleFileChange("eduPhoto", e.target.files)}
+                            />
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -487,18 +662,48 @@ export default function EducationSupport() {
                     <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
                       Passbook File <span className="text-foreground/40 font-normal">(Optional)</span>
                     </label>
-                    <div className="relative border-2 border-dashed border-foreground/10 hover:border-primary/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] h-[50px]">
-                      <input
-                        type="file"
-                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                        onChange={(e) => handleFileChange("eduPassbook", e.target.files)}
-                      />
-                      <div className="flex items-center gap-2">
-                        <Upload className="w-4 h-4 text-[#6B46C1]" />
-                        <span className="text-xs text-foreground/60 truncate max-w-[150px]">
-                          {fileNames["eduPassbook"] || "Upload Passbook Scan"}
-                        </span>
-                      </div>
+                    <div className="relative border-2 border-dashed border-foreground/10 hover:border-primary/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[55px] overflow-hidden">
+                      {passbookPreview ? (
+                        <div className="flex flex-col items-center gap-2 w-full z-20">
+                          <img
+                            src={passbookPreview}
+                            alt="Passbook Preview"
+                            className="h-10 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setZoomImage(passbookPreview);
+                            }}
+                          />
+                          <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
+                            Change File
+                            <input
+                              type="file"
+                              accept="image/*"
+                              className="hidden"
+                              onChange={(e) => handleFileChange("eduPassbook", e.target.files)}
+                            />
+                          </label>
+                          <span className="text-[9px] text-foreground/45 text-center truncate max-w-full font-sans">
+                            {fileNames["eduPassbook"]}
+                          </span>
+                        </div>
+                      ) : (
+                        <>
+                          <div className="flex items-center gap-2">
+                            <Upload className="w-4 h-4 text-[#6B46C1]" />
+                            <span className="text-xs text-foreground/60 truncate max-w-[150px]">
+                              {fileNames["eduPassbook"] || "Upload Passbook Scan"}
+                            </span>
+                          </div>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                            onChange={(e) => handleFileChange("eduPassbook", e.target.files)}
+                          />
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -516,14 +721,22 @@ export default function EducationSupport() {
                 </label>
               </div>
 
+              {error && (
+                <div className="p-4 bg-red-50 text-red-650 rounded-xl text-xs flex items-center gap-2 font-medium">
+                  <AlertCircle className="w-5 h-5 shrink-0" />
+                  <span>{error}</span>
+                </div>
+              )}
+
               {/* Submit Button */}
               <div className="pt-6 border-t border-foreground/5 flex justify-end">
                 <button
                   type="submit"
-                  className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-blue-950 bg-[#CBB6F5] hover:bg-[#b8daff] transition-all duration-300 shadow-soft cursor-pointer"
+                  disabled={submitting}
+                  className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-blue-950 bg-[#CBB6F5] hover:bg-[#b8daff] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-soft cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
-                  Submit Request
+                  {submitting ? "Submitting..." : "Submit Request"}
                 </button>
               </div>
             </form>
@@ -531,6 +744,27 @@ export default function EducationSupport() {
         </div>
       </div>
     </section>
+      {/* Image Zoom Modal */}
+      {zoomImage && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 cursor-pointer" onClick={() => setZoomImage(null)}>
+          <div className="relative max-w-4xl max-h-[90vh] bg-white rounded-2xl overflow-hidden p-2 flex flex-col shadow-2xl animate-scaleUp cursor-default" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setZoomImage(null)}
+              className="absolute top-3 right-3 p-2 bg-black/50 hover:bg-black/75 rounded-full text-white transition-all cursor-pointer z-10"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <img
+              src={zoomImage}
+              alt="Zoomed document"
+              className="max-w-full max-h-[80vh] object-contain rounded-lg"
+            />
+            <div className="p-3 text-center text-xs text-slate-500 font-semibold bg-slate-50 border-t border-slate-100 font-sans">
+              Original Size Image Preview
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
