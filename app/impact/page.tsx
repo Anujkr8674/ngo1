@@ -16,18 +16,13 @@ import {
   CheckCircle2,
   Quote
 } from "lucide-react";
-import Counter from "../components/Counter";
-import { Card, MotionCard } from "../components/Card";
+import ImpactStats from "../components/ImpactStats";
+import { Card } from "../components/Card";
 
 export default function Impact() {
   const [activeTab, setActiveTab] = useState<"education" | "healthcare" | "environment" | "relief">("education");
 
-  const statCards = [
-    { label: "Students Sponsored", count: 34, suffix: "", desc: "Across 7 states in India, with 65% girl students.", icon: <GraduationCap className="w-5 h-5 text-foreground" />, color: "" },
-    { label: "Healthcare Beneficiaries", count: 397, suffix: "+", desc: "Diagnostics and cancer screenings in rural villages.", icon: <HeartHandshake className="w-5 h-5 text-foreground" />, color: "" },
-    { label: "Mangrove Saplings", count: 4000, suffix: "+", desc: "Saplings planted & fenced in coastal Sundarbans.", icon: <Leaf className="w-5 h-5 text-foreground" />, color: "" },
-    { label: "Relief Material Delivered", count: 480, suffix: "+", desc: "Families served with heavy winter protection blankets.", icon: <Activity className="w-5 h-5 text-foreground" />, color: "" }
-  ];
+
 
   return (
     <div className="flex flex-col w-full">
@@ -76,31 +71,7 @@ export default function Impact() {
       </section>
 
       {/* Grid Dashboard */}
-      <section className="py-8 px-6 md:px-12 pb-16">
-        <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {statCards.map((card, i) => (
-            <MotionCard
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              key={card.label}
-              className="p-8 rounded-[2.5rem] border border-[#EEB898] flex flex-col gap-6 shadow-soft"
-            >
-              <div className={`w-12 h-12 rounded-xl ${card.color} flex items-center justify-center`}>
-                {card.icon}
-              </div>
-              <div className="flex flex-col gap-2">
-                <span className="text-sm font-semibold text-foreground/60">{card.label}</span>
-                <span className="text-4xl md:text-5xl font-display font-bold text-foreground tracking-tight">
-                  <Counter end={card.count} suffix={card.suffix} />
-                </span>
-                <p className="text-xs text-foreground/60 leading-relaxed mt-2">{card.desc}</p>
-              </div>
-            </MotionCard>
-          ))}
-        </div>
-      </section>
+      <ImpactStats />
 
       {/* Interactive Tabs Section */}
       <section className="py-8 px-6 md:px-12 pb-16">

@@ -330,6 +330,26 @@ model Member {
   updatedAt         DateTime @updatedAt
 }
 
+model HomepageStat {
+  id        String   @id @default(cuid())
+  value     Int
+  suffix    String   @default("+")
+  label     String
+  desc      String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CsrPartnership {
+  id        String   @id @default(cuid())
+  company   String
+  desc      String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 
 
 

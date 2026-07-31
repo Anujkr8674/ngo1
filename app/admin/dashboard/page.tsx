@@ -1,10 +1,10 @@
 import prisma from '@/lib/prisma'
 import Link from 'next/link'
-import { 
-  FileText, 
-  Image as ImageIcon, 
-  Users, 
-  FileBarChart2, 
+import {
+  FileText,
+  Image as ImageIcon,
+  Users,
+  FileBarChart2,
   ArrowRight,
   Sparkles,
   ShieldCheck,
@@ -13,7 +13,10 @@ import {
   HeartHandshake,
   GraduationCap,
   Play,
-  Mail
+  Mail,
+  Heart,
+  ListTree,
+  Briefcase
 } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
@@ -32,7 +35,16 @@ export default async function DashboardOverview() {
     totalStudentSheets,
     totalInitiatives,
     totalTestimonials,
-    totalContactMessages
+    totalContactMessages,
+    totalStats,
+    totalCsrPartnerships,
+    totalDonations,
+    totalVolunteers,
+    totalMembers,
+    totalHelpEachOther,
+    totalEducationSupport,
+    totalElderlySupport,
+    totalMedicalSupport
   ] = await Promise.all([
     prisma.blogPost.count(),
     prisma.blogCategory.count(),
@@ -46,11 +58,33 @@ export default async function DashboardOverview() {
     prisma.studentSheet.count(),
     prisma.initiative.count(),
     prisma.testimonial.count(),
-    prisma.contactMessage.count()
+    prisma.contactMessage.count(),
+    prisma.homepageStat.count(),
+    prisma.csrPartnership.count(),
+    prisma.donation.count(),
+    prisma.volunteer.count(),
+    prisma.member.count(),
+    prisma.helpEachOther.count(),
+    prisma.educationSupport.count(),
+    prisma.elderlySupport.count(),
+    prisma.medicalSupport.count()
   ])
 
   // Fetch some quick details
-  const [latestPost, latestImage, latestReport, latestArchived, latestDonor, latestStudent, latestInitiative, latestTestimonial, latestContactMessage] = await Promise.all([
+  const [
+    latestPost,
+    latestImage,
+    latestReport,
+    latestArchived,
+    latestDonor,
+    latestStudent,
+    latestInitiative,
+    latestTestimonial,
+    latestContactMessage,
+    latestDonation,
+    latestVolunteer,
+    latestMember
+  ] = await Promise.all([
     prisma.blogPost.findFirst({
       orderBy: { createdAt: 'desc' },
       select: { title: true }
@@ -84,6 +118,18 @@ export default async function DashboardOverview() {
       select: { name: true }
     }),
     prisma.contactMessage.findFirst({
+      orderBy: { createdAt: 'desc' },
+      select: { name: true }
+    }),
+    prisma.donation.findFirst({
+      orderBy: { createdAt: 'desc' },
+      select: { name: true, amount: true }
+    }),
+    prisma.volunteer.findFirst({
+      orderBy: { createdAt: 'desc' },
+      select: { name: true }
+    }),
+    prisma.member.findFirst({
       orderBy: { createdAt: 'desc' },
       select: { name: true }
     })
@@ -154,7 +200,7 @@ export default async function DashboardOverview() {
 
       {/* Entire Section Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
+
         {/* Web Posts Section */}
         <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
           <div className="p-6">
@@ -167,7 +213,7 @@ export default async function DashboardOverview() {
                 <FileText className="w-5 h-5" />
               </div>
             </div>
-            
+
             <div className="mt-6 grid grid-cols-2 gap-4">
               <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50">
                 <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Posts</p>
@@ -188,15 +234,15 @@ export default async function DashboardOverview() {
           </div>
 
           <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex gap-3">
-            <Link 
-              href="/admin/dashboard/posts" 
+            <Link
+              href="/admin/dashboard/posts"
               className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
             >
               Manage Posts
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
-            <Link 
-              href="/admin/dashboard/posts/categories" 
+            <Link
+              href="/admin/dashboard/posts/categories"
               className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
             >
               Categories
@@ -237,15 +283,15 @@ export default async function DashboardOverview() {
           </div>
 
           <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex gap-3">
-            <Link 
-              href="/admin/dashboard/gallery" 
+            <Link
+              href="/admin/dashboard/gallery"
               className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
             >
               Manage Gallery
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
-            <Link 
-              href="/admin/dashboard/categories" 
+            <Link
+              href="/admin/dashboard/categories"
               className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
             >
               Categories
@@ -282,8 +328,8 @@ export default async function DashboardOverview() {
           </div>
 
           <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
-            <Link 
-              href="/admin/dashboard/agm" 
+            <Link
+              href="/admin/dashboard/agm"
               className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
             >
               Manage AGM Reports
@@ -321,8 +367,8 @@ export default async function DashboardOverview() {
           </div>
 
           <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
-            <Link 
-              href="/admin/dashboard/archived-material" 
+            <Link
+              href="/admin/dashboard/archived-material"
               className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
             >
               Manage Archives
@@ -360,8 +406,8 @@ export default async function DashboardOverview() {
           </div>
 
           <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
-            <Link 
-              href="/admin/dashboard/donors-csr-sponsors-members" 
+            <Link
+              href="/admin/dashboard/donors-csr-sponsors-members"
               className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
             >
               Manage Donors & CSR
@@ -399,8 +445,8 @@ export default async function DashboardOverview() {
           </div>
 
           <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
-            <Link 
-              href="/admin/dashboard/students" 
+            <Link
+              href="/admin/dashboard/students"
               className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
             >
               Manage Student Sheets
@@ -438,8 +484,8 @@ export default async function DashboardOverview() {
           </div>
 
           <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
-            <Link 
-              href="/admin/dashboard/initiatives" 
+            <Link
+              href="/admin/dashboard/initiatives"
               className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
             >
               Manage Initiatives
@@ -477,8 +523,8 @@ export default async function DashboardOverview() {
           </div>
 
           <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
-            <Link 
-              href="/admin/dashboard/testimonials" 
+            <Link
+              href="/admin/dashboard/testimonials"
               className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
             >
               Manage Testimonials
@@ -516,8 +562,8 @@ export default async function DashboardOverview() {
           </div>
 
           <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
-            <Link 
-              href="/admin/dashboard/contact" 
+            <Link
+              href="/admin/dashboard/contact"
               className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
             >
               View Inbound Messages
@@ -552,11 +598,297 @@ export default async function DashboardOverview() {
           </div>
 
           <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
-            <Link 
-              href="/admin/dashboard/about" 
+            <Link
+              href="/admin/dashboard/about"
               className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
             >
               Manage Team Members
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Stats Counters Section */}
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div className="p-6">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-indigo-500">Homepage Metrics</span>
+                <h3 className="text-lg font-bold text-[#444444]">Stats Counters</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <ListTree className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50">
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Active Stats</p>
+                <p className="text-2xl font-black text-slate-700 mt-1">{totalStats}</p>
+              </div>
+            </div>
+
+            <div className="mt-4 text-xs bg-indigo-50/50 text-indigo-800 px-3 py-2 rounded-lg border border-indigo-50 flex items-center gap-1.5">
+              <span className="font-semibold text-slate-500">Configured live homepage counters list</span>
+            </div>
+          </div>
+
+          <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
+            <Link
+              href="/admin/dashboard/stats"
+              className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
+            >
+              Manage Stats
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
+        {/* CSR Partnerships Section */}
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div className="p-6">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-500">Corporate Engagement</span>
+                <h3 className="text-lg font-bold text-[#444444]">CSR Partnerships</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <Briefcase className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50">
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Active Partner Cards</p>
+                <p className="text-2xl font-black text-slate-700 mt-1">{totalCsrPartnerships}</p>
+              </div>
+            </div>
+
+            <div className="mt-4 text-xs bg-emerald-50/50 text-emerald-800 px-3 py-2 rounded-lg border border-emerald-50 flex items-center gap-1.5">
+              <span className="font-semibold text-slate-500">Landing page corporate sponsors cards</span>
+            </div>
+          </div>
+
+          <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
+            <Link
+              href="/admin/dashboard/csr-partnerships"
+              className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
+            >
+              Manage Partnerships
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Donations Section */}
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div className="p-6">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-rose-500">Finances</span>
+                <h3 className="text-lg font-bold text-[#444444]">Donations</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <Heart className="w-5 h-5 fill-current" />
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50">
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Donations Received</p>
+                <p className="text-2xl font-black text-slate-700 mt-1">{totalDonations}</p>
+              </div>
+            </div>
+
+            {latestDonation && (
+              <div className="mt-4 text-xs bg-rose-50/50 text-rose-800 px-3 py-2 rounded-lg border border-rose-50 flex items-center gap-1.5">
+                <span className="font-bold shrink-0">Latest Donation:</span>
+                <span className="truncate">"{latestDonation.name} - ₹{latestDonation.amount}"</span>
+              </div>
+            )}
+          </div>
+
+          <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
+            <Link
+              href="/admin/dashboard/donations"
+              className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
+            >
+              Manage Donations
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Volunteer Submissions Section */}
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div className="p-6">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-500">Be Part Us</span>
+                <h3 className="text-lg font-bold text-[#444444]">Volunteer Submissions</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <Users className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50">
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Volunteers Registered</p>
+                <p className="text-2xl font-black text-slate-700 mt-1">{totalVolunteers}</p>
+              </div>
+            </div>
+
+            {latestVolunteer && (
+              <div className="mt-4 text-xs bg-blue-50/50 text-blue-800 px-3 py-2 rounded-lg border border-blue-50 flex items-center gap-1.5">
+                <span className="font-bold shrink-0">Latest:</span>
+                <span className="truncate">"{latestVolunteer.name}"</span>
+              </div>
+            )}
+          </div>
+
+          <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
+            <Link
+              href="/admin/dashboard/volunteer"
+              className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
+            >
+              Manage Volunteers
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Member Submissions Section */}
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div className="p-6">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-purple-500">Be Part Us</span>
+                <h3 className="text-lg font-bold text-[#444444]">Member Submissions</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <Users className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50">
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Members Registered</p>
+                <p className="text-2xl font-black text-slate-700 mt-1">{totalMembers}</p>
+              </div>
+            </div>
+
+            {latestMember && (
+              <div className="mt-4 text-xs bg-purple-50/50 text-purple-800 px-3 py-2 rounded-lg border border-purple-50 flex items-center gap-1.5">
+                <span className="font-bold shrink-0">Latest:</span>
+                <span className="truncate">"{latestMember.name}"</span>
+              </div>
+            )}
+          </div>
+
+          <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
+            <Link
+              href="/admin/dashboard/member"
+              className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
+            >
+              Manage Members
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Get Help Requests Section */}
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div className="p-6">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-rose-500">Beneficiary Support</span>
+                <h3 className="text-lg font-bold text-[#444444]">Get Help Requests</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <HeartHandshake className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-2 gap-4">
+              <div className="bg-slate-50 rounded-xl p-3 border border-slate-100/50">
+                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Help Each Other</p>
+                <p className="text-xl font-black text-slate-700 mt-1">{totalHelpEachOther}</p>
+              </div>
+              <div className="bg-slate-50 rounded-xl p-3 border border-slate-100/50">
+                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Education</p>
+                <p className="text-xl font-black text-slate-700 mt-1">{totalEducationSupport}</p>
+              </div>
+              <div className="bg-slate-50 rounded-xl p-3 border border-slate-100/50">
+                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Elderly</p>
+                <p className="text-xl font-black text-slate-700 mt-1">{totalElderlySupport}</p>
+              </div>
+              <div className="bg-slate-50 rounded-xl p-3 border border-slate-100/50">
+                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Medical</p>
+                <p className="text-xl font-black text-slate-700 mt-1">{totalMedicalSupport}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex flex-wrap gap-2">
+            <Link
+              href="/admin/dashboard/get-help/each-other"
+              className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-1.5 px-2 text-[10px] font-bold text-center inline-flex items-center gap-1 transition-colors"
+            >
+              Each Other
+            </Link>
+            <Link
+              href="/admin/dashboard/get-help/education"
+              className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-1.5 px-2 text-[10px] font-bold text-center inline-flex items-center gap-1 transition-colors"
+            >
+              Education
+            </Link>
+            <Link
+              href="/admin/dashboard/get-help/elderly"
+              className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-1.5 px-2 text-[10px] font-bold text-center inline-flex items-center gap-1 transition-colors"
+            >
+              Elderly
+            </Link>
+            <Link
+              href="/admin/dashboard/get-help/medical"
+              className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-1.5 px-2 text-[10px] font-bold text-center inline-flex items-center gap-1 transition-colors"
+            >
+              Medical
+            </Link>
+          </div>
+        </div>
+
+        {/* Gallery Categories Section */}
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div className="p-6">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-500">Visual Assets</span>
+                <h3 className="text-lg font-bold text-[#444444]">Gallery Categories</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <ListTree className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50">
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Categories</p>
+                <p className="text-2xl font-black text-slate-700 mt-1">{totalGalleryCategories}</p>
+              </div>
+            </div>
+
+            <div className="mt-4 text-xs bg-blue-50/50 text-blue-800 px-3 py-2 rounded-lg border border-blue-50 flex items-center gap-1.5">
+              <span className="font-semibold text-slate-500">Folders to group photo gallery uploads</span>
+            </div>
+          </div>
+
+          <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
+            <Link 
+              href="/admin/dashboard/categories" 
+              className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
+            >
+              Manage Categories
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

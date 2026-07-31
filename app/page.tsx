@@ -21,7 +21,8 @@ import {
   BookOpen,
   Eye
 } from "lucide-react";
-import Counter from "./components/Counter";
+import ImpactStats from "./components/ImpactStats";
+import CsrPartners from "./components/CsrPartners";
 import testimonialsData from "./data/testimonials.json";
 import blogsData from "./data/blogs.json";
 import { Card, MotionCard } from "./components/Card";
@@ -94,12 +95,7 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  const stats = [
-    { value: 120, suffix: "+", label: "Students Sponsored", desc: "Across 12 states in India in 50+ institutions" },
-    { value: 2900, suffix: "+", label: "Healthcare Beneficiaries", desc: "Free medical testing & cancer screening" },
-    { value: 40000, suffix: "+", label: "Mangrove Saplings", desc: "Mangrove saplings restored in Sundarbans" },
-    { value: 1300, suffix: "+", label: "Relief Material Delivered", desc: "Families served with winter & flood relief materials" },
-  ];
+
 
   const focusAreas = [
     {
@@ -230,32 +226,7 @@ export default function Home() {
 
 
       {/* Impact Statistics */}
-      <section className="py-8 px-6 md:px-12 border-y border-foreground/5">
-        <div className="max-w-7xl mx-auto bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-            {stats.map((stat, i) => (
-              <MotionCard
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                key={stat.label}
-                className="flex flex-col gap-3 p-6 rounded-[2.5rem] border border-[#EEB898]"
-              >
-                <div className="text-4xl md:text-5xl font-display font-bold text-foreground">
-                  <Counter end={stat.value} suffix={stat.suffix} />
-                </div>
-                <div className="font-semibold text-sm tracking-tight text-foreground/90">
-                  {stat.label}
-                </div>
-                <p className="text-xs text-foreground/60 leading-relaxed">
-                  {stat.desc}
-                </p>
-              </MotionCard>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ImpactStats />
 
       {/* Mission Quote */}
       <section className="py-8 px-6 md:px-12 text-center">
@@ -453,20 +424,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <Card className="p-8 rounded-[2.5rem] flex flex-col gap-4 bg-white border border-[#C1D6C1] shadow-soft">
-                <h4 className="font-display font-bold text-xl text-foreground">M/s Erbe Medical India</h4>
-                <p className="text-xs text-foreground/75 leading-relaxed">
-                  Generously sponsored the Darjeeling Hills University Cancer Awareness session and rural Sundarbans diagnostic medical camps.
-                </p>
-              </Card>
-              <Card className="p-8 rounded-[2.5rem] flex flex-col gap-4 bg-white border border-[#C1D6C1] shadow-soft">
-                <h4 className="font-display font-bold text-xl text-foreground">M/s ABS Professional India</h4>
-                <p className="text-xs text-foreground/75 leading-relaxed">
-                  Generously supported the large-scale Mangrove Plantation restoration project in coastal Sundarbans to buffer climatic storms.
-                </p>
-              </Card>
-            </div>
+            <CsrPartners />
           </div>
         </div>
       </section>

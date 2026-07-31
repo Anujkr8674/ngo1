@@ -15,13 +15,7 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
-  {
-    label: "Virtual Meetings",
-    dropdown: [
-      { href: "/agm", label: "AGM" },
-      { href: "/archived-material", label: "Archived Material" },
-    ],
-  },
+  { href: "/impact", label: "Our Impact" },
   {
     label: "Get Help",
     dropdown: [
@@ -32,7 +26,6 @@ const navLinks: NavLink[] = [
       { href: "/get-help/each-other", label: "Help Each Other Form" },
     ],
   },
-  { href: "/impact", label: "Our Impact" },
   {
     label: "More",
     dropdown: [
@@ -45,6 +38,13 @@ const navLinks: NavLink[] = [
     ],
   },
   { href: "/blog", label: "Web Posts" },
+  {
+    label: "Virtual Meetings",
+    dropdown: [
+      { href: "/agm", label: "AGM" },
+      { href: "/archived-material", label: "Archived Material" },
+    ],
+  },
   {
     label: "Be Part Us",
     dropdown: [
