@@ -45,7 +45,13 @@ const navLinks: NavLink[] = [
     ],
   },
   { href: "/blog", label: "Web Posts" },
-  { href: "/volunteer", label: "Be Part Us" },
+  {
+    label: "Be Part Us",
+    dropdown: [
+      { href: "/volunteer", label: "Volunteer" },
+      { href: "/member", label: "Member" },
+    ],
+  },
   { href: "/contact", label: "Contact" },
 ];
 
