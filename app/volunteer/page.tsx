@@ -334,52 +334,6 @@ export default function Volunteer() {
                         />
                       </div>
 
-                      <div className="flex flex-col gap-1.5 mt-2">
-                        <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
-                          ID Proof <span className="text-foreground/40 font-normal">(Optional)</span>
-                        </label>
-                        <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[90px] overflow-hidden">
-                          {idPreview ? (
-                            <div className="flex flex-col items-center gap-2 w-full z-20">
-                              <img
-                                src={idPreview}
-                                alt="ID Preview"
-                                className="h-14 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                  setZoomImage(idPreview);
-                                }}
-                              />
-                              <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
-                                Change File
-                                <input
-                                  type="file"
-                                  accept="image/*"
-                                  className="hidden"
-                                  onChange={(e) => handleFileChange("volId", e.target.files)}
-                                />
-                              </label>
-                              <span className="text-[9px] text-slate-500 font-sans truncate max-w-full">
-                                {fileNames["volId"]}
-                              </span>
-                            </div>
-                          ) : (
-                            <>
-                              <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
-                              <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
-                                {fileNames["volId"] || "Choose File"}
-                              </span>
-                              <input
-                                type="file"
-                                accept="image/*"
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                                onChange={(e) => handleFileChange("volId", e.target.files)}
-                              />
-                            </>
-                          )}
-                        </div>
-                      </div>
                     </div>
 
                     {/* Right Column: Interests & Commitments */}
@@ -444,7 +398,64 @@ export default function Volunteer() {
                         />
                       </div>
 
-                      <div className="flex flex-col gap-1.5 mt-2">
+                    </div>
+                  </div>
+
+                  {/* Document upload fields - side-by-side */}
+                  <div className="flex flex-col gap-6 mt-6 pt-6 border-t border-foreground/5 w-full">
+                    <h4 className="font-semibold text-xs uppercase tracking-wider text-[#6B46C1] border-b border-[#6B46C1]/10 pb-2">Documents & Photo Uploads</h4>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                      {/* ID Proof */}
+                      <div className="flex flex-col gap-1.5 w-full">
+                        <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
+                          ID Proof <span className="text-foreground/40 font-normal">(Optional)</span>
+                        </label>
+                        <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[90px] overflow-hidden">
+                          {idPreview ? (
+                            <div className="flex flex-col items-center gap-2 w-full z-20">
+                              <img
+                                src={idPreview}
+                                alt="ID Preview"
+                                className="h-14 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  setZoomImage(idPreview);
+                                }}
+                              />
+                              <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
+                                Change File
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  onChange={(e) => handleFileChange("volId", e.target.files)}
+                                />
+                              </label>
+                              <span className="text-[9px] text-slate-500 font-sans truncate max-w-full">
+                                {fileNames["volId"]}
+                              </span>
+                            </div>
+                          ) : (
+                            <>
+                              <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
+                              <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
+                                {fileNames["volId"] || "Choose File"}
+                              </span>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                onChange={(e) => handleFileChange("volId", e.target.files)}
+                              />
+                            </>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Photo */}
+                      <div className="flex flex-col gap-1.5 w-full">
                         <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
                           Photo <span className="text-foreground/40 font-normal">(Optional)</span>
                         </label>

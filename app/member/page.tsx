@@ -26,17 +26,17 @@ const interestsList = [
 export default function MemberRegistration() {
   const [submitted, setSubmitted] = useState(false);
   const [fileNames, setFileNames] = useState<{ [key: string]: string }>({});
-  
+
   // File state & previews
   const [idFile, setIdFile] = useState<File | null>(null);
   const [idPreview, setIdPreview] = useState<string | null>(null);
-  
+
   const [residenceFile, setResidenceFile] = useState<File | null>(null);
   const [residencePreview, setResidencePreview] = useState<string | null>(null);
-  
+
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
-  
+
   const [zoomImage, setZoomImage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -105,7 +105,7 @@ export default function MemberRegistration() {
       // Simulate form submission as backend is not requested now
       await new Promise((resolve) => setTimeout(resolve, 1500));
       setSubmitted(true);
-      
+
       // Clear files
       setIdFile(null);
       setIdPreview(null);
@@ -172,7 +172,7 @@ export default function MemberRegistration() {
       {/* Main Grid */}
       <section className="py-8 px-6 md:px-12 pb-16">
         <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* Left Column: Form */}
           <div className="lg:col-span-8 p-8 md:p-12 rounded-[2.5rem] bg-white border border-[#EEB898] shadow-soft">
             {submitted ? (
@@ -207,11 +207,11 @@ export default function MemberRegistration() {
 
                   {/* Two columns inside form */}
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-4">
-                    
+
                     {/* Form Left Side: Personal Details & Files */}
                     <div className="flex flex-col gap-4">
                       <h4 className="font-semibold text-xs uppercase tracking-wider text-[#6B46C1] border-b border-[#6B46C1]/10 pb-2">Personal Details</h4>
-                      
+
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">Name *</label>
                         <input
@@ -357,153 +357,12 @@ export default function MemberRegistration() {
                         />
                       </div>
 
-                      {/* File uploads */}
-                      <div className="flex flex-col gap-1.5 mt-2">
-                        <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
-                          ID Proof <span className="text-foreground/40 font-normal">(Optional)</span>
-                        </label>
-                        <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[90px] overflow-hidden">
-                          {idPreview ? (
-                            <div className="flex flex-col items-center gap-2 w-full z-20">
-                              <img
-                                src={idPreview}
-                                alt="ID Preview"
-                                className="h-14 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                  setZoomImage(idPreview);
-                                }}
-                              />
-                              <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
-                                Change File
-                                <input
-                                  type="file"
-                                  accept="image/*"
-                                  className="hidden"
-                                  onChange={(e) => handleFileChange("memberId", e.target.files)}
-                                />
-                              </label>
-                              <span className="text-[9px] text-slate-500 font-sans truncate max-w-full">
-                                {fileNames["memberId"]}
-                              </span>
-                            </div>
-                          ) : (
-                            <>
-                              <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
-                              <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
-                                {fileNames["memberId"] || "Choose File"}
-                              </span>
-                              <input
-                                type="file"
-                                accept="image/*"
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                                onChange={(e) => handleFileChange("memberId", e.target.files)}
-                              />
-                            </>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col gap-1.5 mt-2">
-                        <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
-                          Proof of Residence <span className="text-foreground/40 font-normal">(Optional)</span>
-                        </label>
-                        <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[90px] overflow-hidden">
-                          {residencePreview ? (
-                            <div className="flex flex-col items-center gap-2 w-full z-20">
-                              <img
-                                src={residencePreview}
-                                alt="Residence Preview"
-                                className="h-14 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                  setZoomImage(residencePreview);
-                                }}
-                              />
-                              <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
-                                Change File
-                                <input
-                                  type="file"
-                                  accept="image/*"
-                                  className="hidden"
-                                  onChange={(e) => handleFileChange("memberResidence", e.target.files)}
-                                />
-                              </label>
-                              <span className="text-[9px] text-slate-500 font-sans truncate max-w-full">
-                                {fileNames["memberResidence"]}
-                              </span>
-                            </div>
-                          ) : (
-                            <>
-                              <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
-                              <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
-                                {fileNames["memberResidence"] || "Choose File"}
-                              </span>
-                              <input
-                                type="file"
-                                accept="image/*"
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                                onChange={(e) => handleFileChange("memberResidence", e.target.files)}
-                              />
-                            </>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col gap-1.5 mt-2">
-                        <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
-                          Photo <span className="text-foreground/40 font-normal">(Optional)</span>
-                        </label>
-                        <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[90px] overflow-hidden">
-                          {photoPreview ? (
-                            <div className="flex flex-col items-center gap-2 w-full z-20">
-                              <img
-                                src={photoPreview}
-                                alt="Photo Preview"
-                                className="h-14 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                  setZoomImage(photoPreview);
-                                }}
-                              />
-                              <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
-                                Change File
-                                <input
-                                  type="file"
-                                  accept="image/*"
-                                  className="hidden"
-                                  onChange={(e) => handleFileChange("memberPhoto", e.target.files)}
-                                />
-                              </label>
-                              <span className="text-[9px] text-slate-500 font-sans truncate max-w-full">
-                                {fileNames["memberPhoto"]}
-                              </span>
-                            </div>
-                          ) : (
-                            <>
-                              <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
-                              <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
-                                {fileNames["memberPhoto"] || "Choose File"}
-                              </span>
-                              <input
-                                type="file"
-                                accept="image/*"
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                                onChange={(e) => handleFileChange("memberPhoto", e.target.files)}
-                              />
-                            </>
-                          )}
-                        </div>
-                      </div>
                     </div>
 
                     {/* Form Right Side: Interests, Reasons, Payment */}
                     <div className="flex flex-col gap-4">
                       <h4 className="font-semibold text-xs uppercase tracking-wider text-[#6B46C1] border-b border-[#6B46C1]/10 pb-2">Area of Interest</h4>
-                      
+
                       <div className="flex flex-col gap-3 text-xs">
                         {interestsList.map((interest) => (
                           <label key={interest} className="flex items-center gap-2 text-foreground/75 cursor-pointer hover:text-[#6B46C1] select-none transition-colors">
@@ -541,7 +400,7 @@ export default function MemberRegistration() {
                       </div>
 
                       <h4 className="font-semibold text-xs uppercase tracking-wider text-[#6B46C1] border-b border-[#6B46C1]/10 pb-2 mt-4">Fee/Payment details</h4>
-                      
+
                       <div className="p-4 rounded-2xl bg-foreground/[0.02] border border-foreground/5 text-xs text-foreground/70 flex flex-col gap-1">
                         <strong className="text-foreground">Membership Fee:</strong>
                         <span>A) At the time of joining: Rs 2,000/-</span>
@@ -624,6 +483,159 @@ export default function MemberRegistration() {
                     </div>
                   </div>
 
+                  {/* Document upload fields - side-by-side & centered photo */}
+                  <div className="flex flex-col gap-6 mt-6 pt-6 border-t border-foreground/5 w-full">
+                    <h4 className="font-semibold text-xs uppercase tracking-wider text-[#6B46C1] border-b border-[#6B46C1]/10 pb-2">Documents & Photo Uploads</h4>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                      {/* ID Proof */}
+                      <div className="flex flex-col gap-1.5 w-full">
+                        <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
+                          ID Proof <span className="text-foreground/40 font-normal">(Optional)</span>
+                        </label>
+                        <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[90px] overflow-hidden">
+                          {idPreview ? (
+                            <div className="flex flex-col items-center gap-2 w-full z-20">
+                              <img
+                                src={idPreview}
+                                alt="ID Preview"
+                                className="h-14 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  setZoomImage(idPreview);
+                                }}
+                              />
+                              <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
+                                Change File
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  onChange={(e) => handleFileChange("memberId", e.target.files)}
+                                />
+                              </label>
+                              <span className="text-[9px] text-slate-500 font-sans truncate max-w-full">
+                                {fileNames["memberId"]}
+                              </span>
+                            </div>
+                          ) : (
+                            <>
+                              <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
+                              <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
+                                {fileNames["memberId"] || "Choose File"}
+                              </span>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                onChange={(e) => handleFileChange("memberId", e.target.files)}
+                              />
+                            </>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Proof of Residence */}
+                      <div className="flex flex-col gap-1.5 w-full">
+                        <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
+                          Proof of Residence <span className="text-foreground/40 font-normal">(Optional)</span>
+                        </label>
+                        <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[90px] overflow-hidden">
+                          {residencePreview ? (
+                            <div className="flex flex-col items-center gap-2 w-full z-20">
+                              <img
+                                src={residencePreview}
+                                alt="Residence Preview"
+                                className="h-14 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  setZoomImage(residencePreview);
+                                }}
+                              />
+                              <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
+                                Change File
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  onChange={(e) => handleFileChange("memberResidence", e.target.files)}
+                                />
+                              </label>
+                              <span className="text-[9px] text-slate-500 font-sans truncate max-w-full">
+                                {fileNames["memberResidence"]}
+                              </span>
+                            </div>
+                          ) : (
+                            <>
+                              <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
+                              <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
+                                {fileNames["memberResidence"] || "Choose File"}
+                              </span>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                onChange={(e) => handleFileChange("memberResidence", e.target.files)}
+                              />
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Photo - Centered */}
+                    <div className="flex justify-center w-full mt-2">
+                      <div className="flex flex-col gap-1.5 w-full md:max-w-md">
+                        <label className="text-xs font-semibold text-foreground/75 flex items-center justify-center gap-1">
+                          Photo <span className="text-foreground/40 font-normal">(Optional)</span>
+                        </label>
+                        <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[90px] overflow-hidden">
+                          {photoPreview ? (
+                            <div className="flex flex-col items-center gap-2 w-full z-20">
+                              <img
+                                src={photoPreview}
+                                alt="Photo Preview"
+                                className="h-14 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  setZoomImage(photoPreview);
+                                }}
+                              />
+                              <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
+                                Change File
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  onChange={(e) => handleFileChange("memberPhoto", e.target.files)}
+                                />
+                              </label>
+                              <span className="text-[9px] text-slate-500 font-sans truncate max-w-full">
+                                {fileNames["memberPhoto"]}
+                              </span>
+                            </div>
+                          ) : (
+                            <>
+                              <Upload className="w-5 h-5 text-[#6B46C1] mb-1" />
+                              <span className="text-[11px] text-foreground/60 text-center truncate max-w-full">
+                                {fileNames["memberPhoto"] || "Choose File"}
+                              </span>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                onChange={(e) => handleFileChange("memberPhoto", e.target.files)}
+                              />
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Full Width Declaration & Centered Submit Button */}
                   <div className="mt-8 pt-6 border-t border-foreground/5 flex flex-col gap-6 w-full">
                     <div className="flex items-start gap-3">
@@ -663,14 +675,14 @@ export default function MemberRegistration() {
 
           {/* Right Column: Sidebar Info Column */}
           <div className="lg:col-span-4 flex flex-col gap-8">
-            
+
             {/* Volunteers are priceless quote card */}
             <div className="p-8 rounded-[2.5rem] bg-white border border-[#EEB898] shadow-soft flex flex-col gap-4">
               <span className="w-8 h-8 rounded-xl bg-[#FFF5EE] flex items-center justify-center border border-orange-100">
                 <Heart className="w-4 h-4 text-[#6B46C1] fill-[#6B46C1]/20" />
               </span>
               <h4 className="font-display font-bold text-xl text-foreground italic leading-normal">
-                &ldquo;Volunteers are seldom paid; not because they are worthless, but because they are PRICELESS!&rdquo;
+                &ldquo;Members are seldom recognized for what they do; not because they contribute less, but because they are the FOUNDATION of every success&rdquo;
               </h4>
               <p className="text-xs text-foreground/75 leading-relaxed">
                 Live 4 Help Foundation encourage people to associate with our organization and to become integral part of our team. Our mission is to work together for noble causes and help people in need.
@@ -701,7 +713,7 @@ export default function MemberRegistration() {
                 <ShieldCheck className="w-5 h-5 text-[#6B46C1]" />
                 Bank Transfer Routing
               </h4>
-              
+
               <div className="flex flex-col gap-3.5 text-xs font-sans text-foreground/80 border-t border-b border-foreground/5 py-4">
                 <div className="flex justify-between">
                   <span className="text-foreground/50">Beneficiary:</span>
