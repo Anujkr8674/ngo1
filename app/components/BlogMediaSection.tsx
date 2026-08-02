@@ -3,11 +3,14 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { Eye, X, ChevronLeft, ChevronRight, Play, Film } from 'lucide-react'
 
+import BlogComments from './BlogComments'
+
 interface BlogMediaSectionProps {
   images: string[]
   title: string
   excerpt?: string | null
   content: string
+  blogId: string
 }
 
 const isVideoUrl = (url: string) => {
@@ -22,7 +25,7 @@ const isVideoUrl = (url: string) => {
   )
 }
 
-export default function BlogMediaSection({ images, title, excerpt, content }: BlogMediaSectionProps) {
+export default function BlogMediaSection({ images, title, excerpt, content, blogId }: BlogMediaSectionProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
   const handlePrev = useCallback(() => {
@@ -169,6 +172,9 @@ export default function BlogMediaSection({ images, title, excerpt, content }: Bl
           </div>
         </section>
       )}
+
+      {/* Dynamic Comments System */}
+      <BlogComments blogId={blogId} />
 
       {/* FULLSCREEN LIGHTBOX MODAL (Image or Video) */}
       {selectedIndex !== null && (

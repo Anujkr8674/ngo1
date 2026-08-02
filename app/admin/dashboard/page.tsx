@@ -16,7 +16,8 @@ import {
   Mail,
   Heart,
   ListTree,
-  Briefcase
+  Briefcase,
+  MessageSquare
 } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
@@ -44,7 +45,8 @@ export default async function DashboardOverview() {
     totalHelpEachOther,
     totalEducationSupport,
     totalElderlySupport,
-    totalMedicalSupport
+    totalMedicalSupport,
+    totalComments
   ] = await Promise.all([
     prisma.blogPost.count(),
     prisma.blogCategory.count(),
@@ -67,7 +69,8 @@ export default async function DashboardOverview() {
     prisma.helpEachOther.count(),
     prisma.educationSupport.count(),
     prisma.elderlySupport.count(),
-    prisma.medicalSupport.count()
+    prisma.medicalSupport.count(),
+    prisma.comment.count()
   ])
 
   // Fetch some quick details
@@ -83,7 +86,8 @@ export default async function DashboardOverview() {
     latestContactMessage,
     latestDonation,
     latestVolunteer,
-    latestMember
+    latestMember,
+    latestComment
   ] = await Promise.all([
     prisma.blogPost.findFirst({
       orderBy: { createdAt: 'desc' },
@@ -130,6 +134,10 @@ export default async function DashboardOverview() {
       select: { name: true }
     }),
     prisma.member.findFirst({
+      orderBy: { createdAt: 'desc' },
+      select: { name: true }
+    }),
+    prisma.comment.findFirst({
       orderBy: { createdAt: 'desc' },
       select: { name: true }
     })
@@ -854,6 +862,45 @@ export default async function DashboardOverview() {
               className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-1.5 px-2 text-[10px] font-bold text-center inline-flex items-center gap-1 transition-colors"
             >
               Medical
+            </Link>
+          </div>
+        </div>
+
+        {/* Blog Comments Section */}
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
+          <div className="p-6">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-505 text-emerald-600">User Discussions</span>
+                <h3 className="text-lg font-bold text-[#444444]">Blog Comments</h3>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:rotate-6 transition-transform">
+                <MessageSquare className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100/50">
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Comments</p>
+                <p className="text-2xl font-black text-slate-700 mt-1">{totalComments}</p>
+              </div>
+            </div>
+
+            {latestComment && (
+              <div className="mt-4 text-xs bg-emerald-50/50 text-emerald-800 px-3 py-2 rounded-lg border border-emerald-50 flex items-center gap-1.5">
+                <span className="font-bold shrink-0">Latest by:</span>
+                <span className="truncate">"{latestComment.name}"</span>
+              </div>
+            )}
+          </div>
+
+          <div className="border-t border-slate-100 bg-slate-50/30 p-4 flex">
+            <Link 
+              href="/admin/dashboard/comments" 
+              className="flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80 rounded-xl py-2 px-3 text-xs font-bold text-center inline-flex items-center justify-center gap-1.5 transition-colors"
+            >
+              Manage Comments
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>

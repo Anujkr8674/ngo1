@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
-import { LayoutDashboard, LogOut, Settings, Users, Menu, X, Image as ImageIcon, ListTree, FileText, ChevronDown, ChevronRight, FolderPlus, Plus, Archive, HeartHandshake, GraduationCap, Sparkles, Play, Mail, Heart, Shield, Briefcase } from 'lucide-react'
+import { LayoutDashboard, LogOut, Settings, Users, Menu, X, Image as ImageIcon, ListTree, FileText, ChevronDown, ChevronRight, FolderPlus, Plus, Archive, HeartHandshake, GraduationCap, Sparkles, Play, Mail, Heart, Shield, Briefcase, MessageSquare } from 'lucide-react'
 import { logoutAdmin } from '../../actions/adminAuth'
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -15,7 +15,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   // Expand Web Posts, Get Help & Be Part Us menus automatically if current route matches
   useEffect(() => {
-    if (pathname.startsWith('/admin/dashboard/posts')) {
+    if (pathname.startsWith('/admin/dashboard/posts') || pathname.startsWith('/admin/dashboard/comments')) {
       setIsWebPostsOpen(true)
     }
     if (pathname.startsWith('/admin/dashboard/get-help')) {
@@ -314,13 +314,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <button
             type="button"
             onClick={() => setIsWebPostsOpen(!isWebPostsOpen)}
-            className={`flex items-center justify-between px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group cursor-pointer ${pathname.startsWith('/admin/dashboard/posts')
+            className={`flex items-center justify-between px-4 py-3 w-full rounded-xl transition-all font-medium text-sm group cursor-pointer ${pathname.startsWith('/admin/dashboard/posts') || pathname.startsWith('/admin/dashboard/comments')
               ? 'bg-gradient-to-r from-[#DCCFF8] to-[#CFE8FF] text-[#444444] font-bold shadow-sm'
               : 'text-slate-500 hover:text-[#444444] hover:bg-slate-50'
               }`}
           >
             <div className="flex items-center gap-3">
-              <FileText className={`h-5 w-5 transition-colors ${pathname.startsWith('/admin/dashboard/posts') ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
+              <FileText className={`h-5 w-5 transition-colors ${pathname.startsWith('/admin/dashboard/posts') || pathname.startsWith('/admin/dashboard/comments') ? 'text-[#444444]' : 'text-slate-400 group-hover:text-[#444444]'}`} />
               <span>Web Posts</span>
             </div>
             {isWebPostsOpen ? (
@@ -352,6 +352,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               >
                 <FileText className="h-4 w-4 text-blue-500" />
                 Web Posts
+              </Link>
+              <Link
+                href="/admin/dashboard/comments"
+                className={`flex items-center gap-2.5 px-3 py-2.5 w-full rounded-lg transition-all text-xs font-semibold ${pathname === '/admin/dashboard/comments'
+                  ? 'bg-blue-50 text-blue-700 font-bold'
+                  : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
+                  }`}
+              >
+                <MessageSquare className="h-4 w-4 text-emerald-500" />
+                Blog Comments
               </Link>
             </div>
           )}

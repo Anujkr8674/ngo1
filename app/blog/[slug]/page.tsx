@@ -181,12 +181,12 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="bg-white rounded-[3rem] p-6 md:p-12 border border-foreground/10 shadow-premium">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             
-            {/* Left Column: Full-width Paragraph & Media Section with Lightbox */}
             <BlogMediaSection 
               images={blog.images || []} 
               title={blog.title} 
               excerpt={blog.excerpt} 
               content={blog.content} 
+              blogId={blog.id}
             />
 
             {/* Right Column: Recent Posts Sidebar */}
