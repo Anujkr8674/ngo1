@@ -12,7 +12,7 @@ export default function RefundPolicy() {
         {/* Full-size Hero Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://live4help.org/wp-content/uploads/2023/07/Medical-Camp-Photo.jpg"
+            src="/pic/Medical-Camp-Photo.jpg"
             alt="Refund & Cancellation Policy Hero"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"

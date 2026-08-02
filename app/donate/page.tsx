@@ -129,7 +129,7 @@ export default function Donate() {
                 {/* Full-size Hero Background */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://live4help.org/wp-content/uploads/2023/07/Blanket-Distribution-4.jpeg"
+                        src="/pic/Blanket-Distribution-4.jpeg"
                         alt="Donate Hero"
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover"

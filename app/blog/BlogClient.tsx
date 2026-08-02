@@ -36,7 +36,7 @@ export default function BlogClient({ initialBlogs, initialCategories }: BlogClie
         {/* Full-size Hero Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://live4help.org/wp-content/uploads/2023/07/Medical-Camp-Photo.jpg"
+            src="/pic/Medical-Camp-Photo.jpg"
             alt="Blog Listing Hero"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
@@ -66,11 +66,10 @@ export default function BlogClient({ initialBlogs, initialCategories }: BlogClie
         <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-wrap justify-center gap-2.5">
           <button
             onClick={() => setActiveCategoryId('all')}
-            className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer ${
-              activeCategoryId === 'all'
-                ? 'bg-primary text-[#444444] shadow-soft font-bold'
-                : 'bg-white text-foreground/80 hover:text-foreground border border-foreground/5 shadow-soft'
-            }`}
+            className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer ${activeCategoryId === 'all'
+              ? 'bg-primary text-[#444444] shadow-soft font-bold'
+              : 'bg-white text-foreground/80 hover:text-foreground border border-foreground/5 shadow-soft'
+              }`}
           >
             All Stories ({initialBlogs.length})
           </button>
@@ -81,11 +80,10 @@ export default function BlogClient({ initialBlogs, initialCategories }: BlogClie
               <button
                 key={cat.id}
                 onClick={() => setActiveCategoryId(cat.id)}
-                className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer flex items-center gap-1.5 ${
-                  activeCategoryId === cat.id
-                    ? 'bg-primary text-[#444444] shadow-soft font-bold'
-                    : 'bg-white text-foreground/80 hover:text-foreground border border-foreground/5 shadow-soft'
-                }`}
+                className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer flex items-center gap-1.5 ${activeCategoryId === cat.id
+                  ? 'bg-primary text-[#444444] shadow-soft font-bold'
+                  : 'bg-white text-foreground/80 hover:text-foreground border border-foreground/5 shadow-soft'
+                  }`}
               >
                 <Tag className="w-3.5 h-3.5" />
                 {cat.name} ({count})
@@ -129,7 +127,7 @@ export default function BlogClient({ initialBlogs, initialCategories }: BlogClie
                           {isVid ? (
                             <video src={blog.images[0]} muted className="w-full h-full object-cover group-hover:scale-105 transition-premium" />
                           ) : (
-                            <img 
+                            <img
                               referrerPolicy="no-referrer"
                               src={blog.images[0]}
                               alt={blog.title}

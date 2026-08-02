@@ -75,7 +75,7 @@ export default function Contact() {
                 {/* Full-size Hero Background */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-3.jpg"
+                        src="/pic/Cloth-Distribution-Photo-3.jpg"
                         alt="Contact Hero"
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover"

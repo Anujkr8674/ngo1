@@ -168,7 +168,7 @@ export default function Volunteer() {
         {/* Full-size Hero Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-7-1.jpg"
+            src="/pic/Cloth-Distribution-Photo-7-1.jpg"
             alt="Volunteer Hero"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
@@ -249,7 +249,7 @@ export default function Volunteer() {
                     {/* Left Column: Personal Details */}
                     <div className="flex flex-col gap-4">
                       <h4 className="font-semibold text-xs uppercase tracking-wider text-[#6B46C1] border-b border-[#6B46C1]/10 pb-2">Personal Details</h4>
-                      
+
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">Full Name *</label>
                         <input
@@ -378,7 +378,7 @@ export default function Volunteer() {
                     {/* Right Column: Interests & Commitments */}
                     <div className="flex flex-col gap-4 h-full">
                       <h4 className="font-semibold text-xs uppercase tracking-wider text-[#6B46C1] border-b border-[#6B46C1]/10 pb-2">Area of interest</h4>
-                      
+
                       <div className="flex flex-col gap-3 text-xs">
                         {interestsList.map((interest) => (
                           <label key={interest} className="flex items-center gap-2 text-foreground/75 cursor-pointer hover:text-[#6B46C1] select-none transition-colors">
@@ -443,7 +443,7 @@ export default function Volunteer() {
                   {/* Document upload fields - side-by-side */}
                   <div className="flex flex-col gap-6 mt-6 pt-6 border-t border-foreground/5 w-full">
                     <h4 className="font-semibold text-xs uppercase tracking-wider text-[#6B46C1] border-b border-[#6B46C1]/10 pb-2">Documents & Photo Uploads</h4>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                       {/* ID Proof */}
                       <div className="flex flex-col gap-1.5 w-full">

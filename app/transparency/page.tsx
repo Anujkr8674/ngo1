@@ -18,7 +18,7 @@ export default function Transparency() {
       <section className="relative min-h-[100vh] px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 text-center">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://live4help.org/wp-content/uploads/2023/07/Medical-Camp-Photo.jpg"
+            src="/pic/Medical-Camp-Photo.jpg  "
             alt="Transparency Hero"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"

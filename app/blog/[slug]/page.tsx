@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 }
 
 // Fixed cover image URL for all blog posts header
-const FIXED_COVER_IMAGE = "https://live4help.org/wp-content/uploads/2023/07/Medical-Camp-Photo.jpg";
+const FIXED_COVER_IMAGE = "/pic/Medical-Camp-Photo.jpg";
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
@@ -61,7 +61,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   return (
     <div className="flex flex-col w-full">
       {/* Scoped CSS styling for rich-text HTML rendering */}
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .blog-content-prose {
           width: 100%;
         }
@@ -155,20 +156,20 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="max-w-4xl mx-auto w-full z-10 relative">
           <div className="w-full text-center flex flex-col items-center gap-5">
             {/* Back Link */}
-            <Link 
-              href="/blog" 
+            <Link
+              href="/blog"
               className="inline-flex items-center gap-2 text-xs font-semibold text-white/80 hover:text-white mb-2 group px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md transition-all shadow-soft border border-white/10"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
               Back to Web Posts
             </Link>
-            
+
             <div className="flex flex-wrap justify-center items-center gap-4 text-xs font-semibold tracking-wider text-white/70 uppercase">
               <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5 text-blue-300" />{blogDate}</span>
               <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-blue-300" />{readTime} Min Read</span>
               <span className="flex items-center gap-1.5"><User className="w-3.5 h-3.5 text-blue-300" />By {blog.author || 'Admin'}</span>
             </div>
-            
+
             <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-white tracking-tight leading-tight max-w-3xl">
               {blog.title || 'BLOG'}
             </h1>
@@ -180,12 +181,12 @@ export default async function BlogPostPage({ params }: PageProps) {
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full py-12">
         <div className="bg-white rounded-[3rem] p-6 md:p-12 border border-foreground/10 shadow-premium">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            
-            <BlogMediaSection 
-              images={blog.images || []} 
-              title={blog.title} 
-              excerpt={blog.excerpt} 
-              content={blog.content} 
+
+            <BlogMediaSection
+              images={blog.images || []}
+              title={blog.title}
+              excerpt={blog.excerpt}
+              content={blog.content}
               blogId={blog.id}
             />
 
@@ -202,8 +203,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                 ) : (
                   <div className="flex flex-col gap-4">
                     {recentPosts.map((post) => (
-                      <Link 
-                        key={post.id} 
+                      <Link
+                        key={post.id}
                         href={`/blog/${post.slug}`}
                         className="group flex gap-3.5 items-center p-2.5 rounded-xl hover:bg-white hover:shadow-sm transition-all duration-200 border border-transparent hover:border-slate-200/60"
                       >

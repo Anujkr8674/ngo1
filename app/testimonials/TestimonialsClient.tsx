@@ -27,7 +27,7 @@ export default function TestimonialsClient({ initialTestimonials }: Testimonials
         {/* Full-size Hero Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://live4help.org/wp-content/uploads/2022/04/L4H-Medical-Camp-Photo-10-480x343.jpg"
+            src="/pic/L4H-Medical-Camp-Photo-10-480x343.jpg"
             alt="Testimonials Hero"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"

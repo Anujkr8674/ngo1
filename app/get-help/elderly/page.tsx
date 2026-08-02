@@ -39,10 +39,10 @@ export default function ElderlySupport() {
     if (files && files.length > 0) {
       const file = files[0];
       setFileNames((prev) => ({ ...prev, [field]: file.name }));
-      
+
       const isImage = file.type.startsWith("image/");
       const previewUrl = isImage ? URL.createObjectURL(file) : null;
-      
+
       if (field === "eldId") {
         setIdFile(file);
         setIdPreview(previewUrl);
@@ -134,7 +134,7 @@ export default function ElderlySupport() {
         {/* Full-size Hero Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-7-1.jpg"
+            src="/pic/Cloth-Distribution-Photo-7-1.jpg"
             alt="Elderly Support Hero Background"
             className="w-full h-full object-cover"
           />
@@ -495,23 +495,23 @@ export default function ElderlySupport() {
                 </div>
 
                 {error && (
-                <div className="p-4 bg-red-50 text-red-650 rounded-xl text-xs flex items-center gap-2 font-medium">
-                  <AlertCircle className="w-5 h-5 shrink-0" />
-                  <span>{error}</span>
-                </div>
-              )}
+                  <div className="p-4 bg-red-50 text-red-650 rounded-xl text-xs flex items-center gap-2 font-medium">
+                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    <span>{error}</span>
+                  </div>
+                )}
 
-              {/* Submit Button */}
-              <div className="pt-6 border-t border-foreground/5 flex justify-end">
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-blue-950 bg-[#CBB6F5] hover:bg-[#b8daff] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-soft cursor-pointer"
-                >
-                  <Send className="w-4 h-4" />
-                  {submitting ? "Submitting..." : "Submit Request"}
-                </button>
-              </div>
+                {/* Submit Button */}
+                <div className="pt-6 border-t border-foreground/5 flex justify-end">
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-blue-950 bg-[#CBB6F5] hover:bg-[#b8daff] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-soft cursor-pointer"
+                  >
+                    <Send className="w-4 h-4" />
+                    {submitting ? "Submitting..." : "Submit Request"}
+                  </button>
+                </div>
               </form>
             )}
           </div>

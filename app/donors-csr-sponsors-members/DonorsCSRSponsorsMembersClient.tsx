@@ -24,7 +24,7 @@ export default function DonorsCSRSponsorsMembersClient({ initialMemberImages }: 
             <section className="relative py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden border-b border-foreground/5 text-center min-h-[100vh]">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://live4help.org/wp-content/uploads/2023/07/Medical-Camp-Photo.jpg"
+                        src="/pic/Medical-Camp-Photo.jpg"
                         alt="Donors & Members Hero"
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover"

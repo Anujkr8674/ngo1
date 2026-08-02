@@ -54,7 +54,7 @@ export default function InitiativesClient({ initialCategories, initialInitiative
         {/* Full-size Hero Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://live4help.org/wp-content/uploads/2021/12/Free-coaching-2-300x225.jpeg"
+            src="/pic/Free-coaching-2-480x360.jpeg"
             alt="Initiatives Hero"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
@@ -83,11 +83,10 @@ export default function InitiativesClient({ initialCategories, initialInitiative
         <div className="bg-[#FFE6D4] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-wrap justify-center gap-3">
           <button
             onClick={() => setFilter("all")}
-            className={`px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer ${
-              filter === "all"
+            className={`px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer ${filter === "all"
                 ? "bg-primary text-[#444444] shadow-soft"
                 : "bg-white text-foreground/80 hover:text-foreground border border-foreground/5 shadow-soft"
-            }`}
+              }`}
           >
             All Works
           </button>
@@ -95,11 +94,10 @@ export default function InitiativesClient({ initialCategories, initialInitiative
             <button
               key={cat.id}
               onClick={() => setFilter(cat.slug)}
-              className={`px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer ${
-                filter === cat.slug
+              className={`px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer ${filter === cat.slug
                   ? "bg-primary text-[#444444] shadow-soft"
                   : "bg-white text-foreground/80 hover:text-foreground border border-foreground/5 shadow-soft"
-              }`}
+                }`}
             >
               {cat.name}
             </button>
@@ -129,7 +127,7 @@ export default function InitiativesClient({ initialCategories, initialInitiative
                   <div className="flex flex-col flex-grow">
                     {/* Featured Image */}
                     <div className="relative aspect-[16/10] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-slate-50">
-                      <img 
+                      <img
                         referrerPolicy="no-referrer"
                         src={item.image}
                         alt={item.title}

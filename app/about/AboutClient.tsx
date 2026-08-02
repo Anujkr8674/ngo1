@@ -40,7 +40,7 @@ export default function AboutClient({ teamMembers }: AboutClientProps) {
         {/* Full-size Hero Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://live4help.org/wp-content/uploads/2021/01/PHOTO-2019-08-18-10-59-21.jpg"
+            src="/pic/PHOTO-2019-08-18-10-59-21.jpg"
             alt="About Live 4 Help Foundation Hero"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
@@ -223,7 +223,7 @@ export default function AboutClient({ teamMembers }: AboutClientProps) {
                   <div className="lg:col-span-8 flex flex-col gap-4">
                     <h4 className="font-display font-bold text-2xl md:text-3xl text-foreground">{founder.name}</h4>
                     <span className="text-xs uppercase tracking-widest font-bold text-foreground/80 bg-white/80 border border-foreground/10 px-3.5 py-1.5 rounded-full w-fit">{founder.role}</span>
-                    <div 
+                    <div
                       className="text-sm md:text-base text-foreground/75 leading-relaxed prose max-w-none font-sans"
                       dangerouslySetInnerHTML={{ __html: founder.description }}
                     />
@@ -299,7 +299,7 @@ export default function AboutClient({ teamMembers }: AboutClientProps) {
                   <div className="lg:col-span-8 flex flex-col gap-4">
                     <h4 className="font-display font-bold text-2xl md:text-3xl text-foreground">{adv.name}</h4>
                     <span className="text-xs uppercase tracking-widest font-bold text-[#DD6B20] bg-[#FFEAD6] border border-[#EEB898] px-3.5 py-1.5 rounded-full w-fit">{adv.role}</span>
-                    <div 
+                    <div
                       className="text-sm md:text-base text-foreground/75 leading-relaxed prose max-w-none font-sans"
                       dangerouslySetInnerHTML={{ __html: adv.description }}
                     />

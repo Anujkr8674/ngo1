@@ -25,7 +25,7 @@ export default function StudentsClient({ initialSheets }: StudentsClientProps) {
         {/* Full-size Hero Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://live4help.org/wp-content/uploads/2021/12/Free-coaching-2-480x360.jpeg"
+            src="/pic/Free-coaching-2-480x360.jpeg"
             alt="Students Hero"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
@@ -76,7 +76,7 @@ export default function StudentsClient({ initialSheets }: StudentsClientProps) {
                   className="group pb-6 rounded-[2.5rem] border border-[#DFCFE5] shadow-soft cursor-pointer flex flex-col h-full overflow-hidden bg-white"
                 >
                   <div className="aspect-[4/3] w-full rounded-b-2xl relative overflow-hidden shadow-inner shrink-0 bg-slate-50">
-                    <img 
+                    <img
                       referrerPolicy="no-referrer"
                       src={sheet.src}
                       alt={sheet.title}
@@ -124,7 +124,7 @@ export default function StudentsClient({ initialSheets }: StudentsClientProps) {
               onClick={(e) => e.stopPropagation()}
               className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center rounded-2xl overflow-hidden backdrop-blur-md border border-white/10 p-2"
             >
-              <img 
+              <img
                 referrerPolicy="no-referrer"
                 src={activeImage}
                 alt="Zoomed student document"

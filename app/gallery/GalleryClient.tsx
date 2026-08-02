@@ -14,8 +14,8 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
     ...initialCategories
   ];
 
-  const filteredPhotos = filter === "all" 
-    ? initialImages 
+  const filteredPhotos = filter === "all"
+    ? initialImages
     : initialImages.filter(p => p.categoryId === filter);
 
   return (
@@ -25,7 +25,7 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
         {/* Full-size Hero Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://live4help.org/wp-content/uploads/2024/02/L4H-Mangrove-Plantation-Photo1.jpg"
+            src="/pic/L4H-Mangrove-Plantation-Photo1.jpg"
             alt="Gallery Photos Hero"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
@@ -57,11 +57,10 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
             <button
               key={cat.id}
               onClick={() => setFilter(cat.id)}
-              className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer ${
-                filter === cat.id
-                  ? "bg-foreground text-background shadow-soft"
-                  : "bg-white text-foreground/80 hover:text-foreground border border-foreground/5 shadow-soft hover:"
-              }`}
+              className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer ${filter === cat.id
+                ? "bg-foreground text-background shadow-soft"
+                : "bg-white text-foreground/80 hover:text-foreground border border-foreground/5 shadow-soft hover:"
+                }`}
             >
               {cat.name}
             </button>
@@ -72,7 +71,7 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
       {/* Grid of Images */}
       <section className="py-8 px-6 md:px-12 pb-16">
         <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto min-h-[400px]">
-          <motion.div 
+          <motion.div
             layout
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
           >

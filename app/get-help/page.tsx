@@ -56,7 +56,7 @@ export default function GetHelpPortal() {
         {/* Full-size Hero Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://live4help.org/wp-content/uploads/2023/07/Medical-Camp-Photo.jpg"
+            src="/pic/Medical-Camp-Photo.jpg"
             alt="Support Portal Hero Background"
             className="w-full h-full object-cover"
           />
@@ -140,7 +140,7 @@ export default function GetHelpPortal() {
                         </p>
                       </div>
                     </div>
-                    
+
                     <div className="mt-6 pt-4 border-t border-foreground/5 flex justify-end">
                       <Link
                         href={program.link}

@@ -15,7 +15,7 @@ export default async function Transparency() {
                 {/* Full-size Hero Background */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://live4help.org/wp-content/uploads/2023/07/Medical-Camp-Photo.jpg"
+                        src="/pic/Medical-Camp-Photo.jpg"
                         alt="Transparency Hero"
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover"
@@ -63,7 +63,7 @@ export default async function Transparency() {
                                             <span className="text-xs text-foreground/50 uppercase tracking-widest mt-1 font-semibold">{doc.size} • PDF</span>
                                         </div>
                                     </div>
-                                    <a 
+                                    <a
                                         href={doc.url}
                                         target="_blank"
                                         rel="noopener noreferrer"

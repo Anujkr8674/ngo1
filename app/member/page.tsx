@@ -187,7 +187,7 @@ export default function MemberRegistration() {
         {/* Full-size Hero Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-7-1.jpg"
+            src="/pic/Cloth-Distribution-Photo-7-1.jpg"
             alt="Member Hero"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
@@ -545,7 +545,7 @@ export default function MemberRegistration() {
                   {/* Document upload fields - side-by-side & centered photo */}
                   <div className="flex flex-col gap-6 mt-6 pt-6 border-t border-foreground/5 w-full">
                     <h4 className="font-semibold text-xs uppercase tracking-wider text-[#6B46C1] border-b border-[#6B46C1]/10 pb-2">Documents & Photo Uploads</h4>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                       {/* ID Proof */}
                       <div className="flex flex-col gap-1.5 w-full">

@@ -33,9 +33,9 @@ import SmoothImage from "./components/SmoothImage";
 
 const carouselImages = [
 
-  "https://live4help.org/wp-content/uploads/2022/04/L4H-Medical-Camp-Photo-1.jpg",
-  "https://live4help.org/wp-content/uploads/2022/02/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg",
-  "https://live4help.org/wp-content/uploads/2021/11/Cloth-Distribution-Photo-3.jpg"
+  "/pic/L4H-Medical-Camp-Photo-1.jpg",
+  "/pic/L4H-Mangrove-Plantation-Photo1.jpg",
+  "/pic/Cloth-Distribution-Photo-3.jpg"
 ];
 
 export default function Home() {

@@ -40,10 +40,10 @@ export default function HelpEachOther() {
     if (files && files.length > 0) {
       const file = files[0];
       setFileNames((prev) => ({ ...prev, [field]: file.name }));
-      
+
       const isImage = file.type.startsWith("image/");
       const previewUrl = isImage ? URL.createObjectURL(file) : null;
-      
+
       if (field === "eachId") {
         setIdFile(file);
         setIdPreview(previewUrl);
@@ -136,7 +136,7 @@ export default function HelpEachOther() {
         {/* Full-size Hero Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://live4help.org/wp-content/uploads/2022/02/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg"
+            src="/pic/relief.jpg"
             alt="Help Each Other Hero Background"
             className="w-full h-full object-cover"
           />

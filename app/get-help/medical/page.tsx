@@ -36,10 +36,10 @@ export default function MedicalSupport() {
     if (files && files.length > 0) {
       const file = files[0];
       setFileNames((prev) => ({ ...prev, [field]: file.name }));
-      
+
       const isImage = file.type.startsWith("image/");
       const previewUrl = isImage ? URL.createObjectURL(file) : null;
-      
+
       if (field === "medId") {
         setIdFile(file);
         setIdPreview(previewUrl);
@@ -123,7 +123,7 @@ export default function MedicalSupport() {
         {/* Full-size Hero Background */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://live4help.org/wp-content/uploads/2022/04/L4H-Medical-Camp-Photo-1.jpg"
+            src="/pic/L4H-Medical-Camp-Photo-10-480x343.jpg"
             alt="Medical Support Hero Background"
             className="w-full h-full object-cover"
           />
@@ -301,47 +301,47 @@ export default function MedicalSupport() {
                         ID Proof <span className="text-foreground/40 font-normal">(Optional)</span>
                       </label>
                       <div className="relative border-2 border-dashed border-foreground/10 hover:border-[#6B46C1]/50 transition-colors rounded-xl p-3 flex flex-col items-center justify-center bg-foreground/[0.01] min-h-[55px] overflow-hidden">
-                          {idPreview ? (
-                            <div className="flex flex-col items-center gap-2 w-full z-20">
-                              <img
-                                src={idPreview}
-                                alt="ID Preview"
-                                className="h-12 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-                                  setZoomImage(idPreview);
-                                }}
-                              />
-                              <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
-                                Change File
-                                <input
-                                  type="file"
-                                  accept="image/*"
-                                  className="hidden"
-                                  onChange={(e) => handleFileChange("medId", e.target.files)}
-                                />
-                              </label>
-                              <span className="text-[9px] text-foreground/45 text-center truncate max-w-full font-sans">
-                                {fileNames["medId"]}
-                              </span>
-                            </div>
-                          ) : (
-                            <>
-                              <div className="flex items-center gap-2">
-                                <Upload className="w-4 h-4 text-[#6B46C1]" />
-                                <span className="text-xs text-foreground/60 truncate max-w-[180px]">
-                                  {fileNames["medId"] || "Upload ID (VoterID / Aadhar)"}
-                                </span>
-                              </div>
+                        {idPreview ? (
+                          <div className="flex flex-col items-center gap-2 w-full z-20">
+                            <img
+                              src={idPreview}
+                              alt="ID Preview"
+                              className="h-12 w-auto object-cover rounded-lg cursor-zoom-in border border-foreground/10 hover:opacity-90 transition-opacity"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                setZoomImage(idPreview);
+                              }}
+                            />
+                            <label className="text-[10px] text-[#6B46C1] hover:underline font-semibold cursor-pointer">
+                              Change File
                               <input
                                 type="file"
                                 accept="image/*"
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                className="hidden"
                                 onChange={(e) => handleFileChange("medId", e.target.files)}
                               />
-                            </>
-                          )}
+                            </label>
+                            <span className="text-[9px] text-foreground/45 text-center truncate max-w-full font-sans">
+                              {fileNames["medId"]}
+                            </span>
+                          </div>
+                        ) : (
+                          <>
+                            <div className="flex items-center gap-2">
+                              <Upload className="w-4 h-4 text-[#6B46C1]" />
+                              <span className="text-xs text-foreground/60 truncate max-w-[180px]">
+                                {fileNames["medId"] || "Upload ID (VoterID / Aadhar)"}
+                              </span>
+                            </div>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                              onChange={(e) => handleFileChange("medId", e.target.files)}
+                            />
+                          </>
+                        )}
                       </div>
                     </div>
 
@@ -374,8 +374,8 @@ export default function MedicalSupport() {
                           key={type}
                           onClick={() => toggleMedSupport(type)}
                           className={`p-3.5 rounded-xl border cursor-pointer flex items-center justify-between transition-all duration-300 text-xs ${medData.supportTypes.includes(type)
-                              ? "border-[#6B46C1] bg-[#CBB6F5]/10 text-foreground font-semibold"
-                              : "border-foreground/10 hover:border-foreground/20 text-foreground/80"
+                            ? "border-[#6B46C1] bg-[#CBB6F5]/10 text-foreground font-semibold"
+                            : "border-foreground/10 hover:border-foreground/20 text-foreground/80"
                             }`}
                         >
                           <span>{type}</span>
@@ -421,23 +421,23 @@ export default function MedicalSupport() {
                 </div>
 
                 {error && (
-                <div className="p-4 bg-red-50 text-red-650 rounded-xl text-xs flex items-center gap-2 font-medium">
-                  <AlertCircle className="w-5 h-5 shrink-0" />
-                  <span>{error}</span>
-                </div>
-              )}
+                  <div className="p-4 bg-red-50 text-red-650 rounded-xl text-xs flex items-center gap-2 font-medium">
+                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    <span>{error}</span>
+                  </div>
+                )}
 
-              {/* Submit Button */}
-              <div className="pt-6 border-t border-foreground/5 flex justify-end">
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-blue-950 bg-[#CBB6F5] hover:bg-[#b8daff] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-soft cursor-pointer"
-                >
-                  <Send className="w-4 h-4" />
-                  {submitting ? "Submitting..." : "Submit Request"}
-                </button>
-              </div>
+                {/* Submit Button */}
+                <div className="pt-6 border-t border-foreground/5 flex justify-end">
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-blue-950 bg-[#CBB6F5] hover:bg-[#b8daff] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-soft cursor-pointer"
+                  >
+                    <Send className="w-4 h-4" />
+                    {submitting ? "Submitting..." : "Submit Request"}
+                  </button>
+                </div>
               </form>
             )}
           </div>
