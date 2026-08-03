@@ -1,27 +1,50 @@
 'use server'
 
 import prisma from '@/lib/prisma'
-import { supabase } from '@/lib/supabase'
 import { revalidatePath } from 'next/cache'
+import fs from 'fs'
+import path from 'path'
 
-async function uploadFileToSupabase(file: File | null): Promise<string | null> {
+// Helper to upload files locally
+async function uploadFileLocally(file: File | null): Promise<string | null> {
   if (!file || file.size === 0) return null
   const arrayBuffer = await file.arrayBuffer()
   const buffer = Buffer.from(arrayBuffer)
   const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-  const path = `uploads/${filename}`
 
-  const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
-    contentType: file.type,
-    upsert: false
-  })
+  const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+  const uploadDir = path.join(uploadBase, 'uploads')
 
-  if (uploadError) {
-    throw new Error(`File upload failed: ${uploadError.message}`)
+  // Ensure local directory exists (auto-create)
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true })
   }
 
-  const { data: publicUrlData } = supabase.storage.from('assets').getPublicUrl(path)
-  return publicUrlData.publicUrl
+  const filePath = path.join(uploadDir, filename)
+  fs.writeFileSync(filePath, buffer)
+  return `/uploads/uploads/${filename}`
+}
+
+// Helper to delete local file from disk using its URL
+function deleteLocalFile(url: string | null) {
+  if (!url) return
+  try {
+    const urlObj = new URL(url, 'http://localhost')
+    const pathParts = urlObj.pathname.split('/')
+    const uploadsIndex = pathParts.findIndex((p, idx) => p === 'uploads' && pathParts[idx + 1] === 'uploads')
+    if (uploadsIndex !== -1) {
+      const filename = pathParts[uploadsIndex + 2]
+      if (filename) {
+        const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+        const filePath = path.join(uploadBase, 'uploads', decodeURIComponent(filename))
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath)
+        }
+      }
+    }
+  } catch (e) {
+    console.error('Error deleting local file:', e)
+  }
 }
 
 export async function submitMember(formData: FormData) {
@@ -57,9 +80,9 @@ export async function submitMember(formData: FormData) {
     }
 
     const interests: string[] = interestsJson ? JSON.parse(interestsJson) : []
-    const idProofUrl = await uploadFileToSupabase(idFile)
-    const residenceProofUrl = await uploadFileToSupabase(residenceFile)
-    const photoUrl = await uploadFileToSupabase(photoFile)
+    const idProofUrl = await uploadFileLocally(idFile)
+    const residenceProofUrl = await uploadFileLocally(residenceFile)
+    const photoUrl = await uploadFileLocally(photoFile)
 
     const record = await prisma.member.create({
       data: {
@@ -113,24 +136,9 @@ export async function deleteMember(id: string) {
   try {
     const existing = await prisma.member.findUnique({ where: { id } })
     if (existing) {
-      if (existing.idProofUrl) {
-        const match = existing.idProofUrl.match(/\/assets\/uploads\/(.+)$/)
-        if (match) {
-          await supabase.storage.from('assets').remove([`uploads/${match[1]}`])
-        }
-      }
-      if (existing.residenceProofUrl) {
-        const match = existing.residenceProofUrl.match(/\/assets\/uploads\/(.+)$/)
-        if (match) {
-          await supabase.storage.from('assets').remove([`uploads/${match[1]}`])
-        }
-      }
-      if (existing.photoUrl) {
-        const match = existing.photoUrl.match(/\/assets\/uploads\/(.+)$/)
-        if (match) {
-          await supabase.storage.from('assets').remove([`uploads/${match[1]}`])
-        }
-      }
+      deleteLocalFile(existing.idProofUrl)
+      deleteLocalFile(existing.residenceProofUrl)
+      deleteLocalFile(existing.photoUrl)
     }
     await prisma.member.delete({ where: { id } })
     revalidatePath('/admin/dashboard/member')

@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { createGalleryImage, deleteGalleryImage, updateGalleryImage } from '@/app/actions/gallery'
 import { Loader2, Plus, Trash2, Edit2, Eye, Upload, X } from 'lucide-react'
 import SmoothImage from '@/app/components/SmoothImage'
-import { supabase } from '@/lib/supabase'
 
 export default function GalleryClient({ initialCategories, initialImages }: { initialCategories: any[], initialImages: any[] }) {
   const [categories] = useState(initialCategories)
