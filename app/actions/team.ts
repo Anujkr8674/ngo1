@@ -2,7 +2,8 @@
 
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
-import { supabase } from '@/lib/supabase'
+import fs from 'fs'
+import path from 'path'
 
 export async function getTeamMembers() {
   return prisma.teamMember.findMany({
@@ -30,19 +31,17 @@ export async function createTeamMember(formData: FormData) {
       const buffer = Buffer.from(arrayBuffer)
       
       const filename = `${Date.now()}-${imageFile.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-      const path = `Aboutus/${filename}`
-
-      const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
-        contentType: imageFile.type,
-        upsert: false
-      })
-
-      if (uploadError) {
-        return { error: `Supabase upload failed: ${uploadError.message}` }
+      const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+      const uploadDir = path.join(uploadBase, 'Aboutus')
+      
+      // Ensure local directory exists
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true })
       }
 
-      const { data: publicUrlData } = supabase.storage.from('assets').getPublicUrl(path)
-      imageUrl = publicUrlData.publicUrl
+      const filePath = path.join(uploadDir, filename)
+      fs.writeFileSync(filePath, buffer)
+      imageUrl = `/uploads/Aboutus/${filename}`
     } else {
       return { error: 'Image is required for a new member' }
     }
@@ -100,28 +99,31 @@ export async function updateTeamMember(id: string, formData: FormData) {
       const buffer = Buffer.from(arrayBuffer)
       
       const filename = `${Date.now()}-${imageFile.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-      const path = `Aboutus/${filename}`
-
-      const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
-        contentType: imageFile.type,
-        upsert: false
-      })
-
-      if (uploadError) {
-        return { error: `Supabase upload failed: ${uploadError.message}` }
+      const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+      const uploadDir = path.join(uploadBase, 'Aboutus')
+      
+      // Ensure local directory exists
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true })
       }
 
-      const { data: publicUrlData } = supabase.storage.from('assets').getPublicUrl(path)
-      imageUrl = publicUrlData.publicUrl
+      const filePath = path.join(uploadDir, filename)
+      fs.writeFileSync(filePath, buffer)
+      imageUrl = `/uploads/Aboutus/${filename}`
 
       // Try to delete old image from storage if it was in the Aboutus folder
       try {
-        const urlObj = new URL(existingMember.image)
+        const urlObj = new URL(existingMember.image, 'http://localhost')
         const pathParts = urlObj.pathname.split('/')
         const index = pathParts.findIndex(p => p === 'Aboutus')
         if (index !== -1) {
-          const storagePath = pathParts.slice(index).map(decodeURIComponent).join('/')
-          await supabase.storage.from('assets').remove([storagePath])
+          const oldFilename = pathParts[index + 1]
+          if (oldFilename) {
+            const oldFilePath = path.join(uploadDir, decodeURIComponent(oldFilename))
+            if (fs.existsSync(oldFilePath)) {
+              fs.unlinkSync(oldFilePath)
+            }
+          }
         }
       } catch (e) {
         // Ignore parsing errors for external URLs
@@ -157,12 +159,19 @@ export async function deleteTeamMember(id: string) {
 
     // Try to delete image from storage
     try {
-      const urlObj = new URL(member.image)
+      const urlObj = new URL(member.image, 'http://localhost')
       const pathParts = urlObj.pathname.split('/')
       const index = pathParts.findIndex(p => p === 'Aboutus')
       if (index !== -1) {
-        const storagePath = pathParts.slice(index).map(decodeURIComponent).join('/')
-        await supabase.storage.from('assets').remove([storagePath])
+        const oldFilename = pathParts[index + 1]
+        if (oldFilename) {
+          const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+          const uploadDir = path.join(uploadBase, 'Aboutus')
+          const oldFilePath = path.join(uploadDir, decodeURIComponent(oldFilename))
+          if (fs.existsSync(oldFilePath)) {
+            fs.unlinkSync(oldFilePath)
+          }
+        }
       }
     } catch (e) {
       // Ignore URL parsing errors

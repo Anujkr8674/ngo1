@@ -2,7 +2,8 @@
 
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
-import { supabase } from '@/lib/supabase'
+import fs from 'fs'
+import path from 'path'
 
 export async function getGalleryCategories() {
   return prisma.galleryCategory.findMany({
@@ -25,25 +26,22 @@ export async function createGalleryCategory(name: string) {
 
 export async function deleteGalleryCategory(id: string) {
   try {
-    // Delete all images in this category from Supabase first
-    const images = await prisma.galleryImage.findMany({ where: { categoryId: id }, include: { category: true } })
-    
-    if (images.length > 0) {
-      const pathsToDelete = images.map(img => {
-        const urlObj = new URL(img.url)
-        const pathParts = urlObj.pathname.split('/')
-        const galleryIndex = pathParts.findIndex(p => p === 'Gallery')
-        if (galleryIndex !== -1) {
-          return pathParts.slice(galleryIndex).map(decodeURIComponent).join('/')
-        }
-        return ''
-      }).filter(p => p !== '')
+    const category = await prisma.galleryCategory.findUnique({ where: { id } })
+    if (!category) return { error: 'Category not found' }
 
-      if (pathsToDelete.length > 0) {
-        const { error: removeError } = await supabase.storage.from('assets').remove(pathsToDelete)
-        if (removeError) {
-          return { error: `Supabase Storage Error: ${removeError.message}` }
-        }
+    // Delete associated images on local disk
+    const images = await prisma.galleryImage.findMany({ where: { categoryId: id } })
+    
+    const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+    const categoryFolderName = category.name.replace(/[^a-zA-Z0-9_-]/g, '_')
+    const categoryDir = path.join(uploadBase, 'Gallery', categoryFolderName)
+
+    // Delete local category directory and all its files
+    if (fs.existsSync(categoryDir)) {
+      try {
+        fs.rmSync(categoryDir, { recursive: true, force: true })
+      } catch (err) {
+        console.error('Failed to delete category directory:', err)
       }
     }
 
@@ -86,19 +84,19 @@ export async function createGalleryImage(data: { url: string; caption?: string; 
       const buffer = Buffer.from(arrayBuffer)
       
       const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-      const path = `Gallery/${category.name}/${filename}`
+      const categoryFolderName = category.name.replace(/[^a-zA-Z0-9_-]/g, '_')
+      
+      const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+      const uploadDir = path.join(uploadBase, 'Gallery', categoryFolderName)
 
-      const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
-        contentType: file.type,
-        upsert: false
-      })
-
-      if (uploadError) {
-        throw new Error(`Supabase upload failed: ${uploadError.message}`)
+      // Ensure directory exists (auto-create dynamically category folder wise)
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true })
       }
 
-      const { data: publicUrlData } = supabase.storage.from('assets').getPublicUrl(path)
-      url = publicUrlData.publicUrl
+      const filePath = path.join(uploadDir, filename)
+      fs.writeFileSync(filePath, buffer)
+      url = `/uploads/Gallery/${categoryFolderName}/${filename}`
     } else {
       url = data.url
       caption = data.caption || ''
@@ -114,6 +112,9 @@ export async function createGalleryImage(data: { url: string; caption?: string; 
         url,
         caption,
         categoryId
+      },
+      include: {
+        category: true
       }
     })
 
@@ -130,17 +131,25 @@ export async function deleteGalleryImage(id: string) {
     const image = await prisma.galleryImage.findUnique({ where: { id }, include: { category: true } })
     if (!image) return { error: 'Image not found' }
 
-    // Extract path from URL
-    const urlObj = new URL(image.url)
-    const pathParts = urlObj.pathname.split('/')
-    const galleryIndex = pathParts.findIndex(p => p === 'Gallery')
-    if (galleryIndex !== -1) {
-      const storagePath = pathParts.slice(galleryIndex).map(decodeURIComponent).join('/')
-      const { error: removeError } = await supabase.storage.from('assets').remove([storagePath])
-      
-      if (removeError) {
-        return { error: `Supabase Storage Error: ${removeError.message}` }
+    // Delete image from local disk
+    try {
+      const urlObj = new URL(image.url, 'http://localhost')
+      const pathParts = urlObj.pathname.split('/')
+      const galleryIndex = pathParts.findIndex(p => p === 'Gallery')
+      if (galleryIndex !== -1) {
+        const categoryFolder = pathParts[galleryIndex + 1]
+        const filename = pathParts[galleryIndex + 2]
+        
+        if (categoryFolder && filename) {
+          const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+          const oldFilePath = path.join(uploadBase, 'Gallery', decodeURIComponent(categoryFolder), decodeURIComponent(filename))
+          if (fs.existsSync(oldFilePath)) {
+            fs.unlinkSync(oldFilePath)
+          }
+        }
       }
+    } catch (e) {
+      // Ignore URL parsing errors
     }
 
     await prisma.galleryImage.delete({ where: { id } })

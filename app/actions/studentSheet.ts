@@ -2,7 +2,8 @@
 
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
-import { supabase } from '@/lib/supabase'
+import fs from 'fs'
+import path from 'path'
 
 export async function getStudentSheets() {
   try {
@@ -51,19 +52,17 @@ export async function createStudentSheet(formData: FormData) {
       const buffer = Buffer.from(arrayBuffer)
       
       const filename = `${Date.now()}-${imageFile.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-      const path = `students/${filename}`
-
-      const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
-        contentType: imageFile.type,
-        upsert: false
-      })
-
-      if (uploadError) {
-        return { error: `Supabase upload failed: ${uploadError.message}` }
+      const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+      const uploadDir = path.join(uploadBase, 'students')
+      
+      // Ensure local directory exists (auto-create)
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true })
       }
 
-      const { data: publicUrlData } = supabase.storage.from('assets').getPublicUrl(path)
-      imageUrl = publicUrlData.publicUrl
+      const filePath = path.join(uploadDir, filename)
+      fs.writeFileSync(filePath, buffer)
+      imageUrl = `/uploads/students/${filename}`
     } else {
       return { error: 'Image file is required for a new student list' }
     }
@@ -111,27 +110,31 @@ export async function updateStudentSheet(id: string, formData: FormData) {
       const buffer = Buffer.from(arrayBuffer)
       
       const filename = `${Date.now()}-${imageFile.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-      const path = `students/${filename}`
-
-      const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
-        contentType: imageFile.type,
-        upsert: false
-      })
-
-      if (uploadError) {
-        return { error: `Supabase upload failed: ${uploadError.message}` }
+      const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+      const uploadDir = path.join(uploadBase, 'students')
+      
+      // Ensure local directory exists (auto-create)
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true })
       }
 
-      const { data: publicUrlData } = supabase.storage.from('assets').getPublicUrl(path)
-      imageUrl = publicUrlData.publicUrl
+      const filePath = path.join(uploadDir, filename)
+      fs.writeFileSync(filePath, buffer)
+      imageUrl = `/uploads/students/${filename}`
 
+      // Try to delete old image from local disk
       try {
-        const urlObj = new URL(existingSheet.src)
+        const urlObj = new URL(existingSheet.src, 'http://localhost')
         const pathParts = urlObj.pathname.split('/')
         const index = pathParts.findIndex(p => p === 'students')
         if (index !== -1) {
-          const storagePath = pathParts.slice(index).map(decodeURIComponent).join('/')
-          await supabase.storage.from('assets').remove([storagePath])
+          const oldFilename = pathParts[index + 1]
+          if (oldFilename) {
+            const oldFilePath = path.join(uploadDir, decodeURIComponent(oldFilename))
+            if (fs.existsSync(oldFilePath)) {
+              fs.unlinkSync(oldFilePath)
+            }
+          }
         }
       } catch (e) {
         // Ignore URL parsing errors
@@ -161,13 +164,21 @@ export async function deleteStudentSheet(id: string) {
       return { error: 'Record not found' }
     }
 
+    // Try to delete image from local disk
     try {
-      const urlObj = new URL(sheet.src)
+      const urlObj = new URL(sheet.src, 'http://localhost')
       const pathParts = urlObj.pathname.split('/')
       const index = pathParts.findIndex(p => p === 'students')
       if (index !== -1) {
-        const storagePath = pathParts.slice(index).map(decodeURIComponent).join('/')
-        await supabase.storage.from('assets').remove([storagePath])
+        const oldFilename = pathParts[index + 1]
+        if (oldFilename) {
+          const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+          const uploadDir = path.join(uploadBase, 'students')
+          const oldFilePath = path.join(uploadDir, decodeURIComponent(oldFilename))
+          if (fs.existsSync(oldFilePath)) {
+            fs.unlinkSync(oldFilePath)
+          }
+        }
       }
     } catch (e) {
       // Ignore URL parsing errors

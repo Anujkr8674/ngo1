@@ -66,26 +66,13 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
     
     try {
       const cat = categories.find(c => c.id === selectedCat)
-      const categoryName = cat ? cat.name : 'Uncategorized'
-      const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-      const path = `Gallery/${categoryName}/${filename}`
+      
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('caption', caption)
+      formData.append('categoryId', selectedCat)
 
-      // 1. Upload directly from browser to Supabase Storage
-      const bucketName = process.env.NEXT_PUBLIC_SUPABASE_BUCKET || 'assets'
-      const { error: uploadError } = await supabase.storage.from(bucketName).upload(path, file, {
-        contentType: file.type,
-        upsert: false
-      })
-
-      if (uploadError) {
-        throw new Error(`Supabase upload failed: ${uploadError.message}`)
-      }
-
-      // 2. Get Public URL
-      const { data: { publicUrl } } = supabase.storage.from('assets').getPublicUrl(path)
-
-      // 3. Save URL in Supabase Postgres
-      const res = await createGalleryImage({ url: publicUrl, caption, categoryId: selectedCat })
+      const res = await createGalleryImage(formData)
       if (res.error) {
         setImgError(res.error)
       } else if (res.image) {

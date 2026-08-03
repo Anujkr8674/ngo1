@@ -2,7 +2,8 @@
 
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
-import { supabase } from '@/lib/supabase'
+import fs from 'fs'
+import path from 'path'
 
 export async function getDonorCSRMembers() {
   try {
@@ -61,19 +62,17 @@ export async function createDonorCSRMember(formData: FormData) {
       const buffer = Buffer.from(arrayBuffer)
       
       const filename = `${Date.now()}-${imageFile.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-      const path = `donors-csr-sponsors-members/${filename}`
-
-      const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
-        contentType: imageFile.type,
-        upsert: false
-      })
-
-      if (uploadError) {
-        return { error: `Supabase upload failed: ${uploadError.message}` }
+      const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+      const uploadDir = path.join(uploadBase, 'donors-csr-sponsors-members')
+      
+      // Ensure local directory exists (auto-create)
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true })
       }
 
-      const { data: publicUrlData } = supabase.storage.from('assets').getPublicUrl(path)
-      imageUrl = publicUrlData.publicUrl
+      const filePath = path.join(uploadDir, filename)
+      fs.writeFileSync(filePath, buffer)
+      imageUrl = `/uploads/donors-csr-sponsors-members/${filename}`
     } else {
       return { error: 'Image file is required for a new sheet/sponsor' }
     }
@@ -122,27 +121,31 @@ export async function updateDonorCSRMember(id: string, formData: FormData) {
       const buffer = Buffer.from(arrayBuffer)
       
       const filename = `${Date.now()}-${imageFile.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-      const path = `donors-csr-sponsors-members/${filename}`
-
-      const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
-        contentType: imageFile.type,
-        upsert: false
-      })
-
-      if (uploadError) {
-        return { error: `Supabase upload failed: ${uploadError.message}` }
+      const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+      const uploadDir = path.join(uploadBase, 'donors-csr-sponsors-members')
+      
+      // Ensure local directory exists (auto-create)
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true })
       }
 
-      const { data: publicUrlData } = supabase.storage.from('assets').getPublicUrl(path)
-      imageUrl = publicUrlData.publicUrl
+      const filePath = path.join(uploadDir, filename)
+      fs.writeFileSync(filePath, buffer)
+      imageUrl = `/uploads/donors-csr-sponsors-members/${filename}`
 
+      // Try to delete old image from local disk
       try {
-        const urlObj = new URL(existingMember.src)
+        const urlObj = new URL(existingMember.src, 'http://localhost')
         const pathParts = urlObj.pathname.split('/')
         const index = pathParts.findIndex(p => p === 'donors-csr-sponsors-members')
         if (index !== -1) {
-          const storagePath = pathParts.slice(index).map(decodeURIComponent).join('/')
-          await supabase.storage.from('assets').remove([storagePath])
+          const oldFilename = pathParts[index + 1]
+          if (oldFilename) {
+            const oldFilePath = path.join(uploadDir, decodeURIComponent(oldFilename))
+            if (fs.existsSync(oldFilePath)) {
+              fs.unlinkSync(oldFilePath)
+            }
+          }
         }
       } catch (e) {
         // Ignore URL parsing errors
@@ -172,13 +175,21 @@ export async function deleteDonorCSRMember(id: string) {
       return { error: 'Record not found' }
     }
 
+    // Try to delete image from local disk
     try {
-      const urlObj = new URL(member.src)
+      const urlObj = new URL(member.src, 'http://localhost')
       const pathParts = urlObj.pathname.split('/')
       const index = pathParts.findIndex(p => p === 'donors-csr-sponsors-members')
       if (index !== -1) {
-        const storagePath = pathParts.slice(index).map(decodeURIComponent).join('/')
-        await supabase.storage.from('assets').remove([storagePath])
+        const oldFilename = pathParts[index + 1]
+        if (oldFilename) {
+          const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+          const uploadDir = path.join(uploadBase, 'donors-csr-sponsors-members')
+          const oldFilePath = path.join(uploadDir, decodeURIComponent(oldFilename))
+          if (fs.existsSync(oldFilePath)) {
+            fs.unlinkSync(oldFilePath)
+          }
+        }
       }
     } catch (e) {
       // Ignore URL parsing errors

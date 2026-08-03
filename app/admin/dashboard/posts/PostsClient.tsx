@@ -5,7 +5,6 @@ import { createBlogPost, updateBlogPost, deleteBlogPost } from '@/app/actions/bl
 import { Loader2, Plus, Trash2, Edit2, FileText, Upload, X, ArrowLeft, Eye, Play } from 'lucide-react'
 import TiptapEditor from '@/app/components/TiptapEditor'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
 
 interface PostsClientProps {
   initialPosts: any[]
@@ -119,45 +118,31 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
 
     setLoading(true)
     try {
-      const uploadedUrls: string[] = []
-      const bucketName = process.env.NEXT_PUBLIC_SUPABASE_BUCKET || 'assets'
-
-      for (const file of files) {
-        const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-        const path = `Blogs/${slug}/${filename}`
-
-        const { error: uploadError } = await supabase.storage.from(bucketName).upload(path, file, {
-          contentType: file.type,
-          upsert: false
-        })
-
-        if (uploadError) {
-          throw new Error(`Supabase upload failed for ${file.name}: ${uploadError.message}`)
-        }
-
-        const { data: { publicUrl } } = supabase.storage.from(bucketName).getPublicUrl(path)
-        uploadedUrls.push(publicUrl)
+      const formData = new FormData()
+      formData.append('title', title.trim())
+      formData.append('slug', slug.trim())
+      formData.append('content', content.trim())
+      formData.append('excerpt', excerpt.trim())
+      formData.append('author', author.trim() || 'Admin')
+      formData.append('readTime', String(readTime))
+      formData.append('published', String(published))
+      if (categoryId) {
+        formData.append('categoryId', categoryId)
+      }
+      
+      if (postId) {
+        formData.append('existingImages', JSON.stringify(existingImages))
       }
 
-      const allImages = [...existingImages, ...uploadedUrls]
-
-      const postData = {
-        title,
-        slug,
-        content,
-        excerpt,
-        author,
-        readTime,
-        published,
-        categoryId: categoryId || null,
-        images: allImages,
+      for (const file of files) {
+        formData.append('files', file)
       }
 
       let res
       if (postId) {
-        res = await updateBlogPost(postId, postData)
+        res = await updateBlogPost(postId, formData)
       } else {
-        res = await createBlogPost(postData)
+        res = await createBlogPost(formData)
       }
 
       if (res.success && res.post) {

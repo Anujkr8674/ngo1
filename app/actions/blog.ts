@@ -2,7 +2,8 @@
 
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
-import { supabase } from '@/lib/supabase'
+import fs from 'fs'
+import path from 'path'
 
 export async function getBlogCategories() {
   try {
@@ -115,27 +116,25 @@ export async function createBlogPost(data: any) {
       published = data.get('published') === 'true'
       categoryId = (data.get('categoryId') as string) || null
       const files = data.getAll('files') as File[]
-      const bucketName = process.env.NEXT_PUBLIC_SUPABASE_BUCKET || 'assets'
+
+      const slug = slugRaw.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-')
+      const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+      const uploadDir = path.join(uploadBase, 'blogs', slug)
+
+      // Ensure directory exists dynamically per blog post
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true })
+      }
 
       for (const file of files) {
         if (file && file.size > 0) {
           const arrayBuffer = await file.arrayBuffer()
           const buffer = Buffer.from(arrayBuffer)
           const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-          const slug = slugRaw.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-')
-          const path = `Blogs/${slug}/${filename}`
-
-          const { error: uploadError } = await supabase.storage.from(bucketName).upload(path, buffer, {
-            contentType: file.type,
-            upsert: false
-          })
-
-          if (uploadError) {
-            throw new Error(`Supabase upload failed for ${file.name}: ${uploadError.message}`)
-          }
-
-          const { data: { publicUrl } } = supabase.storage.from(bucketName).getPublicUrl(path)
-          imageUrls.push(publicUrl)
+          
+          const filePath = path.join(uploadDir, filename)
+          fs.writeFileSync(filePath, buffer)
+          imageUrls.push(`/uploads/blogs/${slug}/${filename}`)
         }
       }
     } else {
@@ -197,7 +196,14 @@ export async function updateBlogPost(id: string, data: any) {
     let published: boolean
     let categoryId: string | null = null
     let newImageUrls: string[] = []
-    const bucketName = process.env.NEXT_PUBLIC_SUPABASE_BUCKET || 'assets'
+
+    const currentPost = await prisma.blogPost.findUnique({ where: { id } })
+    if (!currentPost) {
+      return { error: 'Blog post not found' }
+    }
+
+    const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+    const oldSlug = currentPost.slug
 
     if (data instanceof FormData) {
       title = data.get('title') as string
@@ -215,24 +221,37 @@ export async function updateBlogPost(id: string, data: any) {
 
       const slug = slugRaw.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-')
 
+      // Rename directory if slug changed
+      let finalSlug = slug
+      if (oldSlug !== slug) {
+        const oldDir = path.join(uploadBase, 'blogs', oldSlug)
+        const newDir = path.join(uploadBase, 'blogs', slug)
+        if (fs.existsSync(oldDir)) {
+          if (!fs.existsSync(newDir)) {
+            fs.mkdirSync(path.dirname(newDir), { recursive: true })
+            fs.renameSync(oldDir, newDir)
+          }
+        }
+        // Update urls list to new paths
+        newImageUrls = newImageUrls.map(img => {
+          return img.replace(`/uploads/blogs/${oldSlug}/`, `/uploads/blogs/${slug}/`)
+        })
+      }
+
+      const uploadDir = path.join(uploadBase, 'blogs', finalSlug)
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true })
+      }
+
       for (const file of files) {
         if (file && file.size > 0) {
           const arrayBuffer = await file.arrayBuffer()
           const buffer = Buffer.from(arrayBuffer)
           const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-          const path = `Blogs/${slug}/${filename}`
-
-          const { error: uploadError } = await supabase.storage.from(bucketName).upload(path, buffer, {
-            contentType: file.type,
-            upsert: false
-          })
-
-          if (uploadError) {
-            throw new Error(`Supabase upload failed for ${file.name}: ${uploadError.message}`)
-          }
-
-          const { data: { publicUrl } } = supabase.storage.from(bucketName).getPublicUrl(path)
-          newImageUrls.push(publicUrl)
+          
+          const filePath = path.join(uploadDir, filename)
+          fs.writeFileSync(filePath, buffer)
+          newImageUrls.push(`/uploads/blogs/${finalSlug}/${filename}`)
         }
       }
     } else {
@@ -262,30 +281,25 @@ export async function updateBlogPost(id: string, data: any) {
       return { error: 'A blog post with this slug already exists' }
     }
 
-    const currentPost = await prisma.blogPost.findUnique({ where: { id } })
-    if (!currentPost) {
-      return { error: 'Blog post not found' }
-    }
-
     // Delete any images that were in currentPost but are no longer in newImageUrls
     const imagesToDelete = currentPost.images.filter(img => !newImageUrls.includes(img))
-    if (imagesToDelete.length > 0) {
-      const pathsToDelete = imagesToDelete.map(img => {
-        try {
-          const urlObj = new URL(img)
-          const pathParts = urlObj.pathname.split('/')
-          const bucketIndex = pathParts.findIndex(p => p === bucketName)
-          if (bucketIndex !== -1) {
-            return pathParts.slice(bucketIndex + 1).map(decodeURIComponent).join('/')
+    for (const img of imagesToDelete) {
+      try {
+        const urlObj = new URL(img, 'http://localhost')
+        const pathParts = urlObj.pathname.split('/')
+        const blogsIndex = pathParts.findIndex(p => p === 'blogs')
+        if (blogsIndex !== -1) {
+          const postSlug = pathParts[blogsIndex + 1]
+          const filename = pathParts[blogsIndex + 2]
+          if (postSlug && filename) {
+            const oldFilePath = path.join(uploadBase, 'blogs', decodeURIComponent(postSlug), decodeURIComponent(filename))
+            if (fs.existsSync(oldFilePath)) {
+              fs.unlinkSync(oldFilePath)
+            }
           }
-        } catch (e) {
-          console.error('Error parsing image URL for deletion:', img, e)
         }
-        return ''
-      }).filter(p => p !== '')
-
-      if (pathsToDelete.length > 0) {
-        await supabase.storage.from(bucketName).remove(pathsToDelete)
+      } catch (e) {
+        console.error('Error deleting local blog image:', img, e)
       }
     }
 
@@ -325,28 +339,15 @@ export async function deleteBlogPost(id: string) {
       return { error: 'Blog post not found' }
     }
 
-    const bucketName = process.env.NEXT_PUBLIC_SUPABASE_BUCKET || 'assets'
+    const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+    const blogDir = path.join(uploadBase, 'blogs', post.slug)
 
-    if (post.images && post.images.length > 0) {
-      const pathsToDelete = post.images.map(img => {
-        try {
-          const urlObj = new URL(img)
-          const pathParts = urlObj.pathname.split('/')
-          const bucketIndex = pathParts.findIndex(p => p === bucketName)
-          if (bucketIndex !== -1) {
-            return pathParts.slice(bucketIndex + 1).map(decodeURIComponent).join('/')
-          }
-        } catch (e) {
-          console.error('Error parsing image URL for deletion:', img, e)
-        }
-        return ''
-      }).filter(p => p !== '')
-
-      if (pathsToDelete.length > 0) {
-        const { error: deleteError } = await supabase.storage.from(bucketName).remove(pathsToDelete)
-        if (deleteError) {
-          console.error('Error deleting files from Supabase:', deleteError.message)
-        }
+    // Delete entire dynamic subfolder recursively
+    if (fs.existsSync(blogDir)) {
+      try {
+        fs.rmSync(blogDir, { recursive: true, force: true })
+      } catch (err) {
+        console.error('Failed to delete blog directory:', err)
       }
     }
 

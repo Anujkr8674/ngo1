@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Heart, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import WhatsAppButton from "./WhatsAppButton";
 
 interface NavLink {
   href?: string;
@@ -289,6 +290,7 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+      <WhatsAppButton />
     </>
   );
 }

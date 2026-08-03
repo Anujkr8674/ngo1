@@ -1,29 +1,50 @@
 'use server'
 
 import prisma from '@/lib/prisma'
-import { supabase } from '@/lib/supabase'
 import { revalidatePath } from 'next/cache'
+import fs from 'fs'
+import path from 'path'
 
-// Helper to upload files to Supabase Storage
-async function uploadFileToSupabase(file: File | null): Promise<string | null> {
+// Helper to upload files locally
+async function uploadFileLocally(file: File | null): Promise<string | null> {
   if (!file || file.size === 0) return null
   const arrayBuffer = await file.arrayBuffer()
   const buffer = Buffer.from(arrayBuffer)
-  // Replace non-alphanumeric chars to make safe filename
   const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-  const path = `uploads/${filename}`
 
-  const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
-    contentType: file.type,
-    upsert: false
-  })
+  const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+  const uploadDir = path.join(uploadBase, 'uploads')
 
-  if (uploadError) {
-    throw new Error(`File upload failed: ${uploadError.message}`)
+  // Ensure local directory exists (auto-create)
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true })
   }
 
-  const { data: publicUrlData } = supabase.storage.from('assets').getPublicUrl(path)
-  return publicUrlData.publicUrl
+  const filePath = path.join(uploadDir, filename)
+  fs.writeFileSync(filePath, buffer)
+  return `/uploads/uploads/${filename}`
+}
+
+// Helper to delete local file from disk using its URL
+function deleteLocalFile(url: string | null) {
+  if (!url) return
+  try {
+    const urlObj = new URL(url, 'http://localhost')
+    const pathParts = urlObj.pathname.split('/')
+    const uploadsIndex = pathParts.findIndex((p, idx) => p === 'uploads' && pathParts[idx + 1] === 'uploads')
+    if (uploadsIndex !== -1) {
+      const filename = pathParts[uploadsIndex + 2]
+      if (filename) {
+        const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+        const filePath = path.join(uploadBase, 'uploads', decodeURIComponent(filename))
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath)
+        }
+      }
+    }
+  } catch (e) {
+    console.error('Error deleting local file:', e)
+  }
 }
 
 // ----------------------------------------------------
@@ -56,7 +77,7 @@ export async function submitHelpEachOther(formData: FormData) {
     }
 
     const helpTypes: string[] = helpTypesJson ? JSON.parse(helpTypesJson) : []
-    const idProofUrl = await uploadFileToSupabase(idFile)
+    const idProofUrl = await uploadFileLocally(idFile)
     const age = ageStr ? parseInt(ageStr, 10) : null
 
     const record = await prisma.helpEachOther.create({
@@ -105,12 +126,7 @@ export async function deleteHelpEachOther(id: string) {
   try {
     const existing = await prisma.helpEachOther.findUnique({ where: { id } })
     if (existing?.idProofUrl) {
-      // Clean up Supabase file if it is stored there
-      const match = existing.idProofUrl.match(/\/assets\/uploads\/(.+)$/)
-      if (match) {
-        const filePath = `uploads/${match[1]}`
-        await supabase.storage.from('assets').remove([filePath])
-      }
+      deleteLocalFile(existing.idProofUrl)
     }
     await prisma.helpEachOther.delete({ where: { id } })
     revalidatePath('/admin/dashboard/get-help/each-other')
@@ -177,9 +193,9 @@ export async function submitEducationSupport(formData: FormData) {
 
     const otherSupport: string[] = otherSupportJson ? JSON.parse(otherSupportJson) : []
 
-    const idProofUrl = await uploadFileToSupabase(idFile)
-    const photoUrl = await uploadFileToSupabase(photoFile)
-    const passbookUrl = await uploadFileToSupabase(passbookFile)
+    const idProofUrl = await uploadFileLocally(idFile)
+    const photoUrl = await uploadFileLocally(photoFile)
+    const passbookUrl = await uploadFileLocally(passbookFile)
 
     const record = await prisma.educationSupport.create({
       data: {
@@ -239,22 +255,9 @@ export async function deleteEducationSupport(id: string) {
   try {
     const existing = await prisma.educationSupport.findUnique({ where: { id } })
     if (existing) {
-      const pathsToDelete: string[] = []
-      if (existing.idProofUrl) {
-        const match = existing.idProofUrl.match(/\/assets\/uploads\/(.+)$/)
-        if (match) pathsToDelete.push(`uploads/${match[1]}`)
-      }
-      if (existing.photoUrl) {
-        const match = existing.photoUrl.match(/\/assets\/uploads\/(.+)$/)
-        if (match) pathsToDelete.push(`uploads/${match[1]}`)
-      }
-      if (existing.passbookUrl) {
-        const match = existing.passbookUrl.match(/\/assets\/uploads\/(.+)$/)
-        if (match) pathsToDelete.push(`uploads/${match[1]}`)
-      }
-      if (pathsToDelete.length > 0) {
-        await supabase.storage.from('assets').remove(pathsToDelete)
-      }
+      deleteLocalFile(existing.idProofUrl)
+      deleteLocalFile(existing.photoUrl)
+      deleteLocalFile(existing.passbookUrl)
     }
     await prisma.educationSupport.delete({ where: { id } })
     revalidatePath('/admin/dashboard/get-help/education')
@@ -296,8 +299,8 @@ export async function submitElderlySupport(formData: FormData) {
     const age = parseInt(ageStr, 10)
     const supportTypes: string[] = supportTypesJson ? JSON.parse(supportTypesJson) : []
 
-    const idProofUrl = await uploadFileToSupabase(idFile)
-    const photoUrl = await uploadFileToSupabase(photoFile)
+    const idProofUrl = await uploadFileLocally(idFile)
+    const photoUrl = await uploadFileLocally(photoFile)
 
     const record = await prisma.elderlySupport.create({
       data: {
@@ -343,18 +346,8 @@ export async function deleteElderlySupport(id: string) {
   try {
     const existing = await prisma.elderlySupport.findUnique({ where: { id } })
     if (existing) {
-      const pathsToDelete: string[] = []
-      if (existing.idProofUrl) {
-        const match = existing.idProofUrl.match(/\/assets\/uploads\/(.+)$/)
-        if (match) pathsToDelete.push(`uploads/${match[1]}`)
-      }
-      if (existing.photoUrl) {
-        const match = existing.photoUrl.match(/\/assets\/uploads\/(.+)$/)
-        if (match) pathsToDelete.push(`uploads/${match[1]}`)
-      }
-      if (pathsToDelete.length > 0) {
-        await supabase.storage.from('assets').remove(pathsToDelete)
-      }
+      deleteLocalFile(existing.idProofUrl)
+      deleteLocalFile(existing.photoUrl)
     }
     await prisma.elderlySupport.delete({ where: { id } })
     revalidatePath('/admin/dashboard/get-help/elderly')
@@ -392,7 +385,7 @@ export async function submitMedicalSupport(formData: FormData) {
     }
 
     const supportTypes: string[] = supportTypesJson ? JSON.parse(supportTypesJson) : []
-    const idProofUrl = await uploadFileToSupabase(idFile)
+    const idProofUrl = await uploadFileLocally(idFile)
 
     const record = await prisma.medicalSupport.create({
       data: {
@@ -436,11 +429,7 @@ export async function deleteMedicalSupport(id: string) {
   try {
     const existing = await prisma.medicalSupport.findUnique({ where: { id } })
     if (existing?.idProofUrl) {
-      const match = existing.idProofUrl.match(/\/assets\/uploads\/(.+)$/)
-      if (match) {
-        const filePath = `uploads/${match[1]}`
-        await supabase.storage.from('assets').remove([filePath])
-      }
+      deleteLocalFile(existing.idProofUrl)
     }
     await prisma.medicalSupport.delete({ where: { id } })
     revalidatePath('/admin/dashboard/get-help/medical')

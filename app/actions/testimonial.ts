@@ -2,7 +2,8 @@
 
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
-import { supabase } from '@/lib/supabase'
+import fs from 'fs'
+import path from 'path'
 
 export async function getTestimonials() {
   try {
@@ -64,24 +65,23 @@ export async function createTestimonial(formData: FormData) {
     let imageUrl = ''
     let videoUrl = ''
 
+    const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+    const uploadDir = path.join(uploadBase, 'testimonal')
+    
+    // Ensure local directory exists (auto-create)
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true })
+    }
+
     // Upload Cover Image (Optional)
     if (imageFile && imageFile.size > 0) {
       const arrayBuffer = await imageFile.arrayBuffer()
       const buffer = Buffer.from(arrayBuffer)
       const filename = `${Date.now()}-${imageFile.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-      const path = `testimonal/${filename}`
-
-      const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
-        contentType: imageFile.type,
-        upsert: false
-      })
-      if (uploadError) {
-        return { error: `Cover image upload failed: ${uploadError.message}` }
-      }
-      const { data: publicUrlData } = supabase.storage.from('assets').getPublicUrl(path)
-      imageUrl = publicUrlData.publicUrl
+      const filePath = path.join(uploadDir, filename)
+      fs.writeFileSync(filePath, buffer)
+      imageUrl = `/uploads/testimonal/${filename}`
     } else {
-      // Default placeholder or empty string
       imageUrl = 'https://live4help.org/wp-content/uploads/2026/03/Baishali-Roy-scaled.png'
     }
 
@@ -90,17 +90,9 @@ export async function createTestimonial(formData: FormData) {
       const arrayBuffer = await videoFile.arrayBuffer()
       const buffer = Buffer.from(arrayBuffer)
       const filename = `${Date.now()}-${videoFile.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-      const path = `testimonal/${filename}`
-
-      const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
-        contentType: videoFile.type,
-        upsert: false
-      })
-      if (uploadError) {
-        return { error: `Video upload failed: ${uploadError.message}` }
-      }
-      const { data: publicUrlData } = supabase.storage.from('assets').getPublicUrl(path)
-      videoUrl = publicUrlData.publicUrl
+      const filePath = path.join(uploadDir, filename)
+      fs.writeFileSync(filePath, buffer)
+      videoUrl = `/uploads/testimonal/${filename}`
     }
 
     const last = await prisma.testimonial.findFirst({
@@ -145,31 +137,36 @@ export async function updateTestimonial(id: string, formData: FormData) {
     let imageUrl = existing.image
     let videoUrl = existing.video
 
+    const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+    const uploadDir = path.join(uploadBase, 'testimonal')
+    
+    // Ensure local directory exists (auto-create)
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true })
+    }
+
     // Update Cover Image
     if (imageFile && imageFile.size > 0) {
       const arrayBuffer = await imageFile.arrayBuffer()
       const buffer = Buffer.from(arrayBuffer)
       const filename = `${Date.now()}-${imageFile.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-      const path = `testimonal/${filename}`
+      const filePath = path.join(uploadDir, filename)
+      fs.writeFileSync(filePath, buffer)
+      imageUrl = `/uploads/testimonal/${filename}`
 
-      const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
-        contentType: imageFile.type,
-        upsert: false
-      })
-      if (uploadError) {
-        return { error: `Cover image upload failed: ${uploadError.message}` }
-      }
-      const { data: publicUrlData } = supabase.storage.from('assets').getPublicUrl(path)
-      imageUrl = publicUrlData.publicUrl
-
-      // Clean up old image if it was a Supabase file
+      // Clean up old image if it was local
       try {
-        const urlObj = new URL(existing.image)
+        const urlObj = new URL(existing.image, 'http://localhost')
         const pathParts = urlObj.pathname.split('/')
         const index = pathParts.findIndex(p => p === 'testimonal')
         if (index !== -1) {
-          const storagePath = pathParts.slice(index).map(decodeURIComponent).join('/')
-          await supabase.storage.from('assets').remove([storagePath])
+          const oldFilename = pathParts[index + 1]
+          if (oldFilename) {
+            const oldFilePath = path.join(uploadDir, decodeURIComponent(oldFilename))
+            if (fs.existsSync(oldFilePath)) {
+              fs.unlinkSync(oldFilePath)
+            }
+          }
         }
       } catch (e) {
         // Ignore URL parsing errors
@@ -181,26 +178,23 @@ export async function updateTestimonial(id: string, formData: FormData) {
       const arrayBuffer = await videoFile.arrayBuffer()
       const buffer = Buffer.from(arrayBuffer)
       const filename = `${Date.now()}-${videoFile.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`
-      const path = `testimonal/${filename}`
+      const filePath = path.join(uploadDir, filename)
+      fs.writeFileSync(filePath, buffer)
+      videoUrl = `/uploads/testimonal/${filename}`
 
-      const { error: uploadError } = await supabase.storage.from('assets').upload(path, buffer, {
-        contentType: videoFile.type,
-        upsert: false
-      })
-      if (uploadError) {
-        return { error: `Video upload failed: ${uploadError.message}` }
-      }
-      const { data: publicUrlData } = supabase.storage.from('assets').getPublicUrl(path)
-      videoUrl = publicUrlData.publicUrl
-
-      // Clean up old video if it was a Supabase file
+      // Clean up old video if it was local
       try {
-        const urlObj = new URL(existing.video)
+        const urlObj = new URL(existing.video, 'http://localhost')
         const pathParts = urlObj.pathname.split('/')
         const index = pathParts.findIndex(p => p === 'testimonal')
         if (index !== -1) {
-          const storagePath = pathParts.slice(index).map(decodeURIComponent).join('/')
-          await supabase.storage.from('assets').remove([storagePath])
+          const oldFilename = pathParts[index + 1]
+          if (oldFilename) {
+            const oldFilePath = path.join(uploadDir, decodeURIComponent(oldFilename))
+            if (fs.existsSync(oldFilePath)) {
+              fs.unlinkSync(oldFilePath)
+            }
+          }
         }
       } catch (e) {
         // Ignore URL parsing errors
@@ -232,27 +226,40 @@ export async function deleteTestimonial(id: string) {
       return { error: 'Testimonial not found' }
     }
 
-    // Delete cover image from Supabase
+    const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
+    const uploadDir = path.join(uploadBase, 'testimonal')
+
+    // Delete cover image from local disk
     try {
-      const urlObj = new URL(testimonial.image)
+      const urlObj = new URL(testimonial.image, 'http://localhost')
       const pathParts = urlObj.pathname.split('/')
       const index = pathParts.findIndex(p => p === 'testimonal')
       if (index !== -1) {
-        const storagePath = pathParts.slice(index).map(decodeURIComponent).join('/')
-        await supabase.storage.from('assets').remove([storagePath])
+        const oldFilename = pathParts[index + 1]
+        if (oldFilename) {
+          const oldFilePath = path.join(uploadDir, decodeURIComponent(oldFilename))
+          if (fs.existsSync(oldFilePath)) {
+            fs.unlinkSync(oldFilePath)
+          }
+        }
       }
     } catch (e) {
       // Ignore URL parsing errors
     }
 
-    // Delete video from Supabase
+    // Delete video from local disk
     try {
-      const urlObj = new URL(testimonial.video)
+      const urlObj = new URL(testimonial.video, 'http://localhost')
       const pathParts = urlObj.pathname.split('/')
       const index = pathParts.findIndex(p => p === 'testimonal')
       if (index !== -1) {
-        const storagePath = pathParts.slice(index).map(decodeURIComponent).join('/')
-        await supabase.storage.from('assets').remove([storagePath])
+        const oldFilename = pathParts[index + 1]
+        if (oldFilename) {
+          const oldFilePath = path.join(uploadDir, decodeURIComponent(oldFilename))
+          if (fs.existsSync(oldFilePath)) {
+            fs.unlinkSync(oldFilePath)
+          }
+        }
       }
     } catch (e) {
       // Ignore URL parsing errors

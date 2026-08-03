@@ -270,14 +270,14 @@ export default function Contact() {
                         {/* Google Maps Iframe */}
                         <div className="aspect-[4/3] rounded-[2.5rem] overflow-hidden border border-[#EEB898] shadow-soft relative">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.9464528131336!2d77.0182606!3d28.586358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1af8d8a01bf7%3A0xe54e38c946261536!2sSector%2019%20Dwarka!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.2625129994645!2d77.0435536!3d28.572393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b6d82dd975d%3A0xe3e5f41505df639d!2sLIVE%204%20HELP%20FOUNDATION!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
                                 width="100%"
                                 height="100%"
                                 style={{ border: 0 }}
                                 allowFullScreen
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
-                                title="Live 4 Help Foundation office location at Sector 19B Dwarka"
+                                title="Live 4 Help Foundation office location"
                             ></iframe>
                         </div>
 
