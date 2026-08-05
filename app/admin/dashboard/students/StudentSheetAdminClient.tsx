@@ -186,29 +186,33 @@ export default function StudentSheetAdminClient({ initialSheets }: StudentSheetA
 
     setReordering(true)
     
-    const activeList = [...filteredSheets]
-    const temp = activeList[index]
-    activeList[index] = activeList[targetIndex]
-    activeList[targetIndex] = temp
+    const item1 = filteredSheets[index]
+    const item2 = filteredSheets[targetIndex]
 
-    const updatedFullList = sheets.map(s => {
-      const activeIdx = activeList.findIndex(as => as.id === s.id)
-      if (activeIdx !== -1) {
-        return activeList[activeIdx]
+    const idx1 = sheets.findIndex(s => s.id === item1.id)
+    const idx2 = sheets.findIndex(s => s.id === item2.id)
+
+    if (idx1 !== -1 && idx2 !== -1) {
+      const updatedFullList = [...sheets]
+      const temp = updatedFullList[idx1]
+      updatedFullList[idx1] = updatedFullList[idx2]
+      updatedFullList[idx2] = temp
+
+      setSheets(updatedFullList)
+
+      try {
+        const res = await reorderStudentSheets(updatedFullList.map(s => s.id))
+        if (!res.success) {
+          alert('Failed to save order: ' + res.error)
+          setSheets(sheets)
+        }
+      } catch (err: any) {
+        console.error(err)
+        setSheets(sheets)
+      } finally {
+        setReordering(false)
       }
-      return s
-    })
-
-    setSheets(updatedFullList)
-
-    try {
-      const res = await reorderStudentSheets(updatedFullList.map(s => s.id))
-      if (!res.success) {
-        alert('Failed to save order: ' + res.error)
-      }
-    } catch (err: any) {
-      console.error(err)
-    } finally {
+    } else {
       setReordering(false)
     }
   }

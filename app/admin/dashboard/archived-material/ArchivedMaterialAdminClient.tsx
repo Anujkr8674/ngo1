@@ -175,31 +175,33 @@ export default function ArchivedMaterialAdminClient({ initialMaterials }: Archiv
 
     setReordering(true)
     
-    // Perform swap on active list
-    const activeList = [...filteredMaterials]
-    const temp = activeList[index]
-    activeList[index] = activeList[targetIndex]
-    activeList[targetIndex] = temp
+    const item1 = filteredMaterials[index]
+    const item2 = filteredMaterials[targetIndex]
 
-    // Reconstruct full list with updated order
-    const updatedFullList = materials.map(m => {
-      const activeIdx = activeList.findIndex(am => am.id === m.id)
-      if (activeIdx !== -1) {
-        return activeList[activeIdx]
+    const idx1 = materials.findIndex(m => m.id === item1.id)
+    const idx2 = materials.findIndex(m => m.id === item2.id)
+
+    if (idx1 !== -1 && idx2 !== -1) {
+      const updatedFullList = [...materials]
+      const temp = updatedFullList[idx1]
+      updatedFullList[idx1] = updatedFullList[idx2]
+      updatedFullList[idx2] = temp
+
+      setMaterials(updatedFullList)
+
+      try {
+        const res = await reorderArchivedMaterials(updatedFullList.map(m => m.id))
+        if (!res.success) {
+          alert('Failed to save order: ' + res.error)
+          setMaterials(materials)
+        }
+      } catch (err: any) {
+        console.error(err)
+        setMaterials(materials)
+      } finally {
+        setReordering(false)
       }
-      return m
-    })
-
-    setMaterials(updatedFullList)
-
-    try {
-      const res = await reorderArchivedMaterials(updatedFullList.map(m => m.id))
-      if (!res.success) {
-        alert('Failed to save order: ' + res.error)
-      }
-    } catch (err: any) {
-      console.error(err)
-    } finally {
+    } else {
       setReordering(false)
     }
   }

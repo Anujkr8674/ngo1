@@ -8,6 +8,13 @@ import SmoothImage from "../components/SmoothImage";
 export default function GalleryClient({ initialCategories, initialImages }: { initialCategories: any[], initialImages: any[] }) {
   const [filter, setFilter] = useState("all");
   const [activeImage, setActiveImage] = useState<{ src: string; caption: string } | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 20;
+
+  const handleFilterChange = (catId: string) => {
+    setFilter(catId);
+    setCurrentPage(1);
+  };
 
   const categories = [
     { id: "all", name: "All Photos" },
@@ -17,6 +24,9 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
   const filteredPhotos = filter === "all"
     ? initialImages
     : initialImages.filter(p => p.categoryId === filter);
+
+  const totalPages = Math.ceil(filteredPhotos.length / ITEMS_PER_PAGE);
+  const displayedPhotos = filteredPhotos.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <div className="flex flex-col w-full">
@@ -56,7 +66,7 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
           {categories.map((cat) => (
             <button
               key={cat.id}
-              onClick={() => setFilter(cat.id)}
+              onClick={() => handleFilterChange(cat.id)}
               className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-premium cursor-pointer ${filter === cat.id
                 ? "bg-foreground text-background shadow-soft"
                 : "bg-white text-foreground/80 hover:text-foreground border border-foreground/5 shadow-soft hover:"
@@ -69,14 +79,14 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
       </section>
 
       {/* Grid of Images */}
-      <section className="py-8 px-6 md:px-12 pb-16">
+      <section id="gallery-grid" className="py-8 px-6 md:px-12 pb-16">
         <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto min-h-[400px]">
           <motion.div
             layout
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
           >
             <AnimatePresence mode="popLayout">
-              {filteredPhotos.map((item, idx) => (
+              {displayedPhotos.map((item, idx) => (
                 <motion.div
                   layout
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -108,12 +118,59 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
                 </motion.div>
               ))}
             </AnimatePresence>
-            {filteredPhotos.length === 0 && (
+            {displayedPhotos.length === 0 && (
               <div className="col-span-full py-12 text-center text-gray-500">
                 No images available in this category yet.
               </div>
             )}
           </motion.div>
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-1.5 mt-12 pt-6 border-t border-[#C1D6C1]/50">
+              <button
+                disabled={currentPage === 1}
+                onClick={() => {
+                  setCurrentPage(currentPage - 1);
+                  document.getElementById('gallery-grid')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-4 py-2 text-xs font-bold rounded-xl border border-[#C1D6C1]/50 bg-white/60 hover:bg-white text-foreground/75 disabled:opacity-40 transition-all cursor-pointer"
+              >
+                Previous
+              </button>
+
+              {Array.from({ length: totalPages }).map((_, idx) => {
+                const pageNum = idx + 1;
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => {
+                      setCurrentPage(pageNum);
+                      document.getElementById('gallery-grid')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className={`px-3.5 py-2 text-xs font-bold rounded-xl border transition-all cursor-pointer ${
+                      currentPage === pageNum
+                        ? 'bg-white border-[#C1D6C1] text-foreground shadow-sm'
+                        : 'border-transparent bg-transparent text-foreground/60 hover:bg-white/40'
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+
+              <button
+                disabled={currentPage === totalPages}
+                onClick={() => {
+                  setCurrentPage(currentPage + 1);
+                  document.getElementById('gallery-grid')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-4 py-2 text-xs font-bold rounded-xl border border-[#C1D6C1]/50 bg-white/60 hover:bg-white text-foreground/75 disabled:opacity-40 transition-all cursor-pointer"
+              >
+                Next
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

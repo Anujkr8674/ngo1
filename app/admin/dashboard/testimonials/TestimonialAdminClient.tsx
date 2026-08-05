@@ -211,29 +211,33 @@ export default function TestimonialAdminClient({ initialTestimonials }: Testimon
 
     setReordering(true)
     
-    const activeList = [...filteredTestimonials]
-    const temp = activeList[index]
-    activeList[index] = activeList[targetIndex]
-    activeList[targetIndex] = temp
+    const item1 = filteredTestimonials[index]
+    const item2 = filteredTestimonials[targetIndex]
 
-    const updatedFullList = testimonials.map(t => {
-      const activeIdx = activeList.findIndex(at => at.id === t.id)
-      if (activeIdx !== -1) {
-        return activeList[activeIdx]
+    const idx1 = testimonials.findIndex(t => t.id === item1.id)
+    const idx2 = testimonials.findIndex(t => t.id === item2.id)
+
+    if (idx1 !== -1 && idx2 !== -1) {
+      const updatedFullList = [...testimonials]
+      const temp = updatedFullList[idx1]
+      updatedFullList[idx1] = updatedFullList[idx2]
+      updatedFullList[idx2] = temp
+
+      setTestimonials(updatedFullList)
+
+      try {
+        const res = await reorderTestimonials(updatedFullList.map(t => t.id))
+        if (!res.success) {
+          alert('Failed to save order: ' + res.error)
+          setTestimonials(testimonials)
+        }
+      } catch (err: any) {
+        console.error(err)
+        setTestimonials(testimonials)
+      } finally {
+        setReordering(false)
       }
-      return t
-    })
-
-    setTestimonials(updatedFullList)
-
-    try {
-      const res = await reorderTestimonials(updatedFullList.map(t => t.id))
-      if (!res.success) {
-        alert('Failed to save order: ' + res.error)
-      }
-    } catch (err: any) {
-      console.error(err)
-    } finally {
+    } else {
       setReordering(false)
     }
   }

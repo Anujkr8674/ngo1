@@ -93,7 +93,7 @@ export default function AboutClient({ teamMembers }: AboutClientProps) {
           </div>
           <div className="lg:col-span-6 relative aspect-[16/10] rounded-3xl overflow-hidden shadow-premium border border-white ">
             <img referrerPolicy="no-referrer"
-              src="https://live4help.org/wp-content/uploads/2021/01/PHOTO-2019-08-18-10-59-21.jpg"
+              src="/pic/PHOTO-2019-08-18-10-59-21.jpg"
               alt="Live 4 Help Foundation early journey"
               className="w-full h-full object-cover absolute inset-0"
             />

@@ -186,29 +186,33 @@ export default function DonorCSRMemberAdminClient({ initialMembers }: DonorCSRMe
 
     setReordering(true)
     
-    const activeList = [...filteredMembers]
-    const temp = activeList[index]
-    activeList[index] = activeList[targetIndex]
-    activeList[targetIndex] = temp
+    const item1 = filteredMembers[index]
+    const item2 = filteredMembers[targetIndex]
 
-    const updatedFullList = members.map(m => {
-      const activeIdx = activeList.findIndex(am => am.id === m.id)
-      if (activeIdx !== -1) {
-        return activeList[activeIdx]
+    const idx1 = members.findIndex(m => m.id === item1.id)
+    const idx2 = members.findIndex(m => m.id === item2.id)
+
+    if (idx1 !== -1 && idx2 !== -1) {
+      const updatedFullList = [...members]
+      const temp = updatedFullList[idx1]
+      updatedFullList[idx1] = updatedFullList[idx2]
+      updatedFullList[idx2] = temp
+
+      setMembers(updatedFullList)
+
+      try {
+        const res = await reorderDonorCSRMembers(updatedFullList.map(m => m.id))
+        if (!res.success) {
+          alert('Failed to save order: ' + res.error)
+          setMembers(members)
+        }
+      } catch (err: any) {
+        console.error(err)
+        setMembers(members)
+      } finally {
+        setReordering(false)
       }
-      return m
-    })
-
-    setMembers(updatedFullList)
-
-    try {
-      const res = await reorderDonorCSRMembers(updatedFullList.map(m => m.id))
-      if (!res.success) {
-        alert('Failed to save order: ' + res.error)
-      }
-    } catch (err: any) {
-      console.error(err)
-    } finally {
+    } else {
       setReordering(false)
     }
   }

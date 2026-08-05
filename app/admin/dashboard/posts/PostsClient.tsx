@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { createBlogPost, updateBlogPost, deleteBlogPost } from '@/app/actions/blog'
-import { Loader2, Plus, Trash2, Edit2, FileText, Upload, X, ArrowLeft, Eye, Play } from 'lucide-react'
+import { createBlogPost, updateBlogPost, deleteBlogPost, reorderBlogPosts } from '@/app/actions/blog'
+import { Loader2, Plus, Trash2, Edit2, FileText, Upload, X, ArrowLeft, Eye, Play, ArrowUp, ArrowDown } from 'lucide-react'
 import TiptapEditor from '@/app/components/TiptapEditor'
 import Link from 'next/link'
 
@@ -17,6 +17,7 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
   const [isEditing, setIsEditing] = useState(false)
   const [loading, setLoading] = useState(false)
   const [playingMedia, setPlayingMedia] = useState<string | null>(null)
+  const [reordering, setReordering] = useState(false)
 
   // Form State
   const [postId, setPostId] = useState<string | null>(null)
@@ -170,6 +171,33 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
       setPosts(prev => prev.filter(p => p.id !== id))
     } else {
       alert(res.error || 'Failed to delete post')
+    }
+  }
+
+  const handleMove = async (index: number, direction: 'up' | 'down') => {
+    if (reordering) return
+    const targetIndex = direction === 'up' ? index - 1 : index + 1
+    if (targetIndex < 0 || targetIndex >= posts.length) return
+
+    setReordering(true)
+    const list = [...posts]
+    const temp = list[index]
+    list[index] = list[targetIndex]
+    list[targetIndex] = temp
+
+    setPosts(list)
+
+    try {
+      const res = await reorderBlogPosts(list.map(p => p.id))
+      if (!res.success) {
+        alert('Failed to save order: ' + res.error)
+        setPosts(posts)
+      }
+    } catch (err: any) {
+      console.error(err)
+      setPosts(posts)
+    } finally {
+      setReordering(false)
     }
   }
 
@@ -473,6 +501,7 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-slate-50/75 border-b border-slate-100">
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 w-12 text-center">Sort</th>
                     <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 w-[30%] min-w-[280px]">Post details</th>
                     <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 w-[15%] min-w-[130px]">Category</th>
                     <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 w-[20%] max-w-[200px]">Slug</th>
@@ -483,8 +512,28 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
-                  {posts.map((post) => (
+                  {posts.map((post, idx) => (
                     <tr key={post.id} className="hover:bg-slate-50/50 transition-colors">
+                      <td className="px-6 py-4 align-middle">
+                        <div className="flex flex-col gap-1 items-center justify-center">
+                          <button
+                            disabled={idx === 0 || reordering}
+                            onClick={() => handleMove(idx, 'up')}
+                            className="p-1 rounded bg-slate-100 hover:bg-slate-200 disabled:opacity-30 disabled:hover:bg-slate-100 text-slate-500 cursor-pointer transition-colors"
+                            title="Move Up"
+                          >
+                            <ArrowUp className="w-3 h-3" />
+                          </button>
+                          <button
+                            disabled={idx === posts.length - 1 || reordering}
+                            onClick={() => handleMove(idx, 'down')}
+                            className="p-1 rounded bg-slate-100 hover:bg-slate-200 disabled:opacity-30 disabled:hover:bg-slate-100 text-slate-500 cursor-pointer transition-colors"
+                            title="Move Down"
+                          >
+                            <ArrowDown className="w-3 h-3" />
+                          </button>
+                        </div>
+                      </td>
                       <td className="px-6 py-4 w-[30%] min-w-[280px] align-middle">
                         <div className="flex items-center gap-3 min-w-0">
                           {post.images && post.images.length > 0 ? (

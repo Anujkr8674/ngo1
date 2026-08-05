@@ -12,6 +12,10 @@ export const metadata: Metadata = {
  description: "Support the Live 4 Help organization, the best NGO in Delhi. We address healthcare, underprivileged child education, coastal mangrove plantation, and relief work to empower local communities.",
  keywords: ["NGO in Delhi", "Child Education NGO", "Elderly Healthcare Support", "Mangrove Plantation Sundarbans", "Charity", "Live 4 Help Foundation", "Volunteering India", "CSR partner Delhi"],
  authors: [{ name: "Live 4 Help Foundation" }],
+ icons: {
+   icon: "/L4HLOGO-02-1-300x300.png",
+   apple: "/L4HLOGO-02-1-300x300.png",
+ },
  openGraph: {
  title: "Live 4 Help Foundation | Best NGO in Delhi",
  description: "Empowering underprivileged communities in Delhi and across India through education, healthcare, and environmental conservation.",

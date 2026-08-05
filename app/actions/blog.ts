@@ -8,7 +8,10 @@ import path from 'path'
 export async function getBlogCategories() {
   try {
     const categories = await prisma.blogCategory.findMany({
-      orderBy: { name: 'asc' },
+      orderBy: [
+        { order: 'asc' },
+        { name: 'asc' }
+      ] as any,
       include: {
         _count: {
           select: { posts: true }
@@ -18,6 +21,7 @@ export async function getBlogCategories() {
     return categories.map(c => ({
       id: c.id,
       name: c.name,
+      order: (c as any).order ?? 0,
       postCount: c._count.posts
     }))
   } catch (error: any) {
@@ -69,16 +73,58 @@ export async function deleteBlogCategory(id: string) {
   }
 }
 
+export async function reorderBlogCategories(ids: string[]) {
+  try {
+    for (let i = 0; i < ids.length; i++) {
+      await prisma.blogCategory.update({
+        where: { id: ids[i] },
+        data: { order: i } as any
+      })
+    }
+    revalidatePath('/admin/dashboard/categories')
+    revalidatePath('/blog')
+    return { success: true }
+  } catch (error: any) {
+    return { error: error.message }
+  }
+}
+
 export async function getBlogPosts(categoryId?: string) {
   try {
-    return await prisma.blogPost.findMany({
+    const posts = await prisma.blogPost.findMany({
       where: categoryId && categoryId !== 'all' ? { categoryId } : undefined,
       include: { category: true },
       orderBy: { createdAt: 'desc' },
     })
+    const mapped = posts.map(p => ({
+      ...p,
+      order: (p as any).order ?? 0
+    }))
+    return mapped.sort((a, b) => {
+      if (a.order !== b.order) return a.order - b.order
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    })
   } catch (error: any) {
     console.error('Error fetching blog posts:', error)
     return []
+  }
+}
+
+export async function reorderBlogPosts(ids: string[]) {
+  try {
+    await prisma.$transaction(
+      ids.map((id, index) =>
+        prisma.blogPost.update({
+          where: { id },
+          data: { order: index } as any,
+        })
+      )
+    )
+    revalidatePath('/blog')
+    revalidatePath('/admin/dashboard/posts')
+    return { success: true }
+  } catch (error: any) {
+    return { error: error.message }
   }
 }
 

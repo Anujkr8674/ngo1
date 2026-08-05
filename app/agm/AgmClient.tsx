@@ -98,7 +98,7 @@ export default function AgmClient({ reports }: AgmClientProps) {
           {/* Sidebar Navigation */}
           <div className="w-full lg:w-1/3 flex flex-col gap-4">
             <h3 className="font-display font-bold text-xl text-foreground mb-2 px-2">Published Reports</h3>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 max-h-[400px] lg:max-h-[520px] overflow-y-auto overflow-x-hidden pr-2 custom-scrollbar">
               {reports.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((report) => {
                 const isActive = activePdf?.id === report.id;
                 return (

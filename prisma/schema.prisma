@@ -24,6 +24,7 @@ model Admin {
 model GalleryCategory {
   id        String         @id @default(cuid())
   name      String         @unique
+  order     Int            @default(0)
   createdAt DateTime       @default(now())
   images    GalleryImage[]
 }
@@ -34,12 +35,14 @@ model GalleryImage {
   caption     String?
   categoryId  String
   category    GalleryCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  order       Int             @default(0)
   createdAt   DateTime        @default(now())
 }
 
 model BlogCategory {
   id        String     @id @default(cuid())
   name      String     @unique
+  order     Int        @default(0)
   createdAt DateTime   @default(now())
   posts     BlogPost[]
 }
@@ -56,6 +59,7 @@ model BlogPost {
   published  Boolean       @default(true)
   categoryId String?
   category   BlogCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  order      Int           @default(0)
   createdAt  DateTime      @default(now())
   updatedAt  DateTime      @updatedAt
   comments   Comment[]

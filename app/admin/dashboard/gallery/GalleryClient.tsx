@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { createGalleryImage, deleteGalleryImage, updateGalleryImage } from '@/app/actions/gallery'
-import { Loader2, Plus, Trash2, Edit2, Eye, Upload, X } from 'lucide-react'
+import { createGalleryImage, deleteGalleryImage, updateGalleryImage, reorderGalleryImages } from '@/app/actions/gallery'
+import { Loader2, Plus, Trash2, Edit2, Eye, Upload, X, ArrowLeft, ArrowRight } from 'lucide-react'
 import SmoothImage from '@/app/components/SmoothImage'
 
 export default function GalleryClient({ initialCategories, initialImages }: { initialCategories: any[], initialImages: any[] }) {
@@ -24,6 +24,51 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
   const [editCaption, setEditCaption] = useState('')
   const [editCategory, setEditCategory] = useState('')
   const [isUpdating, setIsUpdating] = useState(false)
+
+  const handleMoveUp = async (index: number) => {
+    if (index === 0) return
+    const list = [...images]
+    const filtered = filter === 'all' ? images : images.filter(img => img.categoryId === filter)
+    const item1 = filtered[index]
+    const item2 = filtered[index - 1]
+    
+    const idx1 = images.findIndex(img => img.id === item1.id)
+    const idx2 = images.findIndex(img => img.id === item2.id)
+    
+    const temp = list[idx1]
+    list[idx1] = list[idx2]
+    list[idx2] = temp
+
+    setImages(list)
+    const res = await reorderGalleryImages(list.map(img => img.id))
+    if (res.error) {
+      alert(res.error)
+      setImages(images)
+    }
+  }
+
+  const handleMoveDown = async (index: number) => {
+    const filtered = filter === 'all' ? images : images.filter(img => img.categoryId === filter)
+    if (index === filtered.length - 1) return
+    
+    const list = [...images]
+    const item1 = filtered[index]
+    const item2 = filtered[index + 1]
+    
+    const idx1 = images.findIndex(img => img.id === item1.id)
+    const idx2 = images.findIndex(img => img.id === item2.id)
+    
+    const temp = list[idx1]
+    list[idx1] = list[idx2]
+    list[idx2] = temp
+
+    setImages(list)
+    const res = await reorderGalleryImages(list.map(img => img.id))
+    if (res.error) {
+      alert(res.error)
+      setImages(images)
+    }
+  }
 
   const handleEditClick = (img: any) => {
     setEditingImage(img)
@@ -217,7 +262,7 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
               <p className="text-slate-500 font-medium">No images found.</p>
             </div>
           )}
-          {filteredImages.map(img => (
+          {filteredImages.map((img, idx) => (
             <div key={img.id} className="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm flex flex-col group hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <div 
                 className="aspect-[4/3] w-full overflow-hidden bg-gray-50 border-b border-gray-100 relative cursor-pointer"
@@ -238,13 +283,29 @@ export default function GalleryClient({ initialCategories, initialImages }: { in
                   {img.caption || 'No description'}
                 </p>
                 <div className="flex items-center gap-1.5 mt-auto">
-                  <button onClick={() => setViewingImage(img.url)} className="p-1.5 border border-gray-200 rounded-md text-[#444444] hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                  <button
+                    disabled={idx === 0}
+                    onClick={() => handleMoveUp(idx)}
+                    className="p-1.5 border border-gray-200 rounded-md text-[#444444] hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 disabled:opacity-20 cursor-pointer disabled:cursor-not-allowed transition-colors"
+                    title="Move Back"
+                  >
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    disabled={idx === filteredImages.length - 1}
+                    onClick={() => handleMoveDown(idx)}
+                    className="p-1.5 border border-gray-200 rounded-md text-[#444444] hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 disabled:opacity-20 cursor-pointer disabled:cursor-not-allowed transition-colors"
+                    title="Move Forward"
+                  >
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                  <button onClick={() => setViewingImage(img.url)} className="p-1.5 border border-gray-200 rounded-md text-[#444444] hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 transition-colors cursor-pointer" title="View Image">
                     <Eye className="w-3.5 h-3.5" />
                   </button>
-                  <button onClick={() => handleEditClick(img)} className="p-1.5 border border-gray-200 rounded-md text-[#444444] hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                  <button onClick={() => handleEditClick(img)} className="p-1.5 border border-gray-200 rounded-md text-[#444444] hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 transition-colors cursor-pointer" title="Edit Image">
                     <Edit2 className="w-3.5 h-3.5" />
                   </button>
-                  <button onClick={() => handleDeleteImage(img.id)} className="p-1.5 border border-red-100 rounded-md text-red-400 hover:text-red-600 hover:border-red-200 hover:bg-red-50 transition-colors ml-auto">
+                  <button onClick={() => handleDeleteImage(img.id)} className="p-1.5 border border-red-100 rounded-md text-red-400 hover:text-red-600 hover:border-red-200 hover:bg-red-50 transition-colors ml-auto cursor-pointer" title="Delete Image">
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
                 </div>

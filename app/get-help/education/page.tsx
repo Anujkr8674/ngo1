@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, Check, AlertCircle, Send, Upload, X } from "lucide-react";
+import { GraduationCap, Check, AlertCircle, Send, Upload, X, FileText } from "lucide-react";
 import Link from "next/link";
 import { submitEducationSupport } from "@/app/actions/getHelp";
 
@@ -233,6 +233,21 @@ export default function EducationSupport() {
               </motion.div>
             ) : (
               <form onSubmit={handleFormSubmit} className="flex flex-col gap-10">
+                <div className="border-b border-foreground/5 pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div>
+                    <h3 className="font-display font-bold text-lg text-[#6B46C1]">Educational Support</h3>
+                    <p className="text-xs text-foreground/60 mt-1">Provide information about your educational requirements and institution details.</p>
+                  </div>
+                  <a
+                    href="/get-help-form/Educational-Support-Form.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 px-4 py-2 border border-foreground/10 hover:border-[#6B46C1] text-xs font-semibold uppercase tracking-wider rounded-xl transition-all w-fit shrink-0 cursor-pointer"
+                  >
+                    <FileText className="w-4 h-4" /> Download PDF Form
+                  </a>
+                </div>
+
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                   {/* Left: Student/Family Details */}
                   <div className="flex flex-col gap-5">
@@ -249,7 +264,7 @@ export default function EducationSupport() {
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">Class *</label>
                         <input
@@ -274,7 +289,7 @@ export default function EducationSupport() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">Date of Birth *</label>
                         <input
@@ -319,7 +334,7 @@ export default function EducationSupport() {
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">State *</label>
                         <input
@@ -342,7 +357,7 @@ export default function EducationSupport() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">Mobile *</label>
                         <input
@@ -376,7 +391,7 @@ export default function EducationSupport() {
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
                           ID/Proof <span className="text-foreground/40 font-normal">(Optional)</span>
@@ -498,7 +513,7 @@ export default function EducationSupport() {
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">State *</label>
                         <input
@@ -521,7 +536,7 @@ export default function EducationSupport() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">Headmaster / Teacher Name *</label>
                         <input
@@ -546,7 +561,7 @@ export default function EducationSupport() {
 
                     <h4 className="font-semibold text-xs uppercase tracking-wider text-[#6B46C1] border-b border-[#6B46C1]/10 pb-2 mt-4">Support Details</h4>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">Admission Fee (Rs)</label>
                         <input
@@ -569,7 +584,7 @@ export default function EducationSupport() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">Book Purchase (Rs)</label>
                         <input
@@ -592,7 +607,7 @@ export default function EducationSupport() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">Total (in words) *</label>
                         <input

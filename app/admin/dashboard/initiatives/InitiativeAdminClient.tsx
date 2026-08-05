@@ -350,29 +350,33 @@ export default function InitiativeAdminClient({ initialCategories, initialInitia
 
     setIniReordering(true)
 
-    const activeList = [...filteredInitiatives]
-    const temp = activeList[index]
-    activeList[index] = activeList[targetIndex]
-    activeList[targetIndex] = temp
+    const item1 = filteredInitiatives[index]
+    const item2 = filteredInitiatives[targetIndex]
 
-    const updatedFullList = initiatives.map(i => {
-      const activeIdx = activeList.findIndex(ai => ai.id === i.id)
-      if (activeIdx !== -1) {
-        return activeList[activeIdx]
+    const idx1 = initiatives.findIndex(i => i.id === item1.id)
+    const idx2 = initiatives.findIndex(i => i.id === item2.id)
+
+    if (idx1 !== -1 && idx2 !== -1) {
+      const updatedFullList = [...initiatives]
+      const temp = updatedFullList[idx1]
+      updatedFullList[idx1] = updatedFullList[idx2]
+      updatedFullList[idx2] = temp
+
+      setInitiatives(updatedFullList)
+
+      try {
+        const res = await reorderInitiatives(updatedFullList.map(i => i.id))
+        if (!res.success) {
+          alert('Failed to save order: ' + res.error)
+          setInitiatives(initiatives)
+        }
+      } catch (err: any) {
+        console.error(err)
+        setInitiatives(initiatives)
+      } finally {
+        setIniReordering(false)
       }
-      return i
-    })
-
-    setInitiatives(updatedFullList)
-
-    try {
-      const res = await reorderInitiatives(updatedFullList.map(i => i.id))
-      if (!res.success) {
-        alert('Failed to save order: ' + res.error)
-      }
-    } catch (err: any) {
-      console.error(err)
-    } finally {
+    } else {
       setIniReordering(false)
     }
   }

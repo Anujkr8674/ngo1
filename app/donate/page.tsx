@@ -286,15 +286,15 @@ export default function Donate() {
                                     >
                                         <div className="w-40 h-40 bg-white rounded-2xl border border-foreground/10 flex items-center justify-center p-2 shrink-0">
                                             <img
-                                                src="/qr/qr.jpeg"
+                                                src="/qr.jpeg"
                                                 alt="UPI QR Code"
                                                 className="w-full h-full object-contain"
                                             />
                                         </div>
                                         <div className="flex flex-col gap-6 pt-4">
                                             <p className="text-sm text-foreground/80">Scan to pay, then complete the form below.</p>
-                                            <div className="flex items-center gap-3">
-                                                <div className="px-4 py-3 bg-foreground/5 rounded-xl font-mono text-sm text-foreground font-semibold">
+                                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 max-w-full">
+                                                <div className="px-4 py-3 bg-foreground/5 rounded-xl font-mono text-sm text-foreground font-semibold text-center sm:text-left truncate">
                                                     live4help@hdfcbank
                                                 </div>
                                                 <button

@@ -214,7 +214,7 @@ export default function ElderlySupport() {
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">Gender *</label>
                         <select
@@ -250,7 +250,7 @@ export default function ElderlySupport() {
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">Mobile *</label>
                         <input
@@ -275,7 +275,7 @@ export default function ElderlySupport() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">Emergency Contact Person *</label>
                         <input
@@ -298,7 +298,7 @@ export default function ElderlySupport() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75">Preferred Language *</label>
                         <input
@@ -321,7 +321,7 @@ export default function ElderlySupport() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
                         <label className="text-xs font-semibold text-foreground/75 flex items-center gap-1">
                           ID Proof <span className="text-foreground/40 font-normal">(Optional)</span>
