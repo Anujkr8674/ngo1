@@ -286,7 +286,7 @@ export default function Donate() {
                                     >
                                         <div className="w-40 h-40 bg-white rounded-2xl border border-foreground/10 flex items-center justify-center p-2 shrink-0">
                                             <img
-                                                src="/qr.jpeg"
+                                                src="/qr/live4help_UPI_QR.png"
                                                 alt="UPI QR Code"
                                                 className="w-full h-full object-contain"
                                             />
