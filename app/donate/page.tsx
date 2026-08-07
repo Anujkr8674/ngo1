@@ -295,10 +295,10 @@ export default function Donate() {
                                             <p className="text-sm text-foreground/80">Scan to pay, then complete the form below.</p>
                                             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 max-w-full">
                                                 <div className="px-4 py-3 bg-foreground/5 rounded-xl font-mono text-sm text-foreground font-semibold text-center sm:text-left truncate">
-                                                    live4help@hdfcbank
+                                                    9810745206@okbizaxis
                                                 </div>
                                                 <button
-                                                    onClick={() => handleCopy("live4help@hdfcbank", "upi")}
+                                                    onClick={() => handleCopy("9810745206@okbizaxis", "upi")}
                                                     className="px-6 py-3 bg-[#DCCFF8] text-[#444444] rounded-xl font-semibold text-sm hover:bg-[#c9bbf2] transition-colors flex items-center justify-center min-w-[90px]"
                                                 >
                                                     {copiedField === "upi" ? "Copied!" : "Copy"}
