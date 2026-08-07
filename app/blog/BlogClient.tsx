@@ -198,37 +198,78 @@ export default function BlogClient({ initialBlogs, initialCategories }: BlogClie
 
               {/* Pagination Controls */}
               {totalPages > 1 && (
-                <div className="flex items-center justify-center gap-1.5 mt-12 pt-6 border-t border-[#C1D6C1]/50">
+                <div className="flex items-center justify-center gap-1 sm:gap-2 mt-12 pt-6 border-t border-[#C1D6C1]/50 select-none">
                   <button
                     disabled={currentPage === 1}
                     onClick={() => {
                       setCurrentPage(currentPage - 1);
                       document.getElementById('blog-grid')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="px-4 py-2 text-xs font-bold rounded-xl border border-[#C1D6C1]/50 bg-white/60 hover:bg-white text-foreground/75 disabled:opacity-40 transition-all cursor-pointer"
+                    className="w-9 h-9 rounded-full flex items-center justify-center text-foreground hover:bg-white/60 disabled:opacity-20 transition-colors cursor-pointer disabled:cursor-not-allowed text-base font-medium"
+                    title="Previous Page"
                   >
-                    Previous
+                    ←
                   </button>
 
-                  {Array.from({ length: totalPages }).map((_, idx) => {
-                    const pageNum = idx + 1;
-                    return (
-                      <button
-                        key={pageNum}
-                        onClick={() => {
-                          setCurrentPage(pageNum);
-                          document.getElementById('blog-grid')?.scrollIntoView({ behavior: 'smooth' });
-                        }}
-                        className={`px-3.5 py-2 text-xs font-bold rounded-xl border transition-all cursor-pointer ${
-                          currentPage === pageNum
-                            ? 'bg-white border-[#C1D6C1] text-foreground shadow-sm'
-                            : 'border-transparent bg-transparent text-foreground/60 hover:bg-white/40'
-                        }`}
-                      >
-                        {pageNum}
-                      </button>
-                    );
-                  })}
+                  {(() => {
+                    if (totalPages <= 7) {
+                      return Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                        <button
+                          key={pageNum}
+                          onClick={() => {
+                            setCurrentPage(pageNum);
+                            document.getElementById('blog-grid')?.scrollIntoView({ behavior: 'smooth' });
+                          }}
+                          className={`w-9 h-9 rounded-full flex items-center justify-center text-xs transition-colors cursor-pointer ${
+                            currentPage === pageNum
+                              ? 'bg-white/80 text-foreground font-bold shadow-sm border border-[#C1D6C1]/50'
+                              : 'text-foreground/70 hover:bg-white/40 font-medium'
+                          }`}
+                        >
+                          {pageNum}
+                        </button>
+                      ));
+                    }
+                    const range: (number | string)[] = [];
+                    const delta = 1;
+                    const left = currentPage - delta;
+                    const right = currentPage + delta;
+
+                    for (let i = 1; i <= totalPages; i++) {
+                      if (i === 1 || i === totalPages || (i >= left && i <= right)) {
+                        range.push(i);
+                      } else if (range[range.length - 1] !== "...") {
+                        range.push("...");
+                      }
+                    }
+
+                    return range.map((item, idx) => {
+                      if (item === "...") {
+                        return (
+                          <span key={`ellipsis-${idx}`} className="w-9 h-9 flex items-center justify-center text-foreground/40 text-xs">
+                            ...
+                          </span>
+                        );
+                      }
+                      const pageNum = item as number;
+                      return (
+                        <button
+                          key={pageNum}
+                          onClick={() => {
+                            setCurrentPage(pageNum);
+                            document.getElementById('blog-grid')?.scrollIntoView({ behavior: 'smooth' });
+                          }}
+                          className={`w-9 h-9 rounded-full flex items-center justify-center text-xs transition-colors cursor-pointer ${
+                            currentPage === pageNum
+                              ? 'bg-white/80 text-foreground font-bold shadow-sm border border-[#C1D6C1]/50'
+                              : 'text-foreground/70 hover:bg-white/40 font-medium'
+                          }`}
+                        >
+                          {pageNum}
+                        </button>
+                      );
+                    });
+                  })()}
 
                   <button
                     disabled={currentPage === totalPages}
@@ -236,9 +277,10 @@ export default function BlogClient({ initialBlogs, initialCategories }: BlogClie
                       setCurrentPage(currentPage + 1);
                       document.getElementById('blog-grid')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="px-4 py-2 text-xs font-bold rounded-xl border border-[#C1D6C1]/50 bg-white/60 hover:bg-white text-foreground/75 disabled:opacity-40 transition-all cursor-pointer"
+                    className="w-9 h-9 rounded-full flex items-center justify-center text-foreground hover:bg-white/60 disabled:opacity-20 transition-colors cursor-pointer disabled:cursor-not-allowed text-base font-medium"
+                    title="Next Page"
                   >
-                    Next
+                    →
                   </button>
                 </div>
               )}
