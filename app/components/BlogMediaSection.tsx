@@ -180,7 +180,7 @@ export default function BlogMediaSection({ images, imageTitles = [], title, exce
                     )}
                   </div>
                   {titleText && (
-                    <p className="text-[11px] font-semibold text-slate-700 text-center line-clamp-1 leading-snug px-1 pb-0.5">
+                    <p className="text-[14px] font-semibold text-slate-700 group-hover:text-blue-600 transition-colors duration-200 text-center line-clamp-1 leading-snug px-1 pb-0.5">
                       {titleText}
                     </p>
                   )}
