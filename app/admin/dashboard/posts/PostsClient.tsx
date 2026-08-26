@@ -19,6 +19,19 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
   const [playingMedia, setPlayingMedia] = useState<string | null>(null)
   const [reordering, setReordering] = useState(false)
 
+  const getPlayingMediaTitle = () => {
+    if (!playingMedia) return ''
+    const existingIdx = existingImages.indexOf(playingMedia)
+    if (existingIdx !== -1) {
+      return existingImageTitles[existingIdx] || ''
+    }
+    const previewIdx = previews.indexOf(playingMedia)
+    if (previewIdx !== -1) {
+      return fileTitles[previewIdx] || ''
+    }
+    return ''
+  }
+
   // Form State
   const [postId, setPostId] = useState<string | null>(null)
   const [title, setTitle] = useState('')
@@ -675,7 +688,7 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
           onClick={() => setPlayingMedia(null)}
         >
           <div 
-            className="relative max-w-4xl max-h-[85vh] w-full flex items-center justify-center bg-black rounded-2xl overflow-hidden shadow-2xl p-2 border border-slate-700 cursor-default"
+            className="relative max-w-4xl max-h-[85vh] w-full flex flex-col items-center justify-center bg-black rounded-2xl overflow-hidden shadow-2xl p-4 border border-slate-700 cursor-default gap-4"
             onClick={e => e.stopPropagation()}
           >
             <button 
@@ -687,19 +700,27 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
               <X className="w-5 h-5" />
             </button>
 
-            {playingMedia.toLowerCase().match(/\.(mp4|webm|mov|avi|mkv)$/i) || playingMedia.startsWith('data:video/') ? (
-              <video 
-                src={playingMedia} 
-                controls 
-                autoPlay 
-                className="max-w-full max-h-[80vh] w-auto h-auto rounded-xl shadow-lg"
-              />
-            ) : (
-              <img 
-                src={playingMedia} 
-                alt="Media Preview" 
-                className="max-w-full max-h-[80vh] w-auto h-auto object-contain rounded-xl shadow-lg"
-              />
+            <div className="relative flex items-center justify-center max-w-full max-h-[75vh]">
+              {playingMedia.toLowerCase().match(/\.(mp4|webm|mov|avi|mkv)$/i) || playingMedia.startsWith('data:video/') ? (
+                <video 
+                  src={playingMedia} 
+                  controls 
+                  autoPlay 
+                  className="max-w-full max-h-[75vh] w-auto h-auto rounded-xl shadow-lg"
+                />
+              ) : (
+                <img 
+                  src={playingMedia} 
+                  alt="Media Preview" 
+                  className="max-w-full max-h-[75vh] w-auto h-auto object-contain rounded-xl shadow-lg"
+                />
+              )}
+            </div>
+
+            {getPlayingMediaTitle() && (
+              <span className="px-4 py-2 bg-slate-900/90 text-white rounded-lg text-xs font-semibold border border-white/10 shadow-lg max-w-xl text-center z-50">
+                {getPlayingMediaTitle()}
+              </span>
             )}
           </div>
         </div>
