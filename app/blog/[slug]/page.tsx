@@ -184,6 +184,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
             <BlogMediaSection
               images={blog.images || []}
+              imageTitles={blog.imageTitles || []}
               title={blog.title}
               excerpt={blog.excerpt}
               content={blog.content}

@@ -7,6 +7,7 @@ import BlogComments from './BlogComments'
 
 interface BlogMediaSectionProps {
   images: string[]
+  imageTitles?: string[]
   title: string
   excerpt?: string | null
   content: string
@@ -25,7 +26,7 @@ const isVideoUrl = (url: string) => {
   )
 }
 
-export default function BlogMediaSection({ images, title, excerpt, content, blogId }: BlogMediaSectionProps) {
+export default function BlogMediaSection({ images, imageTitles = [], title, excerpt, content, blogId }: BlogMediaSectionProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
   const handlePrev = useCallback(() => {
@@ -70,34 +71,41 @@ export default function BlogMediaSection({ images, title, excerpt, content, blog
     <main className="lg:col-span-8 w-full flex flex-col gap-6">
       {/* Featured Post Media (Image or Video) */}
       {images && images.length > 0 && (
-        <div className="w-full rounded-2xl overflow-hidden border border-slate-100 shadow-sm bg-slate-50 mb-2 relative group">
-          {isVideoUrl(images[0]) ? (
-            <div className="w-full relative">
-              <video 
-                src={images[0]} 
-                controls 
-                preload="metadata"
-                className="w-full max-h-[500px] object-contain mx-auto bg-black rounded-2xl" 
-              />
-            </div>
-          ) : (
-            <div 
-              onClick={() => setSelectedIndex(0)}
-              className="w-full cursor-pointer relative"
-            >
-              <img 
-                referrerPolicy="no-referrer"
-                src={images[0]}
-                alt={title}
-                className="w-full max-h-[500px] object-contain mx-auto bg-slate-50 transition-transform duration-300 group-hover:scale-[1.01]"
-              />
-              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-200">
-                <div className="px-4 py-2 rounded-full bg-white/90 backdrop-blur-md shadow-lg flex items-center gap-2 text-xs font-semibold text-slate-800">
-                  <Eye className="w-4 h-4 text-blue-600" />
-                  Click to view full image
+        <div className="flex flex-col w-full mb-2">
+          <div className="w-full rounded-2xl overflow-hidden border border-slate-100 shadow-sm bg-slate-50 relative group">
+            {isVideoUrl(images[0]) ? (
+              <div className="w-full relative">
+                <video 
+                  src={images[0]} 
+                  controls 
+                  preload="metadata"
+                  className="w-full max-h-[500px] object-contain mx-auto bg-black rounded-2xl" 
+                />
+              </div>
+            ) : (
+              <div 
+                onClick={() => setSelectedIndex(0)}
+                className="w-full cursor-pointer relative"
+              >
+                <img 
+                  referrerPolicy="no-referrer"
+                  src={images[0]}
+                  alt={title}
+                  className="w-full max-h-[500px] object-contain mx-auto bg-slate-50 transition-transform duration-300 group-hover:scale-[1.01]"
+                />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-200">
+                  <div className="px-4 py-2 rounded-full bg-white/90 backdrop-blur-md shadow-lg flex items-center gap-2 text-xs font-semibold text-slate-800">
+                    <Eye className="w-4 h-4 text-blue-600" />
+                    Click to view full image
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
+          </div>
+          {imageTitles && imageTitles[0] && (
+            <p className="mt-2 text-xs font-semibold text-slate-500 text-center italic leading-relaxed">
+              {imageTitles[0]}
+            </p>
           )}
         </div>
       )}
@@ -126,45 +134,55 @@ export default function BlogMediaSection({ images, title, excerpt, content, blog
             {images.slice(1).map((item: string, i: number) => {
               const actualIndex = i + 1
               const isVideo = isVideoUrl(item)
+              const titleText = imageTitles[actualIndex] || ''
 
               return (
                 <div 
                   key={i} 
-                  onClick={() => setSelectedIndex(actualIndex)}
-                  className="aspect-square rounded-xl overflow-hidden border border-slate-100 bg-slate-50 shadow-sm relative group cursor-pointer"
+                  className="flex flex-col gap-2 bg-white border border-slate-100 rounded-2xl p-2.5 shadow-sm hover:shadow-md hover:border-blue-100 transition-all group duration-300"
                 >
-                  {isVideo ? (
-                    <>
-                      <video 
-                        src={item} 
-                        muted 
-                        preload="metadata"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 bg-slate-900"
-                      />
-                      <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
-                        <Play className="w-3 h-3 fill-white text-white" />
-                        Video
-                      </div>
-                      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-200">
-                        <div className="p-3 rounded-full bg-white/90 backdrop-blur-md shadow-md text-slate-800">
-                          <Play className="w-5 h-5 text-blue-600 fill-blue-600" />
+                  <div 
+                    onClick={() => setSelectedIndex(actualIndex)}
+                    className="aspect-square rounded-xl overflow-hidden border border-slate-100 bg-slate-50 relative cursor-pointer"
+                  >
+                    {isVideo ? (
+                      <>
+                        <video 
+                          src={item} 
+                          muted 
+                          preload="metadata"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 bg-slate-900"
+                        />
+                        <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+                          <Play className="w-3 h-3 fill-white text-white" />
+                          Video
                         </div>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <img 
-                        referrerPolicy="no-referrer"
-                        src={item}
-                        alt={`${title} detail ${i + 1}`}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-200">
-                        <div className="p-2 rounded-full bg-white/90 backdrop-blur-md shadow-md text-slate-800">
-                          <Eye className="w-4 h-4 text-blue-600" />
+                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-200">
+                          <div className="p-3 rounded-full bg-white/90 backdrop-blur-md shadow-md text-slate-800">
+                            <Play className="w-5 h-5 text-blue-600 fill-blue-600" />
+                          </div>
                         </div>
-                      </div>
-                    </>
+                      </>
+                    ) : (
+                      <>
+                        <img 
+                          referrerPolicy="no-referrer"
+                          src={item}
+                          alt={`${title} detail ${i + 1}`}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-200">
+                          <div className="p-2 rounded-full bg-white/90 backdrop-blur-md shadow-md text-slate-800">
+                            <Eye className="w-4 h-4 text-blue-600" />
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                  {titleText && (
+                    <p className="text-[11px] font-semibold text-slate-700 text-center line-clamp-1 leading-snug px-1 pb-0.5">
+                      {titleText}
+                    </p>
                   )}
                 </div>
               )
@@ -199,20 +217,27 @@ export default function BlogMediaSection({ images, title, excerpt, content, blog
           </div>
 
           {/* Main Media Container */}
-          <div className="relative max-w-5xl max-h-[85vh] flex items-center justify-center w-full h-full my-auto">
-            {isVideoUrl(images[selectedIndex]) ? (
-              <video 
-                src={images[selectedIndex]} 
-                controls 
-                autoPlay
-                className="max-w-full max-h-[85vh] w-auto h-auto rounded-xl shadow-2xl border border-white/10"
-              />
-            ) : (
-              <img 
-                src={images[selectedIndex]} 
-                alt={`${title} preview ${selectedIndex + 1}`}
-                className="max-w-full max-h-[85vh] w-auto h-auto object-contain rounded-xl shadow-2xl border border-white/10 transition-transform duration-300"
-              />
+          <div className="relative max-w-5xl max-h-[85vh] flex flex-col items-center justify-center w-full h-full my-auto gap-4">
+            <div className="relative flex items-center justify-center max-w-full max-h-[75vh]">
+              {isVideoUrl(images[selectedIndex]) ? (
+                <video 
+                  src={images[selectedIndex]} 
+                  controls 
+                  autoPlay
+                  className="max-w-full max-h-[75vh] w-auto h-auto rounded-xl shadow-2xl border border-white/10"
+                />
+              ) : (
+                <img 
+                  src={images[selectedIndex]} 
+                  alt={`${title} preview ${selectedIndex + 1}`}
+                  className="max-w-full max-h-[75vh] w-auto h-auto object-contain rounded-xl shadow-2xl border border-white/10 transition-transform duration-300"
+                />
+              )}
+            </div>
+            {imageTitles && imageTitles[selectedIndex] && (
+              <span className="px-4 py-2 bg-black/70 text-white rounded-lg text-xs font-semibold backdrop-blur-md border border-white/10 shadow-lg max-w-xl text-center z-50">
+                {imageTitles[selectedIndex]}
+              </span>
             )}
           </div>
 

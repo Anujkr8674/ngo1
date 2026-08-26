@@ -151,6 +151,7 @@ export async function createBlogPost(data: any) {
     let published: boolean
     let categoryId: string | null = null
     let imageUrls: string[] = []
+    let imageTitles: string[] = []
 
     if (data instanceof FormData) {
       title = data.get('title') as string
@@ -162,6 +163,9 @@ export async function createBlogPost(data: any) {
       published = data.get('published') === 'true'
       categoryId = (data.get('categoryId') as string) || null
       const files = data.getAll('files') as File[]
+      
+      const fileTitlesJson = data.get('fileTitles') as string
+      const fileTitles: string[] = fileTitlesJson ? JSON.parse(fileTitlesJson) : []
 
       const slug = slugRaw.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-')
       const uploadBase = process.env.UPLOAD_DIR_PATH || path.join(process.cwd(), 'uploads')
@@ -172,6 +176,7 @@ export async function createBlogPost(data: any) {
         fs.mkdirSync(uploadDir, { recursive: true })
       }
 
+      let fileIdx = 0
       for (const file of files) {
         if (file && file.size > 0) {
           const arrayBuffer = await file.arrayBuffer()
@@ -181,7 +186,9 @@ export async function createBlogPost(data: any) {
           const filePath = path.join(uploadDir, filename)
           fs.writeFileSync(filePath, buffer)
           imageUrls.push(`/uploads/blogs/${slug}/${filename}`)
+          imageTitles.push(fileTitles[fileIdx] || '')
         }
+        fileIdx++
       }
     } else {
       title = data.title
@@ -193,6 +200,7 @@ export async function createBlogPost(data: any) {
       published = !!data.published
       categoryId = data.categoryId || null
       imageUrls = data.images || []
+      imageTitles = data.imageTitles || []
     }
 
     if (!title || !slugRaw || !content) {
@@ -215,6 +223,7 @@ export async function createBlogPost(data: any) {
         author,
         readTime,
         images: imageUrls,
+        imageTitles: imageTitles,
         published,
         categoryId: categoryId || undefined
       },
@@ -242,6 +251,7 @@ export async function updateBlogPost(id: string, data: any) {
     let published: boolean
     let categoryId: string | null = null
     let newImageUrls: string[] = []
+    let newImageTitles: string[] = []
 
     const currentPost = await prisma.blogPost.findUnique({ where: { id } })
     if (!currentPost) {
@@ -260,10 +270,20 @@ export async function updateBlogPost(id: string, data: any) {
       readTime = parseInt(data.get('readTime') as string) || 3
       published = data.get('published') === 'true'
       categoryId = (data.get('categoryId') as string) || null
+      
       const existingImagesStr = data.get('existingImages') as string
       const existingImages: string[] = existingImagesStr ? JSON.parse(existingImagesStr) : []
+      
+      const existingImageTitlesStr = data.get('existingImageTitles') as string
+      const existingImageTitles: string[] = existingImageTitlesStr ? JSON.parse(existingImageTitlesStr) : []
+
       const files = data.getAll('files') as File[]
+      
+      const fileTitlesJson = data.get('fileTitles') as string
+      const fileTitles: string[] = fileTitlesJson ? JSON.parse(fileTitlesJson) : []
+
       newImageUrls = [...existingImages]
+      newImageTitles = [...existingImageTitles]
 
       const slug = slugRaw.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-')
 
@@ -289,6 +309,7 @@ export async function updateBlogPost(id: string, data: any) {
         fs.mkdirSync(uploadDir, { recursive: true })
       }
 
+      let fileIdx = 0
       for (const file of files) {
         if (file && file.size > 0) {
           const arrayBuffer = await file.arrayBuffer()
@@ -298,7 +319,9 @@ export async function updateBlogPost(id: string, data: any) {
           const filePath = path.join(uploadDir, filename)
           fs.writeFileSync(filePath, buffer)
           newImageUrls.push(`/uploads/blogs/${finalSlug}/${filename}`)
+          newImageTitles.push(fileTitles[fileIdx] || '')
         }
+        fileIdx++
       }
     } else {
       title = data.title
@@ -310,6 +333,7 @@ export async function updateBlogPost(id: string, data: any) {
       published = !!data.published
       categoryId = data.categoryId || null
       newImageUrls = data.images || []
+      newImageTitles = data.imageTitles || []
     }
 
     if (!title || !slugRaw || !content) {
@@ -359,6 +383,7 @@ export async function updateBlogPost(id: string, data: any) {
         author,
         readTime,
         images: newImageUrls,
+        imageTitles: newImageTitles,
         published,
         categoryId: categoryId || null
       },

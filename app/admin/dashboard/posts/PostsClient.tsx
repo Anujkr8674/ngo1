@@ -34,6 +34,8 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
   const [files, setFiles] = useState<File[]>([])
   const [previews, setPreviews] = useState<string[]>([])
   const [existingImages, setExistingImages] = useState<string[]>([])
+  const [existingImageTitles, setExistingImageTitles] = useState<string[]>([])
+  const [fileTitles, setFileTitles] = useState<string[]>([])
 
   // Automatically update slug from title
   const handleTitleChange = (val: string) => {
@@ -54,6 +56,7 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
     const selectedFiles = Array.from(e.target.files || [])
     if (selectedFiles.length > 0) {
       setFiles(prev => [...prev, ...selectedFiles])
+      setFileTitles(prev => [...prev, ...selectedFiles.map(() => '')])
       
       selectedFiles.forEach(file => {
         const reader = new FileReader()
@@ -68,10 +71,12 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
   const removeNewFile = (index: number) => {
     setFiles(prev => prev.filter((_, i) => i !== index))
     setPreviews(prev => prev.filter((_, i) => i !== index))
+    setFileTitles(prev => prev.filter((_, i) => i !== index))
   }
 
-  const removeExistingImage = (url: string) => {
-    setExistingImages(prev => prev.filter(img => img !== url))
+  const removeExistingImage = (url: string, index: number) => {
+    setExistingImages(prev => prev.filter((_, i) => i !== index))
+    setExistingImageTitles(prev => prev.filter((_, i) => i !== index))
   }
 
   const startCreate = () => {
@@ -87,6 +92,8 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
     setFiles([])
     setPreviews([])
     setExistingImages([])
+    setExistingImageTitles([])
+    setFileTitles([])
     setIsEditing(true)
   }
 
@@ -103,6 +110,11 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
     setFiles([])
     setPreviews([])
     setExistingImages(post.images || [])
+    
+    const initialTitles = post.imageTitles || []
+    const paddedTitles = (post.images || []).map((_: any, i: number) => initialTitles[i] || '')
+    setExistingImageTitles(paddedTitles)
+    setFileTitles([])
     setIsEditing(true)
   }
 
@@ -133,7 +145,9 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
       
       if (postId) {
         formData.append('existingImages', JSON.stringify(existingImages))
+        formData.append('existingImageTitles', JSON.stringify(existingImageTitles))
       }
+      formData.append('fileTitles', JSON.stringify(fileTitles))
 
       for (const file of files) {
         formData.append('files', file)
@@ -378,39 +392,55 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
                     {existingImages.map((img, idx) => {
                       const isVid = img.toLowerCase().match(/\.(mp4|webm|mov|avi|mkv)$/i)
                       return (
-                        <div key={`existing-${idx}`} className="relative group aspect-square rounded-lg border border-slate-200 overflow-hidden bg-white shadow-sm">
-                          {isVid ? (
-                            <video src={img} muted className="w-full h-full object-cover bg-slate-900" />
-                          ) : (
-                            <img src={img} alt="Existing Preview" className="w-full h-full object-cover" />
-                          )}
-                          <span className="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-blue-500/90 text-white font-bold text-[8px] uppercase tracking-widest z-10 shadow-sm">
-                            {idx === 0 ? 'Featured' : `Media ${idx}`}
-                          </span>
-                          {isVid && (
-                            <span className="absolute bottom-1.5 right-1.5 p-1 rounded bg-black/60 backdrop-blur-md text-white z-10 shadow-sm">
-                              <Play className="w-3 h-3 fill-white text-white" />
+                        <div key={`existing-${idx}`} className="flex flex-col gap-1.5 rounded-xl border border-slate-200 p-1.5 bg-white shadow-sm">
+                          <div className="relative group aspect-square rounded-lg overflow-hidden bg-slate-900 shadow-inner shrink-0">
+                            {isVid ? (
+                              <video src={img} muted className="w-full h-full object-cover" />
+                            ) : (
+                              <img src={img} alt="Existing Preview" className="w-full h-full object-cover" />
+                            )}
+                            <span className="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-blue-500/90 text-white font-bold text-[8px] uppercase tracking-widest z-10 shadow-sm">
+                              {idx === 0 ? 'Featured' : `Media ${idx}`}
                             </span>
-                          )}
-                          {/* Hover Action Overlay */}
-                          <div className="absolute inset-0 bg-black/65 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-2 z-20">
-                            <button
-                              type="button"
-                              onClick={() => setPlayingMedia(img)}
-                              className="p-2 bg-white/95 hover:bg-white text-slate-800 rounded-full transition-transform hover:scale-110 shadow-md cursor-pointer"
-                              title={isVid ? "Play Video in Admin" : "Preview Image"}
-                            >
-                              {isVid ? <Play className="w-4 h-4 text-blue-600 fill-blue-600" /> : <Eye className="w-4 h-4 text-blue-600" />}
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => removeExistingImage(img)}
-                              className="p-2 bg-red-600/90 hover:bg-red-600 text-white rounded-full transition-transform hover:scale-110 shadow-md cursor-pointer"
-                              title="Remove Media"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
+                            {isVid && (
+                              <span className="absolute bottom-1.5 right-1.5 p-1 rounded bg-black/60 backdrop-blur-md text-white z-10 shadow-sm">
+                                <Play className="w-3 h-3 fill-white text-white" />
+                              </span>
+                            )}
+                            {/* Hover Action Overlay */}
+                            <div className="absolute inset-0 bg-black/65 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-2 z-20">
+                              <button
+                                type="button"
+                                onClick={() => setPlayingMedia(img)}
+                                className="p-2 bg-white/95 hover:bg-white text-slate-800 rounded-full transition-transform hover:scale-110 shadow-md cursor-pointer"
+                                title={isVid ? "Play Video in Admin" : "Preview Image"}
+                              >
+                                {isVid ? <Play className="w-4 h-4 text-blue-600 fill-blue-600" /> : <Eye className="w-4 h-4 text-blue-600" />}
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => removeExistingImage(img, idx)}
+                                className="p-2 bg-red-600/90 hover:bg-red-600 text-white rounded-full transition-transform hover:scale-110 shadow-md cursor-pointer"
+                                title="Remove Media"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
                           </div>
+                          <input
+                            type="text"
+                            value={existingImageTitles[idx] || ''}
+                            onChange={(e) => {
+                              const val = e.target.value
+                              setExistingImageTitles(prev => {
+                                const copy = [...prev]
+                                copy[idx] = val
+                                return copy
+                              })
+                            }}
+                            placeholder="Title..."
+                            className="w-full px-2 py-1 text-[9px] bg-slate-50 border border-slate-200 rounded-md outline-none text-[#444444] placeholder-slate-400 font-medium"
+                          />
                         </div>
                       )
                     })}
@@ -421,39 +451,55 @@ export default function PostsClient({ initialPosts, initialCategories }: PostsCl
                       const fileObj = files[idx]
                       const isVid = fileObj?.type?.startsWith('video/') || preview.startsWith('data:video/') || fileObj?.name?.match(/\.(mp4|webm|mov|avi|mkv)$/i)
                       return (
-                        <div key={`new-${idx}`} className="relative group aspect-square rounded-lg border border-slate-200 overflow-hidden bg-white shadow-sm">
-                          {isVid ? (
-                            <video src={preview} muted className="w-full h-full object-cover bg-slate-900" />
-                          ) : (
-                            <img src={preview} alt="New Preview" className="w-full h-full object-cover" />
-                          )}
-                          <span className="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-green-500/95 text-white font-bold text-[8px] uppercase tracking-widest z-10 shadow-sm">
-                            {absoluteIdx === 0 ? 'Featured' : `New ${idx + 1}`}
-                          </span>
-                          {isVid && (
-                            <span className="absolute bottom-1.5 right-1.5 p-1 rounded bg-black/60 backdrop-blur-md text-white z-10 shadow-sm">
-                              <Play className="w-3 h-3 fill-white text-white" />
+                        <div key={`new-${idx}`} className="flex flex-col gap-1.5 rounded-xl border border-slate-200 p-1.5 bg-white shadow-sm">
+                          <div className="relative group aspect-square rounded-lg overflow-hidden bg-slate-900 shadow-inner shrink-0">
+                            {isVid ? (
+                              <video src={preview} muted className="w-full h-full object-cover" />
+                            ) : (
+                              <img src={preview} alt="New Preview" className="w-full h-full object-cover" />
+                            )}
+                            <span className="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-green-500/95 text-white font-bold text-[8px] uppercase tracking-widest z-10 shadow-sm">
+                              {absoluteIdx === 0 ? 'Featured' : `New ${idx + 1}`}
                             </span>
-                          )}
-                          {/* Hover Action Overlay */}
-                          <div className="absolute inset-0 bg-black/65 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-2 z-20">
-                            <button
-                              type="button"
-                              onClick={() => setPlayingMedia(preview)}
-                              className="p-2 bg-white/95 hover:bg-white text-slate-800 rounded-full transition-transform hover:scale-110 shadow-md cursor-pointer"
-                              title={isVid ? "Play Video in Admin" : "Preview Image"}
-                            >
-                              {isVid ? <Play className="w-4 h-4 text-blue-600 fill-blue-600" /> : <Eye className="w-4 h-4 text-blue-600" />}
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => removeNewFile(idx)}
-                              className="p-2 bg-red-600/90 hover:bg-red-600 text-white rounded-full transition-transform hover:scale-110 shadow-md cursor-pointer"
-                              title="Remove Media"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
+                            {isVid && (
+                              <span className="absolute bottom-1.5 right-1.5 p-1 rounded bg-black/60 backdrop-blur-md text-white z-10 shadow-sm">
+                                <Play className="w-3 h-3 fill-white text-white" />
+                              </span>
+                            )}
+                            {/* Hover Action Overlay */}
+                            <div className="absolute inset-0 bg-black/65 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-2 z-20">
+                              <button
+                                type="button"
+                                onClick={() => setPlayingMedia(preview)}
+                                className="p-2 bg-white/95 hover:bg-white text-slate-800 rounded-full transition-transform hover:scale-110 shadow-md cursor-pointer"
+                                title={isVid ? "Play Video in Admin" : "Preview Image"}
+                              >
+                                {isVid ? <Play className="w-4 h-4 text-blue-600 fill-blue-600" /> : <Eye className="w-4 h-4 text-blue-600" />}
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => removeNewFile(idx)}
+                                className="p-2 bg-red-600/90 hover:bg-red-600 text-white rounded-full transition-transform hover:scale-110 shadow-md cursor-pointer"
+                                title="Remove Media"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
                           </div>
+                          <input
+                            type="text"
+                            value={fileTitles[idx] || ''}
+                            onChange={(e) => {
+                              const val = e.target.value
+                              setFileTitles(prev => {
+                                const copy = [...prev]
+                                copy[idx] = val
+                                return copy
+                              })
+                            }}
+                            placeholder="Title..."
+                            className="w-full px-2 py-1 text-[9px] bg-slate-50 border border-slate-200 rounded-md outline-none text-[#444444] placeholder-slate-400 font-medium"
+                          />
                         </div>
                       )
                     })}

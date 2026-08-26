@@ -56,6 +56,7 @@ model BlogPost {
   author     String        @default("Admin")
   readTime   Int           @default(3)
   images     String[]      // Array of image URLs
+  imageTitles String[]      // Array of matching image titles
   published  Boolean       @default(true)
   categoryId String?
   category   BlogCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
