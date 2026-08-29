@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   GraduationCap,
   HeartHandshake,
@@ -14,13 +15,50 @@ import {
   Award,
   Users,
   CheckCircle2,
-  Quote
+  Quote,
+  Play,
+  X,
+  Clock,
+  BookOpen,
+  Tag,
+  ArrowRight
 } from "lucide-react";
 import ImpactStats from "../components/ImpactStats";
-import { Card } from "../components/Card";
+import { Card, MotionCard } from "../components/Card";
+import blogsData from "../data/blogs.json";
+import testimonialsData from "../data/testimonials.json";
+import { getBlogPosts } from "../actions/blog";
+import { getTestimonials } from "../actions/testimonial";
 
 export default function Impact() {
   const [activeTab, setActiveTab] = useState<"education" | "healthcare" | "environment" | "relief">("education");
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [blogsList, setBlogsList] = useState<any[]>(
+    blogsData.filter((post: any) => {
+      const catName = (post.category?.name || post.category || "").toLowerCase();
+      return catName.includes("education");
+    }).slice(0, 3)
+  );
+  const [testimonialsList, setTestimonialsList] = useState<any[]>(testimonialsData);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    getBlogPosts().then((posts) => {
+      if (posts && posts.length > 0) {
+        const eduBlogs = posts.filter((post: any) => {
+          const catName = (post.category?.name || post.category || "").toLowerCase();
+          return catName.includes("education");
+        });
+        setBlogsList(eduBlogs.slice(0, 3));
+      }
+    }).catch(() => { });
+
+    getTestimonials().then((list) => {
+      if (list && list.length > 0) {
+        setTestimonialsList(list);
+      }
+    }).catch(() => { });
+  }, []);
 
 
 
@@ -112,38 +150,21 @@ export default function Impact() {
                 </div>
 
                 {/* 3-Column Grid: Support Scope, Guidelines, and Sponsoring States */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
                     <div className="flex items-center gap-2">
                       <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">🌍 Our Reach and Impact</h4>
                     </div>
                     <p className="text-xs text-foreground/75 leading-relaxed mb-1 font-semibold">
                       131 Students Supported Across India
                     </p>
-                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 leading-relaxed">
-                      <li className="flex items-start gap-2">
-                        <span>🗺️</span>
-                        <span>Supporting students across 12 states</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span>🏫</span>
-                        <span>Partnering with 60 educational institutions</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span>📚</span>
-                        <span>103 active students currently pursuing education</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span>🎓</span>
-                        <span>26 alumni progressing to higher studies and careers</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span>👧</span>
-                        <span>60% of beneficiaries are girls, promoting educational equity</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span>📈</span>
-                        <span>Year-on-year growth in educational investment, extending support to more deserving students</span>
-                      </li>
+                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
+                      <li>Supporting students across 12 states</li>
+                      <li>Partnering with 60 educational institutions</li>
+                      <li>103 active students currently pursuing education</li>
+                      <li>26 alumni progressing to higher studies and careers</li>
+                      <li>60% of beneficiaries are girls, promoting educational equity</li>
+                      <li>Year-on-year growth in educational investment, extending support to more deserving students</li>
                     </ul>
                   </Card>
                   <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
@@ -171,42 +192,70 @@ export default function Impact() {
                     <p className="text-xs text-foreground/75 leading-relaxed mb-1 font-semibold">
                       as of August 2026
                     </p>
-                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 leading-relaxed">
-                      <li className="flex justify-between border-b border-foreground/5 pb-1">
-                        <span className="flex items-center gap-1.5">🎓 Students supported since inception</span>
-                        <span className="font-semibold text-foreground text-[11px]">131</span>
+                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
+                      <li className="border-b border-foreground/5 pb-1">
+                        <div className="flex justify-between items-center w-full">
+                          <div>Students supported since inception</div>
+                          <div className="font-semibold text-foreground text-[11px]">131</div>
+                        </div>
                       </li>
-                      <li className="flex justify-between border-b border-foreground/5 pb-1">
-                        <span className="flex items-center gap-1.5">📚 Active students</span>
-                        <span className="font-semibold text-foreground text-[11px]">105</span>
+                      <li className="border-b border-foreground/5 pb-1">
+                        <div className="flex justify-between items-center w-full">
+                          <div>Active students</div>
+                          <div className="font-semibold text-foreground text-[11px]">105</div>
+                        </div>
                       </li>
-                      <li className="flex justify-between border-b border-foreground/5 pb-1">
-                        <span className="flex items-center gap-1.5">🏆 Alumni</span>
-                        <span className="font-semibold text-foreground text-[11px]">26</span>
+                      <li className="border-b border-foreground/5 pb-1">
+                        <div className="flex justify-between items-center w-full">
+                          <div>Alumni</div>
+                          <div className="font-semibold text-foreground text-[11px]">26</div>
+                        </div>
                       </li>
-                      <li className="flex justify-between border-b border-foreground/5 pb-1">
-                        <span className="flex items-center gap-1.5">👧 Girls supported</span>
-                        <span className="font-semibold text-foreground text-[11px]">60%</span>
+                      <li className="border-b border-foreground/5 pb-1">
+                        <div className="flex justify-between items-center w-full">
+                          <div>Girls supported</div>
+                          <div className="font-semibold text-foreground text-[11px]">60%</div>
+                        </div>
                       </li>
-                      <li className="flex justify-between border-b border-foreground/5 pb-1">
-                        <span className="flex items-center gap-1.5">🗺️ States reached</span>
-                        <span className="font-semibold text-foreground text-[11px]">12</span>
+                      <li className="border-b border-foreground/5 pb-1">
+                        <div className="flex justify-between items-center w-full">
+                          <div>States reached</div>
+                          <div className="font-semibold text-foreground text-[11px]">12</div>
+                        </div>
                       </li>
-                      <li className="flex justify-between border-b border-foreground/5 pb-1">
-                        <span className="flex items-center gap-1.5">🏫 Educational institutions</span>
-                        <span className="font-semibold text-foreground text-[11px]">60</span>
+                      <li className="border-b border-foreground/5 pb-1">
+                        <div className="flex justify-between items-center w-full">
+                          <div>Educational institutions</div>
+                          <div className="font-semibold text-foreground text-[11px]">60</div>
+                        </div>
                       </li>
-                      <li className="flex justify-between border-b border-foreground/5 pb-1">
-                        <span className="flex items-center gap-1.5">🎂 Average age of students</span>
-                        <span className="font-semibold text-foreground text-[11px]">15 years</span>
+                      <li className="border-b border-foreground/5 pb-1">
+                        <div className="flex justify-between items-center w-full">
+                          <div>Average age of students</div>
+                          <div className="font-semibold text-foreground text-[11px]">15 years</div>
+                        </div>
                       </li>
-                      <li className="flex justify-between pb-0">
-                        <span className="flex items-center gap-1.5">💝 Average annual support</span>
-                        <span className="font-semibold text-foreground text-[11px]">₹40,000</span>
+                      <li className="pb-0">
+                        <div className="flex justify-between items-center w-full">
+                          <div>Average annual support</div>
+                          <div className="font-semibold text-foreground text-[11px]">₹40,000</div>
+                        </div>
                       </li>
                     </ul>
                   </Card>
                 </div>
+
+                <section className="py-8 px-6 md:px-12 text-center">
+                  <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
+                    <span className="w-10 h-0.5 bg-secondary rounded-full" />
+                    <h2 className="font-display font-bold text-2xl md:text-3xl text-foreground italic leading-normal px-4">
+                      &ldquo;Every student we support strengthens a family, inspires a community, and brings a brighter future within reach.&rdquo;
+                    </h2>
+                    {/* <span className="font-sans font-semibold text-sm uppercase tracking-widest text-foreground/60">
+                      &mdash; Mother Teresa
+                    </span> */}
+                  </div>
+                </section>
 
                 {/* A. Education Team */}
                 <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-6">
@@ -366,8 +415,206 @@ export default function Impact() {
                     During Covid 19 pandemic, all schools and institutions remained closed. The students in rural areas were struggling to continue their education. L4H Foundation explored opportunities to help needy student who can’t afford their private tuition fees. L4H Foundation launched a <strong>pilot project</strong> by selecting one of the villages in Medinipur district of West Bengal. L4H Foundation arranged <strong>free offline coaching covering 10 students</strong> by engaging local volunteers. Our plan is to develop such models in more villages by finding local volunteers who can devote their time to help and educate children.
                   </p>
                 </Card>
+
+                {/* Inspiring Journeys and Achievements */}
+                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-5">
+                  <h4 className="font-display font-bold text-xl text-foreground">🏆 Inspiring Journeys and Achievements</h4>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-semibold">
+                    Our students continue to demonstrate what is possible when talent is matched with opportunity:
+                  </p>
+                  <ul className="flex flex-col gap-3 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
+                    <li>A student is pursuing a PhD at the University of Florida, USA, after completing an M.Sc. at IIT Madras</li>
+                    <li>A student secured 4th rank in the Higher Secondary Examination</li>
+                    <li>Alumni are building careers in government and private-sector organizations</li>
+                    <li>Multiple students have achieved scores above 90% in Grade 10 and Grade 12 examinations</li>
+                    <li>Students are pursuing MBBS, B.Tech., B.Sc., B.Com., M.A., B.A., and other higher-education programs</li>
+                    <li>A growing number of first-generation learners are progressing to college and professional careers</li>
+                  </ul>
+                </Card>
+
+                {/* Latest Education Activities & Updates */}
+                <div className="flex flex-col gap-10 bg-[#ECE0F0] rounded-[3rem] py-8 px-4 md:py-12 md:px-8 border border-foreground/5 w-full mt-6">
+                  <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div className="flex flex-col gap-4 max-w-2xl text-left">
+                      <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Journal</span>
+                      <h3 className="font-display font-bold text-3xl md:text-4xl text-foreground">Latest Education Activities & Updates</h3>
+                      <p className="text-xs sm:text-sm text-foreground/70">
+                        Explore detailed reports and updates from our education campaigns and student milestones.
+                      </p>
+                    </div>
+                    <Link href="/blog">
+                      <button className="flex items-center gap-1.5 px-6 py-3 rounded-full text-xs font-semibold text-foreground bg-primary shadow-soft transition-premium cursor-pointer">
+                        View All News
+                      </button>
+                    </Link>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {blogsList.length > 0 ? (
+                      blogsList.map((blog, idx) => {
+                        const blogDate = blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
+                        }) : (blog.date || 'June 1, 2026')
+
+                        const images = blog.images || []
+                        const coverImage = images.length > 0 ? (images[0] === '/logo/logo.jpg' && images.length > 1 ? images[1] : images[0]) : null
+                        const isVid = coverImage && coverImage.toLowerCase().match(/\.(mp4|webm|mov|avi|mkv)$/i)
+                        const title = blog.title && blog.title !== 'BLOG' ? blog.title : (blog.subheadings?.[0]?.text || 'Blog Post')
+                        const categoryName = blog.category?.name || blog.category || 'Education'
+                        const readTime = blog.readTime || 3
+                        const excerpt = blog.excerpt || (blog.paragraphs && blog.paragraphs[0]) || 'No description available.'
+
+                        return (
+                          <motion.article
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: idx * 0.05 }}
+                            key={blog.slug}
+                            className="group flex flex-col justify-between rounded-[2.5rem] bg-white shadow-soft border border-[#C8B4D4] min-h-[450px] hover:-translate-y-2 hover:border-[#90BCE6] hover:shadow-premium hover:!bg-[#CFE8FF] transition-all duration-300 overflow-hidden pb-6 relative text-left"
+                          >
+                            <div className="flex flex-col flex-1">
+                              {/* Image / Video */}
+                              {coverImage ? (
+                                <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-slate-900">
+                                  {isVid ? (
+                                    <video src={coverImage} muted className="w-full h-full object-cover group-hover:scale-105 transition-premium" />
+                                  ) : (
+                                    <img
+                                      referrerPolicy="no-referrer"
+                                      src={coverImage}
+                                      alt={title}
+                                      className="w-full h-full object-cover group-hover:scale-105 transition-premium animate-fade-in"
+                                    />
+                                  )}
+                                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/10 flex items-center gap-1">
+                                    <Tag className="w-3 h-3 text-blue-400" />
+                                    {categoryName}
+                                  </div>
+                                </div>
+                              ) : (
+                                <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-slate-100 flex items-center justify-center text-slate-400">
+                                  <BookOpen className="w-12 h-12 text-slate-300" />
+                                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/10 flex items-center gap-1">
+                                    <Tag className="w-3 h-3 text-blue-400" />
+                                    {categoryName}
+                                  </div>
+                                </div>
+                              )}
+
+                              {/* Body */}
+                              <div className="pt-4 px-6 flex flex-col h-full flex-grow justify-between">
+                                <div className="flex flex-col gap-2 flex-grow">
+                                  <div className="flex flex-wrap items-center gap-4 text-[10px] font-semibold tracking-wider text-foreground/50 uppercase">
+                                    <span className="flex items-center gap-1">
+                                      <Calendar className="w-3 h-3" />
+                                      {blogDate}
+                                    </span>
+                                    <span className="flex items-center gap-1">
+                                      <Clock className="w-3 h-3" />
+                                      {readTime} Min Read
+                                    </span>
+                                  </div>
+                                  <h4 className="font-display font-bold text-base md:text-lg text-foreground leading-snug group-hover:text-blue-600 transition-colors line-clamp-2">
+                                    {title}
+                                  </h4>
+                                  <p className="text-[11px] text-foreground/70 leading-relaxed line-clamp-3">
+                                    {excerpt}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="px-6 mt-4">
+                              <Link href={`/blog/${blog.slug}`} className="flex items-center gap-1.5 text-xs font-semibold text-foreground/80 hover:text-foreground group/btn w-fit">
+                                Read full story
+                                <ArrowRight className="w-3.5 h-3.5 text-foreground/40 group-hover/btn:translate-x-0.5 transition-transform" />
+                              </Link>
+                            </div>
+                          </motion.article>
+                        )
+                      })
+                    ) : (
+                      <div className="col-span-3 text-center text-xs text-foreground/60 py-6">
+                        No education updates found.
+                      </div>
+                    )}
+                  </div>
+                </div>
+                {/* Meet Our Students CTA Section */}
+                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-6 items-center text-center mt-6 w-full">
+                  <div className="flex flex-col gap-3 max-w-xl">
+                    <h4 className="font-display font-bold text-2xl text-foreground">🎒 Meet Our Sponsored Students</h4>
+                    <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                      We maintain complete transparency and updates for all students sponsored under our education program. Click below to view the full student directory, progress reports, and profiles.
+                    </p>
+                  </div>
+                  <Link href="/students">
+                    <button className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-[#444444] bg-[#FFE6D4] hover:bg-[#ffd1b3] border border-[#EEB898] transition-premium shadow-soft cursor-pointer">
+                      View Student Profiles
+                      <ArrowRight className="w-5 h-5 text-[#444444]" />
+                    </button>
+                  </Link>
+                </Card>
+                {/* Video Testimonials Section */}
+                <div className="flex flex-col gap-10 bg-[#E8ECF2] rounded-[3rem] py-8 px-4 md:py-12 md:px-8 border border-foreground/5 w-full mt-6">
+                  <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div className="flex flex-col gap-4 max-w-2xl text-left">
+                      <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Voice of the People</span>
+                      <h3 className="font-display font-bold text-3xl md:text-4xl text-foreground">Video Testimonials</h3>
+                      <p className="text-xs sm:text-sm text-foreground/70">
+                        Hear directly from our members, students, and supporters sharing their journey of collective actions and hope.
+                      </p>
+                    </div>
+                    <Link href="/testimonials">
+                      <button className="flex items-center gap-1.5 px-6 py-3 rounded-full text-xs font-semibold text-foreground bg-primary shadow-soft transition-premium cursor-pointer">
+                        View All Stories
+                      </button>
+                    </Link>
+                  </div>
+
+                  <div ref={carouselRef} className="flex gap-6 overflow-x-auto pb-6 pt-2 px-2 no-scrollbar scroll-smooth snap-x snap-mandatory">
+                    {testimonialsList.map((item, idx) => (
+                      <MotionCard
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: idx * 0.05 }}
+                        key={item.name}
+                        onClick={() => setActiveVideo(item.video)}
+                        className="flex-shrink-0 w-64 h-[350px] rounded-[2.5rem] group cursor-pointer border border-[#B8C5D6] flex flex-col snap-start overflow-hidden relative text-left"
+                      >
+                        <img referrerPolicy="no-referrer"
+                          src={item.image}
+                          alt={item.name}
+                          className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-premium"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white" />
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-premium">
+                          <div className="w-12 h-12 rounded-full backdrop-blur-md bg-white/20 border border-white/30 flex items-center justify-center shadow-lg text-white">
+                            <Play className="w-5 h-5 fill-current text-white ml-1" />
+                          </div>
+                        </div>
+                        <div className="absolute bottom-6 left-6 right-6 z-10 text-white flex flex-col gap-1">
+                          <span className="text-[10px] uppercase tracking-widest font-sans opacity-75">Supporter Story</span>
+                          <h4 className="font-display font-bold text-base leading-tight">{item.name}</h4>
+                          <div className="flex items-center gap-1 text-[10px] backdrop-blur-md bg-white/20 border border-white/20 w-fit px-2.5 py-1 rounded-full font-semibold uppercase mt-1">
+                            <Play className="w-2.5 h-2.5 fill-current" /> Play Video
+                          </div>
+                        </div>
+                      </MotionCard>
+                    ))}
+                  </div>
+                </div>
+
+
               </motion.div>
+
+
             )}
+
 
             {activeTab === "healthcare" && (
               <motion.div
@@ -699,8 +946,57 @@ export default function Impact() {
               </motion.div>
             )}
           </div>
+
+          {/* Together, We Can Create More Futures Section */}
+          <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 text-center pt-10 border-t border-foreground/10 mt-6 w-full">
+            <span className="text-sm md:text-base font-semibold text-[#DD6B20] tracking-wide">
+              Together, We Can Create More Futures
+            </span>
+            <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-slate-800 leading-snug font-sans max-w-3xl">
+              131 students supported. 103 dreams in progress. Countless possibilities ahead.
+            </h2>
+            <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed max-w-2xl font-sans">
+              With the partnership of donors, volunteers, educational institutions, and CSR supporters, <strong className="font-bold text-foreground">Live4Help Foundation</strong> is helping ensure that financial hardship never stands between a child and an education. Together, we can help more young people stay in school, pursue higher education, and build independent, hopeful futures.
+            </p>
+            <span className="text-xs sm:text-sm md:text-base font-bold text-[#DD6B20] tracking-wide mt-2">
+              Empowering Children • Enabling Dreams • Building a Better Future ✨
+            </span>
+          </div>
         </div>
       </section>
+
+      {/* Video Testimonial Modal Lightbox */}
+      <AnimatePresence>
+        {activeVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+          >
+            <button
+              onClick={() => setActiveVideo(null)}
+              className="absolute top-6 right-6 p-3 rounded-full text-white hover:text-gray-200 transition-colors cursor-pointer hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
+              aria-label="Close video"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="w-full max-w-4xl aspect-video rounded-3xl overflow-hidden shadow-premium bg-black"
+            >
+              <video
+                src={activeVideo}
+                controls
+                autoPlay
+                className="w-full h-full"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
