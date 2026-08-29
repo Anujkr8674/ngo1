@@ -104,60 +104,106 @@ export default function Impact() {
                 <div className="flex flex-col gap-4">
                   <h3 className="font-display font-bold text-3xl text-foreground">Ngo for Poor Child Education Underprivileged Children in Delhi/NCR</h3>
                   <p className="text-sm text-foreground/80 leading-relaxed">
-                    <strong>Live 4 Help (L4H) Foundation</strong> is committed to identify deserving students and their academic needs. L4H Foundation through social platforms appeals to donors to help these needy students with stipends / scholarships to meet their basic needs and continuity of education.
+                    <strong>Live 4 Help (L4H) Foundation</strong> believes every child deserves the opportunity to learn, grow, and shape a brighter future. Since sponsoring its first student in 2021, the Foundation has developed a nationwide education-support program for children whose studies are at risk because of financial hardship. By combining financial assistance with mentoring, learning resources, and regular engagement with students, families, teachers, and local volunteers, we help young people remain in education, build confidence, and pursue their ambitions. Our commitment goes beyond funding: we provide sustained guidance and follow-up so that
                   </p>
-                  <p className="text-sm text-foreground/80 leading-relaxed">
+                  {/* <p className="text-sm text-foreground/80 leading-relaxed">
                     From a humble journey with one student in <strong>June’21</strong>, L4H Foundation has extended education support to a total of <strong>34</strong> students from <strong>seven states of India (Delhi, West Bengal, Orissa, Uttarakhand, Uttar Pradesh, Jharkhand and Bihar).</strong> Majority (22 out of 34/65%) students are girls. With the help of local volunteers, L4H Foundation keeps tracks of the progress of their education.
-                  </p>
+                  </p> */}
                 </div>
 
                 {/* 3-Column Grid: Support Scope, Guidelines, and Sponsoring States */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
                     <div className="flex items-center gap-2">
-                      <GraduationCap className="w-5 h-5 text-primary" />
-                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Supports Provided</h4>
+                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">🌍 Our Reach and Impact</h4>
                     </div>
-                    <p className="text-xs text-foreground/75 leading-relaxed mb-1">
-                      L4H Foundation is providing following supports to the needy students:
-                    </p>
-                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
-                      <li>School, Semester and Tuition Fees</li>
-                      <li>Books / Stationeries</li>
-                      <li>Free Online / Offline coaching on need basis</li>
-                      <li>Counselling</li>
-                      <li>Transportation, Health check-up, medicines, as deemed essential</li>
-                    </ul>
-                  </Card>
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-[#DD6B20]" />
-                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Guidelines / Criteria</h4>
-                    </div>
-                    <p className="text-xs text-foreground/75 leading-relaxed mb-1">
-                      Students are identified based of following guidelines/criteria:
-                    </p>
-                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
-                      <li>Meritorious student, who needs financial assistance.</li>
-                      <li>Preference to students with single parent or no parents</li>
-                      <li>Preference to girl students</li>
-                      <li>Preference to students below class IX</li>
-                    </ul>
-                  </Card>
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-5 h-5 text-secondary" />
-                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Sponsoring States (7)</h4>
-                    </div>
-                    <p className="text-xs text-foreground/75 leading-relaxed mb-1">
-                      Active regions where students are sponsored:
+                    <p className="text-xs text-foreground/75 leading-relaxed mb-1 font-semibold">
+                      131 Students Supported Across India
                     </p>
                     <ul className="flex flex-col gap-2 text-xs text-foreground/75 leading-relaxed">
-                      <li className="flex justify-between border-b border-foreground/5 pb-1"><span>Delhi / NCR</span> <span className="font-semibold text-foreground text-[10px]">Urban Outreach</span></li>
-                      <li className="flex justify-between border-b border-foreground/5 pb-1"><span>West Bengal</span> <span className="font-semibold text-foreground text-[10px]">Rural & Tribal</span></li>
-                      <li className="flex justify-between border-b border-foreground/5 pb-1"><span>Bihar & Jharkhand</span> <span className="font-semibold text-foreground text-[10px]">Academic</span></li>
-                      <li className="flex justify-between border-b border-foreground/5 pb-1"><span>Uttar Pradesh</span> <span className="font-semibold text-foreground text-[10px]">Tuition</span></li>
-                      <li className="flex justify-between pb-0"><span>Uttarakhand & Odisha</span> <span className="font-semibold text-foreground text-[10px]">Secondary</span></li>
+                      <li className="flex items-start gap-2">
+                        <span>🗺️</span>
+                        <span>Supporting students across 12 states</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span>🏫</span>
+                        <span>Partnering with 60 educational institutions</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span>📚</span>
+                        <span>103 active students currently pursuing education</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span>🎓</span>
+                        <span>26 alumni progressing to higher studies and careers</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span>👧</span>
+                        <span>60% of beneficiaries are girls, promoting educational equity</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span>📈</span>
+                        <span>Year-on-year growth in educational investment, extending support to more deserving students</span>
+                      </li>
+                    </ul>
+                  </Card>
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
+                    <div className="flex items-center gap-2">
+                      {/* <GraduationCap className="w-5 h-5 text-primary" /> */}
+                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">🤝 How We Help Students Succeed</h4>
+                    </div>
+                    <p className="text-xs text-foreground/75 leading-relaxed mb-1">
+                      Comprehensive Support at Every Stage
+                    </p>
+                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
+                      <li>Admission, Registration & Tuition Fees</li>
+                      <li>Books, Stationery, Uniforms & School Bags</li>
+                      <li>Hostel & Accommodation Support</li>
+                      <li>Transportation Assistance</li>
+                      <li>Online & Offline Coaching</li>
+                      <li>Counselling & Mentorship</li>
+                      <li>Health & Emergency Support</li>
+                    </ul>
+                  </Card>
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">📊 Education Impact</h4>
+                    </div>
+                    <p className="text-xs text-foreground/75 leading-relaxed mb-1 font-semibold">
+                      as of August 2026
+                    </p>
+                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 leading-relaxed">
+                      <li className="flex justify-between border-b border-foreground/5 pb-1">
+                        <span className="flex items-center gap-1.5">🎓 Students supported since inception</span>
+                        <span className="font-semibold text-foreground text-[11px]">131</span>
+                      </li>
+                      <li className="flex justify-between border-b border-foreground/5 pb-1">
+                        <span className="flex items-center gap-1.5">📚 Active students</span>
+                        <span className="font-semibold text-foreground text-[11px]">105</span>
+                      </li>
+                      <li className="flex justify-between border-b border-foreground/5 pb-1">
+                        <span className="flex items-center gap-1.5">🏆 Alumni</span>
+                        <span className="font-semibold text-foreground text-[11px]">26</span>
+                      </li>
+                      <li className="flex justify-between border-b border-foreground/5 pb-1">
+                        <span className="flex items-center gap-1.5">👧 Girls supported</span>
+                        <span className="font-semibold text-foreground text-[11px]">60%</span>
+                      </li>
+                      <li className="flex justify-between border-b border-foreground/5 pb-1">
+                        <span className="flex items-center gap-1.5">🗺️ States reached</span>
+                        <span className="font-semibold text-foreground text-[11px]">12</span>
+                      </li>
+                      <li className="flex justify-between border-b border-foreground/5 pb-1">
+                        <span className="flex items-center gap-1.5">🏫 Educational institutions</span>
+                        <span className="font-semibold text-foreground text-[11px]">60</span>
+                      </li>
+                      <li className="flex justify-between border-b border-foreground/5 pb-1">
+                        <span className="flex items-center gap-1.5">🎂 Average age of students</span>
+                        <span className="font-semibold text-foreground text-[11px]">15 years</span>
+                      </li>
+                      <li className="flex justify-between pb-0">
+                        <span className="flex items-center gap-1.5">💝 Average annual support</span>
+                        <span className="font-semibold text-foreground text-[11px]">₹40,000</span>
+                      </li>
                     </ul>
                   </Card>
                 </div>
