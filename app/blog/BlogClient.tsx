@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Calendar, Clock, ArrowRight, BookOpen, Tag } from 'lucide-react'
@@ -15,6 +15,21 @@ export default function BlogClient({ initialBlogs, initialCategories }: BlogClie
   const [activeCategoryId, setActiveCategoryId] = useState('all')
   const [currentPage, setCurrentPage] = useState(1)
   const ITEMS_PER_PAGE = 12
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      const categoryParam = params.get('category')
+      if (categoryParam) {
+        const match = initialCategories.find(
+          cat => cat.name?.toLowerCase() === categoryParam.toLowerCase()
+        )
+        if (match) {
+          setActiveCategoryId(match.id)
+        }
+      }
+    }
+  }, [initialCategories])
 
   // Reset page when category changes
   const handleCategoryChange = (catId: string) => {

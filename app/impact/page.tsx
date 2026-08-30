@@ -60,6 +60,20 @@ export default function Impact() {
     }).catch(() => { });
   }, []);
 
+  useEffect(() => {
+    const autoScroll = setInterval(() => {
+      if (carouselRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          carouselRef.current.scrollBy({ left: 312, behavior: 'smooth' });
+        }
+      }
+    }, 3000);
+    return () => clearInterval(autoScroll);
+  }, []);
+
 
 
   return (
@@ -140,7 +154,7 @@ export default function Impact() {
               >
                 {/* Overview */}
                 <div className="flex flex-col gap-4">
-                  <h3 className="font-display font-bold text-3xl text-foreground">Ngo for Poor Child Education Underprivileged Children in Delhi/NCR</h3>
+                  <h3 className="font-display font-bold text-3xl text-foreground">Education That Opens Doors and Transforms Futures</h3>
                   <p className="text-sm text-foreground/80 leading-relaxed">
                     <strong>Live 4 Help (L4H) Foundation</strong> believes every child deserves the opportunity to learn, grow, and shape a brighter future. Since sponsoring its first student in 2021, the Foundation has developed a nationwide education-support program for children whose studies are at risk because of financial hardship. By combining financial assistance with mentoring, learning resources, and regular engagement with students, families, teachers, and local volunteers, we help young people remain in education, build confidence, and pursue their ambitions. Our commitment goes beyond funding: we provide sustained guidance and follow-up so that
                   </p>
@@ -344,11 +358,11 @@ export default function Impact() {
                   </p>
                   <div className="mt-2">
                     <p className="text-xs text-foreground/50 font-semibold mb-3">Here is few photographs capturing moments while interacting with students.</p>
-                    <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative">
+                    <div className="w-full rounded-[2rem] overflow-hidden border border-white shadow-soft bg-white">
                       <img referrerPolicy="no-referrer"
                         src="/student/Students.png"
                         alt="Student Interaction photographs"
-                        className="w-full h-full object-cover absolute inset-0"
+                        className="w-full h-auto block"
                       />
                     </div>
                   </div>
@@ -431,188 +445,7 @@ export default function Impact() {
                     <li>A growing number of first-generation learners are progressing to college and professional careers</li>
                   </ul>
                 </Card>
-
-                {/* Latest Education Activities & Updates */}
-                <div className="flex flex-col gap-10 bg-[#ECE0F0] rounded-[3rem] py-8 px-4 md:py-12 md:px-8 border border-foreground/5 w-full mt-6">
-                  <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-                    <div className="flex flex-col gap-4 max-w-2xl text-left">
-                      <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Journal</span>
-                      <h3 className="font-display font-bold text-3xl md:text-4xl text-foreground">Latest Education Activities & Updates</h3>
-                      <p className="text-xs sm:text-sm text-foreground/70">
-                        Explore detailed reports and updates from our education campaigns and student milestones.
-                      </p>
-                    </div>
-                    <Link href="/blog">
-                      <button className="flex items-center gap-1.5 px-6 py-3 rounded-full text-xs font-semibold text-foreground bg-primary shadow-soft transition-premium cursor-pointer">
-                        View All News
-                      </button>
-                    </Link>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {blogsList.length > 0 ? (
-                      blogsList.map((blog, idx) => {
-                        const blogDate = blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric'
-                        }) : (blog.date || 'June 1, 2026')
-
-                        const images = blog.images || []
-                        const coverImage = images.length > 0 ? (images[0] === '/logo/logo.jpg' && images.length > 1 ? images[1] : images[0]) : null
-                        const isVid = coverImage && coverImage.toLowerCase().match(/\.(mp4|webm|mov|avi|mkv)$/i)
-                        const title = blog.title && blog.title !== 'BLOG' ? blog.title : (blog.subheadings?.[0]?.text || 'Blog Post')
-                        const categoryName = blog.category?.name || blog.category || 'Education'
-                        const readTime = blog.readTime || 3
-                        const excerpt = blog.excerpt || (blog.paragraphs && blog.paragraphs[0]) || 'No description available.'
-
-                        return (
-                          <motion.article
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: idx * 0.05 }}
-                            key={blog.slug}
-                            className="group flex flex-col justify-between rounded-[2.5rem] bg-white shadow-soft border border-[#C8B4D4] min-h-[450px] hover:-translate-y-2 hover:border-[#90BCE6] hover:shadow-premium hover:!bg-[#CFE8FF] transition-all duration-300 overflow-hidden pb-6 relative text-left"
-                          >
-                            <div className="flex flex-col flex-1">
-                              {/* Image / Video */}
-                              {coverImage ? (
-                                <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-slate-900">
-                                  {isVid ? (
-                                    <video src={coverImage} muted className="w-full h-full object-cover group-hover:scale-105 transition-premium" />
-                                  ) : (
-                                    <img
-                                      referrerPolicy="no-referrer"
-                                      src={coverImage}
-                                      alt={title}
-                                      className="w-full h-full object-cover group-hover:scale-105 transition-premium animate-fade-in"
-                                    />
-                                  )}
-                                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/10 flex items-center gap-1">
-                                    <Tag className="w-3 h-3 text-blue-400" />
-                                    {categoryName}
-                                  </div>
-                                </div>
-                              ) : (
-                                <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-slate-100 flex items-center justify-center text-slate-400">
-                                  <BookOpen className="w-12 h-12 text-slate-300" />
-                                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/10 flex items-center gap-1">
-                                    <Tag className="w-3 h-3 text-blue-400" />
-                                    {categoryName}
-                                  </div>
-                                </div>
-                              )}
-
-                              {/* Body */}
-                              <div className="pt-4 px-6 flex flex-col h-full flex-grow justify-between">
-                                <div className="flex flex-col gap-2 flex-grow">
-                                  <div className="flex flex-wrap items-center gap-4 text-[10px] font-semibold tracking-wider text-foreground/50 uppercase">
-                                    <span className="flex items-center gap-1">
-                                      <Calendar className="w-3 h-3" />
-                                      {blogDate}
-                                    </span>
-                                    <span className="flex items-center gap-1">
-                                      <Clock className="w-3 h-3" />
-                                      {readTime} Min Read
-                                    </span>
-                                  </div>
-                                  <h4 className="font-display font-bold text-base md:text-lg text-foreground leading-snug group-hover:text-blue-600 transition-colors line-clamp-2">
-                                    {title}
-                                  </h4>
-                                  <p className="text-[11px] text-foreground/70 leading-relaxed line-clamp-3">
-                                    {excerpt}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="px-6 mt-4">
-                              <Link href={`/blog/${blog.slug}`} className="flex items-center gap-1.5 text-xs font-semibold text-foreground/80 hover:text-foreground group/btn w-fit">
-                                Read full story
-                                <ArrowRight className="w-3.5 h-3.5 text-foreground/40 group-hover/btn:translate-x-0.5 transition-transform" />
-                              </Link>
-                            </div>
-                          </motion.article>
-                        )
-                      })
-                    ) : (
-                      <div className="col-span-3 text-center text-xs text-foreground/60 py-6">
-                        No education updates found.
-                      </div>
-                    )}
-                  </div>
-                </div>
-                {/* Meet Our Students CTA Section */}
-                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-6 items-center text-center mt-6 w-full">
-                  <div className="flex flex-col gap-3 max-w-xl">
-                    <h4 className="font-display font-bold text-2xl text-foreground">🎒 Meet Our Sponsored Students</h4>
-                    <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
-                      We maintain complete transparency and updates for all students sponsored under our education program. Click below to view the full student directory, progress reports, and profiles.
-                    </p>
-                  </div>
-                  <Link href="/students">
-                    <button className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-[#444444] bg-[#FFE6D4] hover:bg-[#ffd1b3] border border-[#EEB898] transition-premium shadow-soft cursor-pointer">
-                      View Student Profiles
-                      <ArrowRight className="w-5 h-5 text-[#444444]" />
-                    </button>
-                  </Link>
-                </Card>
-                {/* Video Testimonials Section */}
-                <div className="flex flex-col gap-10 bg-[#E8ECF2] rounded-[3rem] py-8 px-4 md:py-12 md:px-8 border border-foreground/5 w-full mt-6">
-                  <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-                    <div className="flex flex-col gap-4 max-w-2xl text-left">
-                      <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Voice of the People</span>
-                      <h3 className="font-display font-bold text-3xl md:text-4xl text-foreground">Video Testimonials</h3>
-                      <p className="text-xs sm:text-sm text-foreground/70">
-                        Hear directly from our members, students, and supporters sharing their journey of collective actions and hope.
-                      </p>
-                    </div>
-                    <Link href="/testimonials">
-                      <button className="flex items-center gap-1.5 px-6 py-3 rounded-full text-xs font-semibold text-foreground bg-primary shadow-soft transition-premium cursor-pointer">
-                        View All Stories
-                      </button>
-                    </Link>
-                  </div>
-
-                  <div ref={carouselRef} className="flex gap-6 overflow-x-auto pb-6 pt-2 px-2 no-scrollbar scroll-smooth snap-x snap-mandatory">
-                    {testimonialsList.map((item, idx) => (
-                      <MotionCard
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: idx * 0.05 }}
-                        key={item.name}
-                        onClick={() => setActiveVideo(item.video)}
-                        className="flex-shrink-0 w-64 h-[350px] rounded-[2.5rem] group cursor-pointer border border-[#B8C5D6] flex flex-col snap-start overflow-hidden relative text-left"
-                      >
-                        <img referrerPolicy="no-referrer"
-                          src={item.image}
-                          alt={item.name}
-                          className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-premium"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white" />
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-premium">
-                          <div className="w-12 h-12 rounded-full backdrop-blur-md bg-white/20 border border-white/30 flex items-center justify-center shadow-lg text-white">
-                            <Play className="w-5 h-5 fill-current text-white ml-1" />
-                          </div>
-                        </div>
-                        <div className="absolute bottom-6 left-6 right-6 z-10 text-white flex flex-col gap-1">
-                          <span className="text-[10px] uppercase tracking-widest font-sans opacity-75">Supporter Story</span>
-                          <h4 className="font-display font-bold text-base leading-tight">{item.name}</h4>
-                          <div className="flex items-center gap-1 text-[10px] backdrop-blur-md bg-white/20 border border-white/20 w-fit px-2.5 py-1 rounded-full font-semibold uppercase mt-1">
-                            <Play className="w-2.5 h-2.5 fill-current" /> Play Video
-                          </div>
-                        </div>
-                      </MotionCard>
-                    ))}
-                  </div>
-                </div>
-
-
               </motion.div>
-
-
             )}
 
 
@@ -947,23 +780,222 @@ export default function Impact() {
             )}
           </div>
 
-          {/* Together, We Can Create More Futures Section */}
-          <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 text-center pt-10 border-t border-foreground/10 mt-6 w-full">
-            <span className="text-sm md:text-base font-semibold text-[#DD6B20] tracking-wide">
-              Together, We Can Create More Futures
-            </span>
-            <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-slate-800 leading-snug font-sans max-w-3xl">
-              131 students supported. 103 dreams in progress. Countless possibilities ahead.
-            </h2>
-            <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed max-w-2xl font-sans">
-              With the partnership of donors, volunteers, educational institutions, and CSR supporters, <strong className="font-bold text-foreground">Live4Help Foundation</strong> is helping ensure that financial hardship never stands between a child and an education. Together, we can help more young people stay in school, pursue higher education, and build independent, hopeful futures.
-            </p>
-            <span className="text-xs sm:text-sm md:text-base font-bold text-[#DD6B20] tracking-wide mt-2">
-              Empowering Children • Enabling Dreams • Building a Better Future ✨
-            </span>
-          </div>
         </div>
       </section>
+
+      {/* Education tab nested sections on main page background */}
+      {activeTab === "education" && (
+        <>
+          {/* Latest Education Activities & Updates */}
+          <section className="py-8 px-6 md:px-12">
+            <div className="max-w-7xl mx-auto flex flex-col gap-10 bg-[#ECE0F0] rounded-[3rem] py-8 px-4 md:py-12 md:px-8 border border-foreground/5 w-full text-left">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div className="flex flex-col gap-4 max-w-2xl text-left">
+                  <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Journal</span>
+                  <h3 className="font-display font-bold text-3xl md:text-4xl text-foreground">Latest Education Activities & Updates</h3>
+                  <p className="text-xs sm:text-sm text-foreground/70">
+                    Explore detailed reports and updates from our education campaigns and student milestones.
+                  </p>
+                </div>
+                <Link href="/blog?category=education">
+                  <button className="flex items-center gap-1.5 px-6 py-3 rounded-full text-xs font-semibold text-foreground bg-primary shadow-soft transition-premium cursor-pointer">
+                    View All News
+                  </button>
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {blogsList.length > 0 ? (
+                  blogsList.map((blog, idx) => {
+                    const blogDate = blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric'
+                    }) : (blog.date || 'June 1, 2026')
+
+                    const images = blog.images || []
+                    const coverImage = images.length > 0 ? (images[0] === '/logo/logo.jpg' && images.length > 1 ? images[1] : images[0]) : null
+                    const isVid = coverImage && coverImage.toLowerCase().match(/\.(mp4|webm|mov|avi|mkv)$/i)
+                    const title = blog.title && blog.title !== 'BLOG' ? blog.title : (blog.subheadings?.[0]?.text || 'Blog Post')
+                    const categoryName = blog.category?.name || blog.category || 'Education'
+                    const readTime = blog.readTime || 3
+                    const excerpt = blog.excerpt || (blog.paragraphs && blog.paragraphs[0]) || 'No description available.'
+
+                    return (
+                      <motion.article
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: idx * 0.05 }}
+                        key={blog.slug}
+                        className="group flex flex-col justify-between rounded-[2.5rem] bg-white shadow-soft border border-[#C8B4D4] min-h-[450px] hover:-translate-y-2 hover:border-[#90BCE6] hover:shadow-premium hover:!bg-[#CFE8FF] transition-all duration-300 overflow-hidden pb-6 relative text-left"
+                      >
+                        <div className="flex flex-col flex-1">
+                          {/* Image / Video */}
+                          {coverImage ? (
+                            <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-slate-900">
+                              {isVid ? (
+                                <video src={coverImage} muted className="w-full h-full object-cover group-hover:scale-105 transition-premium" />
+                              ) : (
+                                <img
+                                  referrerPolicy="no-referrer"
+                                  src={coverImage}
+                                  alt={title}
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-premium animate-fade-in"
+                                />
+                              )}
+                              <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/10 flex items-center gap-1">
+                                <Tag className="w-3 h-3 text-blue-400" />
+                                {categoryName}
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-slate-100 flex items-center justify-center text-slate-400">
+                              <BookOpen className="w-12 h-12 text-slate-300" />
+                              <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/10 flex items-center gap-1">
+                                <Tag className="w-3 h-3 text-blue-400" />
+                                {categoryName}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Body */}
+                          <div className="pt-4 px-6 flex flex-col h-full flex-grow justify-between">
+                            <div className="flex flex-col gap-2 flex-grow">
+                              <div className="flex flex-wrap items-center gap-4 text-[10px] font-semibold tracking-wider text-foreground/50 uppercase">
+                                <span className="flex items-center gap-1">
+                                  <Calendar className="w-3 h-3" />
+                                  {blogDate}
+                                </span>
+                                <span className="flex items-center gap-1">
+                                  <Clock className="w-3 h-3" />
+                                  {readTime} Min Read
+                                </span>
+                              </div>
+                              <h4 className="font-display font-bold text-base md:text-lg text-foreground leading-snug group-hover:text-blue-600 transition-colors line-clamp-2">
+                                {title}
+                              </h4>
+                              <p className="text-[11px] text-foreground/70 leading-relaxed line-clamp-3">
+                                {excerpt}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="px-6 mt-4">
+                          <Link href={`/blog/${blog.slug}`} className="flex items-center gap-1.5 text-xs font-semibold text-foreground/80 hover:text-foreground group/btn w-fit">
+                            Read full story
+                            <ArrowRight className="w-3.5 h-3.5 text-foreground/40 group-hover/btn:translate-x-0.5 transition-transform" />
+                          </Link>
+                        </div>
+                      </motion.article>
+                    )
+                  })
+                ) : (
+                  <div className="col-span-3 text-center text-xs text-foreground/60 py-6">
+                    No education updates found.
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+
+          {/* Meet Our Sponsored Students CTA Section */}
+          <section className="py-8 px-6 md:px-12">
+            <div className="max-w-7xl mx-auto">
+              <div className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-[#DCEFEF] flex flex-col gap-6 items-center text-center w-full transition-all duration-300 hover:-translate-y-2 hover:shadow-premium">
+                <div className="flex flex-col gap-3 max-w-xl">
+                  <h4 className="font-display font-bold text-2xl text-foreground">Meet Our Sponsored Students</h4>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                    We maintain complete transparency and updates for all students sponsored under our education program. Click below to view the full student directory, progress reports, and profiles.
+                  </p>
+                </div>
+                <Link href="/students">
+                  <button className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-[#444444] bg-[#FFE6D4] hover:bg-[#ffd1b3] border border-[#EEB898] transition-premium shadow-soft cursor-pointer">
+                    View Student Profiles
+                    <ArrowRight className="w-5 h-5 text-[#444444]" />
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </section>
+
+          {/* Video Testimonials Section */}
+          <section className="py-8 px-6 md:px-12">
+            <div className="max-w-7xl mx-auto bg-[#E8ECF2] rounded-[3rem] py-8 px-4 md:py-12 md:px-8 border border-foreground/5 flex flex-col gap-10 text-left">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div className="flex flex-col gap-4 max-w-2xl text-left">
+                  <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Voice of the People</span>
+                  <h3 className="font-display font-bold text-3xl md:text-4xl text-foreground">Video Testimonials</h3>
+                  <p className="text-xs sm:text-sm text-foreground/70">
+                    Hear directly from our members, students, and supporters sharing their journey of collective actions and hope.
+                  </p>
+                </div>
+                <Link href="/testimonials">
+                  <button className="flex items-center gap-1.5 px-6 py-3 rounded-full text-xs font-semibold text-foreground bg-primary shadow-soft transition-premium cursor-pointer">
+                    View All Stories
+                  </button>
+                </Link>
+              </div>
+
+              <div ref={carouselRef} className="flex gap-6 overflow-x-auto pb-6 pt-2 px-2 no-scrollbar scroll-smooth snap-x snap-mandatory">
+                {testimonialsList.map((item, idx) => (
+                  <MotionCard
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.05 }}
+                    key={item.name}
+                    onClick={() => setActiveVideo(item.video)}
+                    className="flex-shrink-0 w-64 h-[350px] rounded-[2.5rem] group cursor-pointer border border-[#B8C5D6] flex flex-col snap-start overflow-hidden relative text-left"
+                  >
+                    <img referrerPolicy="no-referrer"
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-premium"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-premium">
+                      <div className="w-12 h-12 rounded-full backdrop-blur-md bg-white/20 border border-white/30 flex items-center justify-center shadow-lg text-white">
+                        <Play className="w-5 h-5 fill-current text-white ml-1" />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-6 left-6 right-6 z-10 text-white flex flex-col gap-1">
+                      <span className="text-[10px] uppercase tracking-widest font-sans opacity-75">Supporter Story</span>
+                      <h4 className="font-display font-bold text-base leading-tight">{item.name}</h4>
+                      <div className="flex items-center gap-1 text-[10px] backdrop-blur-md bg-white/20 border border-white/20 w-fit px-2.5 py-1 rounded-full font-semibold uppercase mt-1">
+                        <Play className="w-2.5 h-2.5 fill-current" /> Play Video
+                      </div>
+                    </div>
+                  </MotionCard>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Together, We Can Create More Futures Section */}
+          <section className="py-8 px-6 md:px-12 pb-16">
+            <div className="relative overflow-hidden bg-gradient-to-br from-[#FFF9E6] via-[#FFF3C3] to-[#FFF9E6] rounded-[3rem] py-12 px-6 md:py-16 md:px-8 border border-[#EEC978]/30 shadow-premium max-w-7xl mx-auto flex flex-col gap-6 text-center items-center hover:shadow-2xl transition-all duration-500">
+              {/* Subtle background decoration blurs */}
+              <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -translate-x-12 -translate-y-12 pointer-events-none" />
+              <div className="absolute bottom-0 right-0 w-48 h-48 bg-[#DD6B20]/10 rounded-full blur-3xl translate-x-16 translate-y-16 pointer-events-none" />
+
+              <span className="text-sm md:text-base font-semibold text-[#DD6B20] tracking-wide z-10">
+                Together, We Can Create More Futures
+              </span>
+              <h2 className="font-display font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-800 tracking-tight whitespace-normal lg:whitespace-nowrap max-w-full z-10">
+                131 students supported. 103 dreams in progress. Countless possibilities ahead.
+              </h2>
+              <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed max-w-2xl font-sans z-10">
+                With the partnership of donors, volunteers, educational institutions, and CSR supporters, <strong className="font-bold text-[#DD6B20]">Live4Help Foundation</strong> is helping ensure that financial hardship never stands between a child and an education. Together, we can help more young people stay in school, pursue higher education, and build independent, hopeful futures.
+              </p>
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FFE6D4] text-[#DD6B20] rounded-full text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider border border-[#EEB898]/40 shadow-soft mt-2 z-10 transition-all duration-300 hover:scale-105 cursor-default">
+                Empowering Children • Enabling Dreams • Building a Better Future
+              </div>
+            </div>
+          </section>
+        </>
+      )}
 
       {/* Video Testimonial Modal Lightbox */}
       <AnimatePresence>
