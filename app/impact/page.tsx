@@ -156,11 +156,19 @@ export default function Impact() {
                 <div className="flex flex-col gap-4">
                   <h3 className="font-display font-bold text-3xl text-foreground">Education That Opens Doors and Transforms Futures</h3>
                   <p className="text-sm text-foreground/80 leading-relaxed">
-                    <strong>Live 4 Help (L4H) Foundation</strong> believes every child deserves the opportunity to learn, grow, and shape a brighter future. Since sponsoring its first student in 2021, the Foundation has developed a nationwide education-support program for children whose studies are at risk because of financial hardship. By combining financial assistance with mentoring, learning resources, and regular engagement with students, families, teachers, and local volunteers, we help young people remain in education, build confidence, and pursue their ambitions. Our commitment goes beyond funding: we provide sustained guidance and follow-up so that
+                    <strong>Live 4 Help (L4H) Foundation</strong>believes that a child’s future should be shaped by talent, determination, and dreams—not limited by financial hardship. Yet for many bright and motivated students, the cost of school fees, books, uniforms, transport, accommodation, or coaching can place education beyond reach. A single setback can interrupt years of learning and close the door to opportunities that could transform not only one life, but an entire family.
                   </p>
-                  {/* <p className="text-sm text-foreground/80 leading-relaxed">
-                    From a humble journey with one student in <strong>June’21</strong>, L4H Foundation has extended education support to a total of <strong>34</strong> students from <strong>seven states of India (Delhi, West Bengal, Orissa, Uttarakhand, Uttar Pradesh, Jharkhand and Bihar).</strong> Majority (22 out of 34/65%) students are girls. With the help of local volunteers, L4H Foundation keeps tracks of the progress of their education.
-                  </p> */}
+                  <p className="text-sm text-foreground/80 leading-relaxed">
+                    Since supporting its first student in 2021, the Foundation has grown into a nationwide education initiative serving deserving children and young people across India. We identify students whose education is at risk and provide timely, practical assistance tailored to their individual needs - from admission and tuition fees to learning materials, mentoring, transport, accommodation, coaching, and emergency support.
+                  </p>
+
+                  <p className="text-sm text-foreground/80 leading-relaxed">
+                    Our commitment goes far beyond financial assistance. Through regular engagement with students, parents, teachers, educational institutions, and local volunteers, we follow each learner’s progress, encourage them through challenges, and help them build the confidence to aim higher. This personal, sustained approach ensures that every contribution becomes more than a payment - it becomes reassurance, guidance, and a pathway to opportunity.
+                  </p>
+
+                  <p className="text-sm text-foreground/80 leading-relaxed">
+                    When a student stays in school, the impact reaches far beyond the classroom. Education can strengthen a family, inspire a community, and help break cycles of disadvantage. By standing beside students throughout their journey, Live4Help helps turn potential into progress, aspirations into achievement, and education into a lasting foundation for a more independent and hopeful future.
+                  </p>
                 </div>
 
                 {/* 3-Column Grid: Support Scope, Guidelines, and Sponsoring States */}
@@ -197,6 +205,7 @@ export default function Impact() {
                       <li>Online & Offline Coaching</li>
                       <li>Counselling & Mentorship</li>
                       <li>Health & Emergency Support</li>
+                      <li>Regular Follow-up with Students, Parents & Teachers</li>
                     </ul>
                   </Card>
                   <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
@@ -207,43 +216,43 @@ export default function Impact() {
                       as of August 2026
                     </p>
                     <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
-                      <li className="border-b border-foreground/5 pb-1">
+                      <li className="border-foreground/5 pb-1">
                         <div className="flex justify-between items-center w-full">
                           <div>Students supported since inception</div>
                           <div className="font-semibold text-foreground text-[11px]">131</div>
                         </div>
                       </li>
-                      <li className="border-b border-foreground/5 pb-1">
+                      <li className="border-foreground/5 pb-1">
                         <div className="flex justify-between items-center w-full">
                           <div>Active students</div>
                           <div className="font-semibold text-foreground text-[11px]">105</div>
                         </div>
                       </li>
-                      <li className="border-b border-foreground/5 pb-1">
+                      <li className="border-foreground/5 pb-1">
                         <div className="flex justify-between items-center w-full">
                           <div>Alumni</div>
                           <div className="font-semibold text-foreground text-[11px]">26</div>
                         </div>
                       </li>
-                      <li className="border-b border-foreground/5 pb-1">
+                      <li className="border-foreground/5 pb-1">
                         <div className="flex justify-between items-center w-full">
                           <div>Girls supported</div>
                           <div className="font-semibold text-foreground text-[11px]">60%</div>
                         </div>
                       </li>
-                      <li className="border-b border-foreground/5 pb-1">
+                      <li className="border-foreground/5 pb-1">
                         <div className="flex justify-between items-center w-full">
                           <div>States reached</div>
                           <div className="font-semibold text-foreground text-[11px]">12</div>
                         </div>
                       </li>
-                      <li className="border-b border-foreground/5 pb-1">
+                      <li className="border-foreground/5 pb-1">
                         <div className="flex justify-between items-center w-full">
                           <div>Educational institutions</div>
                           <div className="font-semibold text-foreground text-[11px]">60</div>
                         </div>
                       </li>
-                      <li className="border-b border-foreground/5 pb-1">
+                      <li className="border-foreground/5 pb-1">
                         <div className="flex justify-between items-center w-full">
                           <div>Average age of students</div>
                           <div className="font-semibold text-foreground text-[11px]">15 years</div>
@@ -271,12 +280,81 @@ export default function Impact() {
                   </div>
                 </section>
 
+
+
+                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
+                  <h4 className="font-display font-bold text-xl text-foreground">Building Digital Skills, Creating Brighter Futures</h4>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                    In today’s world, digital skills are essential for learning, communication and future employment. However, many students in underserved communities still have limited access to computers and structured digital education.
+                    <br /><br /><strong>As part of its Educational Initiatives, Live 4 Help Foundation is helping bridge this gap by expanding access to practical computer training and opening new pathways to opportunity.</strong>
+                    <br /><br /><strong className="font-display font-bold text-lg pb-4 text-foreground">Digital Learning Rooted in the Community</strong>
+                    <br />Live 4 Help Foundation has donated desktop computers and partnered with Roymoni Smriti Foundation to provide free computer training for underserved students in the Sundarbans, West Bengal. The collaboration brings together educational support, local knowledge and community-based delivery.
+                    <br /><br />Through practical, hands-on sessions, students learn to use computers for study, research and everyday digital tasks. The program complements classroom learning while building the confidence and foundational skills needed for higher education, vocational training and future employment.
+                  </p>
+
+                  {/* <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-5"> */}
+                  <h4 className="font-display font-bold text-xl text-foreground">Skills That Extend Beyond the Classroom</h4>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-semibold">
+                    The initiative enables students to:
+                  </p>
+
+
+                  <ul className="flex flex-col gap-3 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
+                    <li>Access digital learning resources and educational content</li>
+                    <li>Develop practical computer and information-handling skills</li>
+                    <li>Complete academic work with greater confidence</li>
+                    <li>Prepare for further education, training and employment</li>
+                    <li>Participate more fully in an increasingly digital society</li>
+                  </ul>
+                  <section className="py-8 px-6 md:px-12 text-center">
+                    <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
+                      <span className="w-10 h-0.5 bg-secondary rounded-full" />
+                      <h2 className="font-display font-bold text-2xl md:text-3xl text-foreground italic leading-normal px-4">
+                        &ldquo;Digital literacy is not simply a technical skill - it is a foundation for confidence, inclusion and opportunity.&rdquo;
+                      </h2>
+                      {/* <span className="font-sans font-semibold text-sm uppercase tracking-widest text-foreground/60">
+                      &mdash; Mother Teresa
+                    </span> */}
+                    </div>
+                  </section>
+                  <p className="text-lg sm:text-sm text-foreground/75 leading-relaxed ">
+                    By integrating computer training into its broader educational work, Live 4 Help Foundation is enabling students to learn with confidence, explore new possibilities and take meaningful steps towards a brighter future.
+                  </p>
+                  <p>Read more: <a href="https://live4help.org/blog/live4help-computer-laptop-donation-education">https://live4help.org/blog/live4help-computer-laptop-donation-education</a></p>
+                </Card>
+
+
+
+                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
+                  <h4 className="font-display font-bold text-xl text-foreground">Guiding Potential. Building Brighter Futures.</h4>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                    Every student has potential. Sometimes, all they need is the right guidance to unlock it. At <strong>Live 4 Help Foundation,</strong> caring volunteers offer <strong>personalized online coaching, mentoring, and counselling to help students</strong> build confidence, strengthen their skills, and move closer to their dreams.
+                    <br /> <br />The initiative began with simple <strong>face-to-face conversations</strong> that revealed students’ need for spoken English support, subject coaching, and personal guidance. Friends and well-wishers of the Foundation responded by sharing their time, knowledge, and experience. Together, they built a growing community of volunteer mentors.
+                    <br /> <br />Our volunteers and core team work closely with students, parents, teachers, and school leaders to monitor each learner’s progress. Together, this trusted network identifies individual needs and provides timely, meaningful support.
+                    <br /> <br />Through regular check-ins, we identify challenges early, celebrate every step forward, and encourage students to stay motivated as they continue their journey.
+                    <br /> <br />As trust grows, students feel comfortable asking for the help they need—whether it is subject coaching, spoken English practice, counselling, or personal guidance. This well-rounded support strengthens academic performance while nurturing confidence and personal growth.
+                    <br /> <br />Today, volunteer mentors connect with students online to strengthen academic skills, build confidence, and guide them through educational and personal challenges. Share your time.
+                    {/* <br /><br /><strong>Share your experience. Help a student take the next step toward a brighter future.</strong> */}
+                  </p>
+                  <section className="py-8 px-6 md:px-12 text-center">
+                    <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
+                      <span className="w-10 h-0.5 bg-secondary rounded-full" />
+                      <h2 className="font-display font-bold text-2xl md:text-3xl text-foreground italic leading-normal px-4">
+                        &ldquo;Share your experience. Help a student take the next step toward a brighter future.&rdquo;
+                      </h2>
+                      {/* <span className="font-sans font-semibold text-sm uppercase tracking-widest text-foreground/60">
+                      &mdash; Mother Teresa
+                    </span> */}
+                    </div>
+                  </section>
+                </Card>
+
                 {/* A. Education Team */}
                 <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-6">
                   <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
                     <Users className="w-6 h-6 text-secondary" />
                     <div>
-                      <h4 className="font-display font-bold text-lg text-foreground">A. Education Team</h4>
+                      <h4 className="font-display font-bold text-lg text-foreground"> Education Team</h4>
                     </div>
                   </div>
                   <p className="text-xs text-foreground/75 leading-relaxed">
@@ -327,9 +405,40 @@ export default function Impact() {
                     </table>
                   </div>
                 </Card>
+                {/* Inspiring Journeys and Achievements */}
+                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-5">
+                  <h4 className="font-display font-bold text-xl text-foreground">🏆 Inspiring Journeys and Achievements</h4>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-semibold">
+                    Our students continue to demonstrate what is possible when talent is matched with opportunity:
+                  </p>
+                  <ul className="flex flex-col gap-3 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
+                    <li>A student is pursuing a PhD at the University of Florida, USA, after completing an M.Sc. at IIT Madras</li>
+                    <li>A student secured 4th rank in the Higher Secondary Examination</li>
+                    <li>Alumni are building careers in government and private-sector organizations</li>
+                    <li>Multiple students have achieved scores above 90% in Grade 10 and Grade 12 examinations</li>
+                    <li>Students are pursuing MBBS, B.Tech., B.Sc., B.Com., M.A., B.A., and other higher-education programs</li>
+                    <li>A growing number of first-generation learners are progressing to college and professional careers</li>
+                  </ul>
+                </Card>
+
+
+                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
+                  <h4 className="font-display font-bold text-xl text-foreground">From a Remote Village to Financial Independence: Anjali’s Journey</h4>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                    <strong>A Live4Help Foundation Education Success Story</strong>
+                    <br /><strong>Anjali Kisku</strong> comes from Kayamati, a remote Santhal village in Bankura district, West Bengal. In 2021, she became the first graduate from her village and began pursuing her goal of financial independence.
+                    <br /><br />With the nearest computer training center more than 20 KM away, tuition and travel costs placed further learning beyond her reach. <strong>Live4Help Foundation</strong> supported her course fees, transportation, and job-oriented examination preparation, enabling her to continue building practical skills.
+                    <br /><br />In 2025, Anjali gained admission to the Apparel Training and Design Centre in Kolkata for a diploma program. The Foundation covered her food, accommodation, and transportation, helping her complete the course in March 2026 without financial disruption.
+                    <br /><br />Today, Anjali works as a Quality Control Supervisor in a garment company. Her journey from a remote village to financial independence shows how education, determination, and timely support can create a lasting pathway to a dignified livelihood.
+                  </p>
+                  <p>Read more: <a href="https://live4help.org/blog/alumna-spotlight">https://live4help.org/blog/alumna-spotlight</a></p>
+                </Card>
+
+
+
 
                 {/* B. Achievement of Students in 2023 */}
-                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
+                {/* <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
                   <h4 className="font-display font-bold text-lg text-foreground">B. Achievement of Students in 2023</h4>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
                     <li>1 student selected in IIT(M.Sc.)</li>
@@ -339,10 +448,10 @@ export default function Impact() {
                     <li>1 student passed 12th with 70% +</li>
                     <li>1 student in 8th secured 92%</li>
                   </ul>
-                </Card>
+                </Card> */}
 
                 {/* C. Face to face interaction with beneficiary students */}
-                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-5">
+                {/* <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-5">
                   <h4 className="font-display font-bold text-lg text-foreground border-b border-foreground/5 pb-2">C. Face to face interaction with beneficiary students</h4>
                   <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
                     Live 4 Help Foundation always endeavor to make a difference and believe that face to face interaction with the students is vital for our success towards education support program. With this thoughts, Live 4 Help Foundation Team met few students in Dec’23. One of core team members, Mr. Ramkrishna (Ramu) Sadhukhan who has come from USA to meet students and motivate them.
@@ -366,10 +475,10 @@ export default function Impact() {
                       />
                     </div>
                   </div>
-                </Card>
+                </Card> */}
 
                 {/* D. Few Success Stories */}
-                <div className="flex flex-col gap-6">
+                {/* <div className="flex flex-col gap-6">
                   <h4 className="font-display font-bold text-2xl text-foreground">D. Few Success Stories</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between relative overflow-hidden group">
@@ -420,31 +529,17 @@ export default function Impact() {
                       </div>
                     </Card>
                   </div>
-                </div>
+                </div> */}
 
                 {/* E. Free OFFLINE Coaching to Needy Students */}
-                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
+                {/* <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
                   <h4 className="font-display font-bold text-xl text-foreground">E. Free OFFLINE Coaching to Needy Students</h4>
                   <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
                     During Covid 19 pandemic, all schools and institutions remained closed. The students in rural areas were struggling to continue their education. L4H Foundation explored opportunities to help needy student who can’t afford their private tuition fees. L4H Foundation launched a <strong>pilot project</strong> by selecting one of the villages in Medinipur district of West Bengal. L4H Foundation arranged <strong>free offline coaching covering 10 students</strong> by engaging local volunteers. Our plan is to develop such models in more villages by finding local volunteers who can devote their time to help and educate children.
                   </p>
-                </Card>
+                </Card> */}
 
-                {/* Inspiring Journeys and Achievements */}
-                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-5">
-                  <h4 className="font-display font-bold text-xl text-foreground">🏆 Inspiring Journeys and Achievements</h4>
-                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-semibold">
-                    Our students continue to demonstrate what is possible when talent is matched with opportunity:
-                  </p>
-                  <ul className="flex flex-col gap-3 text-xs text-foreground/75 list-disc pl-5 leading-relaxed">
-                    <li>A student is pursuing a PhD at the University of Florida, USA, after completing an M.Sc. at IIT Madras</li>
-                    <li>A student secured 4th rank in the Higher Secondary Examination</li>
-                    <li>Alumni are building careers in government and private-sector organizations</li>
-                    <li>Multiple students have achieved scores above 90% in Grade 10 and Grade 12 examinations</li>
-                    <li>Students are pursuing MBBS, B.Tech., B.Sc., B.Com., M.A., B.A., and other higher-education programs</li>
-                    <li>A growing number of first-generation learners are progressing to college and professional careers</li>
-                  </ul>
-                </Card>
+
               </motion.div>
             )}
 
@@ -973,7 +1068,7 @@ export default function Impact() {
             </div>
           </section>
 
-          {/* Together, We Can Create More Futures Section */}
+          {/*  Making a Difference Today for a Better Tomorrow Section */}
           <section className="py-8 px-6 md:px-12 pb-16">
             <div className="relative overflow-hidden bg-gradient-to-br from-[#FFF9E6] via-[#FFF3C3] to-[#FFF9E6] rounded-[3rem] py-12 px-6 md:py-16 md:px-8 border border-[#EEC978]/30 shadow-premium max-w-7xl mx-auto flex flex-col gap-6 text-center items-center hover:shadow-2xl transition-all duration-500">
               {/* Subtle background decoration blurs */}
@@ -981,7 +1076,7 @@ export default function Impact() {
               <div className="absolute bottom-0 right-0 w-48 h-48 bg-[#DD6B20]/10 rounded-full blur-3xl translate-x-16 translate-y-16 pointer-events-none" />
 
               <span className="text-sm md:text-base font-semibold text-[#DD6B20] tracking-wide z-10">
-                Together, We Can Create More Futures
+                Making a Difference Today for a Better Tomorrow
               </span>
               <h2 className="font-display font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-800 tracking-tight whitespace-normal lg:whitespace-nowrap max-w-full z-10">
                 131 students supported. 103 dreams in progress. Countless possibilities ahead.
