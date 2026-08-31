@@ -21,7 +21,10 @@ import {
   Clock,
   BookOpen,
   Tag,
-  ArrowRight
+  ArrowRight,
+  Laptop,
+  Video,
+  Trophy
 } from "lucide-react";
 import ImpactStats from "../components/ImpactStats";
 import { Card, MotionCard } from "../components/Card";
@@ -283,6 +286,12 @@ export default function Impact() {
 
 
                 <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
+                  <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
+                    <Laptop className="w-6 h-6 text-secondary" />
+                    <div>
+                      <h4 className="font-display font-bold text-2xl text-foreground">Computer Education Program</h4>
+                    </div>
+                  </div>
                   <h4 className="font-display font-bold text-xl text-foreground">Building Digital Skills, Creating Brighter Futures</h4>
                   <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
                     In today’s world, digital skills are essential for learning, communication and future employment. However, many students in underserved communities still have limited access to computers and structured digital education.
@@ -320,12 +329,37 @@ export default function Impact() {
                   <p className="text-lg sm:text-sm text-foreground/75 leading-relaxed ">
                     By integrating computer training into its broader educational work, Live 4 Help Foundation is enabling students to learn with confidence, explore new possibilities and take meaningful steps towards a brighter future.
                   </p>
-                  <p>Read more: <a href="https://live4help.org/blog/live4help-computer-laptop-donation-education">https://live4help.org/blog/live4help-computer-laptop-donation-education</a></p>
+                  <p className="text-xs sm:text-sm font-semibold text-foreground/80 flex items-center gap-1.5 flex-wrap">
+                    <span>Read more:</span>
+                    <a
+                      href="https://live4help.org/blog/live4help-computer-laptop-donation-education"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 underline underline-offset-4 decoration-blue-300 hover:decoration-blue-600 transition-colors"
+                    >
+                      https://live4help.org/blog/live4help-computer-laptop-donation-education
+                    </a>
+                  </p>
+                  <div className="mt-2">
+                    <div className="w-full max-w-2xl mx-auto rounded-[2rem] overflow-hidden border border-white shadow-soft bg-white">
+                      <img referrerPolicy="no-referrer"
+                        src="/computer.png"
+                        alt="Computer Training photographs"
+                        className="w-full h-auto block"
+                      />
+                    </div>
+                  </div>
                 </Card>
 
 
 
                 <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
+                  <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
+                    <Video className="w-6 h-6 text-secondary" />
+                    <div>
+                      <h4 className="font-display font-bold text-2xl text-foreground">Online Coaching</h4>
+                    </div>
+                  </div>
                   <h4 className="font-display font-bold text-xl text-foreground">Guiding Potential. Building Brighter Futures.</h4>
                   <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
                     Every student has potential. Sometimes, all they need is the right guidance to unlock it. At <strong>Live 4 Help Foundation,</strong> caring volunteers offer <strong>personalized online coaching, mentoring, and counselling to help students</strong> build confidence, strengthen their skills, and move closer to their dreams.
@@ -421,8 +455,14 @@ export default function Impact() {
                   </ul>
                 </Card>
 
-
+                {/* success story */}
                 <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
+                  <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
+                    <Trophy className="w-6 h-6 text-secondary" />
+                    <div>
+                      <h4 className="font-display font-bold text-2xl text-foreground">Success Stories</h4>
+                    </div>
+                  </div>
                   <h4 className="font-display font-bold text-xl text-foreground">From a Remote Village to Financial Independence: Anjali’s Journey</h4>
                   <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
                     <strong>A Live4Help Foundation Education Success Story</strong>
@@ -431,7 +471,145 @@ export default function Impact() {
                     <br /><br />In 2025, Anjali gained admission to the Apparel Training and Design Centre in Kolkata for a diploma program. The Foundation covered her food, accommodation, and transportation, helping her complete the course in March 2026 without financial disruption.
                     <br /><br />Today, Anjali works as a Quality Control Supervisor in a garment company. Her journey from a remote village to financial independence shows how education, determination, and timely support can create a lasting pathway to a dignified livelihood.
                   </p>
-                  <p>Read more: <a href="https://live4help.org/blog/alumna-spotlight">https://live4help.org/blog/alumna-spotlight</a></p>
+                  <p className="text-xs sm:text-sm font-semibold text-foreground/80 flex items-center gap-1.5 flex-wrap">
+                    <span>Read more:</span>
+                    <a
+                      href="https://live4help.org/blog/alumna-spotlight"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 underline underline-offset-4 decoration-blue-300 hover:decoration-blue-600 transition-colors"
+                    >
+                      https://live4help.org/blog/alumna-spotlight
+                    </a>
+                  </p>
+                  <div className="mt-2">
+                    <div className="w-full max-w-2xl mx-auto rounded-[2rem] overflow-hidden border border-white shadow-soft bg-white">
+                      <img referrerPolicy="no-referrer"
+                        src="/story/anjali.png"
+                        alt="Anjali Kisku Success Story"
+                        className="w-full h-auto block"
+                      />
+                    </div>
+                  </div>
+                  {/* </Card> */}
+
+                  <br /><hr /><br />
+                  {/* success story - Subham */}
+                  {/* <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4"> */}
+                  <h4 className="font-display font-bold text-xl text-foreground">From Bankura to Florida: Subham’s Remarkable Rise in Physics</h4>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                    <strong>A Live4Help Foundation Education Success Story</strong>
+                    <br /><br /><strong>Subham Pandey</strong> comes from a family of four with limited income, yet his academic promise has always stood out. He scored 95.8% in higher secondary school, including 97% in Physics, and remained determined to pursue science even when the COVID-19 pandemic and his father’s declining health put his education at risk.
+                    <br /><br />With support from local volunteer Anup Mandal and generous sponsors, <strong>Live4Help Foundation</strong> covered Subham’s semester and hostel fees, coaching, and books. He completed his B.Sc. Honours in Physics from Bankura Christian College in 2023 with 91% marks and a CGPA of 9.60.
+                    <br /><br />Subham then earned an M.Sc. in Physics from IIT Madras, steadily improving his academic performance and completing the program in 2025. His perseverance carried him further: he secured admission to a Ph.D. program at the Herbert Wertheim College of Engineering, University of Florida, beginning in Spring 2026. The Foundation also supported his visa, travel, and initial settlement costs.
+                    <br /><br />From financial uncertainty in Bankura to doctoral research in Florida, Subham’s journey shows what becomes possible when exceptional talent meets sustained support. His success is a powerful reflection of <strong>Live4Help Foundation’s</strong> mission to help deserving students overcome barriers and pursue their highest aspirations.
+                  </p>
+                  <div className="mt-2">
+                    <div className="w-full max-w-2xl mx-auto rounded-[2rem] overflow-hidden border border-white shadow-soft bg-white">
+                      <img referrerPolicy="no-referrer"
+                        src="/story/shubham.png"
+                        alt="Subham Pandey Success Story"
+                        className="w-full h-auto block"
+                      />
+                    </div>
+                  </div>
+                  {/* </Card> */}
+                  <br /><hr /><br />
+                  {/* success story - Srijita */}
+                  {/* <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4"> */}
+                  <h4 className="font-display font-bold text-xl text-foreground">From a Toto Driver’s Home to Academic Distinction: Srijita’s Inspiring Journey</h4>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                    <strong>A Live4Help Foundation Education Success Story</strong>
+                    <br /><br /><strong>Srijita Basak</strong>, a student from Dangar Hat High School in Dakshin Dinajpur, West Bengal, achieved an extraordinary milestone in 2023 by securing fourth position in the West Bengal Higher Secondary Examination. She scored 493 out of 500, earning an overall grade of “O” and a 100-percentile ranking.
+                    <br /><br />Behind this remarkable achievement was a journey shaped by perseverance. With her father earning a modest income as a toto driver, continuing higher education was financially challenging. Yet Srijita remained determined to pursue her passion for Geography.
+                    <br /><br /><strong>Live4Help Foundation</strong> stepped in to support her undergraduate studies, helping ensure that financial limitations did not interrupt her academic journey. Srijita responded with exceptional dedication, securing 9.45 GPA in the fifth semester of her B.A. Geography program and earning top grades A+ and O - across all subjects.
+                    <br /><br />From a modest home in Dakshin Dinajpur to sustained academic excellence, Srijita’s story shows how talent and determination can flourish when timely support removes financial barriers. Her success reflects <strong>Live4Help Foundation’s</strong> commitment to helping deserving students continue their education and realize their potential.
+                  </p>
+                  <div className="mt-2">
+                    <div className="w-full max-w-2xl mx-auto rounded-[2rem] overflow-hidden border border-white shadow-soft bg-white">
+                      <img referrerPolicy="no-referrer"
+                        src="/story/srijita.png"
+                        alt="Srijita Basak Success Story"
+                        className="w-full h-auto block"
+                      />
+                    </div>
+                  </div>
+                  {/* </Card> */}
+                  <br /><hr /><br />
+                  {/* success story - Joyjit */}
+                  {/* <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4"> */}
+                  <h4 className="font-display font-bold text-xl text-foreground">From a Farmer’s Home to the Top of His College: Joyjit’s Remarkable Journey</h4>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                    <strong>A Live4Help Foundation Education Success Story</strong>
+                    <br /><br /><strong>Joyjit Mandal</strong>, a student of Patiram High School in West Bengal, achieved an outstanding 96.8% and a 99.97 percentile ranking in the 2025 West Bengal Higher Secondary Examination. His achievement is especially inspiring because his father, a daily laborer and small farmer, has supported the family with very limited means.
+                    <br /><br />Recognizing that financial hardship could interrupt this promising student’s education, local volunteer Biswajit Pramanik referred Joyjit to <strong>Live4Help Foundation</strong>. The Foundation promptly connected him with a generous donor who agreed to sponsor his higher studies.
+                    <br /><br />With this support, Joyjit enrolled in B.A. Geography Honours at Balurghat College. He made an exceptional start, securing a 9.0 SGPA - equivalent to 85% - in his first semester and ranking first in his college. The institution’s official website confirms an established Geography department supporting undergraduate study.
+                    <br /><br />From a financially constrained household to academic leadership, Joyjit’s journey shows how determination can flourish when timely support opens the door to opportunity. His success reflects <strong>Live4Help Foundation’s</strong> commitment to helping talented students continue their education and realize their full potential.
+                  </p>
+                  <div className="mt-2">
+                    <div className="w-full max-w-2xl mx-auto rounded-[2rem] overflow-hidden border border-white shadow-soft bg-white">
+                      <img referrerPolicy="no-referrer"
+                        src="/story/biswajit.png"
+                        alt="Joyjit Mandal Success Story"
+                        className="w-full h-auto block"
+                      />
+                    </div>
+                  </div>
+                  {/* </Card> */}
+                  <br /><hr /><br />
+                  {/* success story - Subhankari */}
+                  {/* <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4"> */}
+                  <h4 className="font-display font-bold text-xl text-foreground">From Vulnerability to a Life of Her Own: Subhankari’s Journey</h4>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                    <strong>A Live4Help Foundation Alumni Success Story</strong>
+                    <br /><br /><strong>Subhankari Mondal</strong> lost both her parents at a young age and was raised by her aunt, a daily labourer. When she joined the first batch of students supported by <strong>Live4Help Foundation</strong>, she was frail, malnourished, and at risk of leaving her education behind.
+                    <br /><br />The Foundation first provided medical care and nutritious food to help her regain her health. As she grew stronger, the support expanded to her education, giving her the stability and encouragement needed to continue learning.
+                    <br /><br />With sustained care and determination, Subhankari completed her B.A., built a life of her own, and is now married. Today, she stands proudly as an alumna of <strong>Live4Help Foundation</strong>—healthy, confident, and a lasting inspiration to the community that supported her.
+                    <br /><br />Subhankari’s transformation shows that a small act of kindness, sustained with belief and compassion, can change the course of a life. Her journey continues to inspire <strong>Live4Help Foundation</strong> to reach more children facing hardship.
+                  </p>
+                  <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto w-full">
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="w-full rounded-[2rem] overflow-hidden border border-white shadow-soft bg-white">
+                        <img referrerPolicy="no-referrer"
+                          src="/story/subhankari1.jpg"
+                          alt="Subhankari Mondal (2021)"
+                          className="w-full h-auto block"
+                        />
+                      </div>
+                      <span className="text-xs font-semibold text-foreground/70">2021</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="w-full rounded-[2rem] overflow-hidden border border-white shadow-soft bg-white">
+                        <img referrerPolicy="no-referrer"
+                          src="/story/subhankari2.jpg"
+                          alt="Subhankari Mondal (2025)"
+                          className="w-full h-auto block"
+                        />
+                      </div>
+                      <span className="text-xs font-semibold text-foreground/70">2025</span>
+                    </div>
+                  </div>
+                  {/* </Card> */}
+                  <br /><hr /><br />
+                  {/* success story - Shweta */}
+                  {/* <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4"> */}
+                  <h4 className="font-display font-bold text-xl text-foreground">Rising with Courage: Shweta’s Journey from Loss to Opportunity</h4>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed">
+                    <strong>A Live4Help Foundation Education Success Story</strong>
+                    <br /><br /><strong>Shweta Singh</strong> lives in New Delhi with her mother and two siblings. After losing her father to cancer, the family faced deep emotional and financial hardship. Despite the setback, Shweta stayed committed to her education and determined to build a brighter future.
+                    <br /><br /><strong>Live4Help Foundation</strong> supported her studies, while Foundation members Amrita Datta and Subhendu Shekhar Mal provided free online coaching in English and Science. A laptop donated by the Foundation further strengthened her access to learning and helped her continue with confidence.
+                    <br /><br />Her school principal, Pushpa Singh, witnessed a clear transformation in Shweta’s confidence and academic engagement. After completing Class XI with 70.8%, she progressed to higher education and is now pursuing a B.Com. at Deen Dayal Upadhyaya College, New Delhi.
+                    <br /><br />Shweta’s journey from personal loss to college life shows how timely educational support, mentoring, and belief can turn adversity into opportunity. Her progress reflects <strong>Live4Help Foundation’s</strong> commitment to helping deserving students move forward with resilience and hope.
+                  </p>
+                  <div className="mt-2">
+                    <div className="w-full max-w-2xl mx-auto rounded-[2rem] overflow-hidden border border-white shadow-soft bg-white">
+                      <img referrerPolicy="no-referrer"
+                        src="/story/shweta.png"
+                        alt="Shweta Singh Success Story"
+                        className="w-full h-auto block"
+                      />
+                    </div>
+                  </div>
                 </Card>
 
 
