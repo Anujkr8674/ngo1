@@ -159,7 +159,7 @@ export default function Impact() {
                 <div className="flex flex-col gap-4">
                   <h3 className="font-display font-bold text-3xl text-foreground">Education That Opens Doors and Transforms Futures</h3>
                   <p className="text-sm text-foreground/80 leading-relaxed">
-                    <strong>Live 4 Help (L4H) Foundation</strong>believes that a child’s future should be shaped by talent, determination, and dreams—not limited by financial hardship. Yet for many bright and motivated students, the cost of school fees, books, uniforms, transport, accommodation, or coaching can place education beyond reach. A single setback can interrupt years of learning and close the door to opportunities that could transform not only one life, but an entire family.
+                    <strong>Live 4 Help (L4H) Foundation</strong> believes that a child’s future should be shaped by talent, determination, and dreams—not limited by financial hardship. Yet for many bright and motivated students, the cost of school fees, books, uniforms, transport, accommodation, or coaching can place education beyond reach. A single setback can interrupt years of learning and close the door to opportunities that could transform not only one life, but an entire family.
                   </p>
                   <p className="text-sm text-foreground/80 leading-relaxed">
                     Since supporting its first student in 2021, the Foundation has grown into a nationwide education initiative serving deserving children and young people across India. We identify students whose education is at risk and provide timely, practical assistance tailored to their individual needs - from admission and tuition fees to learning materials, mentoring, transport, accommodation, coaching, and emergency support.
@@ -848,102 +848,140 @@ export default function Impact() {
               >
                 {/* Overview */}
                 <div className="flex flex-col gap-4">
-                  <h3 className="font-display font-bold text-3xl text-foreground">Mangrove Plantation for Greener and Cleaner Environment</h3>
+                  <h3 className="font-display font-bold text-3xl text-foreground">Mangrove Plantation</h3>
+                  <p className="text-sm font-semibold text-[#2D9CD4] uppercase tracking-wider">
+                    Restoring Nature. Empowering Communities. Protecting Our Planet.
+                  </p>
+                  <p className="text-base sm:text-lg italic text-foreground/80 font-medium">
+                    &ldquo;The best time to plant a tree was years ago. The next best time is today.&rdquo;
+                  </p>
                   <p className="text-sm text-foreground/80 leading-relaxed font-sans">
-                    Live 4 Help (L4H) Foundation is committed to contribute to mother earth by means of plantation with a motto of cleaner and greener environment. In a span of two years, L4H Foundation planted approximately <strong>4000</strong> mangrove saplings in three plantation drives (<strong>2<sup>nd</sup> Nov’21</strong>, <strong>26<sup>th</sup> Jan’22</strong> and <strong>30<sup>th</sup> Dec’23</strong>) in Sundarbans Areas of West Bengal.
+                    Climate change is no longer a distant threat. Rising sea levels, increasing coastal erosion, extreme weather events, and biodiversity loss are impacting vulnerable communities across the globe. The Sundarbans, one of the world&apos;s most important mangrove ecosystems, stands at the frontline of this challenge.
+                  </p>
+                  <p className="text-sm text-foreground/80 leading-relaxed font-sans">
+                    Through its <strong>Environment Initiative, Live 4 Help Foundation </strong>is restoring critical coastal ecosystems through large-scale mangrove plantation and conservation programs that deliver measurable environmental, social, and climate benefits. Our work goes beyond planting trees. We are rebuilding natural defenses, strengthening community resilience, protecting biodiversity, and creating a sustainable future for generations to come.
                   </p>
                 </div>
 
-                {/* 2-Column Split Details: Objectives & Protection Info */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* 3-Column Grid: Our Reach & Impact, Sustainability, and Long-Term Objectives */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Card 1: Reach & Impact */}
                   <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
                     <div className="flex items-center gap-2">
-                      <Leaf className="w-5 h-5 text-primary" />
-                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Benefits of Mangrove Plantation</h4>
+                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">🌍 OUR REACH & IMPACT</h4>
                     </div>
                     <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
-                      <li>Provide a natural defence against storm surges, coastal erosion, and flooding</li>
-                      <li>Reduce of carbon footprints</li>
-                      <li>Minimize greenhouse effect</li>
+                      <li><strong>11 Plantation Initiatives</strong> completed across the Sundarbans</li>
+                      <li><strong>8 CSR-supported Projects</strong> enabled through partnerships with Eastman and ABS Professional Services India Pvt. Ltd.</li>
+                      <li><strong>3 Community-Sponsored Projects</strong> funded by individual donors</li>
+                      <li><strong>40,000+ Mangrove Saplings</strong> planted and nurtured</li>
+                      <li>Community Engagement through plantation and maintenance activities</li>
+                      <li>Local Livelihood Support generated through environmental restoration efforts</li>
+                      <li>Coastal Ecosystem Recovery supporting biodiversity and fisheries</li>
+                      <li>Enhanced Climate Resilience against erosion, flooding and cyclones</li>
                     </ul>
                   </Card>
+
+                  {/* Card 2: Sustainability */}
                   <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
                     <div className="flex items-center gap-2">
-                      <UserCheck className="w-5 h-5 text-[#DD6B20]" />
-                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Sustainability & Growth</h4>
+                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">♻️ SUSTAINABILITY</h4>
                     </div>
-                    <p className="text-xs text-foreground/75 leading-relaxed font-sans mb-1">
-                      With the help of local team/volunteers, L4H Foundation undertook responsibility for protecting the plants for <strong>3 years</strong> to ensure their sustainability.
-                    </p>
-                    <p className="text-xs text-foreground/75 leading-relaxed font-sans">
-                      The saplings of earlier plantation drives are growing very rapidly, and it gives us immense pleasure and satisfaction to see the growth. The average height of the sapling is <strong>8-12 feet</strong>.
-                    </p>
+                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
+                      <li>Continuous monitoring of plantation sites</li>
+                      <li>Replacement of damaged or non-surviving saplings</li>
+                      <li>Protection and strengthening of plantation areas</li>
+                      <li>Community participation and local stewardship</li>
+                      <li>Coastal ecosystem restoration and conservation</li>
+                      <li>Protection of marine habitats and biodiversity</li>
+                      <li>Environmental awareness and education</li>
+                      <li> Long-term commitment to sustainable ecological recovery</li>
+                    </ul>
+                  </Card>
+
+                  {/* Card 3: Long-Term Objectives & Outcomes */}
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">🎯 LONG-TERM OBJECTIVES & OUTCOMES</h4>
+                    </div>
+                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
+                      <li>Restore degraded mangrove ecosystems</li>
+                      <li>Increase carbon sequestration and reduce climate impact</li>
+                      <li>Protect coastlines from erosion and flooding</li>
+                      <li>Strengthen resilience against cyclones and storm surges</li>
+                      <li>Sustain fisheries and marine biodiversity</li>
+                      <li>Support livelihoods of vulnerable coastal communities</li>
+                      <li>Contribute to global climate and sustainability goals</li>
+                      <li>Create a healthier planet for future generations</li>
+                    </ul>
                   </Card>
                 </div>
 
+                {/* Centered Quote Banner */}
+                <section className="py-8 px-6 md:px-12 text-center">
+                  <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
+                    <span className="w-10 h-0.5 bg-secondary rounded-full" />
+                    <h2 className="font-display font-bold text-2xl md:text-3xl text-foreground italic leading-normal px-4">
+                      &ldquo;Planting a mangrove today is an investment in a greener Earth, safer communities, and a better tomorrow.&rdquo;
+                    </h2>
+                  </div>
+                </section>
+
+                {/* Why Mangroves Matter Card */}
+                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
+                  <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
+                    <Leaf className="w-6 h-6 text-secondary" />
+                    <div>
+                      <h4 className="font-display font-bold text-2xl text-foreground">Why Mangroves Matter</h4>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                    Mangroves are among nature&apos;s most powerful climate solutions. They absorb significant amounts of carbon dioxide, protect coastlines from storms and flooding, support marine biodiversity, and safeguard livelihoods for millions of people. Every mangrove planted today generates environmental benefits that extend far beyond local communities and contribute to the health of our planet.
+                  </p>
+                </Card>
+
+                {/* Partner With Us Card */}
+                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
+                  <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
+                    <HeartHandshake className="w-6 h-6 text-secondary" />
+                    <div>
+                      <h4 className="font-display font-bold text-2xl text-foreground">Partner With Us</h4>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                    Environmental restoration requires collective action. By partnering with <strong>Live 4 Help Foundation</strong>, organizations can create measurable and lasting impact by supporting climate action, biodiversity conservation, community empowerment, and ecosystem restoration.
+                  </p>
+
+                  <div className="bg-[#E5F0E5]/50 p-5 rounded-2xl border border-[#C1D6C1]/40 flex flex-col gap-3 mt-2">
+                    <span className="text-xs sm:text-sm font-bold text-foreground font-sans">🌱 Your CSR investment can help:</span>
+                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
+                      <li>Combat climate change</li>
+                      <li>Restore biodiversity</li>
+                      <li>Protect vulnerable coastal communities</li>
+                      <li>Improve livelihoods</li>
+                      <li>Build a sustainable future</li>
+                    </ul>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-foreground/75 font-semibold leading-relaxed font-sans mt-2">
+                    Together, we can restore nature, strengthen communities, and create a sustainable future for our planet. 🌱
+                  </p>
+                </Card>
+
                 {/* General Info and Photo note */}
-                <div className="flex flex-col gap-2">
+                {/* <div className="flex flex-col gap-2">
                   <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
                     The Foundation would like to take more such drives in future with funding from individuals or through CSR as a part of green initiative to protect environment for better tomorrow.
                   </p>
                   <p className="text-xs text-foreground/50 font-semibold mt-2">Here are a few Snapshots of photograph of our earlier plantation.</p>
-                </div>
+                </div> */}
 
-                {/* 3-Column Grid for Plantation Drives */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {/* Drive A */}
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-primary" />
-                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">A. 1st Mangrove Plantation</h4>
-                      </div>
-                      <span className="text-[10px] font-semibold text-foreground/50">Held on 2nd November, 2021</span>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans mb-2">
-                        The world’s largest contiguous mangrove forest is Sundarbans in West Bengal, India. Mangroves provide ecosystem including carbon sequestration and costal protection. Unfortunately, deadliest cyclone Amphan destroyed one-third of mangrove forest in 2020.
-                      </p>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
-                        L4H Foundation successfully implemented its <strong>first initiative</strong> towards a clean and green environment through mangrove plantation on <strong>November 2<sup>nd</sup>, 2021</strong>. We planted approximately <strong>1000</strong> saplings at <strong>Purba Kalitala, Haridaskati</strong> near the banks of Kalindi river of Hingalganj Block of Sundarbans.
-                      </p>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans border-t border-foreground/5 pt-2">
-                        The entire area has been <strong>fenced with bamboo and nylon net</strong> to protect the plants from cattle. L4H Foundation commit to maintain plants for <strong>3 years</strong> with the help of local team and reserved adjacent space within the fence for plantation of another <strong>~2000</strong> saplings with <strong>2<sup>nd</sup></strong> round of fundraising later.
-                      </p>
-                    </div>
-                  </Card>
 
-                  {/* Drive B */}
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-primary" />
-                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">B. 2nd Mangrove Plantation</h4>
-                      </div>
-                      <span className="text-[10px] font-semibold text-foreground/50">Held on 26th January, 2022</span>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
-                        L4H Foundation has celebrated <strong>73<sup>rd</sup> Republic Day</strong> with successive plantation drive within a span of 3 months. With <strong>2<sup>nd</sup></strong> batch of <strong>2000</strong> mangrove saplings, L4H Foundation commit to maintain a total of <strong>3,000</strong> plants for <strong>3 years</strong> to ensure sustainability of plants. Varieties of mangroves planted are <strong>Sundari, Kakra, Dhudhul, Bain, Gorgon, Poshur.</strong>
-                      </p>
-                    </div>
-                  </Card>
-
-                  {/* Drive C */}
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-primary" />
-                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">C. 3rd Mangrove Plantation</h4>
-                      </div>
-                      <span className="text-[10px] font-semibold text-foreground/50">Held on 30th December, 2023</span>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
-                        L4H Foundation planted approximately <strong>1000</strong> Mangroves mostly <strong>Kakra and Sundari</strong> on <strong>Kalindi River Bank, Gobindakati, Hingalganj, North 24 Parganas, West Bengal</strong> on <strong>30<sup>th</sup> Dec’23</strong>.
-                      </p>
-                    </div>
-                  </Card>
-                </div>
 
                 {/* Plantation Gallery Snapshot Image */}
                 <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative max-w-4xl mx-auto">
                   <img referrerPolicy="no-referrer"
-                    src="/focus/Live-4-Help-Mangrove-Plantation-26th-Jan22_Photo-39.jpg"
+                    src="/focus/plant.jpg"
                     alt="Sundarban Mangrove Plantation Campaign Photographs"
                     className="w-full h-full object-cover absolute inset-0"
                   />

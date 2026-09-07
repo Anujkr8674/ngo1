@@ -6,7 +6,8 @@
   --primary: #CFE8FF;
   --secondary: #DCCFF8;
   --accent: #FFF2B2;
-  
+  --blue1: #2D9CD4;
+
   --font-inter: var(--font-inter);
   --font-outfit: var(--font-outfit);
 }
@@ -17,23 +18,28 @@
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
-  
+
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-display: var(--font-outfit), system-ui, sans-serif;
   --font-admin: "Neue Montreal", "Gotham", var(--font-inter), system-ui, sans-serif;
-  
+
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
   --radius-3xl: 2rem;
-  
+
   --shadow-soft: 0 4px 30px rgba(0, 0, 0, 0.03);
   --shadow-premium: 0 10px 40px rgba(0, 0, 0, 0.04);
 
-  --text-xs: 0.9375rem;   /* 15px (originally 12px) */
-  --text-sm: 1.0625rem;   /* 17px (originally 14px) */
-  --text-base: 1.1875rem; /* 19px (originally 16px) */
-  --text-lg: 1.3125rem;   /* 21px (originally 18px) */
-  --text-xl: 1.4375rem;   /* 23px (originally 20px) */
+  --text-xs: 0.9375rem;
+  /* 15px (originally 12px) */
+  --text-sm: 1.0625rem;
+  /* 17px (originally 14px) */
+  --text-base: 1.1875rem;
+  /* 19px (originally 16px) */
+  --text-lg: 1.3125rem;
+  /* 21px (originally 18px) */
+  --text-xl: 1.4375rem;
+  /* 23px (originally 20px) */
 }
 
 body {
@@ -83,8 +89,8 @@ body {
 
 .bg-gradient-pastel-mesh {
   background: radial-gradient(at 0% 0%, rgba(207, 232, 255, 0.4) 0px, transparent 50%),
-              radial-gradient(at 100% 0%, rgba(220, 207, 248, 0.4) 0px, transparent 50%),
-              radial-gradient(at 50% 100%, rgba(255, 242, 178, 0.3) 0px, transparent 50%);
+    radial-gradient(at 100% 0%, rgba(220, 207, 248, 0.4) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(255, 242, 178, 0.3) 0px, transparent 50%);
   background-color: #FCFCFA;
 }
 
@@ -97,6 +103,7 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -106,18 +113,21 @@ body {
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: rgba(120, 110, 140, 0.3);
   border-radius: 9999px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(120, 110, 140, 0.5);
 }
+
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: rgba(120, 110, 140, 0.3) transparent;
 }
-
