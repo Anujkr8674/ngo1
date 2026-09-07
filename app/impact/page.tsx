@@ -33,26 +33,168 @@ import testimonialsData from "../data/testimonials.json";
 import { getBlogPosts } from "../actions/blog";
 import { getTestimonials } from "../actions/testimonial";
 
+interface ImpactBlogSectionProps {
+  title: string;
+  description: string;
+  categoryLink: string;
+  defaultCategoryName: string;
+  emptyText: string;
+  posts: any[];
+}
+
+function ImpactBlogSection({
+  title,
+  description,
+  categoryLink,
+  defaultCategoryName,
+  emptyText,
+  posts,
+}: ImpactBlogSectionProps) {
+  return (
+    <section className="py-8 px-6 md:px-12">
+      <div className="max-w-7xl mx-auto flex flex-col gap-10 bg-[#ECE0F0] rounded-[3rem] py-8 px-4 md:py-12 md:px-8 border border-foreground/5 w-full text-left">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="flex flex-col gap-4 max-w-2xl text-left">
+            <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Journal</span>
+            <h3 className="font-display font-bold text-3xl md:text-4xl text-foreground">{title}</h3>
+            <p className="text-xs sm:text-sm text-foreground/70">{description}</p>
+          </div>
+          <Link href={categoryLink}>
+            <button className="flex items-center gap-1.5 px-6 py-3 rounded-full text-xs font-semibold text-foreground bg-primary shadow-soft transition-premium cursor-pointer hover:-translate-y-0.5">
+              View All News
+            </button>
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {posts.length > 0 ? (
+            posts.map((blog, idx) => {
+              const blogDate = blog.createdAt
+                ? new Date(blog.createdAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })
+                : blog.date || "June 1, 2026";
+
+              const images = blog.images || [];
+              const coverImage =
+                images.length > 0
+                  ? images[0] === "/logo/logo.jpg" && images.length > 1
+                    ? images[1]
+                    : images[0]
+                  : null;
+              const isVid = coverImage && coverImage.toLowerCase().match(/\.(mp4|webm|mov|avi|mkv)$/i);
+              const postTitle =
+                blog.title && blog.title !== "BLOG"
+                  ? blog.title
+                  : blog.subheadings?.[0]?.text || "Blog Post";
+              const categoryName =
+                blog.category?.name ||
+                (typeof blog.category === "string" ? blog.category : defaultCategoryName);
+              const readTime = blog.readTime || 3;
+              const excerpt =
+                blog.excerpt || (blog.paragraphs && blog.paragraphs[0]) || "No description available.";
+
+              return (
+                <motion.article
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.05 }}
+                  key={blog.slug || idx}
+                  className="group flex flex-col justify-between rounded-[2.5rem] bg-white shadow-soft border border-[#C8B4D4] min-h-[450px] hover:-translate-y-2 hover:border-[#90BCE6] hover:shadow-premium hover:!bg-[#CFE8FF] transition-all duration-300 overflow-hidden pb-6 relative text-left"
+                >
+                  <div className="flex flex-col flex-1">
+                    {/* Image / Video */}
+                    {coverImage ? (
+                      <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-slate-900">
+                        {isVid ? (
+                          <video
+                            src={coverImage}
+                            muted
+                            className="w-full h-full object-cover group-hover:scale-105 transition-premium"
+                          />
+                        ) : (
+                          <img
+                            referrerPolicy="no-referrer"
+                            src={coverImage}
+                            alt={postTitle}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-premium animate-fade-in"
+                          />
+                        )}
+                        <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/10 flex items-center gap-1">
+                          <Tag className="w-3 h-3 text-blue-400" />
+                          {categoryName}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-slate-100 flex items-center justify-center text-slate-400">
+                        <BookOpen className="w-12 h-12 text-slate-300" />
+                        <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/10 flex items-center gap-1">
+                          <Tag className="w-3 h-3 text-blue-400" />
+                          {categoryName}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Body */}
+                    <div className="pt-4 px-6 flex flex-col h-full flex-grow justify-between">
+                      <div className="flex flex-col gap-2 flex-grow">
+                        <div className="flex flex-wrap items-center gap-4 text-[10px] font-semibold tracking-wider text-foreground/50 uppercase">
+                          <span className="flex items-center gap-1">
+                            <Calendar className="w-3 h-3" />
+                            {blogDate}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3 h-3" />
+                            {readTime} Min Read
+                          </span>
+                        </div>
+                        <h4 className="font-display font-bold text-base md:text-lg text-foreground leading-snug group-hover:text-blue-600 transition-colors line-clamp-2">
+                          {postTitle}
+                        </h4>
+                        <p className="text-[11px] text-foreground/70 leading-relaxed line-clamp-3">
+                          {excerpt}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="px-6 mt-4">
+                    <Link
+                      href={`/blog/${blog.slug}`}
+                      className="flex items-center gap-1.5 text-xs font-semibold text-foreground/80 hover:text-foreground group/btn w-fit"
+                    >
+                      Read full story
+                      <ArrowRight className="w-3.5 h-3.5 text-foreground/40 group-hover/btn:translate-x-0.5 transition-transform" />
+                    </Link>
+                  </div>
+                </motion.article>
+              );
+            })
+          ) : (
+            <div className="col-span-3 text-center text-xs text-foreground/60 py-6">
+              {emptyText}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Impact() {
   const [activeTab, setActiveTab] = useState<"education" | "healthcare" | "environment" | "relief">("education");
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
-  const [blogsList, setBlogsList] = useState<any[]>(
-    blogsData.filter((post: any) => {
-      const catName = (post.category?.name || post.category || "").toLowerCase();
-      return catName.includes("education");
-    }).slice(0, 3)
-  );
+  const [allBlogs, setAllBlogs] = useState<any[]>(blogsData);
   const [testimonialsList, setTestimonialsList] = useState<any[]>(testimonialsData);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     getBlogPosts().then((posts) => {
       if (posts && posts.length > 0) {
-        const eduBlogs = posts.filter((post: any) => {
-          const catName = (post.category?.name || post.category || "").toLowerCase();
-          return catName.includes("education");
-        });
-        setBlogsList(eduBlogs.slice(0, 3));
+        setAllBlogs(posts);
       }
     }).catch(() => { });
 
@@ -62,6 +204,30 @@ export default function Impact() {
       }
     }).catch(() => { });
   }, []);
+
+  const educationBlogs = allBlogs.filter((post: any) => {
+    const cat = (post.category?.name || (typeof post.category === "string" ? post.category : "") || "").toLowerCase();
+    const title = (post.title || "").toLowerCase();
+    return cat.includes("education") || title.includes("education") || title.includes("student");
+  }).slice(0, 3);
+
+  const healthcareBlogs = allBlogs.filter((post: any) => {
+    const cat = (post.category?.name || (typeof post.category === "string" ? post.category : "") || "").toLowerCase();
+    const title = (post.title || "").toLowerCase();
+    return cat.includes("health") || cat.includes("medical") || title.includes("health") || title.includes("medical") || title.includes("cancer");
+  }).slice(0, 3);
+
+  const plantationBlogs = allBlogs.filter((post: any) => {
+    const cat = (post.category?.name || (typeof post.category === "string" ? post.category : "") || "").toLowerCase();
+    const title = (post.title || "").toLowerCase();
+    return cat.includes("plantation") || cat.includes("environment") || cat.includes("mangrove") || title.includes("plantation") || title.includes("mangrove") || title.includes("coastal");
+  }).slice(0, 3);
+
+  const reliefBlogs = allBlogs.filter((post: any) => {
+    const cat = (post.category?.name || (typeof post.category === "string" ? post.category : "") || "").toLowerCase();
+    const title = (post.title || "").toLowerCase();
+    return cat.includes("relief") || cat.includes("community") || title.includes("relief") || title.includes("blanket") || title.includes("cloth") || title.includes("collective action");
+  }).slice(0, 3);
 
   useEffect(() => {
     const autoScroll = setInterval(() => {
@@ -730,111 +896,281 @@ export default function Impact() {
               >
                 {/* Overview */}
                 <div className="flex flex-col gap-4">
-                  <h3 className="font-display font-bold text-3xl text-foreground">Health Care NGO in Delhi Support Senior Citizen Care</h3>
+                  <h3 className="font-display font-bold text-3xl text-foreground">
+                    Healthcare for All: Creating Awareness, Enabling Early Detection, Transforming Lives
+                  </h3>
+                  <p className="text-sm font-semibold text-[#2D9CD4] uppercase tracking-wider">
+                    Empowering Communities Through Awareness, Early Detection, and Accessible Healthcare
+                  </p>
                   <p className="text-sm text-foreground/80 leading-relaxed font-sans">
-                    Live 4 Help (L4H) Foundation organized three medical camps in remote villages in last 2 years. Total number of beneficiaries from the camp is <strong>397</strong>. It is observed that rural people always give lesser priority to their health check-up due to financial constraints. The rural-urban divide in healthcare is linked to the lack of healthcare literacy. The insufficient level of health awareness has a negative impact on access to healthcare. Living conditions and a low level of education are crucial barriers for rural population. The basic objectives of these medical camps were to provide free medical tests including preliminary cancer screening test to underprivileged people and create general healthcare awareness.
+                    At <strong>Live4Help Foundation</strong>, we believe healthcare is a fundamental right - not a privilege. Through cancer awareness programs and free medical testing camps, we bring vital health education, preventive screening, and essential medical services to underserved communities. By promoting early detection and timely care, we help individuals make informed health decisions, reduce avoidable suffering, and build healthier, more resilient communities.
                   </p>
                 </div>
 
-                {/* 3-Column Grid for Medical Camps */}
+                {/* 3-Column Grid: Our Reach & Impact, Sustainability, and Long-Term Objectives */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {/* Camp 1 */}
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-primary" />
-                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Free Medical Camp (Daspur)</h4>
-                      </div>
-                      <span className="text-[10px] font-semibold text-foreground/50">Held on <strong>26<sup>th</sup> March’22</strong></span>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
-                        L4H Foundation organized <strong>Free Medical Camp</strong> on <strong>26<sup>th</sup> March, 2022</strong> in Daspur Block, Paschim Medinipur, West Bengal. Blood samples were taken by <strong>Thyrocare</strong> for <strong>102</strong> adults against our target of <strong>100</strong>. Out of <strong>102</strong> beneficiaries, <strong>30</strong> were female. The people from nearby villages availed the benefits of free medical tests. The age group of beneficiaries varied from <strong>26 years to 76 years</strong>. The blood test covered complete Hemogram, TBC, Thyroid Profile, Lipid Profile, Kidney Function Test (KFT), Liver Function Test, Iron Deficiency, Vitamin D and Vitamin B12, Blood Sugar including cancer test (PSA for Male, Ca125 for Female). The Free Medical Camp was supported by <strong>M/s ERBE</strong> (Erbe Medical India Pvt. Ltd.).
-                      </p>
+                  {/* Card 1: Reach & Impact */}
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">🌍 OUR REACH & IMPACT</h4>
                     </div>
+                    <p className="text-xs text-foreground/75 leading-relaxed mb-1 font-semibold">
+                      as of August 2026
+                    </p>
+                    <p className="text-xs font-semibold text-foreground/90 leading-snug">
+                      21 Healthcare Initiatives Conducted Across Rural and Underserved Communities
+                    </p>
+                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
+                      <li><strong>3,100+ beneficiaries</strong> reached</li>
+                      <li><strong>8 Cancer Awareness Programs</strong> delivered</li>
+                      <li><strong>13 Free Medical Camps</strong> conducted</li>
+                      <li>Activities spread across <strong>West Bengal</strong> and <strong>Telangana</strong></li>
+                      <li>Hundreds of women educated on breast cancer awareness and self-screening</li>
+                      <li>Thousands of diagnostic tests and medical consultations facilitated</li>
+                      <li>Improved healthcare awareness among students, women, senior citizens, daily wage workers, and economically disadvantaged families</li>
+                      <li>✨ <strong>Strong community participation</strong> through volunteers, educational institutions, healthcare professionals, and local organizations</li>
+                    </ul>
                   </Card>
 
-                  {/* Camp 2 */}
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-primary" />
-                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Free Medical Camp (Hingalganj)</h4>
+                  {/* Card 2: Sustainability */}
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">🌱 SUSTAINABILITY</h4>
+                    </div>
+                    <p className="text-xs font-semibold text-foreground/90 leading-snug">
+                      Building a Culture of Preventive Healthcare
+                    </p>
+                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
+                      <li>Promoting regular health screening and preventive care</li>
+                      <li>Increasing healthcare literacy within families and communities</li>
+                      <li>Creating awareness that extends beyond event participants</li>
+                      <li>Strengthening local volunteer and community networks</li>
+                      <li>Encouraging timely medical intervention and follow-up care</li>
+                      <li>Partnering with healthcare professionals and institutions for long-term impact</li>
+                      <li>Enabling communities to take ownership of their health and well-being</li>
+                    </ul>
+                  </Card>
+
+                  {/* Card 3: Long-Term Objectives & Outcomes */}
+                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white">
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">🎯 LONG-TERM OBJECTIVES & OUTCOMES</h4>
+                    </div>
+                    <p className="text-xs font-semibold text-foreground/90 leading-snug">
+                      Creating Healthier, More Resilient Communities
+                    </p>
+                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
+                      <li>Increased breast cancer awareness and early detection</li>
+                      <li>Reduced incidence of undiagnosed chronic illnesses</li>
+                      <li>Improved healthcare-seeking behavior among rural populations</li>
+                      <li>Greater access to preventive healthcare services</li>
+                      <li>Enhanced quality of life and health outcomes</li>
+                      <li>Stronger community-based healthcare ecosystems</li>
+                      <li>Reduced healthcare inequality among vulnerable groups</li>
+                      <li>Sustainable impact through education, awareness, and preventive screening</li>
+                    </ul>
+                  </Card>
+                </div>
+
+                {/* Why Our Work Matters: From Awareness to Action */}
+                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4">
+                  <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
+                    <Activity className="w-6 h-6 text-primary" />
+                    <div>
+                      <h4 className="font-display font-bold text-2xl text-foreground">
+                        Why Our Work Matters: From Awareness to Action
+                      </h4>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                    For families in remote villages and economically disadvantaged communities, healthcare can become a choice between meeting daily needs and seeking essential care. Preventive check-ups are often delayed or missed because of:
+                  </p>
+                  <div className="bg-[#E5F0E5]/60 p-5 rounded-2xl border border-[#C1D6C1]/40 flex flex-col gap-2">
+                    <ul className="flex flex-col gap-2 text-xs text-foreground/80 list-disc pl-5 leading-relaxed font-sans">
+                      <li><strong>Financial hardship</strong></li>
+                      <li><strong>Limited awareness</strong> of symptoms and preventive care</li>
+                      <li><strong>Inadequate access</strong> to healthcare facilities</li>
+                      <li><strong>Fear, myths, and social stigma</strong> surrounding diseases such as breast cancer</li>
+                    </ul>
+                  </div>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                    These barriers allow illnesses to remain undiagnosed until they reach critical stages, causing avoidable suffering and financial distress. Many women are unfamiliar with breast cancer warning signs, screening options, and the importance of timely medical care.
+                  </p>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                    <strong>Live4Help Foundation is working to change this reality</strong>. Through health education, preventive screening, and free medical testing, we help communities move from reactive treatment to proactive care. Every awareness session, screening, and informed individual brings us closer to a future where healthcare is accessible, preventive, and inclusive for all.
+                  </p>
+                </Card>
+
+                {/* Two Program Focus Cards */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Cancer Awareness Program */}
+                  <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col justify-between gap-6">
+                    <div className="flex flex-col gap-4">
+                      <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
+                        <Activity className="w-6 h-6 text-primary" />
+                        <h4 className="font-display font-bold text-xl text-foreground">
+                          Cancer Awareness Program: Breaking Silence, Saving Lives
+                        </h4>
                       </div>
-                      <span className="text-[10px] font-semibold text-foreground/50">Held on <strong>28<sup>th</sup> December’22</strong></span>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans mb-2">
-                        The basic objective of this medical camp was to provide free medical test including preliminary cancer screening test to underprivileged people, mainly adults of age group <strong>30 years and above</strong>. Rural people in Sundarban area never got opportunity to do medical test due to remote location and unavailability of diagnostic center. This Medical Camp had special significance. The First time such medical camp was held at the far remote corner of the delta and the last human habitat, after which the core of Sundarban National Park starts.
+                      <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                        Breast cancer is among the most treatable cancers when detected early, yet awareness and screening remain inadequate in many communities.
                       </p>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans mb-2">
-                        <strong>M/s ERBE (Erbe Medical India Pvt. Ltd.)</strong> supported the Medical Camp through their Corporate Social Responsibility (CSR). <strong>125</strong> beneficiaries availed this benefit. <strong>Thyrocare Kolkata</strong> took the blood sample and provided test report.
-                      </p>
-                      <div className="border-t border-foreground/5 pt-2">
-                        <span className="text-xs font-semibold text-foreground block mb-1">The medical test included:</span>
-                        <ul className="list-disc pl-5 text-[11px] text-foreground/75 flex flex-col gap-1 leading-normal font-sans">
-                          <li>Complete Hemogram</li>
-                          <li>Cancer Test (PSA for Male, Ca125 for Female)</li>
-                          <li>Thyroid Profile and Lipid Profile</li>
-                          <li>Kidney Function Test and Liver Function Test</li>
-                          <li>Iron Deficiency</li>
-                          <li>Blood Sugar</li>
+                      <div className="bg-[#FFE6D4]/70 p-5 rounded-2xl border border-[#EEB898]/40 flex flex-col gap-2.5">
+                        <span className="text-xs sm:text-sm font-bold text-foreground font-sans">
+                          Live4Help Foundation&apos;s Cancer Awareness Programs focus on educating women, girls, caregivers, and families about:
+                        </span>
+                        <ul className="flex flex-col gap-2 text-xs text-foreground/75 pl-1 leading-relaxed font-sans">
+                          <li className="flex items-start gap-2"><span>🔹</span><span>Early warning signs of breast cancer</span></li>
+                          <li className="flex items-start gap-2"><span>🔹</span><span>Importance of routine screening and medical consultation</span></li>
+                          <li className="flex items-start gap-2"><span>🔹</span><span>Breast self-examination techniques</span></li>
+                          <li className="flex items-start gap-2"><span>🔹</span><span>Overcoming fear, myths, and social stigma</span></li>
+                          <li className="flex items-start gap-2"><span>🔹</span><span>Benefits of early detection and preventive healthcare</span></li>
                         </ul>
                       </div>
+                      <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                        Interactive presentations, question-and-answer sessions, and practical demonstrations using <strong>Breast Cancer Detection Manikins</strong> help participants gain confidence and knowledge that can potentially save lives. These programs not only educate but also inspire action, empowering individuals to become advocates for health within their communities.
+                      </p>
+                    </div>
+
+                    <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative mt-2">
+                      <img referrerPolicy="no-referrer"
+                        src="/focus/L4H-Medical-Camp-Photo-1.jpg"
+                        alt="Cancer Awareness Session with Detection Manikins"
+                        className="w-full h-full object-cover absolute inset-0"
+                      />
                     </div>
                   </Card>
 
-                  {/* Camp 3 */}
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-primary" />
-                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">Free Medical Camp (Sundarban)</h4>
+                  {/* Free Medical Testing Camps */}
+                  <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col justify-between gap-6">
+                    <div className="flex flex-col gap-4">
+                      <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
+                        <HeartHandshake className="w-6 h-6 text-primary" />
+                        <h4 className="font-display font-bold text-xl text-foreground">
+                          Free Medical Testing Camps: Healthcare at the Doorstep of the Needy
+                        </h4>
                       </div>
-                      <span className="text-[10px] font-semibold text-foreground/50">Held on <strong>29<sup>th</sup> December’23</strong></span>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
-                        L4H Foundation organized third <strong>Free Medical Camp</strong> on <strong>29<sup>th</sup> December, 2023</strong> in Sundarban area of West Bengal. <strong>170</strong> beneficiaries mostly adults availed this benefit. The medical camp includes free blood test covering Complete Hemogram, Cancer Test – PSA for Male and Ca125 for Female, Thyroid Profile and Lipid Profile, Kidney Function Test and Liver Function Test, Iron Deficiency, Blood Sugar. The foundation arranged <strong>five doctors (3 male and 2 female)</strong> to provide free consultation during camp and after availability of blood test report.
+                      <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                        Access to healthcare remains one of the biggest challenges for underserved populations. To bridge this gap, Live4Help Foundation organizes free community medical camps that bring healthcare services directly to those who need them most.
                       </p>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
-                        <strong>M/s ERBE (Erbe Medical India Pvt. Ltd.)</strong> supported the Medical Camp through their Corporate Social Responsibility (CSR).
+                      <div className="bg-[#E5F0E5]/70 p-5 rounded-2xl border border-[#C1D6C1]/40 flex flex-col gap-2.5">
+                        <span className="text-xs sm:text-sm font-bold text-foreground font-sans">
+                          Beneficiaries receive:
+                        </span>
+                        <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
+                          <li>Free medical consultations</li>
+                          <li>Blood sugar testing</li>
+                          <li>Thyroid and lipid profile testing</li>
+                          <li>Kidney and liver function tests</li>
+                          <li>Anemia screening</li>
+                          <li>Preliminary cancer screening</li>
+                          <li>Follow-up consultation based on diagnostic reports</li>
+                        </ul>
+                      </div>
+                      <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                        These camps enable early detection of health concerns, provide valuable medical guidance, and reduce the financial burden on vulnerable families that might otherwise forego essential healthcare services.
                       </p>
+                    </div>
+
+                    <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative mt-2">
+                      <img referrerPolicy="no-referrer"
+                        src="/pic/Medical-Camp-Photo.jpg"
+                        alt="Community Medical Testing Camp"
+                        className="w-full h-full object-cover absolute inset-0"
+                      />
                     </div>
                   </Card>
                 </div>
 
-                {/* 4. Cancer Awareness Workshops */}
-                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white">
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                    <div className="lg:col-span-7 flex flex-col gap-5">
-                      <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
-                        <Activity className="w-6 h-6 text-primary" />
-                        <h4 className="font-display font-bold text-xl text-foreground">4. Cancer Awareness Workshops</h4>
-                      </div>
-                      <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
-                        L4H Foundation organized <strong>1st Cancer Awareness Session</strong> at <strong>Bhagbanchak Patiram Shikha Niketan, Medinipur, West Bengal</strong> and <strong>2nd Cancer Awareness Session</strong> at <strong>Gobindakati Sikshaniketan High School, Hingalganj West Bengal</strong>. Both sessions were facilitated by <strong>Dr. Shyamsundar Mondal</strong>, retired ex. HOD, Department of Epidemiology and Biostatistics, Chittaranjan National Cancer Institute, Kolkata and attended by school students, local people. Dr. S. Mondal’s lucid explanation was well appreciated by all attendees.
-                      </p>
-                      <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
-                        The L4H Foundation is organizing similar program at regular intervals to create awareness and reach out to large population in future and thereby to help people in early detection and treatment.
-                      </p>
-                      <div className="bg-[#FFE6D4] p-5 rounded-2xl border border-[#EEB898]/40 flex flex-col gap-3">
-                        <span className="text-xs sm:text-sm font-bold text-foreground font-sans">The basic objectives of cancer awareness program are:</span>
-                        <ul className="flex flex-col gap-2 text-xs text-foreground/75 pl-1 leading-relaxed font-sans">
-                          <li><strong>a)</strong> Remove the stigma and fear attached with cancer.</li>
-                          <li><strong>b)</strong> Help people recognize the early signs and symptoms of cancer.</li>
-                          <li><strong>c)</strong> Inform people about the importance of regular screening and check-ups.</li>
-                          <li><strong>d)</strong> Inform women about mammograms, clinical breast exam and breast self-exam.</li>
-                        </ul>
-                      </div>
-                      <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
-                        The Foundation has procured <strong>Breast Examination Simulator</strong> with a donation from one of our Patrons. The simulator is used during cancer awareness program for educating woman about breast self-exam.
+                {/* Partner with Us: An Urgent Appeal for CSR Support */}
+                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-6">
+                  <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
+                    <HeartHandshake className="w-6 h-6 text-[#2D9CD4] " />
+                    <div>
+                      <h4 className="font-display font-bold text-2xl text-foreground">
+                        Partner with Us: An Urgent Appeal for CSR Support
+                      </h4>
+                      <p className="text-xs sm:text-sm font-semibold text-[#2D9CD4] mt-1">
+                        A Simple Health Check Can Save a Life. A CSR Contribution Can Save Hundreds.
                       </p>
                     </div>
+                  </div>
 
-                    <div className="lg:col-span-5 flex flex-col gap-6 w-full">
-                      <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative">
-                        <img referrerPolicy="no-referrer"
-                          src="/focus/L4H-Medical-Camp-Photo-1.jpg"
-                          alt="Cancer Awareness Workshops & Medical Camp"
-                          className="w-full h-full object-cover absolute inset-0"
-                        />
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                    Across rural and underserved communities, many families live with untreated illnesses because they cannot afford basic tests, reach a healthcare facility, or recognize the early signs of disease. Women may remain unaware of breast cancer warning signs, while senior citizens often delay care because even essential diagnostic services are beyond their means. These are the realities Live4Help Foundation encounters in villages, schools, tea gardens, and remote communities.
+                  </p>
+
+                  <div className="bg-[#FFE6D4]/50 p-5 rounded-2xl border border-[#EEB898]/40 flex flex-col gap-3">
+                    <span className="text-xs sm:text-sm font-bold text-foreground font-sans">
+                      Behind every beneficiary is a human story:
+                    </span>
+                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
+                      <li>A mother receiving her first health screening</li>
+                      <li>A daily wage earner unable to afford a blood test</li>
+                      <li>A senior citizen postponing treatment because of financial hardship</li>
+                      <li>A young woman learning that early breast cancer detection can save her life</li>
+                    </ul>
+                    <p className="text-xs text-foreground/75 leading-relaxed font-sans mt-1">
+                      For these individuals, our healthcare camps and awareness programs are far more than one-time events. They may be the first opportunity to receive medical guidance, preventive screening, and trusted health education—support that can lead to earlier treatment, reduced suffering, and renewed hope.
+                    </p>
+                  </div>
+
+                  {/* The Need Is Greater Than Our Current Reach */}
+                  <div className="flex flex-col gap-3">
+                    <h5 className="font-display font-bold text-lg text-foreground">
+                      The Need Is Greater Than Our Current Reach
+                    </h5>
+                    <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                      Although our healthcare initiatives have already reached more than <strong>2,900 people</strong>, countless communities still lack affordable care and life-saving health awareness. Requests continue to come from areas where medical infrastructure is limited, and preventive services are out of reach. Our ability to respond—and to reach the next family in need—depends directly on timely financial support.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-1 text-center">
+                      <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs font-semibold text-red-700">
+                        Without awareness, diseases remain undetected.
+                      </div>
+                      <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs font-semibold text-amber-800">
+                        Without screening, treatment arrives too late.
+                      </div>
+                      <div className="p-3 rounded-xl bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700">
+                        Without support, vulnerable families continue to suffer in silence.
                       </div>
                     </div>
+                  </div>
+
+                  {/* Your CSR Investment Can Create Lasting Change */}
+                  <div className="bg-[#E5F0E5]/60 p-5 rounded-2xl border border-[#C1D6C1]/40 flex flex-col gap-3">
+                    <h5 className="font-display font-bold text-base text-foreground">
+                      Your CSR Investment Can Create Lasting Change
+                    </h5>
+                    <p className="text-xs text-foreground/75 leading-relaxed font-sans">
+                      By partnering with <strong>Live4Help Foundation</strong>, your organization can directly enable:
+                    </p>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-foreground/80 list-disc pl-5 leading-relaxed font-sans">
+                      <li>Free Medical Camps for underserved and remote communities</li>
+                      <li>Breast Cancer Awareness & Early Detection Programs</li>
+                      <li>Diagnostic Testing and Preventive Health Screening</li>
+                      <li>Medical Consultations and Follow-up Care</li>
+                      <li>Community Healthcare Education and Awareness</li>
+                      <li>Long-term Health Literacy and Preventive Healthcare Practices</li>
+                    </ul>
+                    <p className="text-xs font-semibold text-foreground/90 leading-relaxed font-sans mt-1">
+                      Every contribution helps move healthcare from hospitals into communities that need it most.
+                    </p>
+                  </div>
+
+                  {/* The Return on Your CSR Investment Is Measured in Lives Changed */}
+                  <div className="flex flex-col gap-3 border-t border-foreground/5 pt-4">
+                    <h5 className="font-display font-bold text-base text-foreground">
+                      The Return on Your CSR Investment Is Measured in Lives Changed
+                    </h5>
+                    <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
+                      <li>When a woman recognizes the early signs of breast cancer, a life may be saved.</li>
+                      <li>When a health screening detects a condition early, a family’s future can change.</li>
+                      <li>When a senior citizen receives timely medical guidance, avoidable suffering can be prevented.</li>
+                      <li>When a community gains health awareness, the benefits can extend across generations.</li>
+                    </ul>
+                    <p className="text-xs sm:text-sm text-foreground/80 font-medium leading-relaxed font-sans">
+                      Healthcare impact reaches far beyond one beneficiary—it strengthens families, supports caregivers, protects children, and builds healthier communities.
+                    </p>
                   </div>
                 </Card>
               </motion.div>
@@ -870,6 +1206,9 @@ export default function Impact() {
                     <div className="flex items-center gap-2">
                       <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">🌍 OUR REACH & IMPACT</h4>
                     </div>
+                    <p className="text-xs text-foreground/75 leading-relaxed mb-1 font-semibold">
+                      as of August 2026
+                    </p>
                     <ul className="flex flex-col gap-2 text-xs text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
                       <li><strong>11 Plantation Initiatives</strong> completed across the Sundarbans</li>
                       <li><strong>8 CSR-supported Projects</strong> enabled through partnerships with Eastman and ABS Professional Services India Pvt. Ltd.</li>
@@ -987,7 +1326,10 @@ export default function Impact() {
                   />
                 </div>
               </motion.div>
+
             )}
+
+
 
             {activeTab === "relief" && (
               <motion.div
@@ -1098,118 +1440,14 @@ export default function Impact() {
       {activeTab === "education" && (
         <>
           {/* Latest Education Activities & Updates */}
-          <section className="py-8 px-6 md:px-12">
-            <div className="max-w-7xl mx-auto flex flex-col gap-10 bg-[#ECE0F0] rounded-[3rem] py-8 px-4 md:py-12 md:px-8 border border-foreground/5 w-full text-left">
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-                <div className="flex flex-col gap-4 max-w-2xl text-left">
-                  <span className="text-xs uppercase tracking-widest font-semibold text-foreground/60">Journal</span>
-                  <h3 className="font-display font-bold text-3xl md:text-4xl text-foreground">Latest Education Activities & Updates</h3>
-                  <p className="text-xs sm:text-sm text-foreground/70">
-                    Explore detailed reports and updates from our education campaigns and student milestones.
-                  </p>
-                </div>
-                <Link href="/blog?category=education">
-                  <button className="flex items-center gap-1.5 px-6 py-3 rounded-full text-xs font-semibold text-foreground bg-primary shadow-soft transition-premium cursor-pointer">
-                    View All News
-                  </button>
-                </Link>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {blogsList.length > 0 ? (
-                  blogsList.map((blog, idx) => {
-                    const blogDate = blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric'
-                    }) : (blog.date || 'June 1, 2026')
-
-                    const images = blog.images || []
-                    const coverImage = images.length > 0 ? (images[0] === '/logo/logo.jpg' && images.length > 1 ? images[1] : images[0]) : null
-                    const isVid = coverImage && coverImage.toLowerCase().match(/\.(mp4|webm|mov|avi|mkv)$/i)
-                    const title = blog.title && blog.title !== 'BLOG' ? blog.title : (blog.subheadings?.[0]?.text || 'Blog Post')
-                    const categoryName = blog.category?.name || blog.category || 'Education'
-                    const readTime = blog.readTime || 3
-                    const excerpt = blog.excerpt || (blog.paragraphs && blog.paragraphs[0]) || 'No description available.'
-
-                    return (
-                      <motion.article
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: idx * 0.05 }}
-                        key={blog.slug}
-                        className="group flex flex-col justify-between rounded-[2.5rem] bg-white shadow-soft border border-[#C8B4D4] min-h-[450px] hover:-translate-y-2 hover:border-[#90BCE6] hover:shadow-premium hover:!bg-[#CFE8FF] transition-all duration-300 overflow-hidden pb-6 relative text-left"
-                      >
-                        <div className="flex flex-col flex-1">
-                          {/* Image / Video */}
-                          {coverImage ? (
-                            <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-slate-900">
-                              {isVid ? (
-                                <video src={coverImage} muted className="w-full h-full object-cover group-hover:scale-105 transition-premium" />
-                              ) : (
-                                <img
-                                  referrerPolicy="no-referrer"
-                                  src={coverImage}
-                                  alt={title}
-                                  className="w-full h-full object-cover group-hover:scale-105 transition-premium animate-fade-in"
-                                />
-                              )}
-                              <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/10 flex items-center gap-1">
-                                <Tag className="w-3 h-3 text-blue-400" />
-                                {categoryName}
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="relative aspect-[4/3] w-full rounded-b-2xl overflow-hidden shadow-inner shrink-0 bg-slate-100 flex items-center justify-center text-slate-400">
-                              <BookOpen className="w-12 h-12 text-slate-300" />
-                              <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/10 flex items-center gap-1">
-                                <Tag className="w-3 h-3 text-blue-400" />
-                                {categoryName}
-                              </div>
-                            </div>
-                          )}
-
-                          {/* Body */}
-                          <div className="pt-4 px-6 flex flex-col h-full flex-grow justify-between">
-                            <div className="flex flex-col gap-2 flex-grow">
-                              <div className="flex flex-wrap items-center gap-4 text-[10px] font-semibold tracking-wider text-foreground/50 uppercase">
-                                <span className="flex items-center gap-1">
-                                  <Calendar className="w-3 h-3" />
-                                  {blogDate}
-                                </span>
-                                <span className="flex items-center gap-1">
-                                  <Clock className="w-3 h-3" />
-                                  {readTime} Min Read
-                                </span>
-                              </div>
-                              <h4 className="font-display font-bold text-base md:text-lg text-foreground leading-snug group-hover:text-blue-600 transition-colors line-clamp-2">
-                                {title}
-                              </h4>
-                              <p className="text-[11px] text-foreground/70 leading-relaxed line-clamp-3">
-                                {excerpt}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="px-6 mt-4">
-                          <Link href={`/blog/${blog.slug}`} className="flex items-center gap-1.5 text-xs font-semibold text-foreground/80 hover:text-foreground group/btn w-fit">
-                            Read full story
-                            <ArrowRight className="w-3.5 h-3.5 text-foreground/40 group-hover/btn:translate-x-0.5 transition-transform" />
-                          </Link>
-                        </div>
-                      </motion.article>
-                    )
-                  })
-                ) : (
-                  <div className="col-span-3 text-center text-xs text-foreground/60 py-6">
-                    No education updates found.
-                  </div>
-                )}
-              </div>
-            </div>
-          </section>
+          <ImpactBlogSection
+            title="Latest Education Activities & Updates"
+            description="Explore detailed reports and updates from our education campaigns and student milestones."
+            categoryLink="/blog?category=education"
+            defaultCategoryName="Education"
+            emptyText="No education updates found."
+            posts={educationBlogs}
+          />
 
           {/* Meet Our Sponsored Students CTA Section */}
           <section className="py-8 px-6 md:px-12">
@@ -1306,6 +1544,66 @@ export default function Impact() {
             </div>
           </section>
         </>
+      )}
+
+      {/* Healthcare tab blog section and After Blog Section CTA */}
+      {activeTab === "healthcare" && (
+        <>
+          <ImpactBlogSection
+            title="Latest Healthcare Activities & Updates"
+            description="Explore detailed reports and updates from our medical camps, health checkups, and awareness programs."
+            categoryLink="/blog?category=healthcare"
+            defaultCategoryName="Healthcare"
+            emptyText="No healthcare updates found."
+            posts={healthcareBlogs}
+          />
+
+          {/* After Blog Section: Healthcare Urgent Appeal Banner */}
+          <section className="py-8 px-6 md:px-12 pb-16">
+            <div className="relative overflow-hidden bg-gradient-to-br from-[#FFF9E6] via-[#FFF3C3] to-[#FFF9E6] rounded-[3rem] py-12 px-6 md:py-16 md:px-8 border border-[#EEC978]/30 shadow-premium max-w-7xl mx-auto flex flex-col gap-6 text-center items-center hover:shadow-2xl transition-all duration-500">
+              {/* Subtle background decoration blurs */}
+              <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -translate-x-12 -translate-y-12 pointer-events-none" />
+              <div className="absolute bottom-0 right-0 w-48 h-48 bg-[#DD6B20]/10 rounded-full blur-3xl translate-x-16 translate-y-16 pointer-events-none" />
+
+              <span className="text-sm md:text-base font-semibold text-[#DD6B20] tracking-wide z-10">
+                You Can Be the Reason They Receive It
+              </span>
+              <h2 className="font-display font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-800 tracking-tight max-w-4xl z-10 leading-snug">
+                Somewhere Today, A Woman Needs Cancer Awareness. A Child Needs Health Education. A Senior Citizen Needs Medical Care. A Family Needs Hope.
+              </h2>
+              <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed max-w-3xl font-sans z-10">
+                Partner with <strong className="font-bold text-[#DD6B20]">Live4Help Foundation</strong> and help us ensure that the next screening detects a disease early, the next medical camp reaches a forgotten community, and the next life-changing intervention happens when it matters most.
+              </p>
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FFE6D4] text-[#DD6B20] rounded-full text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider border border-[#EEB898]/40 shadow-soft mt-2 z-10 transition-all duration-300 hover:scale-105 cursor-default">
+                Because healthcare cannot wait. Lives cannot wait. And together, neither should we.
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+
+      {/* Environment tab blog section */}
+      {activeTab === "environment" && (
+        <ImpactBlogSection
+          title="Latest Plantation Activities & Updates"
+          description="Explore detailed reports and updates from our mangrove plantation drives and coastal restoration projects."
+          categoryLink="/blog?category=plantation"
+          defaultCategoryName="Plantation"
+          emptyText="No plantation updates found."
+          posts={plantationBlogs}
+        />
+      )}
+
+      {/* Relief tab blog section */}
+      {activeTab === "relief" && (
+        <ImpactBlogSection
+          title="Latest Relief Work Activities & Updates"
+          description="Explore detailed reports and updates from our relief campaigns, blanket distributions, and community aid."
+          categoryLink="/blog?category=relief%20work"
+          defaultCategoryName="Relief Work"
+          emptyText="No relief work updates found."
+          posts={reliefBlogs}
+        />
       )}
 
       {/* Video Testimonial Modal Lightbox */}

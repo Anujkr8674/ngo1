@@ -21,9 +21,16 @@ export default function BlogClient({ initialBlogs, initialCategories }: BlogClie
       const params = new URLSearchParams(window.location.search)
       const categoryParam = params.get('category')
       if (categoryParam) {
-        const match = initialCategories.find(
-          cat => cat.name?.toLowerCase() === categoryParam.toLowerCase()
-        )
+        const paramLower = decodeURIComponent(categoryParam).toLowerCase().trim()
+        const match = initialCategories.find(cat => {
+          const catLower = (cat.name || '').toLowerCase().trim()
+          if (catLower === paramLower) return true
+          if (catLower.includes(paramLower) || paramLower.includes(catLower)) return true
+          if (paramLower === 'plantation' && (catLower.includes('plantation') || catLower.includes('environment'))) return true
+          if ((paramLower === 'relief work' || paramLower === 'relief') && (catLower.includes('relief') || catLower.includes('work') || catLower.includes('community'))) return true
+          if (paramLower === 'healthcare' && (catLower.includes('health') || catLower.includes('care'))) return true
+          return false
+        })
         if (match) {
           setActiveCategoryId(match.id)
         }
@@ -46,7 +53,20 @@ export default function BlogClient({ initialBlogs, initialCategories }: BlogClie
 
     let matchesCategory = true
     if (activeCategoryId !== 'all') {
-      matchesCategory = blog.categoryId === activeCategoryId || blog.category?.id === activeCategoryId
+      const activeCat = initialCategories.find(c => c.id === activeCategoryId)
+      const activeCatName = activeCat ? (activeCat.name || '').toLowerCase().trim() : ''
+      const blogCatName = (typeof blog.category === 'string' ? blog.category : blog.category?.name || '').toLowerCase().trim()
+
+      matchesCategory =
+        blog.categoryId === activeCategoryId ||
+        blog.category?.id === activeCategoryId ||
+        (Boolean(activeCatName && blogCatName) && (
+          blogCatName === activeCatName ||
+          (activeCatName.includes('environment') && (blogCatName.includes('environment') || blogCatName.includes('plantation'))) ||
+          (activeCatName.includes('community') && (blogCatName.includes('community') || blogCatName.includes('relief'))) ||
+          (activeCatName.includes('health') && blogCatName.includes('health')) ||
+          (activeCatName.includes('education') && blogCatName.includes('education'))
+        ))
     }
 
     return matchesSearch && matchesCategory
@@ -101,7 +121,19 @@ export default function BlogClient({ initialBlogs, initialCategories }: BlogClie
           </button>
 
           {initialCategories.map((cat) => {
-            const count = initialBlogs.filter(b => b.categoryId === cat.id || b.category?.id === cat.id).length
+            const catNameLower = (cat.name || '').toLowerCase().trim()
+            const count = initialBlogs.filter(b => {
+              if (b.categoryId === cat.id || b.category?.id === cat.id) return true
+              const blogCatName = (typeof b.category === 'string' ? b.category : b.category?.name || '').toLowerCase().trim()
+              if (!blogCatName) return false
+              return (
+                blogCatName === catNameLower ||
+                (catNameLower.includes('environment') && (blogCatName.includes('environment') || blogCatName.includes('plantation'))) ||
+                (catNameLower.includes('community') && (blogCatName.includes('community') || blogCatName.includes('relief'))) ||
+                (catNameLower.includes('health') && blogCatName.includes('health')) ||
+                (catNameLower.includes('education') && blogCatName.includes('education'))
+              )
+            }).length
             return (
               <button
                 key={cat.id}
