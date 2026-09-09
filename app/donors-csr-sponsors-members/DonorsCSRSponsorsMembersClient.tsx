@@ -11,12 +11,25 @@ interface MemberImage {
     title: string;
 }
 
-interface DonorsCSRSponsorsMembersClientProps {
-    initialMemberImages: MemberImage[];
+interface CsrPartner {
+    id: string;
+    company: string;
+    desc: string;
+    order?: number;
+    createdAt?: any;
 }
 
-export default function DonorsCSRSponsorsMembersClient({ initialMemberImages }: DonorsCSRSponsorsMembersClientProps) {
+interface DonorsCSRSponsorsMembersClientProps {
+    initialMemberImages: MemberImage[];
+    initialCsrPartners?: CsrPartner[];
+}
+
+export default function DonorsCSRSponsorsMembersClient({
+    initialMemberImages,
+    initialCsrPartners = [],
+}: DonorsCSRSponsorsMembersClientProps) {
     const [activeImage, setActiveImage] = useState<string | null>(null);
+    const [csrPartners] = useState<CsrPartner[]>(initialCsrPartners);
 
     return (
         <div className="flex flex-col w-full">
@@ -43,6 +56,39 @@ export default function DonorsCSRSponsorsMembersClient({ initialMemberImages }: 
                         <p className="bg-black/40 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 text-sm sm:text-base md:text-lg text-white/75 leading-relaxed font-sans max-w-2xl">
                             Recognizing the incredible individuals and organizations that make our mission possible.
                         </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* CSR Partnerships Section */}
+            <section className="py-8 px-6 md:px-12">
+                <div className="max-w-7xl mx-auto bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 shadow-soft flex flex-col items-center justify-center gap-10">
+                    <div className="w-full text-center">
+                        <h3 className="font-display text-center font-bold text-3xl sm:text-4xl text-foreground">
+                            Our CSR Partnerships
+                        </h3>
+                    </div>
+
+                    <div className="flex flex-wrap justify-center items-stretch gap-6 w-full">
+                        {csrPartners.length === 0 ? (
+                            <div className="w-full text-center py-12 text-foreground/60 font-semibold text-sm">
+                                No CSR partnerships listed yet.
+                            </div>
+                        ) : (
+                            csrPartners.map((partner) => (
+                                <Card
+                                    key={partner.id}
+                                    className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-md p-8 rounded-[2.5rem] flex flex-col justify-center items-center text-center gap-4 bg-white border border-[#C1D6C1] shadow-soft hover:shadow-md transition-shadow"
+                                >
+                                    <h4 className="font-display font-bold text-xl text-foreground text-center">
+                                        {partner.company}
+                                    </h4>
+                                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-center">
+                                        {partner.desc}
+                                    </p>
+                                </Card>
+                            ))
+                        )}
                     </div>
                 </div>
             </section>

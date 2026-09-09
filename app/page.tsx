@@ -413,7 +413,7 @@ export default function Home() {
               <p className="text-foreground/75 leading-relaxed">
                 We collaborate with forward-looking corporate organizations to create scaled local impacts. Key initiatives like healthcare clinics, cancer screenings, and large-scale mangrove plantation are made possible through CSR programs.
               </p>
-              <div className="flex items-center gap-4 mt-2">
+              <div className="flex flex-wrap items-center gap-4 mt-2">
                 <div className="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full bg-white text-foreground/80 shadow-soft">
                   <ShieldCheck className="w-4 h-4 text-secondary" />
                   80G & 12A Certified

@@ -295,7 +295,7 @@ export default function Impact() {
       <ImpactStats />
 
       {/* Interactive Tabs Section */}
-      <section className="py-8 px-6 md:px-12 pb-16">
+      <section className="py-8 px-6 md:px-12 pb-8">
         <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
           {/* Tab Selector */}
           <div className="flex flex-wrap justify-center gap-2 sm:gap-4 border-b border-foreground/5 p-1 max-w-3xl mx-auto w-full">
@@ -437,8 +437,8 @@ export default function Impact() {
                   </Card>
                 </div>
 
-                <section className="py-8 px-6 md:px-12 text-center">
-                  <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
+                <section className="py-4 px-4 md:px-12 text-center">
+                  <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-4 md:px-4 border border-foreground/5">
                     <span className="w-10 h-0.5 bg-secondary rounded-full" />
                     <h2 className="font-display font-bold text-2xl md:text-3xl text-foreground italic leading-normal px-4">
                       &ldquo;Every student we support strengthens a family, inspires a community, and brings a brighter future within reach.&rdquo;
@@ -481,8 +481,8 @@ export default function Impact() {
                     <li>Prepare for further education, training and employment</li>
                     <li>Participate more fully in an increasingly digital society</li>
                   </ul>
-                  <section className="py-8 px-6 md:px-12 text-center">
-                    <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
+                  <section className="py-4 px-4 md:px-12 text-center">
+                    <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-4 md:px-4 border border-foreground/5">
                       <span className="w-10 h-0.5 bg-secondary rounded-full" />
                       <h2 className="font-display font-bold text-2xl md:text-3xl text-foreground italic leading-normal px-4">
                         &ldquo;Digital literacy is not simply a technical skill - it is a foundation for confidence, inclusion and opportunity.&rdquo;
@@ -536,8 +536,8 @@ export default function Impact() {
                     <br /> <br />Today, volunteer mentors connect with students online to strengthen academic skills, build confidence, and guide them through educational and personal challenges. Share your time.
                     {/* <br /><br /><strong>Share your experience. Help a student take the next step toward a brighter future.</strong> */}
                   </p>
-                  <section className="py-8 px-6 md:px-12 text-center">
-                    <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
+                  <section className="py-4 px-4 md:px-12 text-center">
+                    <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-4 md:px-4 border border-foreground/5">
                       <span className="w-10 h-0.5 bg-secondary rounded-full" />
                       <h2 className="font-display font-bold text-2xl md:text-3xl text-foreground italic leading-normal px-4">
                         &ldquo;Share your experience. Help a student take the next step toward a brighter future.&rdquo;
@@ -572,9 +572,9 @@ export default function Impact() {
                       </thead>
                       <tbody className="divide-y divide-[#C1D6C1]/30">
                         <tr className="hover:bg-foreground/5 transition-colors">
-                          <td className="px-6 py-4 font-bold text-foreground">Dr. Ramkrishna Sadhukhan</td>
-                          <td className="px-6 py-4">PhD in Biochemistry, Post Doctorate from Cleveland Clinic and Pfizer</td>
-                          <td className="px-6 py-4">Senior Principal Research Scientist, Head of Therapeutic Protein Engineering, Global Biologics, AbbVie, USA</td>
+                          <td className="px-6 py-4 font-bold text-foreground">Bibekananda Maiti</td>
+                          <td className="px-6 py-4">PGDIE, IIM Mumbai; B.Tech, Chemical Engineering</td>
+                          <td className="px-6 py-4">Global Ocean Logistics Leader &amp; Regional Supply Chain Leader - Guardian Industries, APAC</td>
                         </tr>
                         <tr className="hover:bg-foreground/5 transition-colors">
                           <td className="px-6 py-4 font-bold text-foreground">Debashish Das</td>
@@ -582,9 +582,14 @@ export default function Impact() {
                           <td className="px-6 py-4">Entrepreneur, Former Executive Director of IBM (GBS)</td>
                         </tr>
                         <tr className="hover:bg-foreground/5 transition-colors">
-                          <td className="px-6 py-4 font-bold text-foreground">Bibekananda Maiti</td>
-                          <td className="px-6 py-4">B.Tech, Chemical, PGDIE</td>
-                          <td className="px-6 py-4">Supply Chain Director – APAC, Guardian Industries, Thailand</td>
+                          <td className="px-6 py-4 font-bold text-foreground">Dr. Ramkrishna Sadhukhan</td>
+                          <td className="px-6 py-4">PhD in Biochemistry, Post Doctorate from Cleveland Clinic and Pfizer</td>
+                          <td className="px-6 py-4">Senior Principal Research Scientist, Head of Therapeutic Protein Engineering, Global Biologics, AbbVie, USA</td>
+                        </tr>
+                        <tr className="hover:bg-foreground/5 transition-colors">
+                          <td className="px-6 py-4 font-bold text-foreground">Kajal Kumar Mandal</td>
+                          <td className="px-6 py-4">B. Tech, Computer Science</td>
+                          <td className="px-6 py-4">General Manager, Durgapur Steel Plant (SAIL)</td>
                         </tr>
                         <tr className="hover:bg-foreground/5 transition-colors">
                           <td className="px-6 py-4 font-bold text-foreground">Subhabrata Chakraborti</td>
@@ -593,12 +598,12 @@ export default function Impact() {
                         </tr>
                         <tr className="hover:bg-foreground/5 transition-colors">
                           <td className="px-6 py-4 font-bold text-foreground">Subhendu Shekhar Mal</td>
-                          <td className="px-6 py-4">B. Tech, Chemical</td>
+                          <td className="px-6 py-4">B. Tech, Chemical Engineering</td>
                           <td className="px-6 py-4">Operations Engineer, Kuwait National Petrochemical Company (KNPC), Kuwait</td>
                         </tr>
                         <tr className="hover:bg-foreground/5 transition-colors">
                           <td className="px-6 py-4 font-bold text-foreground">Tarun Kanti Maiti</td>
-                          <td className="px-6 py-4">B. Tech, Chemical</td>
+                          <td className="px-6 py-4">B. Tech, Chemical Engineering</td>
                           <td className="px-6 py-4">Project Engineering Manager, Bechtel, India</td>
                         </tr>
                       </tbody>
@@ -1121,7 +1126,7 @@ export default function Impact() {
                       The Need Is Greater Than Our Current Reach
                     </h5>
                     <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
-                      Although our healthcare initiatives have already reached more than <strong>2,900 people</strong>, countless communities still lack affordable care and life-saving health awareness. Requests continue to come from areas where medical infrastructure is limited, and preventive services are out of reach. Our ability to respond—and to reach the next family in need—depends directly on timely financial support.
+                      Although our healthcare initiatives have already reached more than <strong>3,100 people</strong>, countless communities still lack affordable care and life-saving health awareness. Requests continue to come from areas where medical infrastructure is limited, and preventive services are out of reach. Our ability to respond—and to reach the next family in need—depends directly on timely financial support.
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-1 text-center">
                       <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs font-semibold text-red-700">
@@ -1257,12 +1262,20 @@ export default function Impact() {
                 </div>
 
                 {/* Centered Quote Banner */}
-                <section className="py-8 px-6 md:px-12 text-center">
+                {/* <section className="py-8 px-6 md:px-12 text-center">
                   <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5">
                     <span className="w-10 h-0.5 bg-secondary rounded-full" />
                     <h2 className="font-display font-bold text-2xl md:text-3xl text-foreground italic leading-normal px-4">
                       &ldquo;Planting a mangrove today is an investment in a greener Earth, safer communities, and a better tomorrow.&rdquo;
                     </h2>
+                  </div>
+                </section> */}
+
+
+                <section className="py-4 px-4 md:px-12 text-center">
+                  <div className="max-w-4xl mx-auto flex flex-col items-center gap-6 bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-4 md:px-4 border border-foreground/5">
+                    <span className="w-10 h-0.5 bg-secondary rounded-full"></span>
+                    <h2 className="font-display font-bold text-2xl md:text-3xl text-foreground italic leading-normal px-4">“Planting a mangrove today is an investment in a greener Earth, safer communities, and a better tomorrow.”</h2>
                   </div>
                 </section>
 
@@ -1339,92 +1352,310 @@ export default function Impact() {
               >
                 {/* Overview */}
                 <div className="flex flex-col gap-4">
-                  <h3 className="font-display font-bold text-3xl text-foreground">Winter Relief & Other Social Works</h3>
+                  <h3 className="font-display font-bold text-3xl text-foreground">
+                    Relief Work: Delivering Hope When It Matters Most
+                  </h3>
+                  {/* <p className="text-sm font-semibold text-[#2D9CD4] uppercase tracking-wider">
+                    Delivering Hope, Dignity, and Timely Assistance to Vulnerable Communities
+                  </p> */}
                   <p className="text-sm text-foreground/80 leading-relaxed font-sans">
-                    Live 4 Help Foundation is exploring and trying to find out opportunities to help underprivileged people in every way possible. One of the initiatives is to distribute blankets during winter seasons. In last 3 years Foundation distributed total <strong>480 blankets</strong> at various locations.
+                    When floods wash homes away, winter nights become unbearable, or vulnerable families are left without necessities, timely relief becomes more than assistance — it becomes hope, dignity, and a lifeline. Guided by its mission of <strong>&ldquo;Better Living by Helping,&rdquo; Live4Help Foundation</strong> stands beside communities in their most difficult moments, mobilizing resources swiftly, stewarding every donation responsibly, and working through committed volunteers to ensure that compassionate support reaches those who need it most.
+                  </p>
+                  <p className="text-sm text-foreground/80 leading-relaxed font-sans">
+                    Behind every blanket distributed, every relief kit delivered, and every family supported is a circle of compassionate people who believe that humanity grows stronger when we help one another. <strong>Live4Help Foundation</strong> brings together volunteers, donors, CSR partners, local community leaders, and social organizations, transforming collective goodwill into timely, dignified assistance for the people who need it most.
                   </p>
                 </div>
 
-                {/* 3-Column / 2-Row Responsive Grid for Distribution Campaigns */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {/* Drive 1 */}
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-primary" />
-                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">1. Blanket Distribution</h4>
-                      </div>
-                      <span className="text-[10px] font-semibold text-foreground/50">Held on <strong>29<sup>th</sup> December, 2023</strong></span>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
-                        L4H distributed <strong>160 blankets</strong> to rural villagers in North 24 Parganas District of West Bengal.
+                {/* Relief Impact at a Glance Card */}
+                <div className="w-full flex justify-center items-center">
+                  <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft flex flex-col gap-4 bg-white max-w-2xl w-full">
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-bold text-sm md:text-base text-foreground uppercase tracking-wider">🌍 RELIEF IMPACT AT A GLANCE</h4>
+                    </div>
+                    <p className="text-xs text-foreground/75 leading-relaxed mb-1 font-semibold">
+                      as of August 2026
+                    </p>
+                    <ul className="flex flex-col gap-2.5 text-xs sm:text-sm text-foreground/75 list-disc pl-5 leading-relaxed font-sans">
+                      <li><strong>15 Relief & Humanitarian</strong> Initiatives Conducted</li>
+                      <li><strong>2,000+ Beneficiaries</strong> Supported</li>
+                      <li><strong>1,000+ Beneficiaries Reached</strong> Through Blanket, Clothing & Winter Relief</li>
+                      <li><strong>1,000+ Beneficiaries Supported</strong> Through Flood, Cyclone & Emergency Relief Operations</li>
+                      <li>Activities Across <strong>Delhi, West Bengal & Assam</strong></li>
+                      <li>Supported by <strong>ERBE Medical India Pvt. Ltd.</strong>, Individual Donors & Community Partners</li>
+                    </ul>
+                  </Card>
+                </div>
+
+                {/* Our Relief Journey Section */}
+                <div className="flex flex-col gap-6">
+                  <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
+                    <Calendar className="w-6 h-6 text-[#2D9CD4]" />
+                    <div>
+                      <h4 className="font-display font-bold text-2xl text-foreground">
+                        Our Relief Journey
+                      </h4>
+                      <p className="text-xs sm:text-sm text-foreground/70">
+                        Milestones of compassionate action and humanitarian response over the years
                       </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {/* 2021 */}
+                    <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col justify-between gap-4">
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center justify-between">
+                          <span className="px-3 py-1 rounded-full bg-[#FFE6D4] text-[#DD6B20] text-xs font-bold uppercase tracking-wider">
+                            2021
+                          </span>
+                          <span className="text-[11px] font-semibold text-foreground/60">
+                            50 beneficiaries
+                          </span>
+                        </div>
+                        <h5 className="font-bold text-base text-foreground">
+                          Beginning with Compassion
+                        </h5>
+                        <p className="text-xs text-foreground/75 leading-relaxed font-sans">
+                          Live4Help Foundation began its relief journey by distributing blankets to daily-wage workers and providing clothing to underprivileged families in Delhi, turning its commitment to compassion into direct support for people facing hardship.
+                        </p>
+                      </div>
+                      <div className="pt-2 border-t border-foreground/5 text-[11px] font-semibold text-[#2D9CD4]">
+                        50 beneficiaries supported
+                      </div>
+                    </Card>
+
+                    {/* 2022 */}
+                    <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col justify-between gap-4">
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center justify-between">
+                          <span className="px-3 py-1 rounded-full bg-[#FFE6D4] text-[#DD6B20] text-xs font-bold uppercase tracking-wider">
+                            2022
+                          </span>
+                          <span className="text-[11px] font-semibold text-foreground/60">
+                            200 beneficiaries
+                          </span>
+                        </div>
+                        <h5 className="font-bold text-base text-foreground">
+                          Extending Warmth
+                        </h5>
+                        <p className="text-xs text-foreground/75 leading-relaxed font-sans">
+                          Winter blanket distribution drive in North 24 Parganas, West Bengal, bringing warmth and comfort to vulnerable families facing harsh winter weather.
+                        </p>
+                      </div>
+                      <div className="pt-2 border-t border-foreground/5 text-[11px] font-semibold text-[#2D9CD4]">
+                        200 beneficiaries supported
+                      </div>
+                    </Card>
+
+                    {/* 2023 */}
+                    <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col justify-between gap-4">
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center justify-between">
+                          <span className="px-3 py-1 rounded-full bg-[#FFE6D4] text-[#DD6B20] text-xs font-bold uppercase tracking-wider">
+                            2023
+                          </span>
+                          <span className="text-[11px] font-semibold text-foreground/60">
+                            260 beneficiaries
+                          </span>
+                        </div>
+                        <h5 className="font-bold text-base text-foreground">
+                          Expanding Community Reach
+                        </h5>
+                        <p className="text-xs text-foreground/75 leading-relaxed font-sans">
+                          Blanket distribution initiatives in Delhi and West Bengal supporting school children, rural families, and economically disadvantaged communities.
+                        </p>
+                      </div>
+                      <div className="pt-2 border-t border-foreground/5 text-[11px] font-semibold text-[#2D9CD4]">
+                        260 beneficiaries supported
+                      </div>
+                    </Card>
+
+                    {/* 2024 */}
+                    <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col justify-between gap-4">
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center justify-between">
+                          <span className="px-3 py-1 rounded-full bg-[#FFE6D4] text-[#DD6B20] text-xs font-bold uppercase tracking-wider">
+                            2024
+                          </span>
+                          <span className="text-[11px] font-semibold text-foreground/60">
+                            708 beneficiaries
+                          </span>
+                        </div>
+                        <h5 className="font-bold text-base text-foreground">
+                          Responding to Crisis
+                        </h5>
+                        <p className="text-xs text-foreground/75 leading-relaxed font-sans">
+                          Alongside winter relief activities, responded to cyclone- and flood-affected communities in Sandeshkhali, Hingalganj, Hooghly, and Bankura. Distributed tarpaulins, mosquito nets, food supplies, and other essential materials to help families rebuild.
+                        </p>
+                      </div>
+                      <div className="pt-2 border-t border-foreground/5 text-[11px] font-semibold text-[#2D9CD4]">
+                        708 beneficiaries supported
+                      </div>
+                    </Card>
+
+                    {/* 2025 */}
+                    <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col justify-between gap-4">
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center justify-between">
+                          <span className="px-3 py-1 rounded-full bg-[#FFE6D4] text-[#DD6B20] text-xs font-bold uppercase tracking-wider">
+                            2025
+                          </span>
+                          <span className="text-[11px] font-semibold text-foreground/60">
+                            470 beneficiaries
+                          </span>
+                        </div>
+                        <h5 className="font-bold text-base text-foreground">
+                          Standing Strong with Flood-Affected Families
+                        </h5>
+                        <p className="text-xs text-foreground/75 leading-relaxed font-sans">
+                          Focused relief efforts across Paschim Medinipur, Jalpaiguri, and Bankura, providing blankets, mosquito nets, and emergency support to families rebuilding their lives after devastating floods.
+                        </p>
+                      </div>
+                      <div className="pt-2 border-t border-foreground/5 text-[11px] font-semibold text-[#2D9CD4]">
+                        470 beneficiaries supported
+                      </div>
+                    </Card>
+
+                    {/* 2026 */}
+                    <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col justify-between gap-4">
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center justify-between">
+                          <span className="px-3 py-1 rounded-full bg-[#FFE6D4] text-[#DD6B20] text-xs font-bold uppercase tracking-wider">
+                            2026
+                          </span>
+                          <span className="text-[11px] font-semibold text-foreground/60">
+                            350 beneficiaries
+                          </span>
+                        </div>
+                        <h5 className="font-bold text-base text-foreground">
+                          Reaching Further
+                        </h5>
+                        <p className="text-xs text-foreground/75 leading-relaxed font-sans">
+                          Winter relief for elderly women and underprivileged children in Delhi, alongside a major flood relief mission in Sivasagar District, Assam, bringing essential aid to remote communities.
+                        </p>
+                      </div>
+                      <div className="pt-2 border-t border-foreground/5 text-[11px] font-semibold text-[#2D9CD4]">
+                        350 beneficiaries supported
+                      </div>
+                    </Card>
+                  </div>
+                </div>
+
+                {/* Volunteer & Accountability Row */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* The Power of Volunteers Card */}
+                  <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col justify-between gap-6">
+                    <div className="flex flex-col gap-4">
+                      <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
+                        <Users className="w-6 h-6 text-[#2D9CD4]" />
+                        <h4 className="font-display font-bold text-xl text-foreground">
+                          The Power of Volunteers
+                        </h4>
+                      </div>
+                      <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                        No relief operation succeeds without committed volunteers who carry compassion into communities. <strong>Live4Help Foundation</strong> proudly acknowledges the invaluable contribution of <strong>Roymoni Smriti Foundation</strong> volunteers, whose local knowledge, outreach, community engagement, and on-the-ground coordination help us fulfil our mission with greater reach, responsiveness, and dignity.
+                      </p>
+                      <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                        From identifying and documenting beneficiaries in remote villages to organizing distributions and ensuring that aid reaches families with dignity, <strong>Roymoni Smriti Foundation volunteers </strong>embody the true spirit of service. Through this partnership, <strong>Live4Help Foundation</strong> can extend its mission into hard-to-reach communities, combining local trust with coordinated action to bring practical support and renewed hope to people facing adversity.
+                      </p>
+                      <div className="bg-[#E5F0E5]/70 p-4 rounded-2xl border border-[#C1D6C1]/40 text-xs font-semibold text-foreground/90">
+                        Together, our volunteers transform compassion into action and action into lasting impact.
+                      </div>
                     </div>
                   </Card>
 
-                  {/* Drive 2 */}
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-primary" />
-                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">2. Blanket Distribution</h4>
+                  {/* Accountability & Responsible CSR Card */}
+                  <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col justify-between gap-6">
+                    <div className="flex flex-col gap-4">
+                      <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
+                        <HeartHandshake className="w-6 h-6 text-[#2D9CD4]" />
+                        <h4 className="font-display font-bold text-xl text-foreground">
+                          Accountability & Responsible CSR
+                        </h4>
                       </div>
-                      <span className="text-[10px] font-semibold text-foreground/50">Held on <strong>15<sup>th</sup> January, 2023</strong></span>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
-                        L4H distributed <strong>100 blankets</strong> to construction workers at Govt. Boys Senior Secondary School, Jharoda Kalan, New Delhi-110072 during peak winter.
+                      <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                        Every contribution entrusted to <strong>Live4Help Foundation</strong> is managed with transparency, responsibility, and respect for the people it is intended to serve. This commitment reflects our NGO mission: to transform compassion into accountable action and ensure that every resource creates meaningful, measurable impact.
                       </p>
-                    </div>
-                  </Card>
-
-                  {/* Drive 3 */}
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-primary" />
-                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">3. Blanket Distribution</h4>
+                      <div className="bg-[#FFE6D4]/60 p-5 rounded-2xl border border-[#EEB898]/40 flex flex-col gap-2.5">
+                        <span className="text-xs sm:text-sm font-bold text-foreground font-sans">
+                          Our Disciplined Framework:
+                        </span>
+                        <ul className="flex flex-col gap-2 text-xs text-foreground/80 list-disc pl-5 leading-relaxed font-sans">
+                          <li>Need-based assessment before intervention</li>
+                          <li>Efficient mobilization and deployment of resources</li>
+                          <li>Documented and monitored distributions</li>
+                          <li>Community participation and volunteer engagement</li>
+                          <li>Transparent reporting and measurable impact</li>
+                        </ul>
                       </div>
-                      <span className="text-[10px] font-semibold text-foreground/50">Held on <strong>27<sup>th</sup> December, 2022</strong></span>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
-                        L4H distributed <strong>200 blankets</strong> among disadvantaged people in rural villages of 24th Parganas, West Bengal to provide a touch of warmth amidst the bitter winters.
-                      </p>
-                    </div>
-                  </Card>
-
-                  {/* Drive 4 */}
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between">
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-primary" />
-                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">4. Cloth Distribution</h4>
-                      </div>
-                      <span className="text-[10px] font-semibold text-foreground/50">Held on <strong>15<sup>th</sup> August, 2021</strong></span>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
-                        On Independence Day, Live 4 Help Foundation team distributed old clothes collected from friends and family to approximately <strong>30</strong> underprivileged families. Beneficiaries are daily wagers living in roadside tent in Dwarka Sub city, New Delhi. This is a small endeavour through our NGO. We will continue to do such drives in future with support from well-wishers and like-minded people.
-                      </p>
-                    </div>
-                  </Card>
-
-                  {/* Drive 5 */}
-                  <Card className="p-6 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-4 justify-between md:col-span-1 lg:col-span-2">
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-primary" />
-                        <h4 className="font-bold text-sm text-foreground uppercase tracking-wider">5. Charity Begin – Blanket Distribution</h4>
-                      </div>
-                      <span className="text-[10px] font-semibold text-foreground/50">Held on Sankranti Day, <strong>14<sup>th</sup> January, 2021</strong></span>
-                      <p className="text-xs text-foreground/70 leading-relaxed font-sans">
-                        Live 4 Help Foundation performed a special puja on <strong>14<sup>th</sup> Jan’21</strong>, Sankranti Day to begin our journey towards services and to kickstart the activities outlined in the objectives. We have distributed blankets to <strong>20</strong> daily wagers of Sec 19B DDA Park, Dwarka, New Delhi to provide a little comfort during peak winter.
+                      <p className="text-xs text-foreground/75 leading-relaxed font-sans">
+                        This disciplined approach has enabled us to build lasting trust with beneficiaries, donors, volunteers, and CSR partners.
                       </p>
                     </div>
                   </Card>
                 </div>
 
+                {/* Join Us in Creating Greater Impact Card */}
+                <Card className="p-6 md:p-8 rounded-[2.5rem] border border-[#C1D6C1] shadow-soft bg-white flex flex-col gap-6">
+                  <div className="flex items-center gap-3 border-b border-foreground/5 pb-4">
+                    <HeartHandshake className="w-6 h-6 text-[#2D9CD4]" />
+                    <div>
+                      <h4 className="font-display font-bold text-2xl text-foreground">
+                        Join Us in Creating Greater Impact
+                      </h4>
+                      {/* <p className="text-xs sm:text-sm font-semibold text-[#2D9CD4] mt-1">
+                        Mobilizing Resources, Dignity, and Direct Support When Disaster Strikes
+                      </p> */}
+                    </div>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                    Despite the progress made, countless families continue to face extreme weather, disasters, and economic hardship. The need for timely and meaningful relief remains greater than ever.
+                  </p>
+                  <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                    Whether you are a corporate organization seeking meaningful CSR engagement, a foundation looking for a trusted implementation partner, a volunteer ready to serve, or an individual wishing to make a difference, your support can help <strong>Live4Help Foundation</strong> carry hope, dignity, and practical assistance to many more families facing hardship.
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-1 text-center">
+                    <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-xs font-semibold text-amber-800 flex flex-col gap-1 items-center justify-center">
+                      <span className="text-base">❄️</span>
+                      <span className="font-bold">Winter Protection</span>
+                      <span>A blanket can protect a child from a harsh winter night.</span>
+                    </div>
+                    <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 text-xs font-semibold text-blue-800 flex flex-col gap-1 items-center justify-center">
+                      <span className="text-base">🌊</span>
+                      <span className="font-bold">Disaster Relief</span>
+                      <span>A relief kit can help a family survive a disaster.</span>
+                    </div>
+                    <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800 flex flex-col gap-1 items-center justify-center">
+                      <span className="text-base">🤝</span>
+                      <span className="font-bold">CSR Partnership</span>
+                      <span>A partnership can transform entire communities.</span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-2 text-center items-center pt-2">
+                    <span className="text-xs sm:text-sm font-bold text-foreground font-sans">
+                      Join hands with Live4Help Foundation • Partner • Volunteer • Support
+                    </span>
+                    <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed font-sans">
+                      Together, let&apos;s deliver hope, restore dignity, and build a future where no one is left behind.
+                    </p>
+                    <span className="text-xs font-bold uppercase tracking-widest text-[#2D9CD4]">
+                      &ldquo;Better Living by Helping.&rdquo;
+                    </span>
+                  </div>
+                </Card>
+
                 {/* Gallery Snapshots Image */}
                 <div className="flex flex-col gap-4 items-center">
-                  <p className="text-xs text-foreground/50 font-semibold align-self-start">Here are a few snapshots of photograph of our earlier distributions.</p>
+                  <p className="text-xs text-foreground/50 font-semibold align-self-start">
+                    Here are a few snapshots of photographs from our earlier relief distributions.
+                  </p>
                   <div className="aspect-[16/10] w-full rounded-[2rem] overflow-hidden border border-white shadow-soft relative max-w-4xl mx-auto">
                     <img referrerPolicy="no-referrer"
                       src="/focus/Cloth-Distribution-Photo-3.jpg"
-                      alt="Relief Work & Blanket Distribution Campaigns"
+                      alt="Relief Work, Flood Response & Blanket Distribution Campaigns"
                       className="w-full h-full object-cover absolute inset-0"
                     />
                   </div>
@@ -1523,7 +1754,7 @@ export default function Impact() {
           </section>
 
           {/*  Making a Difference Today for a Better Tomorrow Section */}
-          <section className="py-8 px-6 md:px-12 pb-16">
+          <section className="py-8 px-6 md:px-12 pb-8">
             <div className="relative overflow-hidden bg-gradient-to-br from-[#FFF9E6] via-[#FFF3C3] to-[#FFF9E6] rounded-[3rem] py-12 px-6 md:py-16 md:px-8 border border-[#EEC978]/30 shadow-premium max-w-7xl mx-auto flex flex-col gap-6 text-center items-center hover:shadow-2xl transition-all duration-500">
               {/* Subtle background decoration blurs */}
               <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -translate-x-12 -translate-y-12 pointer-events-none" />
@@ -1559,7 +1790,7 @@ export default function Impact() {
           />
 
           {/* After Blog Section: Healthcare Urgent Appeal Banner */}
-          <section className="py-8 px-6 md:px-12 pb-16">
+          <section className="py-8 px-6 md:px-12 pb-8">
             <div className="relative overflow-hidden bg-gradient-to-br from-[#FFF9E6] via-[#FFF3C3] to-[#FFF9E6] rounded-[3rem] py-12 px-6 md:py-16 md:px-8 border border-[#EEC978]/30 shadow-premium max-w-7xl mx-auto flex flex-col gap-6 text-center items-center hover:shadow-2xl transition-all duration-500">
               {/* Subtle background decoration blurs */}
               <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -translate-x-12 -translate-y-12 pointer-events-none" />
@@ -1594,16 +1825,40 @@ export default function Impact() {
         />
       )}
 
-      {/* Relief tab blog section */}
+      {/* Relief tab blog section and After Blog Section CTA */}
       {activeTab === "relief" && (
-        <ImpactBlogSection
-          title="Latest Relief Work Activities & Updates"
-          description="Explore detailed reports and updates from our relief campaigns, blanket distributions, and community aid."
-          categoryLink="/blog?category=relief%20work"
-          defaultCategoryName="Relief Work"
-          emptyText="No relief work updates found."
-          posts={reliefBlogs}
-        />
+        <>
+          <ImpactBlogSection
+            title="Latest Relief Work Activities & Updates"
+            description="Explore detailed reports and updates from our relief campaigns, blanket distributions, and community aid."
+            categoryLink="/blog?category=relief%20work"
+            defaultCategoryName="Relief Work"
+            emptyText="No relief work updates found."
+            posts={reliefBlogs}
+          />
+
+          {/* After Blog Section: Relief Call to Action Banner */}
+          <section className="py-8 px-6 md:px-12 pb-8">
+            <div className="relative overflow-hidden bg-gradient-to-br from-[#FFF9E6] via-[#FFF3C3] to-[#FFF9E6] rounded-[3rem] py-12 px-6 md:py-16 md:px-8 border border-[#EEC978]/30 shadow-premium max-w-7xl mx-auto flex flex-col gap-6 text-center items-center hover:shadow-2xl transition-all duration-500">
+              {/* Subtle background decoration blurs */}
+              <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -translate-x-12 -translate-y-12 pointer-events-none" />
+              <div className="absolute bottom-0 right-0 w-48 h-48 bg-[#DD6B20]/10 rounded-full blur-3xl translate-x-16 translate-y-16 pointer-events-none" />
+
+              <span className="text-sm md:text-base font-semibold text-[#DD6B20] tracking-wide z-10">
+                Join Us in Creating Greater Impact
+              </span>
+              <h2 className="font-display font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-800 tracking-tight max-w-4xl z-10 leading-snug">
+                A blanket can protect a child from a harsh winter night. A relief kit can help a family survive a disaster. A partnership can transform entire communities.
+              </h2>
+              <p className="text-xs sm:text-sm text-foreground/75 leading-relaxed max-w-3xl font-sans z-10">
+                Join hands with <strong className="font-bold text-[#DD6B20]">Live4Help Foundation</strong>. Partner. Volunteer. Support. Together, let&apos;s deliver hope, restore dignity, and build a future where no one is left behind.
+              </p>
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FFE6D4] text-[#DD6B20] rounded-full text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider border border-[#EEB898]/40 shadow-soft mt-2 z-10 transition-all duration-300 hover:scale-105 cursor-default">
+                &ldquo;Better Living by Helping.&rdquo;
+              </div>
+            </div>
+          </section>
+        </>
       )}
 
       {/* Video Testimonial Modal Lightbox */}
