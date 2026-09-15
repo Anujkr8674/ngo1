@@ -54,22 +54,28 @@ export async function getCsrPartnerships() {
 
 export async function saveCsrPartnership(
   id: string | null,
-  data: { company: string; desc: string; order: number }
+  data: { company: string; desc: string; order?: number }
 ) {
   try {
     if (!data.company || !data.desc) {
       return { error: 'Company Name and Description fields are required' }
     }
 
+    const payload = {
+      company: data.company,
+      desc: data.desc,
+      order: data.order ?? 0,
+    }
+
     let record
     if (id) {
       record = await prisma.csrPartnership.update({
         where: { id },
-        data,
+        data: payload,
       })
     } else {
       record = await prisma.csrPartnership.create({
-        data,
+        data: payload,
       })
     }
 

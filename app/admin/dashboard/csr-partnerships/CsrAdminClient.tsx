@@ -63,10 +63,17 @@ export default function CsrAdminClient({ initialRecords }: { initialRecords: any
       if (res.success && res.data) {
         if (selectedRecord) {
           setRecords(prev =>
-            prev.map(r => (r.id === selectedRecord.id ? res.data : r)).sort((a, b) => a.order - b.order)
+            prev
+              .map(r => (r.id === selectedRecord.id ? res.data : r))
+              // .sort((a, b) => a.order - b.order) // Order sorting commented out in favor of timestamp sorting
+              .sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime())
           )
         } else {
-          setRecords(prev => [...prev, res.data].sort((a, b) => a.order - b.order))
+          setRecords(prev =>
+            [res.data, ...prev]
+              // .sort((a, b) => a.order - b.order) // Order sorting commented out in favor of timestamp sorting
+              .sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime())
+          )
         }
         setIsModalOpen(false)
       } else {
@@ -118,7 +125,8 @@ export default function CsrAdminClient({ initialRecords }: { initialRecords: any
         <table className="w-full text-left border-collapse text-xs">
           <thead>
             <tr className="border-b border-slate-100 text-slate-400 font-semibold uppercase tracking-wider font-sans">
-              <th className="py-4 px-4">Order</th>
+              {/* <th className="py-4 px-4">Order</th> */}
+              <th className="py-4 px-4">Date / Time</th>
               <th className="py-4 px-4">Partner/Company</th>
               <th className="py-4 px-4">Description of Project</th>
               <th className="py-4 px-4 text-right">Actions</th>
@@ -134,8 +142,15 @@ export default function CsrAdminClient({ initialRecords }: { initialRecords: any
             ) : (
               filtered.map((record) => (
                 <tr key={record.id} className="hover:bg-slate-50/55 transition-colors">
-                  <td className="py-4 px-4 text-slate-500 font-bold font-sans">
+                  {/* <td className="py-4 px-4 text-slate-500 font-bold font-sans">
                     {record.order}
+                  </td> */}
+                  <td className="py-4 px-4 text-slate-500 font-medium text-[11px] whitespace-nowrap">
+                    {record.createdAt ? new Date(record.createdAt).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric'
+                    }) : 'Recent'}
                   </td>
                   <td className="py-4 px-4 text-slate-800 font-bold text-sm">
                     {record.company}
@@ -201,7 +216,7 @@ export default function CsrAdminClient({ initialRecords }: { initialRecords: any
                   />
                 </div>
 
-                {/* Display Order */}
+                {/* Display Order - Commented out in favor of timestamp sorting (latest on top)
                 <div className="flex flex-col gap-1.5">
                   <label className="font-semibold text-slate-600">Display Order</label>
                   <input
@@ -213,6 +228,7 @@ export default function CsrAdminClient({ initialRecords }: { initialRecords: any
                     placeholder="e.g. 0"
                   />
                 </div>
+                */}
 
                 {/* Description */}
                 <div className="flex flex-col gap-1.5">

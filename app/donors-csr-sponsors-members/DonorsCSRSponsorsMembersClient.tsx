@@ -29,7 +29,9 @@ export default function DonorsCSRSponsorsMembersClient({
     initialCsrPartners = [],
 }: DonorsCSRSponsorsMembersClientProps) {
     const [activeImage, setActiveImage] = useState<string | null>(null);
-    const [csrPartners] = useState<CsrPartner[]>(initialCsrPartners);
+    const [csrPartners] = useState<CsrPartner[]>(() =>
+        [...initialCsrPartners].sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime())
+    );
 
     return (
         <div className="flex flex-col w-full">

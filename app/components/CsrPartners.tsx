@@ -26,8 +26,10 @@ export default function CsrPartners() {
 
   if (loading || partners.length === 0) return null;
 
-  // Display only the two most recently added cards
-  const recentPartners = partners.slice(0, 2);
+  // Display only the two most recently added cards (latest on top)
+  const recentPartners = [...partners]
+    .sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime())
+    .slice(0, 2);
 
   return (
     <div className="lg:col-span-7 flex flex-col items-center gap-6">

@@ -299,16 +299,21 @@ export default function Impact() {
         <div className="bg-[#E5F0E5] rounded-[3rem] py-8 px-4 md:py-16 md:px-8 border border-foreground/5 max-w-7xl mx-auto flex flex-col gap-12">
           {/* Tab Selector */}
           <div className="flex flex-wrap justify-center gap-2 sm:gap-4 border-b border-foreground/5 p-1 max-w-3xl mx-auto w-full">
-            {(["education", "healthcare", "environment", "relief"] as const).map((tab) => (
+            {[
+              { id: "education", label: "Education" },
+              { id: "healthcare", label: "Healthcare" },
+              { id: "environment", label: "Plantation" },
+              { id: "relief", label: "Relief Work" },
+            ].map((tab) => (
               <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-4 sm:px-6 py-3 text-xs sm:text-sm font-semibold uppercase tracking-wider rounded-2xl transition-premium cursor-pointer ${activeTab === tab
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                className={`px-4 sm:px-6 py-3 text-xs sm:text-sm font-semibold uppercase tracking-wider rounded-2xl transition-premium cursor-pointer ${activeTab === tab.id
                   ? "bg-[#CFE8FF] text-foreground shadow-soft border border-foreground/5"
                   : "text-foreground/65 hover:text-foreground"
                   }`}
               >
-                {tab}
+                {tab.label}
               </button>
             ))}
           </div>
