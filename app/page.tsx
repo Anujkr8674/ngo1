@@ -605,11 +605,11 @@ export default function Home() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setActiveGalleryImage(null)}
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-6 cursor-pointer"
           >
             <button
               onClick={() => setActiveGalleryImage(null)}
-              className="absolute top-6 right-6 p-3 rounded-full hover: text-white transition-colors cursor-pointer hover:-translate-y-2 hover:border-primary hover:shadow-premium transition-all duration-300"
+              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all cursor-pointer z-50 shadow-md"
               aria-label="Close image"
             >
               <X className="w-6 h-6" />
@@ -619,19 +619,21 @@ export default function Home() {
               animate={{ scale: 1 }}
               exit={{ scale: 0.95 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-3xl flex flex-col items-center gap-6"
+              className="relative max-w-[95vw] max-h-[92vh] flex flex-col items-center justify-center gap-3 cursor-default"
             >
-              <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-premium border border-white/10 bg-black">
-                <SmoothImage
+              <div className="relative flex items-center justify-center max-w-full max-h-[82vh]">
+                <img
+                  referrerPolicy="no-referrer"
                   src={activeGalleryImage.src}
-                  alt={activeGalleryImage.caption}
-                  aspectRatioClassName="aspect-[4/3]"
-                  className="object-contain"
+                  alt={activeGalleryImage.caption || "Gallery Image"}
+                  className="max-w-[92vw] max-h-[80vh] w-auto h-auto object-contain rounded-xl shadow-2xl border border-white/10"
                 />
               </div>
-              <p className="text-white text-sm md:text-base text-center max-w-2xl px-4 leading-relaxed font-sans">
-                {activeGalleryImage.caption}
-              </p>
+              {activeGalleryImage.caption && (
+                <p className="text-white/90 text-sm md:text-base text-center max-w-2xl px-4 leading-relaxed font-sans font-medium">
+                  {activeGalleryImage.caption}
+                </p>
+              )}
             </motion.div>
           </motion.div>
         )}
