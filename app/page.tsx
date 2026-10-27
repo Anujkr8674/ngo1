@@ -270,7 +270,7 @@ export default function Home() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-premium"
                   />
                   {/* Floating icon badge */}
-                  <div className={`absolute bottom-3 right-3 w-10 h-10 rounded-xl ${area.bgColor} flex items-center justify-center shadow-lg border border-white/45 backdrop-blur-sm group-hover:scale-110 transition-premium z-10`}>
+                  <div className={`absolute bottom-3 right-3 w-10 h-10 rounded-xl ${area.bgColor} flex items-center justify-center text-white [&_svg]:text-white shadow-lg border border-white/45 backdrop-blur-sm group-hover:scale-110 transition-premium z-10`}>
                     {area.icon}
                   </div>
                 </div>
